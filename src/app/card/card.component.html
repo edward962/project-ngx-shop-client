@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="col-lg-9">
+      <h3 class="section-title">Top Recommendations for You</h3>
+      <div class="row homepage-cards">
+        <div class="col-md-6 col-lg-4 mb-4" *ngFor="let product of products">
+          <div class="card">
+            <div class="card-img-wrap">
+              <img
+                class="card-img-top"
+                src="assets/images/headphones.png"
+                alt="Card image cap"
+              />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                Nuraphone - Wireless Bluetooth Over-Ear Headphones
+              </h5>
+              <div class="rate">
+                <i class="icon-star checked"></i>
+                <i class="icon-star checked"></i>
+                <i class="icon-star checked"></i>
+                <i class="icon-star checked"></i>
+                <i class="icon-star active"></i>
+                <span class="rate-amount ml-2">24</span>
+              </div>
+              <p class="card-text price-text">
+                <strong>€ 399</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
