@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ICategory } from './interfaces/category.interface';
-import { categories } from '../data/mock-data';
 
 @Component({
   selector: 'app-side-menu',
@@ -10,7 +10,7 @@ import { categories } from '../data/mock-data';
 export class SideMenuComponent {
   public show: string;
   public currentIndex: number| null = null;
-  public categories: ICategory[] = categories;
+  @Input() public categories!: ICategory[];
   hover(index: number) {
     this.currentIndex = index;
   }
