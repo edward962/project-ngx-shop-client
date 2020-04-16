@@ -1,11 +1,11 @@
    <div class="col-lg-12">
       <ul class="list-group sidebar">
-        <li *ngFor="let cat of cats; let i = index" class="list-group-item dropdown" [ngClass]="{show : i === currentIndex}">
+        <li *ngFor="let category of categories; let i = index" class="list-group-item dropdown" [ngClass]="{show : i === currentIndex}">
           <a class="nav-link dropdown-toggle" (mouseenter)="hover(i)" (mouseleave)="unHover()">
-            {{cat.name}}
+            {{category.name}}
           </a>
           <ul  class="dropdown-menu" [ngClass]="{show : i === currentIndex}">
-            <li class="dropdown-itemx" *ngFor="let subCat of cat.subCategories"><a>{{subCat.name}}</a></li>
+            <li class="dropdown-item" *ngFor="let subCategory of category.subCategories"><a>{{subCategory.name}}</a></li>
           </ul> 
         </li>  
       </ul>
