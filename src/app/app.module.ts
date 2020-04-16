@@ -1,8 +1,11 @@
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { CardComponent } from './card/card.component';
+import { StarRatingComponent } from './card/star-rating/star-rating.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { CategoriesService } from './shared/services/category.service';
 import { BASE_URL_TOKEN } from './config';
@@ -14,12 +17,15 @@ import { InterceptorService } from './shared/services/interceptor.service';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    CardComponent,
+    StarRatingComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule
   ],
   providers: [
     CategoriesService,
@@ -35,4 +41,4 @@ import { InterceptorService } from './shared/services/interceptor.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
