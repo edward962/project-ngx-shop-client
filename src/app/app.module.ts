@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CardComponent } from './card/card.component';
-import { PricePipe } from './pipes/price.pipe';
 import { StarRatingComponent } from './card/star-rating/star-rating.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 
@@ -14,7 +13,6 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     AppComponent,
     HeaderComponent,
     CardComponent,
-    PricePipe,
     StarRatingComponent,
     SideMenuComponent,
   ],
