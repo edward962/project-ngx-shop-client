@@ -7,17 +7,38 @@ import { HeaderComponent } from './header/header.component';
 import { CardComponent } from './card/card.component';
 import { StarRatingComponent } from './card/star-rating/star-rating.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { CategoriesService } from './shared/services/category.service';
+import { BASE_URL_TOKEN } from './config';
+import { environment } from 'src/environments/environment';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { InterceptorService } from './shared/services/interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CardComponent,
-    StarRatingComponent,
     SideMenuComponent,
+    CardComponent,
+    StarRatingComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule],
-  providers: [],
-  bootstrap: [AppComponent],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    MatIconModule
+  ],
+  providers: [
+    CategoriesService,
+    {
+      provide: BASE_URL_TOKEN,
+      useValue: environment.baseUrl,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
