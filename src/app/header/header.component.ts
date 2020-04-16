@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'app-header',
+  selector: 'app-ngx-shop-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass'],
 })
-export class HeaderComponent implements OnInit {
-
-  constructor() {}
-
-  ngOnInit(): void {
-  }
-}
+export class HeaderComponent {}

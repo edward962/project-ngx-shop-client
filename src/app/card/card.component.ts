@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { IProduct } from '../interfaces/product.interface';
+import { product } from '../data/products';
 
 @Component({
-  selector: 'app-card',
+  selector: 'app-ngx-shop-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.sass'],
 })
-export class CardComponent implements OnInit {
-  public products;
-  constructor() {
-    this.products = [1, 2, 3, 4, 5, 6];
-  }
-
-  ngOnInit(): void {}
+export class CardComponent {
+  public products: IProduct[] = product;
 }
