@@ -12,6 +12,8 @@ import { BASE_URL_TOKEN } from './config';
 import { environment } from 'src/environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './shared/services/interceptor.service';
+import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselDirective } from './carousel/carousel.directive';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,11 @@ import { InterceptorService } from './shared/services/interceptor.service';
     HeaderComponent,
     SideMenuComponent,
     CardComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    CarouselComponent,
+    CarouselDirective,
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    MatIconModule
-  ],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule, MatIconModule],
   providers: [
     CategoriesService,
     {
@@ -39,6 +38,6 @@ import { InterceptorService } from './shared/services/interceptor.service';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

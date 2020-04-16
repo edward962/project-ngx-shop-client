@@ -1,0 +1,24 @@
+<div class="main-carousel carousel slide">
+  <div
+    class="carousel-inner"
+    [@inOutAnimation]
+    *ngShopCarousel="
+      let image;
+      from: images;
+      autoplay: 'on';
+      delay: 3000;
+      controller as ctrl
+    "
+    (mouseenter)="ctrl.stop()"
+    (mouseleave)="ctrl.start()"
+  >
+    <div class="carousel-item active">
+      <img class="carousel-item-image" [src]="image.src" />
+      <div class="container">
+        <div class="carousel-caption">
+          <h3 class="h1">{{ image.title }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

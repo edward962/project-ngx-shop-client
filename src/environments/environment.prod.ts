@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://ng-course-api.herokuapp.com'
+  baseUrl: 'https://ngx-shop-api.herokuapp.com',
 };
