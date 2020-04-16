@@ -1,5 +1,11 @@
-<app-ngx-shop-header></app-ngx-shop-header>
+<app-ngx-header></app-ngx-header>
 <main role="main">
   <div class="backdrop"></div>
-  <app-ngx-shop-card></app-ngx-shop-card>
+  <div class="container">
+    <div class="row flex-column-reverse flex-lg-row">
+      <app-side-menu></app-side-menu>
+      <div class="col-lg-9">content</div>
+    </div>
+  </div>
+  <app-card></app-card>
 </main>

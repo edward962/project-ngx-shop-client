@@ -3,7 +3,7 @@ import { IProduct } from '../interfaces/product.interface';
 import { product } from '../data/products';
 
 @Component({
-  selector: 'app-ngx-shop-card',
+  selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.sass'],
 })
