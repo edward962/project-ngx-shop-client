@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { CardComponent } from './card/card.component';
 import { PricePipe } from './pipes/price.pipe';
 import { StarRatingComponent } from './card/star-rating/star-rating.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { StarRatingComponent } from './card/star-rating/star-rating.component';
     CardComponent,
     PricePipe,
     StarRatingComponent,
+    SideMenuComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, MatIconModule],
   providers: [],
