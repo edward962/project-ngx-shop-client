@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="col-lg-9">
+      <h3 class="section-title">Top Recommendations for You</h3>
+      <div class="row homepage-cards">
+        <div class="col-md-6 col-lg-4 mb-4" *ngFor="let product of products">
+          <div class="card">
+            <div class="card-img-wrap">
+              <img
+                class="card-img-top"
+                [src]="product.image"
+                [alt]="product.name"
+              />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ product.name }}
+              </h5>
+              <div class="rate">
+                <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+                <span class="rate-amount ml-2">{{
+                  product.feedbacksCount
+                }}</span>
+              </div>
+              <p class="card-text price-text">
+                <strong>{{ 399 | currency: 'EUR' }}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
