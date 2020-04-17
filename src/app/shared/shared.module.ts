@@ -22,23 +22,23 @@ import { ProductsService } from './services/products.service';
     CommonModule,
     StarRatingComponent,
   ],
-  providers: [CategoriesService, ProductsService],
+  providers: [CategoriesService,
+    ProductsService,
+    {
+      provide: BASE_URL_TOKEN,
+      useValue: environment.baseUrl,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
+  ],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [
-        {
-          provide: BASE_URL_TOKEN,
-          useValue: environment.baseUrl,
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: InterceptorService,
-          multi: true,
-        },
-      ],
     };
   }
 }
