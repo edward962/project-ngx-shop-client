@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.categories$ = this.categoriesService.getCategories();
+    // TODO
     this.products$ = this.productsService.getProducts().pipe(
       map((data: any) => {
         data[Symbol.iterator] = () => data.items[Symbol.iterator]();
