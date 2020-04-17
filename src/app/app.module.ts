@@ -1,3 +1,4 @@
+import { ProductsService } from './shared/services/products.service';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,6 @@ import { environment } from 'src/environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './shared/services/interceptor.service';
 import { CarouselComponent } from './carousel/carousel.component';
-import { CarouselDirective } from './carousel/carousel.directive';
 
 @NgModule({
   declarations: [
@@ -23,11 +23,11 @@ import { CarouselDirective } from './carousel/carousel.directive';
     CardComponent,
     StarRatingComponent,
     CarouselComponent,
-    CarouselDirective,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, MatIconModule],
   providers: [
     CategoriesService,
+    ProductsService,
     {
       provide: BASE_URL_TOKEN,
       useValue: environment.baseUrl,
