@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ICategory } from './interfaces/category.interface';
 
 @Component({
