@@ -5,7 +5,7 @@
             {{category.name}}
           </a>
           <ul  class="dropdown-menu" [ngClass]="{show : i === currentIndex}">
-            <li class="dropdown-item" *ngFor="let subCategory of category.subCategories"><a>{{subCategory.name}}</a></li>
+            <li class="dropdown-item" *ngFor="let subCategory of category.subCategories"><a href="{{subCategory.name}}">{{subCategory.name}}</a></li>
           </ul> 
         </li>  
       </ul>

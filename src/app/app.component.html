@@ -1,25 +1,3 @@
 <app-ngx-header></app-ngx-header>
-<main role="main">
-  <div class="backdrop"></div>
-  <div class="container">
-    <div class="row flex-column-reverse flex-lg-row">
-      <app-side-menu [categories]="categories$ | async"></app-side-menu>
-      <div class="col-lg-9"><app-carousel></app-carousel></div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row justify-content-end">
-      <div class="col-lg-9">
-        <h3 class="section-title">Рекомендации для Вас</h3>
-        <div class="row homepage-cards">
-          <div
-            class="col-md-6 col-lg-4 mb-4"
-            *ngFor="let product of products$ | async"
-          >
-            <app-card [product]="product"></app-card>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+<router-outlet></router-outlet>
+
