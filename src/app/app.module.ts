@@ -1,3 +1,4 @@
+import { ProductsService } from './shared/services/products.service';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

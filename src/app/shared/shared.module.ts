@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from './services/category.service';
 import { StarRatingComponent } from '../content/card/star-rating/star-rating.component';
+import { ProductsService } from './services/products.service';
 
 @NgModule({
   declarations: [StarRatingComponent],
@@ -21,7 +22,7 @@ import { StarRatingComponent } from '../content/card/star-rating/star-rating.com
     CommonModule,
     StarRatingComponent,
   ],
-  providers: [CategoriesService],
+  providers: [CategoriesService, ProductsService],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders {
