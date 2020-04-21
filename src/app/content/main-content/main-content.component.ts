@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoriesService } from 'src/app/shared/services/category.service';
-import { ICategory } from 'src/app/content/side-menu/interfaces/category.interface';
+import { ICategory } from 'src/app/interfaces/category.interface';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { map } from 'rxjs/operators';

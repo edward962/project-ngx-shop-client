@@ -1,7 +1,7 @@
    <div class="col-lg-12">
       <ul class="list-group sidebar">
         <li *ngFor="let category of categories; let i = index" class="list-group-item dropdown" [ngClass]="{show : i === currentIndex}">
-          <a class="nav-link dropdown-toggle" (mouseenter)="hover(i)" (mouseleave)="unHover()">
+          <a class="nav-link dropdown-toggle" (mouseenter)="hover(i)">
             {{category.name}}
           </a>
           <ul  class="dropdown-menu" [ngClass]="{show : i === currentIndex}">

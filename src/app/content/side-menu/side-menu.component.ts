@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ICategory } from './interfaces/category.interface';
+import { ICategory } from 'src/app/interfaces/category.interface';
 
 @Component({
   selector: 'app-side-menu',
@@ -12,8 +12,5 @@ export class SideMenuComponent {
   @Input() public categories!: ICategory[];
   hover(index: number) {
     this.currentIndex = index;
-  }
-  unHover() {
-    this.currentIndex = null;
   }
 }
