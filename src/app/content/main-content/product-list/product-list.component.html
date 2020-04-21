@@ -6,7 +6,7 @@
 
             <div id="accordion" class="aside-accordion-menu list-group">
                 <ul class="mb-0">
-                    <li *ngFor="let category of categories; let i = index" class="list-group-item dropdown" [ngClass]="{collapsed : i !== currentIndex}"  [ngClass]="{collapsed : i === currentIndex}">
+                    <li *ngFor="let category of categories$ | async; let i = index" class="list-group-item dropdown" [ngClass]="{collapsed : i !== currentIndex}"  [ngClass]="{collapsed : i === currentIndex}">
                         <a class="nav-link dropdown-toggle" (click)="hover(i)">
                           {{category.name}}
                         </a>
