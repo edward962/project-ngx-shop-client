@@ -7,6 +7,16 @@ const routes: Routes = [
     path: '',
     component: MainContentComponent,
   },
+  {
+    path: ':id',
+    loadChildren: () =>
+      import('./products/products.module').then(
+        mod => mod.ProductsModule,
+      ),
+    data: {
+      state: 'product',
+    },
+  },
 ];
 
 @NgModule({

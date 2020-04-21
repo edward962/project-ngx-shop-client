@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngx-shop-client"
+    }
+  },
+  "defaultProject": "ngx-shop-client",
+  "cli": {
+    "analytics": false
+  }
 }
