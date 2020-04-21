@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass'],
 })
 
-export class AppComponent {
+export class AppComponent{
   title = 'ngx-shop-client';
 }

@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { BASE_URL_TOKEN } from '../config';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { environment } from '../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from './services/category.service';
@@ -13,7 +13,7 @@ import { ProductsService } from './services/products.service';
 
 @NgModule({
   declarations: [StarRatingComponent],
-  imports: [ReactiveFormsModule, MatIconModule, HttpClientModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, FormsModule, MatIconModule, HttpClientModule, CommonModule, RouterModule],
   exports: [
     ReactiveFormsModule,
     RouterModule,
