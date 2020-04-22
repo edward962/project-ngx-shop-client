@@ -42,8 +42,9 @@ export class ProductListComponent implements OnInit{
     this.productsService.getProductsByProductName(name)
     .subscribe( (data) => this.productsByProductName = data);
   }
+  // tslint:disable-next-line: use-lifecycle-interface
   ngDoCheck(){
     console.log('Get products by Id category', this.products);
-    console.log("Search by product name",this.productsByProductName)
+    console.log('Search by product name', this.productsByProductName);
   }
 }
