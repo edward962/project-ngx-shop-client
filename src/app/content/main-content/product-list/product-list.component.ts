@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
 import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -19,7 +18,7 @@ export class ProductListComponent implements OnInit{
   public show: string;
   public currentIndex: number | null = null;
   public query: any;
-  products: any;
+  public products: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
@@ -32,13 +31,7 @@ export class ProductListComponent implements OnInit{
   ngOnInit(){
     this.productsService.getProducts()
     .subscribe( (data) => this.products = data)
-
-    // .subscribe(i => console.log(i))
     this.query = this.activatedRoute.snapshot.queryParams;
     this.categories$ = this.categoriesService.getCategories();
-  }
-  ngDoCheck(){
-    console.log('this.products',this.products)
-  //   console.log('this.products',this.products)
   }
 }
