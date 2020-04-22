@@ -4,6 +4,8 @@ import { ProductListComponent } from './product-list.component';
 import { ProductListRoutingModule } from './product-list-routing.module';
 import { PriceSliderComponent } from './price-slider/price-slider.component';
 import { BrandsComponent } from './brands/brands.component';
+import { ProductListService } from './product-list.service';
+
 
 @NgModule({
   declarations: [ProductListComponent,
@@ -11,6 +13,6 @@ import { BrandsComponent } from './brands/brands.component';
     BrandsComponent
   ],
   imports: [SharedModule, ProductListRoutingModule],
-
+  providers: [ProductListService],
 })
 export class ProductListModule {}
