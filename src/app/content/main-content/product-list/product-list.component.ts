@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
 import { Observable } from 'rxjs';
+import { IProduct } from 'src/app/interfaces/product.interface';
 
 @Component({
   selector: 'app-product-list',
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./product-list.component.sass']
 })
 export class ProductListComponent implements OnInit{
+  public product: IProduct[] = [];
   public categories$: Observable<ICategory[]>;
   inputForm = new FormControl('');
   id: any;

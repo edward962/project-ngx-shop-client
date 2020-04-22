@@ -3,45 +3,17 @@
       <label class="text-dark mb-0">Цена</label>
     </h6>
     <div class="form-group row align-items-center mx-0">
-      <label
-        class="col-2 px-0 mb-0 text-center text-dark"
-        for="num1"
-      >
-        От
-      </label>
-      <input
-        type="number"
-        class="form-control col-4"
-        id="num1"
-        value="30"
-      />
-      <label
-        class="col-2 px-0 mb-0 text-center text-dark"
-        for="num2"
-      >
-        до
-      </label>
-      <input
-        type="number"
-        class="form-control col-4"
-        id="num2"
-        value="70"
-      />
+      <label class="col-2 px-0 mb-0 text-center text-dark">От</label>
+      <input type="number" class="form-control col-4" value={{value}}/>
+      <label class="col-2 px-0 mb-0 text-center text-dark" >до</label>
+      <input type="number" class="form-control col-4" value={{highValue}}/>
     </div>
-    <div class="range-slider">
+    <!-- <div class="range-slider">
         <div class="range-slider__inner">
-          <span
-            class="range-slider__progress"
-            style="left: 30%; right: 30%;"
-          ></span>
-          <span
-            class="range-slider__thumb-left"
-            style="left: 30%;"
-          ></span>
-          <span
-            class="range-slider__thumb-right"
-            style="right: 30%;"
-          ></span>
+          <span class="range-slider__progress" style="left: 30%; right: 30%;"></span>
+          <span class="range-slider__thumb-left" style="left: 30%;"></span>
+          <span class="range-slider__thumb-right" style="right: 30%;"></span>
         </div>
-    </div>
+    </div> -->
+    <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ng5-slider>
 </div>
