@@ -1,3 +1,4 @@
+import { ProductListModule } from './content/main-content/product-list/product-list.module';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     MatIconModule,
     BrowserAnimationsModule,
     SharedModule,
+    ProductListModule
   ],
   bootstrap: [AppComponent],
 })
