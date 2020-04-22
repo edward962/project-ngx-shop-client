@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit{
   public currentIndex: number | null = null;
   public query: any;
   public products: any;
+  public productsByProductName: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
@@ -29,9 +30,20 @@ export class ProductListComponent implements OnInit{
     this.currentIndex = index;
   }
   ngOnInit(){
-    this.productsService.getProducts()
-    .subscribe( (data) => this.products = data)
     this.query = this.activatedRoute.snapshot.queryParams;
+    this.productsService.getProductsBySubCategory(this.query.id)
+    .subscribe( (data) => this.products = data);
+    this.productsService.getProductsByProductName(name)
     this.categories$ = this.categoriesService.getCategories();
+  }
+
+
+  searchByProductName(name: string){
+    this.productsService.getProductsByProductName(name)
+    .subscribe( (data) => this.productsByProductName = data);
+  }
+  ngDoCheck(){
+    console.log('Get products by Id category', this.products);
+    console.log("Search by product name",this.productsByProductName)
   }
 }
