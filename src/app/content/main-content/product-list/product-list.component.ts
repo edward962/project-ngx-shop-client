@@ -57,10 +57,6 @@ export class ProductListComponent implements OnInit {
     .subscribe( (data) => this.productsByProductName = data);
   }
   async currentProduct(id){
-    // for component that show info about particular product
-
-    // this.productsService.getProductById(id).subscribe( (data) => this.particularProduct = data);
-    // console.log( await this.particularProduct)
   }
 
   addToBusket(id){}
