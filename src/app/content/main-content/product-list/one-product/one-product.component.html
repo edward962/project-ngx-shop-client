@@ -56,24 +56,19 @@
           <div class="product-info-tabs">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" href="#description"
-                  >Описание</a
-                >
-                <a class="nav-item nav-link" href="#reviews">Отзывы</a>
+                <a class="nav-item nav-link" [ngClass]="{ active: isShowDesc }" (click)="showDesc()">Описание</a>
+                <a class="nav-item nav-link" [ngClass]="{ active: isShowFeedback }" (click)="showFeedback()">Отзывы</a>
               </div>
             </nav>
-            <div class="tab-content" id="nav-tabContent">
+            <u  *ngIf="isShowDesc">description</u>
+            <u  *ngIf="isShowFeedback">feedback</u>
+            <!-- <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active"><p>description</p></div>
               <div class="tab-pane fade">
                 <div class="reviews">
                   <div class="review">
+                    <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
                     <h6>Иван Иванов</h6>
-                    <div class="rate rate-sm">
-                      <i class="icon-star checked"></i>
-                      <i class="icon-star checked"></i>
-                      <i class="icon-star checked"></i>
-                      <i class="icon-star checked"></i>
-                      <i class="icon-star checked"></i>
                     </div>
                     <p class="mt-2 mb-0 pt-1">
                       Совершенно не подошел по характеристикам.
@@ -98,7 +93,7 @@
                 </div>
               </div>
               <div class="tab-pane fade">feedback</div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

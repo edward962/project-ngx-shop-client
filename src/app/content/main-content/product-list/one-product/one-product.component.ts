@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class OneProductComponent implements OnInit {
   public currentIndex: number | null = null;
   public isShow = false;
+  public isShowDesc = true;
+  public isShowFeedback = false;
   public chars = [
   '1Beginner\'s DSLR to tell the story as you see it',
   '24.2 MP, APS-C sensor, 5 fps, Dual Pixel CMOS AF',
@@ -21,6 +23,14 @@ export class OneProductComponent implements OnInit {
   ];
   show(){
     this.isShow = !this.isShow;
+  }
+  showDesc(){
+    this.isShowFeedback = false;
+    this.isShowDesc = true;
+  }
+  showFeedback(){
+    this.isShowDesc = false;
+    this.isShowFeedback = true;
   }
   constructor() { }
   ngOnInit(): void {
