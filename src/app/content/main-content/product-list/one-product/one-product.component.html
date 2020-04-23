@@ -60,8 +60,34 @@
                 <a class="nav-item nav-link" [ngClass]="{ active: isShowFeedback }" (click)="showFeedback()">Отзывы</a>
               </div>
             </nav>
-            <u  *ngIf="isShowDesc">description</u>
-            <u  *ngIf="isShowFeedback">feedback</u>
+            <div class="tab-content">
+              <div *ngIf="isShowDesc">description</div>
+              <div *ngIf="isShowFeedback">
+                <div class="reviews">
+                  <div class="review">
+                    <h6>Иван Иванов</h6>
+                    <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+                    <p class="mt-2 mb-0 pt-1">
+                      Совершенно не подошел по характеристикам.
+                    </p>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-9">
+                      <div class="add-review my-4">
+                        <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+                        <div class="form-group">
+                          <textarea class="form-control"></textarea>
+                        </div>
+                        <button type="submit"class="btn btn-outline-primary px-3">
+                          Добавить отзыв
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <!-- <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active"><p>description</p></div>
               <div class="tab-pane fade">
@@ -69,7 +95,6 @@
                   <div class="review">
                     <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
                     <h6>Иван Иванов</h6>
-                    </div>
                     <p class="mt-2 mb-0 pt-1">
                       Совершенно не подошел по характеристикам.
                     </p>
