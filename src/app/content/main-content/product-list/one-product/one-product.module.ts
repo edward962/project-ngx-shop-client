@@ -3,18 +3,16 @@ import { CommonModule } from '@angular/common';
 import { OneProductComponent } from './one-product.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
-  // declarations: [OneProductComponent],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
         component: OneProductComponent,
-        },
+      },
     ]),
-  ]
+  ],
 })
-export class OneProductModule { }
+export class OneProductModule {}
