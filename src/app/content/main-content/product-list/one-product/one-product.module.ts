@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [OneProductComponent],
+  // declarations: [OneProductComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([

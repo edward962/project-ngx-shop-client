@@ -43,7 +43,7 @@
             </div>
          
             <div class="default-col inner-col price-col">
-              <h4 class="col-title price-text mb-2">{{ product.price }} $</h4>
+              <h4 class="col-title price-text mb-2">{{ product.price | currency: 'EUR' }} </h4>
               <div>
                 <button (click)="addToBusket(product._id)" type="button" class="btn btn-outline-primary">
                   Add to basket
@@ -53,73 +53,6 @@
           </div>
       </div>
     </div>
-  </div>
+  </div>  
 </main>
-<!--<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-menu">
-        <a href="#" class="text-muted">Terms and Conditions</a>
-        <span class="d-none d-md-inline-flex">|</span>
-        <a href="#" class="text-muted">Privacy</a>
-        <span class="d-none d-md-inline-flex">|</span>
-        <a href="#" class="text-muted">Cookies</a>
-        <span class="d-none d-md-inline-flex">|</span>
-        <a href="#" class="text-muted">Home shopping guarantee</a>
-      </div>
-      <div>
-        © 1998-2019, AnyShop.com, Inc. or its affiliates
-      </div>
-    </div>
-  </div>
-</footer>
-<div
-  class="modal fade"
-  id="xsMenuModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="xsMenuModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        Menu
-        <button
-          type="button"
-          class="btn-close float-none px-2 py-2"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <img src="assets/icons/icon-close.svg" alt="close" />
-        </button>
-      </div>
-      <div class="modal-menu">
-        <a href="#" class="modal-menu__item">Sales</a>
-        <a href="#" class="modal-menu__item">Gift Cards</a>
-        <a href="#" class="modal-menu__item">Login</a>
-        <a href="#" class="modal-menu__item">Register</a>
-        <a href="#" class="modal-menu__item">
-          Have a question?
-          <img src="assets/icons/icon-chat.svg" alt="" />
-        </a>
-        <h3 class="h6 mb-0 modal-menu__title">Product categories</h3>
-        <a
-          href="#"
-          class="modal-menu__item is-submenu"
-          data-toggle="modal"
-          data-target="#menuItemModal"
-        >
-          Camera & Photo
-        </a>
-        <a href="#" class="modal-menu__item is-submenu"
-          >Home Cinema, TV & Video</a
-        >
-        <a href="#" class="modal-menu__item is-submenu">Mobile Phones</a>
-        <a href="#" class="modal-menu__item is-submenu"
-          >Computers & Components</a
-        >
-      </div>
-    </div>
-  </div>
-</div> -->
+
