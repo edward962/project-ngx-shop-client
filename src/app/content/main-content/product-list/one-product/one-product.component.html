@@ -10,30 +10,21 @@
           </ol>
           <div class="carousel-inner">
             <div
-              *ngFor="let photo of product?.images"
-              class="carousel-item active"
+              *ngFor="let photo of product?.images; let i = index"
+              class="carousel-item"
+              [ngClass]="{ active: i === currentIndex }"
             >
               <div class="img-wrap">
                 <img src="{{ photo?.url }}" alt="" />
               </div>
             </div>
           </div>
-          <a
-            class="carousel-control-prev"
-            href="#productCarousel"
-            role="button"
-            data-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <a class="carousel-control-prev">
+            <span class="carousel-control-prev-icon"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a
-            class="carousel-control-next"
-            href="#productCarousel"
-            role="button"
-            data-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <a class="carousel-control-next">
+            <span class="carousel-control-next-icon"></span>
             <span class="sr-only">Next</span>
           </a>
         </div>
