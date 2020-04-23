@@ -55,6 +55,5 @@ constructor(
    registerOnTouched() {}
    public subCategoryToggle(subCategory: any) {
     this.currentSubCategory = subCategory;
-    this.router.navigate(['/products', {id : subCategory._id}]);
   }
  }
