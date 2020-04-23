@@ -11,10 +11,11 @@ import { SharedModule } from './shared/shared.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   imports: [
     HttpClientModule,
@@ -23,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
     MatIconModule,
     BrowserAnimationsModule,
     SharedModule,
-    // ProductListModule,
+    ProductListModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -25,5 +25,4 @@ export class OneProductComponent implements OnInit {
   ngDoCheck(){
     console.log( this.product);
   }
-
 }

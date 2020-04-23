@@ -1,4 +1,4 @@
-import { Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/app/interfaces/category.interface';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -7,13 +7,12 @@ import { Observable, Subject } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { distinctUntilChanged, map, switchMap, debounceTime } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.sass']
+  styleUrls: ['./product-list.component.sass'],
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit {
   public categories$: Observable<ICategory[]>;
   public inputForm = new FormControl('');
   public show: string;
@@ -33,15 +32,15 @@ export class ProductListComponent implements OnInit{
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
     public productsService: ProductsService
-
-  ){}
+  ) {}
   hover(index: number) {
     this.currentIndex = index;
   }
-  ngOnInit(){
+  ngOnInit() {
     this.query = this.activatedRoute.snapshot.queryParams;
-    this.productsService.getProductsBySubCategory(this.query.id)
-    .subscribe( (data) => this.products = data);
+    this.productsService
+      .getProductsBySubCategory(this.query.id)
+      .subscribe((data) => (this.products = data));
     this.productsService.getProductsByProductName(name);
     this.categories$ = this.categoriesService.getCategories();
 

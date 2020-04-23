@@ -29,7 +29,7 @@
       <div class="col-lg-8 col-xl-9">
         <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{query.name}}</h3>
           <div *ngFor ='let product of products?.items'  class="product-list-box" >
-              <div [routerLink]="['/one-product']" [queryParams]="{ id: product._id }" class="inner-col description-col" (click)='currentProduct(product._id)'>
+              <div [routerLink]="['/category/one-product']" [queryParams]="{ id: product._id }" class="inner-col description-col" (click)='currentProduct(product._id)'>
               <div class="product-img">
                 <img width= 80  src={{product.images[0].url}} alt="img" />
               </div>
@@ -123,16 +123,3 @@
     </div>
   </div>
 </div> -->
-
-
-
-
-
-
-<!-- <ul class='search-result'>
-  <li *ngFor="let product of products$ | async">
-    
-          {{product | json}}
-    
-  </li>
-</ul> -->
