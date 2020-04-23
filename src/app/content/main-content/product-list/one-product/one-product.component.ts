@@ -43,7 +43,6 @@ export class OneProductComponent implements OnInit {
   }
   ngOnInit(): void {
     this.query = this.activatedRoute.snapshot.queryParams;
-    console.log(this.query)
     this.productsService.getProductById(this.query.id).subscribe( (product) => this.product = product);
   }
   ngDoCheck(){
