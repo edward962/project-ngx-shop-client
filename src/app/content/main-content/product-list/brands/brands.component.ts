@@ -1,3 +1,4 @@
+import { ProductsService } from 'src/app/shared/services/products.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

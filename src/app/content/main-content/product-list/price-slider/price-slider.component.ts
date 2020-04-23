@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Options } from 'ng5-slider';
 
 @Component({
   selector: 'app-price-slider',
   templateUrl: './price-slider.component.html',
   styleUrls: ['./price-slider.component.sass']
 })
-export class PriceSliderComponent implements OnInit {
+export class PriceSliderComponent {
+  public input$: any;
 
-  constructor() { }
+  @Output()  pricesValue = new EventEmitter();
+  value = 4000;
+  highValue = 6000;
+  options: Options = {
+    floor: 0,
+    ceil: 10000
+  };
 
-  ngOnInit(): void {
+
+
+ public  Change(){
+    this.pricesValue.emit({value: this.value, highValue: this.highValue});
   }
-
 }

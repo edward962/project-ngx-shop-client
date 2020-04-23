@@ -8,6 +8,15 @@ const routes: Routes = [
     path: '',
     component: ProductListComponent,
   },
+  {
+    path: 'one-product',
+    loadChildren: () =>
+        import('./one-product/one-product.module')
+        .then(mod => mod.OneProductModule),
+        data: {
+          state: 'product',
+        },
+  },
 ];
 
 @NgModule({

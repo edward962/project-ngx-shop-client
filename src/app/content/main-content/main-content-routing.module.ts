@@ -5,17 +5,7 @@ import { MainContentComponent } from './main-content.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainContentComponent,
-  },
-  {
-    path: ':id',
-    loadChildren: () =>
-      import('./product-list/product-list.module').then(
-        mod => mod.ProductListModule,
-      ),
-    data: {
-      state: 'product',
-    },
+    component: MainContentComponent
   },
 ];
 
