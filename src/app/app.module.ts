@@ -9,13 +9,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { OneProductComponent } from './content/main-content/product-list/one-product/one-product.component';
-
+import { OneProductDescriptionComponent } from './content/main-content/product-list/one-product/one-product-description/one-product-description.component';
+import { OneProductReviewsComponent } from './content/main-content/product-list/one-product/one-product-reviews/one-product-reviews.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    OneProductComponent
+    OneProductComponent,
+    OneProductDescriptionComponent,
+    OneProductReviewsComponent,
   ],
   imports: [
     HttpClientModule,
@@ -24,7 +27,7 @@ import { OneProductComponent } from './content/main-content/product-list/one-pro
     MatIconModule,
     BrowserAnimationsModule,
     SharedModule,
-    ProductListModule
+    ProductListModule,
   ],
   bootstrap: [AppComponent],
 })
