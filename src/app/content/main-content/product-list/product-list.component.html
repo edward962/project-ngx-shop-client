@@ -22,32 +22,35 @@
             <input #input type="text" class="form-control" [formControl]="inputForm" placeholder="Фильтр по названию">
             <button (click)="searchByProductName(input.value)">search</button>
             <app-brands ></app-brands>
-            <app-price-slider></app-price-slider>
+            <app-price-slider>
+              <!-- (pricesValue)='pricesValue($event)'    -->
+            </app-price-slider>
         </div>
       <div class="col-lg-8 col-xl-9">
         <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{query.name}}</h3>
-        <div class="product-list-box">
-          <div class="inner-col description-col">
-            <div class="product-img">
-              <img src="assets/images/canon1.png" alt="img" />
+          <div *ngFor ='let product of products?.items'  class="product-list-box" >
+              <div [routerLink]="['/one-product']" [queryParams]="{ id: product._id }" class="inner-col description-col" (click)='currentProduct(product._id)'>
+              <div class="product-img">
+                <img width= 80  src={{product.images[0].url}} alt="img" />
+              </div>
+              <div class="product-desc">
+                <h4 class="col-title mb-2">
+                  {{product.name}}
+                </h4>
+                <app-ngx-shop-star-rating feedbackRate = {{product.rating}} ></app-ngx-shop-star-rating>
+                <p class="rate-amount d-none d-md-block mt-1">{{product.feedbacksCount}}</p>
+              </div>
             </div>
-            <div class="product-desc">
-              <h4 class="col-title mb-2">
-                product.name
-              </h4>
-              <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
-              <p class="rate-amount d-none d-md-block mt-1">product.feedbacksCount</p>
+         
+            <div class="default-col inner-col price-col">
+              <h4 class="col-title price-text mb-2">{{ product.price }} $</h4>
+              <div>
+                <button (click)="addToBusket(product._id)" type="button" class="btn btn-outline-primary">
+                  Add to basket
+                </button>
+              </div>
             </div>
           </div>
-          <div class="default-col inner-col price-col">
-            <h4 class="col-title price-text mb-2">product.price</h4>
-            <div>
-              <button type="button" class="btn btn-outline-primary">
-                Add to basket
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -120,3 +123,16 @@
     </div>
   </div>
 </div> -->
+
+
+
+
+
+
+<!-- <ul class='search-result'>
+  <li *ngFor="let product of products$ | async">
+    
+          {{product | json}}
+    
+  </li>
+</ul> -->

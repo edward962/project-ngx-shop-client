@@ -6,7 +6,7 @@
           </a>
           <ul  class="dropdown-menu" [ngClass]="{show : i === currentIndex}">
             <li class="dropdown-item" *ngFor="let subCategory of category.subCategories">
-              <a [routerLink]="['/category']" [queryParams]="{ id: subCategory._id, name: subCategory.name }">{{subCategory.name}}</a>
+              <a [routerLink]="['/products/subcategory']" [queryParams]="{ id: subCategory._id, name: subCategory.name }">{{subCategory.name}}</a>
             </li>
           </ul> 
         </li>  

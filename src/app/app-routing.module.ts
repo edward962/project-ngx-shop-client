@@ -14,8 +14,17 @@ const routes: Routes = [
         .then(mod => mod.MainContentModule),
         data: {
           state: 'products',
-        },
+        }
   },
+  // {
+  //   path: 'one-product',
+  //   loadChildren: () =>
+  //       import('./content/one-product/one-product.module')
+  //       .then(mod => mod.OneProductModule),
+  //       data: {
+  //         state: 'fa',
+  //       },
+  // },
   {
     path: 'cart',
     loadChildren: () =>
@@ -33,7 +42,7 @@ const routes: Routes = [
         mod => mod.ProductListModule,
       ),
     data: {
-      state: 'product',
+      state: 'category',
     },
   },
   {

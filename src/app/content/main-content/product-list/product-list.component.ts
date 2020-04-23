@@ -3,8 +3,9 @@ import { ICategory } from 'src/app/interfaces/category.interface';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { distinctUntilChanged, map, switchMap, debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -20,6 +21,14 @@ export class ProductListComponent implements OnInit{
   public query: any;
   public products: any;
   public productsByProductName: any;
+  public filteredByPriceProducts: any;
+
+
+
+  // products$: Observable<any>;
+  // private searchPrices = new Subject<any>();
+
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
@@ -33,18 +42,35 @@ export class ProductListComponent implements OnInit{
     this.query = this.activatedRoute.snapshot.queryParams;
     this.productsService.getProductsBySubCategory(this.query.id)
     .subscribe( (data) => this.products = data);
-    this.productsService.getProductsByProductName(name)
+    this.productsService.getProductsByProductName(name);
     this.categories$ = this.categoriesService.getCategories();
+
+
+    // this.products$ = this.searchPrices.pipe(
+    //   debounceTime(1000),
+    //   distinctUntilChanged(),
+    //   switchMap((term: any) => this.productsService.getProductsFilteredByPrice(term, this.query.id)),
+    //   map( hero => hero.data)
+    // );
   }
-
-
   searchByProductName(name: string){
     this.productsService.getProductsByProductName(name)
     .subscribe( (data) => this.productsByProductName = data);
   }
-  // tslint:disable-next-line: use-lifecycle-interface
-  ngDoCheck(){
-    console.log('Get products by Id category', this.products);
-    console.log('Search by product name', this.productsByProductName);
+  async currentProduct(id){
+    // for component that show info about particular product
+
+    // this.productsService.getProductById(id).subscribe( (data) => this.particularProduct = data);
+    // console.log( await this.particularProduct)
   }
+
+  addToBusket(id){}
+
+//   pricesValue(event){
+//     this.searchPrices.next(event);
+//   }
+ngDoCheck(){
+  // console.log(this.particularProduct)
 }
+
+ }
