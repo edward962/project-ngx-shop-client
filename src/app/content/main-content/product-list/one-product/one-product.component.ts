@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Component({
   selector: 'app-one-product',
@@ -6,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./one-product.component.sass']
 })
 export class OneProductComponent implements OnInit {
-  public currentIndex: number | null = null;
+  public query: any;
+  public product: any;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    public productsService: ProductsService
+  ) { }
+  
   public isShow = false;
   public isShowDesc = true;
   public isShowFeedback = false;
@@ -32,8 +41,12 @@ export class OneProductComponent implements OnInit {
     this.isShowDesc = false;
     this.isShowFeedback = true;
   }
-  constructor() { }
   ngOnInit(): void {
+    this.query = this.activatedRoute.snapshot.queryParams;
+    console.log(this.query)
+    this.productsService.getProductById(this.query.id).subscribe( (product) => this.product = product);
   }
-
+  ngDoCheck(){
+    console.log( this.product);
+  }
 }
