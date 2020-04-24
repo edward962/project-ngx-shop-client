@@ -6,7 +6,9 @@
       </div>
       <a class="basket basket_not-empty" routerLink="cart">
         <img src="assets/icons/icon-basket.svg" alt="menu icon" />
-        <span class="product-counter">{{counter}}</span>
+        <span class="product-counter" *ngIf="productCounter$ | async as counter"
+          >{{ counter }}
+        </span>
       </a>
     </div>
   </nav>

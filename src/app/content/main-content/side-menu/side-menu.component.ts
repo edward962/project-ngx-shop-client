@@ -29,7 +29,7 @@ constructor(
 ){}
 
 
-  hover(index: number) {
+  public hover(index: number) {
     this.currentIndex = index;
   }
   // tslint:disable-next-line: variable-name
