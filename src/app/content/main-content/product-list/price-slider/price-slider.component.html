@@ -15,7 +15,6 @@
           <span class="range-slider__thumb-right" style="right: 30%;"></span>
         </div>
     </div> -->
-    <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" >
-      <!-- [valueChange]="Change()" -->
+    <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" (userChangeEnd)= "userChangeEnd()">
     </ng5-slider>
 </div>

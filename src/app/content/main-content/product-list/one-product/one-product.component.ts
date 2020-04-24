@@ -40,4 +40,5 @@ export class OneProductComponent implements OnInit {
     this.query = this.activatedRoute.snapshot.queryParams;
     this.productsService.getProductById(this.query.id).subscribe( (product) => this.product = product);
   }
+
 }

@@ -24,7 +24,7 @@
                 [ngClass]="{ show: i === currentIndex }"
               >
                 <li *ngFor="let subCategory of category.subCategories">
-                  <a href="{{ subCategory.name }}">{{ subCategory.name }}</a>
+                     <a [routerLink]="['/category']" [queryParams]="{ id: subCategory._id, name: subCategory.name }" href="{{ subCategory.name }}">{{ subCategory.name }}</a>
                 </li>
               </ul>
             </li>
@@ -41,8 +41,8 @@
         />
         <button (click)="searchByProductName(input.value)">search</button>
         <app-brands></app-brands>
-        <app-price-slider>
-          <!-- (pricesValue)='pricesValue($event)'    -->
+        <app-price-slider  (pricesValue)='pricesValue($event)' >
+          <!--   -->
         </app-price-slider>
       </div>
       <div class="col-lg-8 col-xl-9">
