@@ -2,42 +2,52 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h3 class="h5 mb-4 mt-4 text-md-center">Your order</h3>
-        <div class="product-list-box -basket">
+        <h3 class="h5 mb-4 mt-4 text-md-center">Ваш заказ</h3>
+        <div
+          class="product-list-box -basket"
+          *ngFor="let product of cart$ | async; trackBy: trackById"
+        >
           <div class="inner-col description-col">
             <div class="product-img">
-              <img src="assets/images/canon1.png" alt="img" />
+              <img src="{{ product.images[0].url }}" alt="img" />
             </div>
             <div class="product-desc">
-              <h4 class="col-title mb-2">
-                Canon EOS 200D Digital SLR Camera
+              <h4 class="col-title mb-2" [routerLink]="[product._id]">
+                {{ product.name }}
               </h4>
               <div class="rate">
-                <i class="icon-star checked"></i>
-                <i class="icon-star checked"></i>
-                <i class="icon-star checked"></i>
-                <i class="icon-star checked"></i>
-                <i class="icon-star checked"></i>
+                <app-ngx-shop-star-rating
+                  feedbackRate="{{ product.rating }}"
+                ></app-ngx-shop-star-rating>
                 <span class="rate-amount ml-2 d-inline-block d-md-none"
                   >121</span
                 >
               </div>
-              <p class="rate-amount d-none d-md-block mt-1">11 reviews</p>
+              <p class="rate-amount d-none d-md-block mt-1">
+                {{ product.feedbacksCount }}
+              </p>
               <p class="price-text mb-0 mt-2 d-inline-block d-md-none">
-                <strong>€ 47.31</strong>
+                <strong>{{ product.price | currency: 'EUR' }}</strong>
               </p>
             </div>
           </div>
           <div class="default-col inner-col flex-col justify-content-center">
             <div class="counter">
-              <button type="button">
+              <button type="button" (click)="decrementProductInCart(product)">
                 <img
                   src="/assets/icons/icon-minus-circle-outlined.svg"
                   alt="minus"
                 />
               </button>
-              <span class="counter__value">1</span>
-              <button type="button">
+              <span
+                class="counter__value"
+                type="number"
+                min="1"
+                oninput="value = Math.abs(value)"
+                (input)="quantity($event, product)"
+                >{{ product.count }}</span
+              >
+              <button type="button" (click)="incrementProductInCart(product)">
                 <img
                   src="/assets/icons/icon-plus-circle-outlined.svg"
                   alt="plus"
@@ -46,24 +56,26 @@
             </div>
           </div>
           <div class="default-col inner-col flex-col justify-content-center">
-            <h4 class="mb-0">€ 491</h4>
+            <h4 class="mb-0">
+              {{ product.price * product.count | currency: 'EUR' }}
+            </h4>
           </div>
         </div>
-        <h3 class="h5 mb-4 mt-5 text-md-center">Your details</h3>
+        <h3 class="h5 mb-4 mt-5 text-md-center">Ваши данные</h3>
         <div class="jumbotron jumbotron-light jumbotron-form mb-0">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="exampleInput">Name:</label>
+                <label for="exampleInput">Имя:</label>
                 <input
                   type="text"
                   class="form-control"
                   id="exampleInput"
-                  placeholder="Some name"
+                  placeholder="Ваше имя"
                 />
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInput2">Email:</label>
+                <label for="exampleInput2">Электронный адрес:</label>
                 <input
                   type="email"
                   class="form-control"
@@ -74,7 +86,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="exampleInput3">Phone:</label>
+                <label for="exampleInput3">Телефон:</label>
                 <input
                   type="text"
                   class="form-control"
@@ -83,7 +95,7 @@
                 />
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInput4">Address:</label>
+                <label for="exampleInput4">Адрес:</label>
                 <input
                   type="text"
                   class="form-control"
@@ -96,7 +108,7 @@
         </div>
         <div class="text-center mt-2 mb-5 my-sm-5">
           <button type="submit" class="btn btn-primary btn-lg">
-            Confirm and pay
+            Подтвердить и оплатить
           </button>
         </div>
       </div>

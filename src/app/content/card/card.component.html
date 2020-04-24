@@ -11,7 +11,9 @@
       {{ product.name }}
     </h5>
     <div class="rate">
-      <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+      <app-ngx-shop-star-rating
+        feedbackRate="{{ product.rating }}"
+      ></app-ngx-shop-star-rating>
       <span class="rate-amount ml-2">{{ product.feedbacksCount }}</span>
     </div>
     <p class="card-text price-text">

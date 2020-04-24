@@ -1,3 +1,4 @@
+import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/app/interfaces/category.interface';
 import { FormControl } from '@angular/forms';
@@ -5,7 +6,15 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
 import { Observable, Subject } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { distinctUntilChanged, map, switchMap, debounceTime } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  map,
+  switchMap,
+  debounceTime,
+} from 'rxjs/operators';
+import { IProduct } from 'src/app/interfaces/product.interface';
+import { addProductToCart } from 'src/app/store/actions/cart.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-product-list',
@@ -22,15 +31,13 @@ export class ProductListComponent implements OnInit {
   public productsByProductName: any;
   public filteredByPriceProducts: any;
 
-
-
   // products$: Observable<any>;
   // private searchPrices = new Subject<any>();
-
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
+    private store: Store<IStore>,
     public productsService: ProductsService
   ) {}
   hover(index: number) {
@@ -44,7 +51,6 @@ export class ProductListComponent implements OnInit {
     this.productsService.getProductsByProductName(name);
     this.categories$ = this.categoriesService.getCategories();
 
-
     // this.products$ = this.searchPrices.pipe(
     //   debounceTime(1000),
     //   distinctUntilChanged(),
@@ -52,20 +58,21 @@ export class ProductListComponent implements OnInit {
     //   map( hero => hero.data)
     // );
   }
-  searchByProductName(name: string){
-    this.productsService.getProductsByProductName(name)
-    .subscribe( (data) => this.productsByProductName = data);
+  searchByProductName(name: string) {
+    this.productsService
+      .getProductsByProductName(name)
+      .subscribe((data) => (this.productsByProductName = data));
   }
-  async currentProduct(id){
+  async currentProduct(id) {}
+
+  public async addToBusket(product: IProduct): Promise<void> {
+    this.store.dispatch(addProductToCart({ product }));
   }
 
-  addToBusket(id){}
-
-//   pricesValue(event){
-//     this.searchPrices.next(event);
-//   }
-ngDoCheck(){
-  // console.log(this.particularProduct)
+  //   pricesValue(event){
+  //     this.searchPrices.next(event);
+  //   }
+  ngDoCheck() {
+    // console.log(this.particularProduct)
+  }
 }
-
- }

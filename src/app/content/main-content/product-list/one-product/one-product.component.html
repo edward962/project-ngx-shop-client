@@ -90,7 +90,13 @@
               <h4 class="col-title price-text discount mb-2 mt-0">
                 {{ product?.price | currency: 'EUR' }}
               </h4>
-              <a href="#" class="btn btn-primary btn-lg px-5">Buy now</a>
+              <a
+                href="#"
+                onclick="return false;"
+                class="btn btn-primary btn-lg px-5"
+                (click)="addToBusket(product)"
+                >Добавить в корзину</a
+              >
             </div>
           </div>
           <div class="product-info-tabs">
