@@ -2,9 +2,9 @@ import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/app/interfaces/category.interface';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
@@ -22,45 +22,55 @@ export class ProductListComponent implements OnInit {
   public isShow = false;
   public currentIndex: number | null = null;
   public query: any;
+  public query$: Observable<any>;
   public products: any;
   public productsByProductName: any;
   public filteredByPriceProducts: any;
-
-  // products$: Observable<any>;
-  // private searchPrices = new Subject<any>();
+  public priceRange: any;
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
     private store: Store<IStore>,
     public productsService: ProductsService
   ) {}
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe( query => this.getProductsByIdCategory(query, this.priceRange));
+    this.productsService.getProductsByProductName(name);
+    this.categories$ = this.categoriesService.getCategories();
+
+  }
   public hover(index: number) {
     this.currentIndex = index;
     this.isShow = !this.isShow;
   }
-  ngOnInit() {
-    this.query = this.activatedRoute.snapshot.queryParams;
-    this.productsService
-      .getProductsBySubCategory(this.query.id)
-      .subscribe((data) => (this.products = data));
-    this.productsService.getProductsByProductName(name);
-    this.categories$ = this.categoriesService.getCategories();
-
-    // this.products$ = this.searchPrices.pipe(
-    //   debounceTime(1000),
-    //   distinctUntilChanged(),
-    //   switchMap((term: any) => this.productsService.getProductsFilteredByPrice(term, this.query.id)),
-    //   map( hero => hero.data)
-    // );
-  }
-  searchByProductName(name: string) {
+  public searchByProductName(name: string) {
     this.productsService
       .getProductsByProductName(name)
       .subscribe((data) => (this.productsByProductName = data));
   }
-  async currentProduct(id) {}
 
+  public getProductsByIdCategory( query: any, priceRange){
+    this.query = query;
+    this.productsService
+    .getProductsBySubCategory(query.id, priceRange)
+    .subscribe(
+      (data) => (this.products = data)
+    );
+  }
+  async currentProduct(id) {}
+  public pricesValue( priceRange: any ){
+    this.priceRange = priceRange;
+    this.changeQuery(priceRange);
+  }
+  public changeQuery(priceRange) {
+    const  {id, name} = this.query;
+    const{value, highValue} = priceRange;
+    if (priceRange){
+    this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, lowPrice: value, highValue }});
+    }
+  }
   public async addToBusket(product: IProduct): Promise<void> {
     this.store.dispatch(addProductToCart({ product }));
   }
