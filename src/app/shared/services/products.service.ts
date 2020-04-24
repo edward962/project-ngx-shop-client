@@ -12,15 +12,16 @@ export class ProductsService {
     return this.http.get<IProduct>(`/products`);
   }
 
-  public getProductsBySubCategory(id: string, priceData: any): Observable<IProduct> {
+  public getProductsBySubCategory(
+    id: string,
+    priceData: any,
+    searchByName: string
+    ): Observable<IProduct> {
+    const productName = searchByName ? searchByName : '';
     const priceRange = priceData ? priceData : {value: 0, highValue: 1000000000};
-    return this.http.get<IProduct>(`/products/?subCat=${id}&prices=${priceRange.value},${priceRange.highValue}`);
+    return this.http.get<IProduct>(`/products/?subCat=${id}&prices=${priceRange.value},${priceRange.highValue}&text=${productName}`);
   }
 
-  public getProductsByProductName(name: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`/products/?name=${name}`);
-  }
-  
   public getProductById(id): Observable<any>{
     return this.http.get<any>(`/products/${id}`);
   }
