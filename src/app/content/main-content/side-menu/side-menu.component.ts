@@ -28,12 +28,10 @@ constructor(
   public router: Router
 ){}
 
-
-  hover(index: number) {
+  public hover(index: number) {
     this.currentIndex = index;
   }
-  // tslint:disable-next-line: variable-name
-  writeValue(_id: string): void {
+  public writeValue(_id: string): void {
     let currentCategory;
     for (const category of this.categories) {
       for (const subCategory of category.subCategories) {
@@ -49,10 +47,10 @@ constructor(
     this.currentSubCategory = currentCategory || this.defaultValue;
   }
 
-   registerOnChange(fn: any) {
+  public registerOnChange(fn: any) {
       this.onChange = fn;
    }
-   registerOnTouched() {}
+  public registerOnTouched() {}
    public subCategoryToggle(subCategory: any) {
     this.currentSubCategory = subCategory;
   }

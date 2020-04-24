@@ -20,12 +20,7 @@ export class ProductsService {
   public getProductsByProductName(name: string): Observable<IProduct> {
     return this.http.get<IProduct>(`/products/?name=${name}`);
   }
-
-  public getProductsFilteredByPrice(query: any, id: string): Observable<IProduct> {
-    const {value, highValue} = query;
-    return this.http.get<IProduct>(`/products/?prices=${value},${highValue}&subCat=${id}`);
-  }
-
+  
   public getProductById(id): Observable<any>{
     return this.http.get<any>(`/products/${id}`);
   }

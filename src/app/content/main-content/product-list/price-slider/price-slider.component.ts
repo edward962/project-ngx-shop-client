@@ -7,14 +7,13 @@ import { Options } from 'ng5-slider';
   styleUrls: ['./price-slider.component.sass']
 })
 export class PriceSliderComponent {
-  // public input$: any;
 
   @Output()  pricesValue = new EventEmitter();
   value = 0;
-  highValue = 9000;
+  highValue = 5000;
   options: Options = {
     floor: 0,
-    ceil: 9000
+    ceil: 5000
   };
 
 

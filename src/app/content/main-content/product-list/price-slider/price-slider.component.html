@@ -8,13 +8,6 @@
       <label class="col-2 px-0 mb-0 text-center text-dark" >до</label>
       <input type="number" class="form-control col-4" value={{highValue}}/>
     </div>
-    <!-- <div class="range-slider">
-        <div class="range-slider__inner">
-          <span class="range-slider__progress" style="left: 30%; right: 30%;"></span>
-          <span class="range-slider__thumb-left" style="left: 30%;"></span>
-          <span class="range-slider__thumb-right" style="right: 30%;"></span>
-        </div>
-    </div> -->
     <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" (userChangeEnd)= "userChangeEnd()">
     </ng5-slider>
 </div>

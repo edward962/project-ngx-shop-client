@@ -2,10 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5">
+ 
         <div id="productCarousel" class="product-carousel carousel slide">
-          <ol class="carousel-indicators">
-            <li class="active">
-              <img src="{{ (product?.images)[0].url }}" alt="" />
+          <ol class="carousel-indicators"  *ngFor="let photo of product?.images; let j = index">
+            <li  [ngClass]="{ active: j === currentIndex }">
+              <img src="{{ photo?.url }}" alt="" />
             </li>
           </ol>
           <div class="carousel-inner">
@@ -19,11 +20,11 @@
               </div>
             </div>
           </div>
-          <a class="carousel-control-prev">
+          <a class="carousel-control-prev" (click)="prev()">
             <span class="carousel-control-prev-icon"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next">
+          <a class="carousel-control-next" (click)="next()">
             <span class="carousel-control-next-icon"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -90,7 +91,13 @@
               <h4 class="col-title price-text discount mb-2 mt-0">
                 {{ product?.price | currency: 'EUR' }}
               </h4>
-              <a href="#" class="btn btn-primary btn-lg px-5">Buy now</a>
+              <a
+                href="#"
+                onclick="return false;"
+                class="btn btn-primary btn-lg px-5"
+                (click)="addToBusket(product)"
+                >Добавить в корзину</a
+              >
             </div>
           </div>
           <div class="product-info-tabs">
