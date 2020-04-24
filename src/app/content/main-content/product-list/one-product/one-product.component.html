@@ -2,10 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5">
- 
         <div id="productCarousel" class="product-carousel carousel slide">
-          <ol class="carousel-indicators"  *ngFor="let photo of product?.images; let j = index">
-            <li  [ngClass]="{ active: j === currentIndex }">
+          <ol class="carousel-indicators">
+            <li
+              [ngClass]="{ active: j === currentIndex }"
+              *ngFor="let photo of product?.images; let j = index"
+            >
               <img src="{{ photo?.url }}" alt="" />
             </li>
           </ol>
