@@ -56,13 +56,42 @@ export const leftAnimation: AnimationMetadata[] = [
       ),
     ]),
   ];
-
+export const leftChildAnimation: AnimationMetadata[] = [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      optional: true,
+    }),
+    group([
+      query(
+        ':enter',
+        [
+          style({ transform: 'translateX(-100%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
+        ],
+        { optional: true },
+      ),
+      query(
+        ':leave',
+        [
+          style({ transform: 'translateX(0%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' })),
+        ],
+        { optional: true },
+      ),
+    ]),
+  ];
 export const customTransition: AnimationTriggerMetadata = trigger(
     'routeTransition',
     [
-      // transition('products => product', rightAnimation),
-      // transition('product => products', leftAnimation),
-      transition('cart => *', leftAnimation),
-      transition('* => cart', rightAnimation),
+      transition('products => category', rightAnimation),
+      transition('category => products', leftAnimation),
+      transition('cart => products', leftAnimation),
+      transition('products => cart', rightAnimation),
+      transition('cart => category', leftAnimation),
+      transition('category => cart', rightAnimation),
+      // TODO animateChild()
+      // transition('category => category/one-product', rightAnimation),
+      // transition('category/one-product => category', rightAnimation),
+      // transition('cart => category/one-product', leftAnimation),
+      // transition('category/one-product => cart', rightAnimation),
     ],
   );
