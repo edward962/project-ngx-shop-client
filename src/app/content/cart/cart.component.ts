@@ -19,6 +19,7 @@ import { IStore } from 'src/app/store/reducers';
 })
 export class CartComponent {
   public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts);
+  // tslint:disable-next-line: variable-name
   constructor(private readonly _store: Store<IStore>) {}
 
   public incrementProductInCart(product: ICartProduct) {
@@ -40,6 +41,7 @@ export class CartComponent {
   public removeProductFromCart(product: ICartProduct) {
     this._store.dispatch(removeProductFromCart({ product }));
   }
+  // tslint:disable-next-line: variable-name
   public trackById(_index: number, item: ICartProduct) {
     return item._id;
   }

@@ -6,12 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
 import { Observable, Subject } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import {
-  distinctUntilChanged,
-  map,
-  switchMap,
-  debounceTime,
-} from 'rxjs/operators';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
@@ -25,6 +19,7 @@ export class ProductListComponent implements OnInit {
   public categories$: Observable<ICategory[]>;
   public inputForm = new FormControl('');
   public show: string;
+  public isShow = false;
   public currentIndex: number | null = null;
   public query: any;
   public products: any;
@@ -40,8 +35,9 @@ export class ProductListComponent implements OnInit {
     private store: Store<IStore>,
     public productsService: ProductsService
   ) {}
-  hover(index: number) {
+  public hover(index: number) {
     this.currentIndex = index;
+    this.isShow = !this.isShow;
   }
   ngOnInit() {
     this.query = this.activatedRoute.snapshot.queryParams;
@@ -67,12 +63,5 @@ export class ProductListComponent implements OnInit {
 
   public async addToBusket(product: IProduct): Promise<void> {
     this.store.dispatch(addProductToCart({ product }));
-  }
-
-  //   pricesValue(event){
-  //     this.searchPrices.next(event);
-  //   }
-  ngDoCheck() {
-    // console.log(this.particularProduct)
   }
 }

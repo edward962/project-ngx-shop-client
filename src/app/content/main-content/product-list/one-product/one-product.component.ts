@@ -15,7 +15,6 @@ export class OneProductComponent implements OnInit {
   public query: any;
   public product: any;
   public currentIndex = 0;
-
   constructor(
     private activatedRoute: ActivatedRoute,
     public productsService: ProductsService,
@@ -24,20 +23,27 @@ export class OneProductComponent implements OnInit {
   public isShow = false;
   public isShowDesc = true;
   public isShowFeedback = false;
-  // next() {
-  //   this.currentIndex += 1;
-  // }
-  // prev() {
-  //   this.currentIndex -= 1;
-  // }
-  show() {
+  public next() {
+    if (this.currentIndex === this.product.images.length - 1){
+      this.currentIndex = this.currentIndex;
+    } else {
+      this.currentIndex += 1;
+    }  }
+  public prev() {
+    if (this.currentIndex === 0){
+      this.currentIndex = this.currentIndex;
+    } else {
+      this.currentIndex -= 1;
+    }
+  }
+  public show(){
     this.isShow = !this.isShow;
   }
-  showDesc() {
+  public showDesc(){
     this.isShowFeedback = false;
     this.isShowDesc = true;
   }
-  showFeedback() {
+  public showFeedback() {
     this.isShowDesc = false;
     this.isShowFeedback = true;
   }
