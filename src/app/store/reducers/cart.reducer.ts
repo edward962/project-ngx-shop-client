@@ -17,8 +17,6 @@ import {
   createFeatureSelector,
 } from '@ngrx/store';
 
-// import { IProduct } from '@product-store/reducers/products.reducer';
-
 export interface ICartProduct extends IProduct {
   count: number;
 }
@@ -41,6 +39,7 @@ const cartReducer = createReducer(
     );
   }),
   on(addAllProductsToCart, (state: EntityState<ICartProduct>, { products }) => {
+    // tslint:disable-next-line: deprecation
     return cartAdapter.addAll(products, state);
   }),
   on(removeProductFromCart, (state: EntityState<ICartProduct>, { product }) => {
