@@ -26,7 +26,6 @@ export class ProductsService {
   }
 
   public getProductById(id): Observable<any>{
-    console.log(id)
     return this.http.get<any>(`/products/${id}`);
   }
 }

@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
   public categories$: Observable<ICategory[]>;
   public inputForm = new FormControl('');
   public show: string;
+  public isShow = false;
   public currentIndex: number | null = null;
   public query: any;
   public products: any;
@@ -35,6 +36,7 @@ export class ProductListComponent implements OnInit {
   ) {}
   hover(index: number) {
     this.currentIndex = index;
+    this.isShow = !this.isShow;
   }
   ngOnInit() {
     this.query = this.activatedRoute.snapshot.queryParams;
@@ -58,14 +60,8 @@ export class ProductListComponent implements OnInit {
   }
   async currentProduct(id){
   }
-
   addToBusket(id){}
-
 //   pricesValue(event){
 //     this.searchPrices.next(event);
 //   }
-ngDoCheck(){
-  // console.log(this.particularProduct)
-}
-
  }

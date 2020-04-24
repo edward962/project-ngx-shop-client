@@ -20,6 +20,7 @@
               </h5>
               <ul
                 class="collapse"
+                *ngIf="!isShow"
                 data-parent="#accordion"
                 [ngClass]="{ show: i === currentIndex }"
               >
