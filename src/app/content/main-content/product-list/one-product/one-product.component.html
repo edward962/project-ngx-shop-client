@@ -55,7 +55,13 @@
               </ul>
               <div>
                 <div class="all-characters">
-                  <a *ngIf="!isShow" (click)="show()">Все характеристики</a>
+                  <a
+                    href="#"
+                    onclick="return false;"
+                    *ngIf="!isShow"
+                    (click)="show()"
+                    >Все характеристики</a
+                  >
                 </div>
 
                 <div *ngIf="isShow === true">
@@ -72,7 +78,11 @@
                       </ul>
                     </li>
                   </ul>
-                  <div class="characters"><a (click)="show()">Скрыть</a></div>
+                  <div class="characters">
+                    <a href="#" onclick="return false;" (click)="show()"
+                      >Скрыть</a
+                    >
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,12 +97,16 @@
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a
+                  href="#"
+                  onclick="return false;"
                   class="nav-item nav-link"
                   [ngClass]="{ active: isShowDesc }"
                   (click)="showDesc()"
                   >Описание</a
                 >
                 <a
+                  href="#"
+                  onclick="return false;"
                   class="nav-item nav-link"
                   [ngClass]="{ active: isShowFeedback }"
                   (click)="showFeedback()"
