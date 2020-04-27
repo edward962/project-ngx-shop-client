@@ -2,8 +2,8 @@
     <h6 class="mb-2 pb-1">
       <label class="text-dark mb-0">Бренд</label>
     </h6>
-    <div class="custom-control custom-checkbox mb-2">
+    <div class="custom-control custom-checkbox mb-2" *ngFor='let brandName of brands'>
       <input type="checkbox" class="custom-control-input" id="customCheck1"/>
-      <label class="custom-control-label text-dark" for="customCheck1">Brand1</label>
+      <label class="custom-control-label text-dark" for="customCheck1">{{brandName}}</label>
     </div>
 </div>

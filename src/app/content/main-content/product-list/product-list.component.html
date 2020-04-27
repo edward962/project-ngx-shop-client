@@ -40,7 +40,7 @@
           placeholder="Фильтр по названию"  
           (input)='addProductNameToQuery(searchBox.value)'
          />
-        <app-brands></app-brands>
+        <app-brands [brands]='brands'></app-brands>
         <app-price-slider  (pricesValue)='pricesValue($event)' >
         </app-price-slider>
       </div>
