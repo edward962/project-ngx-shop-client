@@ -1,11 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { IProduct, IFeedback } from 'src/app/interfaces/product.interface';
+
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { createFeedbackPending } from '../../store/actions/products.actions';
+import { IProduct } from 'src/app/interfaces/product.interface';
+import { IFeedback } from '../../store/reducers/products.reducer';
 
 @Component({
   selector: 'app-one-product',
@@ -36,7 +39,7 @@ export class OneProductComponent implements OnInit {
     advantages: ['', [Validators.required, Validators.minLength(10)]],
     rate: ['', [Validators.required]],
   });
-  public save!: (value: object) => void;
+
   public next() {
     if (this.currentIndex === this.product.images.length - 1) {
       this.currentIndex = this.currentIndex;
@@ -61,6 +64,16 @@ export class OneProductComponent implements OnInit {
   public showFeedback() {
     this.isShowDesc = false;
     this.isShowFeedback = true;
+  }
+
+  public async addFeedback(value: IFeedback): Promise<void> {
+    console.log(value);
+
+    this.store.dispatch(
+      createFeedbackPending({
+        feedback: { ...value },
+      })
+    );
   }
 
   public async addToBusket(product: IProduct): Promise<void> {

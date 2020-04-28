@@ -8,8 +8,10 @@ import {
 import { ICartProduct, reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
+import { IProductState } from 'src/app/content/main-content/store/reducers/products.reducer';
 
 export interface IStore {
+  products: IProductState;
   cart: EntityState<ICartProduct>;
   routerReducer: typeof routerReducer;
 }
