@@ -57,7 +57,7 @@ export class ProductListComponent implements OnInit {
     .subscribe(
       (data) => (this.products = data)
     );
-    this.brandsService.getBrands(query.id).subscribe( brands => this.brands = brands);
+    this.brandsService.getBrands(query.id, priceRange).subscribe( brands => this.brands = brands);
   }
   async currentProduct(id) {}
 

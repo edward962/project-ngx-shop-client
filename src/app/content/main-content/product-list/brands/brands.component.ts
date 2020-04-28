@@ -8,7 +8,6 @@ import { Component, Input } from '@angular/core';
 export class BrandsComponent{
   @Input() brands: string[];
   public isShow = false;
-  public brandsCounter = this.brands.length;
   public show(){
     this.isShow = !this.isShow;
   }
