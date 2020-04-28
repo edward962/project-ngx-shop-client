@@ -19,14 +19,17 @@ export class ProductsService {
   public getProductsBySubCategory(
     id: string,
     priceData: any,
-    searchByName: string
+    searchByName: string,
+    selectedBrands: string | undefined
   ): Observable<IProduct> {
     const productName = searchByName ? searchByName : '';
+    const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
+    console.log('selectedBrands', selectedBrandsQuery, selectedBrands);
     const priceRange = priceData
       ? priceData
       : { value: 0, highValue: 1000000000 };
     return this.http.get<IProduct>(
-      `/products/?subCat=${id}&prices=${priceRange.value},${priceRange.highValue}&text=${productName}`
+      `/products/?subCat=${id}&prices=${priceRange.value},${priceRange.highValue}&text=${productName}&brands=${selectedBrandsQuery}`
     );
   }
 
