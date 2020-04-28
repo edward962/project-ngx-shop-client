@@ -35,7 +35,9 @@
       <div class="col-lg-7">
         <div class="product-info">
           <h3 class="h5">{{ product?.name }}</h3>
-          <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+          <app-ngx-shop-star-rating
+            [feedbackRate]="product.rating | rate"
+          ></app-ngx-shop-star-rating>
           <p class="rate-amount d-none d-md-block mt-1">
             {{ product?.feedbacksCount }}
           </p>
@@ -132,7 +134,9 @@
                     class="review"
                   >
                     <h6>Иван Иванов</h6>
-                    <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+                    <app-ngx-shop-star-rating
+                      [feedbackRate]="product.rating | rate"
+                    ></app-ngx-shop-star-rating>
                     <p class="mt-2 mb-0 pt-1">
                       Совершенно не подошел по характеристикам.
                     </p>
