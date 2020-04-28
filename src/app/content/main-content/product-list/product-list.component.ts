@@ -8,6 +8,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
+import { BrandsService } from 'src/app/shared/services/brands.service';
 
 @Component({
   selector: 'app-product-list',
@@ -27,21 +28,22 @@ export class ProductListComponent implements OnInit {
   public filteredByPriceProducts: any;
   public priceRange: any;
   public productName: string;
+  public brands: any;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
     private store: Store<IStore>,
-    public productsService: ProductsService
+    public productsService: ProductsService,
+    public brandsService: BrandsService
   ) {}
 
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe( 
+    this.activatedRoute.queryParams.subscribe(
          query => this.getProductsByIdCategory(query, this.priceRange, this.productName));
     this.categories$ = this.categoriesService.getCategories();
-
   }
   public hover(index: number) {
     this.currentIndex = index;
@@ -55,8 +57,8 @@ export class ProductListComponent implements OnInit {
     .subscribe(
       (data) => (this.products = data)
     );
+    this.brandsService.getBrands(query.id).subscribe( brands => this.brands = brands);
   }
-
   async currentProduct(id) {}
 
   public pricesValue( priceRange: any ){
