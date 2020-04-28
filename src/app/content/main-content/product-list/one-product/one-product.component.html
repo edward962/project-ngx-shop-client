@@ -144,22 +144,31 @@
                   <div class="row">
                     <div class="col-lg-9">
                       <div class="add-review my-4" [formGroup]="feedbackForm">
-                        <!-- <app-ngx-shop-star-rating formControlName="rate"></app-ngx-shop-star-rating> -->
+                        <app-ngx-rating
+                          ngDefaultControl
+                          formControlName="rate"
+                        ></app-ngx-rating>
                         <label class="feedback-inputs-label">
                           Отзыв
-                          <div *ngIf="getField('advantages')?.errors?.minlength" class="form-valid">
+                          <div
+                            *ngIf="getField('advantages')?.errors?.minlength"
+                            class="form-valid"
+                          >
                             Отзыв должен состоять минимум из 10 символов
                           </div>
                         </label>
                         <div class="form-group">
-                          <textarea formControlName="advantages" class="form-control"></textarea>
+                          <textarea
+                            formControlName="advantages"
+                            class="form-control"
+                          ></textarea>
                         </div>
                         <button
                           type="submit"
                           class="btn btn-outline-primary px-3"
                           (click)="save(feedbackForm.value)"
                           [disabled]="feedbackForm.invalid"
-                          >
+                        >
                           Добавить отзыв
                         </button>
                       </div>

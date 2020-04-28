@@ -34,26 +34,27 @@ export class OneProductComponent implements OnInit {
   public isShowFeedback = false;
   public feedbackForm: FormGroup = this.fb.group({
     advantages: ['', [Validators.required, Validators.minLength(10)]],
-    // rate: ['', [Validators.required]],
+    rate: ['', [Validators.required]],
   });
   public save!: (value: object) => void;
   public next() {
-    if (this.currentIndex === this.product.images.length - 1){
+    if (this.currentIndex === this.product.images.length - 1) {
       this.currentIndex = this.currentIndex;
     } else {
       this.currentIndex += 1;
-    }  }
+    }
+  }
   public prev() {
-    if (this.currentIndex === 0){
+    if (this.currentIndex === 0) {
       this.currentIndex = this.currentIndex;
     } else {
       this.currentIndex -= 1;
     }
   }
-  public show(){
+  public show() {
     this.isShow = !this.isShow;
   }
-  public showDesc(){
+  public showDesc() {
     this.isShowFeedback = false;
     this.isShowDesc = true;
   }
@@ -75,5 +76,8 @@ export class OneProductComponent implements OnInit {
     this.productsService
       .getProductById(this.query.id)
       .subscribe((product) => (this.product = product));
+  }
+  ngDoCheck() {
+    console.log(this.feedbackForm.value);
   }
 }
