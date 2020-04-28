@@ -8,12 +8,21 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { environment } from '../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from './services/category.service';
-import { StarRatingComponent } from '../content/card/star-rating/star-rating.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ProductsService } from './services/products.service';
+import { RatePipe } from './pipes/rate.pipe';
+import { RatingComponent } from '../content/main-content/product-list/one-product/rating/rating.component';
 
 @NgModule({
-  declarations: [StarRatingComponent],
-  imports: [ReactiveFormsModule, FormsModule, MatIconModule, HttpClientModule, CommonModule, RouterModule],
+  declarations: [StarRatingComponent, RatePipe, RatingComponent],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+    HttpClientModule,
+    CommonModule,
+    RouterModule,
+  ],
   exports: [
     ReactiveFormsModule,
     RouterModule,
@@ -21,8 +30,11 @@ import { ProductsService } from './services/products.service';
     HttpClientModule,
     CommonModule,
     StarRatingComponent,
+    RatePipe,
+    RatingComponent,
   ],
-  providers: [CategoriesService,
+  providers: [
+    CategoriesService,
     ProductsService,
     {
       provide: BASE_URL_TOKEN,

@@ -35,7 +35,9 @@
       <div class="col-lg-7">
         <div class="product-info">
           <h3 class="h5">{{ product?.name }}</h3>
-          <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+          <app-ngx-shop-star-rating
+            [feedbackRate]="product.rating | rate"
+          ></app-ngx-shop-star-rating>
           <p class="rate-amount d-none d-md-block mt-1">
             {{ product?.feedbacksCount }}
           </p>
@@ -132,7 +134,9 @@
                     class="review"
                   >
                     <h6>Иван Иванов</h6>
-                    <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+                    <app-ngx-shop-star-rating
+                      [feedbackRate]="product.rating | rate"
+                    ></app-ngx-shop-star-rating>
                     <p class="mt-2 mb-0 pt-1">
                       Совершенно не подошел по характеристикам.
                     </p>
@@ -140,22 +144,31 @@
                   <div class="row">
                     <div class="col-lg-9">
                       <div class="add-review my-4" [formGroup]="feedbackForm">
-                        <!-- <app-ngx-shop-star-rating formControlName="rate"></app-ngx-shop-star-rating> -->
+                        <app-ngx-rating
+                          ngDefaultControl
+                          formControlName="rate"
+                        ></app-ngx-rating>
                         <label class="feedback-inputs-label">
                           Отзыв
-                          <div *ngIf="getField('advantages')?.errors?.minlength" class="form-valid">
+                          <div
+                            *ngIf="getField('advantages')?.errors?.minlength"
+                            class="form-valid"
+                          >
                             Отзыв должен состоять минимум из 10 символов
                           </div>
                         </label>
                         <div class="form-group">
-                          <textarea formControlName="advantages" class="form-control"></textarea>
+                          <textarea
+                            formControlName="advantages"
+                            class="form-control"
+                          ></textarea>
                         </div>
                         <button
                           type="submit"
                           class="btn btn-outline-primary px-3"
                           (click)="save(feedbackForm.value)"
                           [disabled]="feedbackForm.invalid"
-                          >
+                        >
                           Добавить отзыв
                         </button>
                       </div>

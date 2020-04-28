@@ -25,7 +25,15 @@
                 [ngClass]="{ show: i === currentIndex }"
               >
                 <li *ngFor="let subCategory of category.subCategories">
-                     <a [routerLink]="['/category']" [queryParams]="{ id: subCategory._id, name: subCategory.name }" href="{{ subCategory.name }}">{{ subCategory.name }}</a>
+                  <a
+                    [routerLink]="['/category']"
+                    [queryParams]="{
+                      id: subCategory._id,
+                      name: subCategory.name
+                    }"
+                    href="{{ subCategory.name }}"
+                    >{{ subCategory.name }}</a
+                  >
                 </li>
               </ul>
             </li>
@@ -37,11 +45,11 @@
           #searchBox
           type="text"
           class="form-control"
-          placeholder="Фильтр по названию"  
-          (input)='addProductNameToQuery(searchBox.value)'
-         />
-        <app-brands [brands]='brands'></app-brands>
-        <app-price-slider  (pricesValue)='pricesValue($event)' >
+          placeholder="Фильтр по названию"
+          (input)="addProductNameToQuery(searchBox.value)"
+        />
+        <app-brands [brands]="brands"></app-brands>
+        <app-price-slider (pricesValue)="pricesValue($event)">
         </app-price-slider>
       </div>
       <div class="col-lg-8 col-xl-9">
@@ -60,8 +68,11 @@
               <h4 class="col-title mb-2">
                 {{ product.name }}
               </h4>
-              <app-ngx-shop-star-rating
+              <!-- <app-ngx-shop-star-rating
                 feedbackRate="{{ product.rating }}"
+              ></app-ngx-shop-star-rating> -->
+              <app-ngx-shop-star-rating
+                [feedbackRate]="product.rating | rate"
               ></app-ngx-shop-star-rating>
               <p class="rate-amount d-none d-md-block mt-1">
                 {{ product.feedbacksCount }}
