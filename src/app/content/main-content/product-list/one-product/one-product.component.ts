@@ -35,6 +35,7 @@ export class OneProductComponent implements OnInit {
   public isShow = false;
   public isShowDesc = true;
   public isShowFeedback = false;
+  public feedbacks = [];
   public feedbackForm: FormGroup = this.fb.group({
     advantages: ['', [Validators.required, Validators.minLength(10)]],
     rate: ['', [Validators.required]],
@@ -67,8 +68,7 @@ export class OneProductComponent implements OnInit {
   }
 
   public async addFeedback(value: IFeedback): Promise<void> {
-    console.log(value);
-
+    this.feedbacks.push(value);
     this.store.dispatch(
       createFeedbackPending({
         feedback: { ...value },
