@@ -129,16 +129,13 @@
               <div *ngIf="isShowDesc">{{ product?.description }}</div>
               <div *ngIf="isShowFeedback">
                 <div class="reviews">
-                  <div
-                    *ngFor="let feedBack of product?.feedbacks"
-                    class="review"
-                  >
+                  <div *ngFor="let feedBack of feedbacks" class="review">
                     <h6>Иван Иванов</h6>
                     <app-ngx-shop-star-rating
-                      [feedbackRate]="product.rating | rate"
                     ></app-ngx-shop-star-rating>
+                    {{feedBack.rate}}
                     <p class="mt-2 mb-0 pt-1">
-                      Совершенно не подошел по характеристикам.
+                      {{feedBack.advantages}}
                     </p>
                   </div>
                   <div class="row">
