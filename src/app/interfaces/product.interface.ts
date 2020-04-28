@@ -12,3 +12,7 @@ export interface IProductImage {
   url: string;
   source: string;
 }
+export interface IFeedback {
+  // rate: number;
+  advantages: string;
+}
