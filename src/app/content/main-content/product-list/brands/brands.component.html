@@ -2,8 +2,27 @@
     <h6 class="mb-2 pb-1">
       <label class="text-dark mb-0">Бренд</label>
     </h6>
-    <div class="custom-control custom-checkbox mb-2" *ngFor='let brandName of brands'>
-      <input type="checkbox" class="custom-control-input" id="customCheck1"/>
-      <label class="custom-control-label text-dark" for="customCheck1">{{brandName}}</label>
+    <div *ngFor='let brandName of brands; let i = index'>
+      <div class="custom-control custom-checkbox mb-2" *ngIf="i <= 5">
+        <input type="checkbox" class="custom-control-input" id="customCheck1"/>
+        <label class="custom-control-label text-dark" for="customCheck1">{{brandName}}</label>
+      </div>
     </div>
+    <div *ngIf="brandsCounter > 5">
+        <div class="all-characters">
+          <a
+            href="#"
+            onclick="return false;"
+            *ngIf="!isShow"
+            (click)="show()"
+            >Все бренды</a
+          >
+        </div>
+        <div *ngIf="isShow === true">
+          <div class="custom-control custom-checkbox mb-2" *ngFor='let brandName of brands; let i = index' >
+            <input *ngIf="i > 5" type="checkbox" class="custom-control-input" id="customCheck1"/>
+            <label *ngIf="isShow === true" class="custom-control-label text-dark" for="customCheck1">{{brandName}}</label>
+          </div> 
+        </div>
+      </div>    
 </div>
