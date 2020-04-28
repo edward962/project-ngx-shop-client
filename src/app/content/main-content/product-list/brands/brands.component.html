@@ -4,7 +4,7 @@
     </h6>
     <div *ngFor='let brandName of brands; let i = index'>
       <div class="custom-control custom-checkbox mb-2" *ngIf="i <= 5">
-        <input type="checkbox" class="custom-control-input" id=`check{{i}}`/>
+        <input type="checkbox" (click)="check(brandName)" class="custom-control-input" id=`check{{i}}`/>
         <label class="custom-control-label text-dark" for=`check{{i}}`>{{brandName}}</label>
       </div>
     </div>
@@ -19,10 +19,12 @@
           >
         </div>
         <div *ngIf="isShow === true">
-          <div class="custom-control custom-checkbox mb-2" *ngFor='let brandName of brands; let i = index' >
-            <input *ngIf="i > 5" type="checkbox" class="custom-control-input" id=`check{{i}}`/>
-            <label *ngIf="isShow === true" class="custom-control-label text-dark" for=`check{{i}}`>{{brandName}}</label>
-          </div> 
+          <div  *ngFor='let brandName of brands; let i = index'>
+            <div class="custom-control custom-checkbox mb-2" *ngIf="i > 5" >
+              <input  type="checkbox" (click)="check(brandName)" class="custom-control-input" id=`check{{i}}`/>
+              <label  class="custom-control-label text-dark" for=`check{{i}}`>{{brandName}}</label>
+            </div>
+          </div>
         </div>
       </div>    
 </div>
