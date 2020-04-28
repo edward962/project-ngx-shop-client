@@ -10,36 +10,26 @@ const routes: Routes = [
   {
     path: 'products',
     loadChildren: () =>
-        import('./content/main-content/main-content.module')
-        .then(mod => mod.MainContentModule),
-        data: {
-          state: 'products',
-        }
+      import('./content/main-content/main-content.module').then(
+        (mod) => mod.MainContentModule
+      ),
+    data: {
+      state: 'products',
+    },
   },
-  // {
-  //   path: 'one-product',
-  //   loadChildren: () =>
-  //       import('./content/one-product/one-product.module')
-  //       .then(mod => mod.OneProductModule),
-  //       data: {
-  //         state: 'fa',
-  //       },
-  // },
   {
     path: 'cart',
     loadChildren: () =>
-        import('./content/cart/cart.module')
-        .then(mod => mod.CartModule),
-        data: {
-          state: 'cart',
-        },
+      import('./content/cart/cart.module').then((mod) => mod.CartModule),
+    data: {
+      state: 'cart',
+    },
   },
   {
     path: 'category',
     loadChildren: () =>
-      import('./content/main-content/product-list/product-list.module')
-        .then(
-        mod => mod.ProductListModule,
+      import('./content/main-content/product-list/product-list.module').then(
+        (mod) => mod.ProductListModule
       ),
     data: {
       state: 'category',

@@ -77,7 +77,4 @@ export class OneProductComponent implements OnInit {
       .getProductById(this.query.id)
       .subscribe((product) => (this.product = product));
   }
-  ngDoCheck() {
-    console.log(this.feedbackForm.value);
-  }
 }

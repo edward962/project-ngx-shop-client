@@ -13,6 +13,6 @@ export interface IProductImage {
   source: string;
 }
 export interface IFeedback {
-  // rate: number;
+  rate: number;
   advantages: string;
 }
