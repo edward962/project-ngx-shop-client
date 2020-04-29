@@ -38,6 +38,7 @@ export interface IProduct {
   status?: boolean;
   images?: IProductImage[] | undefined;
   rating?: number | undefined;
+  idSubCat?: string ;
 }
 
 const productsReducer = createReducer(
@@ -45,6 +46,7 @@ const productsReducer = createReducer(
     item: { _id: '' },
     items: [],
     loading: false,
+  
   },
   on(getProductsPending, (state: IProductState) => ({
     ...state,

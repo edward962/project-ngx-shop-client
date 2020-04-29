@@ -1,4 +1,3 @@
-import { selectProducts } from './../../../store/reducers/cart.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/app/interfaces/category.interface';
@@ -10,6 +9,7 @@ import { IProduct, IPriceData, IProductQuery } from 'src/app/interfaces/product.
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { BrandsService } from 'src/app/shared/services/brands.service';
+import { getProductsPending } from '../store/actions/products.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -42,6 +42,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(
          query => this.getProductsByIdCategory(query, this.priceRange, this.productName, this.selectedBrands));
+       
     this.categories$ = this.categoriesService.getCategories();
   }
   public hover(index: number) {
@@ -51,6 +52,7 @@ export class ProductListComponent implements OnInit {
 
   public getProductsByIdCategory( query: any, priceRange: IPriceData, productName: string , selectedBrands: string){
     this.query = query;
+    // this.store.dispatch(getProductsPending(query.id));
     this.productsService
     .getProductsBySubCategory(query.id, priceRange, productName, selectedBrands)
     .subscribe(

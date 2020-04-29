@@ -25,6 +25,7 @@ import { Store } from '@ngrx/store';
 
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { go } from '../actions/router.actions';
 
 @Injectable()
 export class ProductsEffects {
@@ -44,54 +45,54 @@ export class ProductsEffects {
   //     ),
   //   ),
   // );
-  public addFeedback$: Observable<any> = createEffect(() =>
-    this.actions.pipe(
-      ofType(createFeedbackPending),
-      withLatestFrom(this.store.select('products', 'item', '_id')),
-      switchMap(([{ feedback }, product]) =>
-        this.productsService
-          .createFeedback({ ...feedback, product })
-          .pipe(
-            mergeMap(() => [
-              createFeedbackSuccess(),
-              getProductPending({ id: product }),
-            ]),
-          ),
-      ),
-    ),
-  );
-  // public getProducts$: Observable<any> = createEffect(() =>
+  // public addFeedback$: Observable<any> = createEffect(() =>
   //   this.actions.pipe(
-  //     ofType(getProductsPending),
-  //     switchMap(({ type, ...search }) => {
-  //       return this.productsService.getProducts(search).pipe(
-  //         mergeMap((products: IProduct[]) => {
-  //           if (products.length === 0) {
-  //             return [
-  //               go({
-  //                 path: [],
-  //                 extras: { queryParamsHandling: 'preserve' },
-  //               }),
-  //             ];
-  //           }
-  //           return [
-  //             go({
-  //               path: [],
-  //               query: search,
-  //               extras: { queryParamsHandling: null },
-  //             }),
-  //             search.page === 1
-  //               ? getProductsSuccess({ products })
-  //               : getProductsPagingSuccess({ products }),
-  //           ];
-  //         }),
-  //         catchError(err => {
-  //           // tslint:disable-next-line:no-console
-  //           console.log(err);
-  //           return EMPTY;
-  //         }),
-  //       );
-  //     }),
+  //     ofType(createFeedbackPending),
+  //     withLatestFrom(this.store.select('products', 'item', '_id')),
+  //     switchMap(([{ feedback }, product]) =>
+  //       this.productsService
+  //         .createFeedback({ ...feedback, product })
+  //         .pipe(
+  //           mergeMap(() => [
+  //             createFeedbackSuccess(),
+  //             getProductPending({ id: product }),
+  //           ]),
+  //         ),
+  //     ),
   //   ),
   // );
+  public getProducts$: Observable<any> = createEffect(() =>
+    this.actions.pipe(
+      ofType(getProductsPending),
+      switchMap(({ type, ...search }) => {
+        return this.productsService.getProductsBySubCategory(search).pipe(
+          mergeMap((products: IProduct[]) => {
+            if (products.length === 0) {
+              return [
+                go({
+                  path: [],
+                  extras: { queryParamsHandling: 'preserve' },
+                }),
+              ];
+            }
+            return [
+              go({
+                path: [],
+                query: search,
+                extras: { queryParamsHandling: null },
+              }),
+              search.page === 1
+                ? getProductsSuccess({ products })
+                : getProductsPagingSuccess({ products }),
+            ];
+          }),
+          catchError(err => {
+            // tslint:disable-next-line:no-console
+            console.log(err);
+            return EMPTY;
+          }),
+        );
+      }),
+    ),
+  );
 }

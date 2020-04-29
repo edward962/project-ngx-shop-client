@@ -15,6 +15,8 @@ import { StoreModule } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import { effects } from './store/effects';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     BrowserAnimationsModule,
     SharedModule,
     ProductListModule,
+    EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,

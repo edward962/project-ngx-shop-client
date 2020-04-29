@@ -1,6 +1,6 @@
 import { ICategory } from './../../interfaces/category.interface';
 import { createAction, props } from '@ngrx/store';
-import { ISubCategory } from 'src/app/interfaces/category.interface';
+// import { ISubCategory } from 'src/app/interfaces/category.interface';
 
 export const getCategoriesPending = createAction(
   '[Categories] Get categories pending'

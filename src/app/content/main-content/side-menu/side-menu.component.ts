@@ -22,7 +22,7 @@ export class SideMenuComponent {
   public currentIndex: number | null = null;
   public currentSubCategory: any;
   public defaultValue: any;
-  public onChange!: any;
+  public onChange!: void;
 
 constructor(
   public router: Router

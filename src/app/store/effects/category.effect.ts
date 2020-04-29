@@ -2,24 +2,24 @@ import { CategoriesService } from './../../shared/services/category.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { IStore } from '../reducers';
-import { Store } from '@ngrx/store';
+// import { IStore } from '../reducers';
+// import { Store } from '@ngrx/store';
 import { getCategoriesPending, getCategoriesSuccess } from '../actions/category.actions';
 import { switchMap, map } from 'rxjs/operators';
 
 @Injectable()
-export class CartEffects {
+export class CategoryEffects {
     productsService: any;
   constructor(
     private actions: Actions,
-    private store: Store<IStore>,
+    // private store: Store<IStore>,
     public categoriesService: CategoriesService
   ) {}
     public getCategories$: Observable<any> = createEffect(() =>
     this.actions.pipe(
         ofType(getCategoriesPending),
         switchMap(() => {
-          return this.categoriesService.getCategories().pipe(
+        return this.categoriesService.getCategories().pipe(
             map(categories => {
               return getCategoriesSuccess({ categories });
             }),

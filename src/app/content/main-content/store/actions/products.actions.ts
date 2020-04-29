@@ -3,7 +3,7 @@ import { IProduct, IFeedback } from '../reducers/products.reducer';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',
-  props<{ text?: string; subcategory?: string; page: number }>()
+  props<{idSubCat?: string ; text?: string; subcategory?: string; page: number; }>()
 );
 
 export const getProductsSuccess = createAction(

@@ -87,6 +87,9 @@ const productsReducer = createReducer(
   })),
 );
 
-export function reducer(state: IProductState | undefined, action: any) {
+export function reducerProducts(
+  state: IProductState | undefined,
+  action: any
+  ) {
   return productsReducer(state, action);
 }
