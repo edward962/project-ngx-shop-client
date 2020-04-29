@@ -5,9 +5,7 @@ export class LocalStorageService {
   public addToLocalStorage(key: string, data: any): void {
     try {
       localStorage.setItem(key, JSON.stringify(data));
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
   public getFromLocalStorage(key: string): any {
     try {
@@ -17,7 +15,6 @@ export class LocalStorageService {
       }
       return JSON.parse(jsonStr);
     } catch (err) {
-      console.log(err);
       return [];
     }
   }

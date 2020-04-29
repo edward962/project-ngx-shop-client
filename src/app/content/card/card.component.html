@@ -2,7 +2,7 @@
   <div class="card-img-wrap">
     <img
       class="card-img-top"
-      [src]="product.images[0]?.url"
+      [src]="product.images | imgUrl"
       [alt]="product.name"
     />
   </div>

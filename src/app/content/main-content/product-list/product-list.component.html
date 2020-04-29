@@ -31,7 +31,6 @@
                       id: subCategory._id,
                       name: subCategory.name
                     }"
-                    href="{{ subCategory.name }}"
                     >{{ subCategory.name }}</a
                   >
                 </li>
@@ -48,7 +47,10 @@
           placeholder="Фильтр по названию"
           (input)="addProductNameToQuery(searchBox.value)"
         />
-        <app-brands (queryBrands)='getBrands($event)' [brands]="brands"></app-brands>
+        <app-brands
+          (queryBrands)="getBrands($event)"
+          [brands]="brands"
+        ></app-brands>
         <app-price-slider (pricesValue)="pricesValue($event)">
         </app-price-slider>
       </div>
@@ -61,7 +63,11 @@
             class="inner-col description-col"
           >
             <div class="product-img">
-              <img width="80" src="{{ product.images[0].url }}" alt="img" />
+              <img
+                width="80"
+                [src]="product.images | imgUrl"
+                [alt]="product.name"
+              />
             </div>
             <div class="product-desc">
               <h4 class="col-title mb-2">
