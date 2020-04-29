@@ -25,6 +25,7 @@
     "@ngrx/entity": "^9.1.0",
     "@ngrx/router-store": "^9.1.0",
     "@ngrx/store": "^9.1.0",
+    "@ngrx/store-devtools": "^9.1.0",
     "ng5-slider": "^1.2.4",
     "prettier": "^2.0.4",
     "redux": "^4.0.5",

@@ -1,4 +1,4 @@
-import { reducers } from './store/reducers/index';
+import { reducers, CustomRouterSerializer } from './store/reducers/index';
 import { ProductListModule } from './content/main-content/product-list/product-list.module';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { OneProductComponent } from './content/main-content/product-list/one-product/one-product.component';
 import { FooterComponent } from './footer/footer.component';
 import { StoreModule } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,10 @@ import { StoreModule } from '@ngrx/store';
         strictStateImmutability: true,
         strictActionImmutability: true,
       },
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomRouterSerializer,
     }),
   ],
   bootstrap: [AppComponent],
