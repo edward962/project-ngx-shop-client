@@ -8,9 +8,9 @@
         type="checkbox"
         (click)="check(brandName)"
         class="custom-control-input"
-        id="`check{{ i }}`"
+        [id]="brandName"
       />
-      <label class="custom-control-label text-dark" for="`check{{ i }}`">{{
+      <label class="custom-control-label text-dark" [for]="brandName">{{
         brandName
       }}</label>
     </div>
@@ -26,9 +26,9 @@
             type="checkbox"
             (click)="check(brandName)"
             class="custom-control-input"
-            [attr.for]="makeId(i)"
+            [id]="brandName"
           />
-          <label class="custom-control-label text-dark" [attr.for]="makeId(i)">{{
+          <label class="custom-control-label text-dark" [for]="brandName">{{
             brandName
           }}</label>
         </div>

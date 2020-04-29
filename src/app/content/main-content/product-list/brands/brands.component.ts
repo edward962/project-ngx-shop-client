@@ -12,9 +12,6 @@ export class BrandsComponent{
   @Input() brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];
-  public makeId(i: number) {
-    return `check${i}`;
-    }
   public check(brandName: string){
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1){
