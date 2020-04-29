@@ -19,8 +19,6 @@ export interface IProductState {
 export interface IFeedback {
   rate: number;
   advantages: string;
-  // limitations: string;
-  // description: string;
 }
 export interface ISearch {
   text: string;

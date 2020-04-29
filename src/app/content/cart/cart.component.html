@@ -9,7 +9,7 @@
         >
           <div class="inner-col description-col">
             <div class="product-img">
-              <img src="{{ product.images[0].url }}" alt="img" />
+              <img [src]="product.images | imgUrl" [alt]="product.name" />
             </div>
             <div class="product-desc">
               <h4 class="col-title mb-2" [routerLink]="[product._id]">
@@ -64,40 +64,40 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="exampleInput">Имя:</label>
+                <label for="name">Имя:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="exampleInput"
+                  id="name"
                   placeholder="Ваше имя"
                 />
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInput2">Электронный адрес:</label>
+                <label for="email">Электронный адрес:</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="exampleInput2"
+                  id="email"
                   placeholder="email@gmail.com"
                 />
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="exampleInput3">Телефон:</label>
+                <label for="phone">Телефон:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="exampleInput3"
+                  id="phone"
                   placeholder="+44 7911 123456"
                 />
               </div>
               <div class="form-group mb-4">
-                <label for="exampleInput4">Адрес:</label>
+                <label for="address">Адрес:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="exampleInput4"
+                  id="address"
                   placeholder="Westminster, London SW1A 0AA, UK"
                 />
               </div>
