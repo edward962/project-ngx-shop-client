@@ -35,7 +35,7 @@ export class OneProductComponent implements OnInit {
   public isShow = false;
   public isShowDesc = true;
   public isShowFeedback = false;
-  public feedbacks = [];
+  public feedbacks: IFeedback[] = [];
   public feedbackForm: FormGroup = this.fb.group({
     advantages: ['', [Validators.required, Validators.minLength(10)]],
     rate: ['', [Validators.required]],

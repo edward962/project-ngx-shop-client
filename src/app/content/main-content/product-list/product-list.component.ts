@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
 import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { IProduct } from 'src/app/interfaces/product.interface';
+import { IProduct, IPriceData, IProductQuery } from 'src/app/interfaces/product.interface';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { BrandsService } from 'src/app/shared/services/brands.service';
@@ -18,19 +18,19 @@ import { BrandsService } from 'src/app/shared/services/brands.service';
 })
 export class ProductListComponent implements OnInit {
 
-  public categories$: Observable<ICategory[]>;
-  public show: string;
+  public categories$: Observable<ICategory[]> | undefined;
+  public show: string | undefined;
   public isShow = false;
   public currentIndex: number | null = null;
   public query: any;
-  public query$: Observable<any>;
+  public query$: Observable<IProductQuery> | undefined;
   public products: any;
-  public productsByProductName: any;
-  public filteredByPriceProducts: any;
-  public priceRange: any;
-  public productName: string;
+  public productsByProductName: IProduct | undefined;
+  public filteredByPriceProducts: IProduct | undefined;
+  public priceRange!: IPriceData;
+  public productName = '';
   public brands: any;
-  public selectedBrands: string;
+  public selectedBrands = '';
 
   constructor(
     private router: Router,
@@ -52,7 +52,7 @@ export class ProductListComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  public getProductsByIdCategory( query: any, priceRange: any, productName: string , selectedBrands: string){
+  public getProductsByIdCategory( query: any, priceRange: IPriceData, productName: string , selectedBrands: string){
     this.query = query;
     this.productsService
     .getProductsBySubCategory(query.id, priceRange, productName, selectedBrands)
@@ -61,18 +61,17 @@ export class ProductListComponent implements OnInit {
     );
     this.brandsService.getBrands(query.id, priceRange).subscribe( brands => this.brands = brands);
   }
-  async currentProduct(id) {}
 
-  public pricesValue( priceRange: any ){
+  public pricesValue( priceRange: IPriceData ){
     this.priceRange = priceRange;
     this.addPriceToQuery(priceRange);
   }
 
-  public addPriceToQuery(priceRange) {
+  public addPriceToQuery(priceRange: IPriceData) {
     const  {id, name} = this.query;
     const{value, highValue} = priceRange;
     if (priceRange){
-    this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, lowPrice: value, highValue }});
+    this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, value, highValue }});
     }
   }
 
@@ -80,10 +79,8 @@ export class ProductListComponent implements OnInit {
     this. productName = productName;
     const  {id, name, value, highValue} = this.query;
     if (productName){
-      this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, lowPrice: value, highValue, productName }});
+      this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, value, highValue, productName }});
       }
-  }
-  public addBrandsToQuery(selectedBrands: string) {
   }
 
   public async addToBusket(product: IProduct): Promise<void> {
@@ -95,7 +92,7 @@ export class ProductListComponent implements OnInit {
     const  {id, name, value, highValue, productName} = this.query;
     if (brands.join(',')){
       this.router.navigate(['.'], { relativeTo: this.activatedRoute,
-        queryParams: { id, name, lowPrice: value, highValue, productName, brandsQuery }});
+        queryParams: { id, name, value, highValue, productName, brandsQuery }});
       }
   }
  }

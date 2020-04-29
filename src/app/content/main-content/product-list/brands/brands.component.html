@@ -26,9 +26,9 @@
             type="checkbox"
             (click)="check(brandName)"
             class="custom-control-input"
-            id="`check{{ i }}`"
+            [attr.for]="makeId(i)"
           />
-          <label class="custom-control-label text-dark" for="`check{{ i }}`">{{
+          <label class="custom-control-label text-dark" [attr.for]="makeId(i)">{{
             brandName
           }}</label>
         </div>

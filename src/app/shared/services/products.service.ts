@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProduct } from 'src/app/interfaces/product.interface';
+import { IProduct, IPriceData } from 'src/app/interfaces/product.interface';
+import { IFeedback } from 'src/app/content/main-content/store/reducers/products.reducer';
 
 @Injectable()
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  public createFeedback(feedback: any): Observable<any> {
-    console.log(feedback, '111');
-    return this.http.post<any>(`/feedbacks`, feedback);
+  public createFeedback(feedback: IFeedback): Observable<IFeedback> {
+    return this.http.post<IFeedback>(`/feedbacks`, feedback);
   }
 
   public getProducts(): Observable<IProduct> {
@@ -18,13 +18,12 @@ export class ProductsService {
 
   public getProductsBySubCategory(
     id: string,
-    priceData: any,
+    priceData: IPriceData,
     searchByName: string,
     selectedBrands: string | undefined
   ): Observable<IProduct> {
     const productName = searchByName ? searchByName : '';
     const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
-    console.log('selectedBrands', selectedBrandsQuery, selectedBrands);
     const priceRange = priceData
       ? priceData
       : { value: 0, highValue: 1000000000 };
@@ -33,7 +32,7 @@ export class ProductsService {
     );
   }
 
-  public getProductById(id): Observable<any> {
-    return this.http.get<any>(`/products/${id}`);
+  public getProductById(id: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`/products/${id}`);
   }
 }

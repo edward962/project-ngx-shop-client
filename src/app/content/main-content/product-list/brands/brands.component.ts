@@ -10,22 +10,22 @@ import { async } from '@angular/core/testing';
 export class BrandsComponent{
   @Output() queryBrands = new EventEmitter();
   public form: any;
-  @Input() brands: string[];
+  @Input() brands: string[] | undefined;
   public isShow = false;
-  public brandsToShow = [];
+  public brandsToShow: string[] = [];
+  public makeId(i: number) {
+    return `check${i}`;
+    }
   public check(brandName: string){
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1){
       this.brandsToShow.push(brandName);
-      this.queryBrands.emit(this.brandsToShow);
     } else {
       this.brandsToShow.splice(index, 1);
-      this.queryBrands.emit(this.brandsToShow);
     }
+    return this.queryBrands.emit(this.brandsToShow);
   }
   public show(){
     this.isShow = !this.isShow;
   }
 }
-
-// selectedBrands
