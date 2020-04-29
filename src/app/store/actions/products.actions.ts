@@ -1,9 +1,15 @@
+import { IPriceData } from './../../interfaces/product.interface';
 import { createAction, props } from '@ngrx/store';
 import { IProduct, IFeedback } from '../reducers/products.reducer';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',
-  props<{id: string ; text?: string; subcategory?: string, page: number }>(),
+  props<{
+    id: string,
+    priceRange: IPriceData,
+    productName: string,
+    selectedBrands: string
+  }>(),
 );
 
 export const getProductsSuccess = createAction(
