@@ -19,7 +19,7 @@ export class MainContentComponent implements OnInit {
   public products: IProduct[] = [];
   public products$!: Observable<IProduct[]>;
 
-  public filterForm: FormGroup ;
+  public filterForm: FormGroup | undefined ;
 
   constructor(
     private categoriesService: CategoriesService,

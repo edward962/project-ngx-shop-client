@@ -18,19 +18,19 @@ import { BrandsService } from 'src/app/shared/services/brands.service';
 })
 export class ProductListComponent implements OnInit {
 
-  public categories$: Observable<ICategory[]>;
-  public show: string;
+  public categories$: Observable<ICategory[]> | undefined;
+  public show: string | undefined;
   public isShow = false;
   public currentIndex: number | null = null;
   public query: any;
-  public query$: Observable<any>;
+  public query$: Observable<any> | undefined;
   public products: any;
   public productsByProductName: any;
   public filteredByPriceProducts: any;
   public priceRange: any;
-  public productName: string;
+  public productName = '';
   public brands: any;
-  public selectedBrands: string;
+  public selectedBrands = '';
 
   constructor(
     private router: Router,
@@ -61,14 +61,13 @@ export class ProductListComponent implements OnInit {
     );
     this.brandsService.getBrands(query.id, priceRange).subscribe( brands => this.brands = brands);
   }
-  async currentProduct(id) {}
 
   public pricesValue( priceRange: any ){
     this.priceRange = priceRange;
     this.addPriceToQuery(priceRange);
   }
 
-  public addPriceToQuery(priceRange) {
+  public addPriceToQuery(priceRange: { value: any; highValue: any; }) {
     const  {id, name} = this.query;
     const{value, highValue} = priceRange;
     if (priceRange){

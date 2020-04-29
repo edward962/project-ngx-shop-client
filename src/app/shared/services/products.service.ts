@@ -33,7 +33,7 @@ export class ProductsService {
     );
   }
 
-  public getProductById(id): Observable<any> {
+  public getProductById(id: any): Observable<any> {
     return this.http.get<any>(`/products/${id}`);
   }
 }

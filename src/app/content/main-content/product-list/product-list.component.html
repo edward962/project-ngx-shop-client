@@ -59,7 +59,6 @@
             [routerLink]="['/category/one-product']"
             [queryParams]="{ id: product._id }"
             class="inner-col description-col"
-            (click)="currentProduct(product._id)"
           >
             <div class="product-img">
               <img width="80" src="{{ product.images[0].url }}" alt="img" />

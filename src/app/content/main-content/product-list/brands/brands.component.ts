@@ -10,9 +10,9 @@ import { async } from '@angular/core/testing';
 export class BrandsComponent{
   @Output() queryBrands = new EventEmitter();
   public form: any;
-  @Input() brands: string[];
+  @Input() brands: string[] | undefined;
   public isShow = false;
-  public brandsToShow = [];
+  public brandsToShow: string[] = [];
   public check(brandName: string){
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1){
@@ -27,5 +27,3 @@ export class BrandsComponent{
     this.isShow = !this.isShow;
   }
 }
-
-// selectedBrands

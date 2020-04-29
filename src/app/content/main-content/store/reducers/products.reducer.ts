@@ -19,8 +19,6 @@ export interface IProductState {
 export interface IFeedback {
   rate: number;
   advantages: string;
-  // limitations: string;
-  // description: string;
 }
 export interface ISearch {
   text: string;
@@ -62,11 +60,14 @@ const productsReducer = createReducer(
     items: [...state.items, ...products],
     loading: false,
   })),
-  on(removeFromStateProducts, (state: IProductState, _action) => ({
-    ...state,
-    items: [],
-    loading: false,
-  })),
+  // tslint:disable-next-line: variable-name
+  on(removeFromStateProducts, (state: IProductState, _action) => {
+    return ({
+      ...state,
+      items: [],
+      loading: false,
+    });
+  }),
   on(getProductPending, (state: IProductState) => ({
     ...state,
     loading: true,
