@@ -10,10 +10,10 @@ export class PriceSliderComponent {
 
   @Output()  pricesValue = new EventEmitter();
   value = 0;
-  highValue = 5000;
+  highValue = 2000;
   options: Options = {
     floor: 0,
-    ceil: 5000
+    ceil: 2000
   };
 
 

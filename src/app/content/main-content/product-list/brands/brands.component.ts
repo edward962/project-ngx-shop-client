@@ -13,15 +13,17 @@ export class BrandsComponent{
   @Input() brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];
+  public makeId(i: number) {
+    return `check${i}`;
+    }
   public check(brandName: string){
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1){
       this.brandsToShow.push(brandName);
-      this.queryBrands.emit(this.brandsToShow);
     } else {
       this.brandsToShow.splice(index, 1);
-      this.queryBrands.emit(this.brandsToShow);
     }
+    return this.queryBrands.emit(this.brandsToShow);
   }
   public show(){
     this.isShow = !this.isShow;
