@@ -1,3 +1,4 @@
+import { selectProducts } from './../../../store/reducers/cart.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/app/interfaces/category.interface';
@@ -29,6 +30,7 @@ export class ProductListComponent implements OnInit {
   public priceRange: any;
   public productName: string;
   public brands: any;
+  public selectedBrands: string;
 
   constructor(
     private router: Router,
@@ -42,7 +44,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(
-         query => this.getProductsByIdCategory(query, this.priceRange, this.productName));
+         query => this.getProductsByIdCategory(query, this.priceRange, this.productName, this.selectedBrands));
     this.categories$ = this.categoriesService.getCategories();
   }
   public hover(index: number) {
@@ -50,10 +52,10 @@ export class ProductListComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  public getProductsByIdCategory( query: any, priceRange: any, productName: string){
+  public getProductsByIdCategory( query: any, priceRange: any, productName: string , selectedBrands: string){
     this.query = query;
     this.productsService
-    .getProductsBySubCategory(query.id, priceRange, productName)
+    .getProductsBySubCategory(query.id, priceRange, productName, selectedBrands)
     .subscribe(
       (data) => (this.products = data)
     );
@@ -81,8 +83,19 @@ export class ProductListComponent implements OnInit {
       this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, lowPrice: value, highValue, productName }});
       }
   }
+  public addBrandsToQuery(selectedBrands: string) {
+  }
 
   public async addToBusket(product: IProduct): Promise<void> {
     this.store.dispatch(addProductToCart({ product }));
+  }
+  public getBrands(brands: string[]){
+    const brandsQuery = brands.join(',');
+    this.selectedBrands = brandsQuery;
+    const  {id, name, value, highValue, productName} = this.query;
+    if (brands.join(',')){
+      this.router.navigate(['.'], { relativeTo: this.activatedRoute,
+        queryParams: { id, name, lowPrice: value, highValue, productName, brandsQuery }});
+      }
   }
  }
