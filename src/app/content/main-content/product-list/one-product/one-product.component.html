@@ -132,10 +132,11 @@
                   <div *ngFor="let feedBack of feedbacks" class="review">
                     <h6>Иван Иванов</h6>
                     <app-ngx-shop-star-rating
+                      [feedbackRate]="feedback.rate | rate"
                     ></app-ngx-shop-star-rating>
-                    {{feedBack.rate}}
+                    {{ feedBack.rate }}
                     <p class="mt-2 mb-0 pt-1">
-                      {{feedBack.advantages}}
+                      {{ feedBack.advantages }}
                     </p>
                   </div>
                   <div class="row">
