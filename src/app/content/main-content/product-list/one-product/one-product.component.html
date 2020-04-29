@@ -6,19 +6,20 @@
           <ol class="carousel-indicators">
             <li
               [ngClass]="{ active: j === currentIndex }"
-              *ngFor="let photo of product?.images; let j = index"
+              *ngFor="let image of product?.images; let j = index"
             >
-              <img src="{{ photo?.url }}" alt="" />
+              <img [src]="image?.url" [alt]="product.name" />
+              <!-- [src]="product.images | imgUrl" -->
             </li>
           </ol>
           <div class="carousel-inner">
             <div
-              *ngFor="let photo of product?.images; let i = index"
+              *ngFor="let image of product?.images; let i = index"
               class="carousel-item"
               [ngClass]="{ active: i === currentIndex }"
             >
               <div class="img-wrap">
-                <img src="{{ photo?.url }}" alt="" />
+                <img [src]="image?.url" [alt]="product.name" />
               </div>
             </div>
           </div>
@@ -60,13 +61,7 @@
               </ul>
               <div>
                 <div class="all-characters">
-                  <a
-                    href="#"
-                    onclick="return false;"
-                    *ngIf="!isShow"
-                    (click)="show()"
-                    >Все характеристики</a
-                  >
+                  <a *ngIf="!isShow" (click)="show()">Все характеристики</a>
                 </div>
 
                 <div *ngIf="isShow === true">
@@ -84,9 +79,7 @@
                     </li>
                   </ul>
                   <div class="characters">
-                    <a href="#" onclick="return false;" (click)="show()"
-                      >Скрыть</a
-                    >
+                    <a (click)="show()">Скрыть</a>
                   </div>
                 </div>
               </div>
@@ -96,11 +89,9 @@
                 {{ product?.price | currency: 'EUR' }}
               </h4>
               <a
-                href="#"
-                onclick="return false;"
                 class="btn btn-primary btn-lg px-5"
                 (click)="addToBusket(product)"
-                >Добавить в корзину</a
+                ><span>Добавить в корзину</span></a
               >
             </div>
           </div>
@@ -108,16 +99,12 @@
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a
-                  href="#"
-                  onclick="return false;"
                   class="nav-item nav-link"
                   [ngClass]="{ active: isShowDesc }"
                   (click)="showDesc()"
                   >Описание</a
                 >
                 <a
-                  href="#"
-                  onclick="return false;"
                   class="nav-item nav-link"
                   [ngClass]="{ active: isShowFeedback }"
                   (click)="showFeedback()"
@@ -129,25 +116,20 @@
               <div *ngIf="isShowDesc">{{ product?.description }}</div>
               <div *ngIf="isShowFeedback">
                 <div class="reviews">
-                  <div
-                    *ngFor="let feedBack of product?.feedbacks"
-                    class="review"
-                  >
+                  <div *ngFor="let feedBack of feedbacks" class="review">
                     <h6>Иван Иванов</h6>
                     <app-ngx-shop-star-rating
-                      [feedbackRate]="product.rating | rate"
+                      [feedbackRate]="feedback.rate | rate"
                     ></app-ngx-shop-star-rating>
+                    {{ feedBack.rate }}
                     <p class="mt-2 mb-0 pt-1">
-                      Совершенно не подошел по характеристикам.
+                      {{ feedBack.advantages }}
                     </p>
                   </div>
                   <div class="row">
                     <div class="col-lg-9">
                       <div class="add-review my-4" [formGroup]="feedbackForm">
-                        <app-ngx-rating
-                          ngDefaultControl
-                          formControlName="rate"
-                        ></app-ngx-rating>
+                        <app-ngx-rating formControlName="rate"></app-ngx-rating>
                         <label class="feedback-inputs-label">
                           Отзыв
                           <div
