@@ -6,19 +6,20 @@
           <ol class="carousel-indicators">
             <li
               [ngClass]="{ active: j === currentIndex }"
-              *ngFor="let photo of product?.images; let j = index"
+              *ngFor="let image of product?.images; let j = index"
             >
-              <img src="{{ photo?.url }}" alt="" />
+              <img [src]="image?.url" [alt]="product.name" />
+              <!-- [src]="product.images | imgUrl" -->
             </li>
           </ol>
           <div class="carousel-inner">
             <div
-              *ngFor="let photo of product?.images; let i = index"
+              *ngFor="let image of product?.images; let i = index"
               class="carousel-item"
               [ngClass]="{ active: i === currentIndex }"
             >
               <div class="img-wrap">
-                <img src="{{ photo?.url }}" alt="" />
+                <img [src]="image?.url" [alt]="product.name" />
               </div>
             </div>
           </div>
@@ -142,10 +143,7 @@
                   <div class="row">
                     <div class="col-lg-9">
                       <div class="add-review my-4" [formGroup]="feedbackForm">
-                        <app-ngx-rating
-                          ngDefaultControl
-                          formControlName="rate"
-                        ></app-ngx-rating>
+                        <app-ngx-rating formControlName="rate"></app-ngx-rating>
                         <label class="feedback-inputs-label">
                           Отзыв
                           <div

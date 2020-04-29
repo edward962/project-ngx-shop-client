@@ -12,9 +12,10 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { ProductsService } from './services/products.service';
 import { RatePipe } from './pipes/rate.pipe';
 import { RatingComponent } from '../content/main-content/product-list/one-product/rating/rating.component';
+import { ImgUrlPipe } from './pipes/img-url.pipe';
 
 @NgModule({
-  declarations: [StarRatingComponent, RatePipe, RatingComponent],
+  declarations: [StarRatingComponent, RatePipe, RatingComponent, ImgUrlPipe],
   imports: [
     ReactiveFormsModule,
     FormsModule,
@@ -32,6 +33,7 @@ import { RatingComponent } from '../content/main-content/product-list/one-produc
     StarRatingComponent,
     RatePipe,
     RatingComponent,
+    ImgUrlPipe
   ],
   providers: [
     CategoriesService,
