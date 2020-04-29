@@ -17,8 +17,8 @@ import { ICategory } from 'src/app/interfaces/category.interface';
 })
 export class SideMenuComponent {
   @Input()
-  public categories!: ICategory[];
-  public show: string;
+  public categories: ICategory[] = [];
+  public show: string | undefined;
   public currentIndex: number | null = null;
   public currentSubCategory: any;
   public defaultValue: any;
@@ -31,13 +31,16 @@ constructor(
   public hover(index: number) {
     this.currentIndex = index;
   }
+  // tslint:disable-next-line: variable-name
   public writeValue(_id: string): void {
     let currentCategory;
     for (const category of this.categories) {
-      for (const subCategory of category.subCategories) {
-        if (subCategory._id === _id) {
-          currentCategory = subCategory;
-          break;
+      if (category && category.subCategories){
+        for (const subCategory of category.subCategories) {
+          if (subCategory._id === _id) {
+            currentCategory = subCategory;
+            break;
+          }
         }
       }
       if (currentCategory) {

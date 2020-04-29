@@ -19,13 +19,14 @@ import { Store } from '@ngrx/store';
 })
 export class MainContentComponent implements OnInit {
   public categories: ICategory[] = [];
-  public categories$: Observable<ICategoryState> = this.store.select(
-    'categories'
-  );
+  public categories$: Observable<ICategory[]> | undefined ;
+  // = this.store.select(
+  //   'categories'
+  // );
   public products: IProduct[] = [];
   public products$!: Observable<IProduct[]>;
 
-  public filterForm: FormGroup ;
+  public filterForm: FormGroup | undefined ;
 
   constructor(
     private store: Store<IStore & { categories: ICategoryState }>,
@@ -41,9 +42,9 @@ export class MainContentComponent implements OnInit {
     });
     const query = this.activatedRoute.snapshot.queryParams;
     this.filterForm.patchValue(query);
-    this.store.dispatch(getCategoriesPending());
-    // this.categories$ = this.categoriesService.getCategories();
-    this.categories$.subscribe(i => console.log(i));
+    // this.store.dispatch(getCategoriesPending());
+    this.categories$ = this.categoriesService.getCategories();
+    // this.categories$.subscribe(i => console.log(i));
     // TODO
     this.products$ = this.productsService.getProducts().pipe(
       map((data: any) => {

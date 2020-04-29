@@ -1,12 +1,11 @@
 import { CategoriesService } from './../../shared/services/category.service';
-import { ICategory } from './../../interfaces/category.interface';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { IStore } from '../reducers';
 import { Store } from '@ngrx/store';
 import { getCategoriesPending, getCategoriesSuccess } from '../actions/category.actions';
-import { mergeMap, switchMap, map } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable()
 export class CartEffects {
@@ -15,7 +14,6 @@ export class CartEffects {
     private actions: Actions,
     private store: Store<IStore>,
     public categoriesService: CategoriesService
-    // private localStorageService: LocalStorageService
   ) {}
     public getCategories$: Observable<any> = createEffect(() =>
     this.actions.pipe(
@@ -27,7 +25,7 @@ export class CartEffects {
             }),
           );
         }),
-      ),);
+      ), );
 
 
 
