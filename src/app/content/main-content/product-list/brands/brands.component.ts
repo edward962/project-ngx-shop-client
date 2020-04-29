@@ -9,7 +9,6 @@ import { async } from '@angular/core/testing';
 })
 export class BrandsComponent{
   @Output() queryBrands = new EventEmitter();
-  public form: any;
   @Input() brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];

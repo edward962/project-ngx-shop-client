@@ -7,7 +7,6 @@ import {
   getProductSuccess,
   getProductsPagingSuccess,
   removeFromStateProducts,
-  clearProduct,
 } from '../actions/products.actions';
 
 export interface IProductState {
@@ -19,6 +18,8 @@ export interface IProductState {
 export interface IFeedback {
   rate: number;
   advantages: string;
+  limitations: string;
+  description: string;
 }
 export interface ISearch {
   text: string;
@@ -31,22 +32,26 @@ export interface IProductImage {
 
 export interface IProduct {
   _id: string;
-  name?: string;
-  description?: string;
+  name: string;
+  description: string;
   feedbacks?: IFeedback;
-  price?: number;
-  status?: boolean;
+  price: number;
+  status: boolean;
   images?: IProductImage[] | undefined;
   rating?: number | undefined;
-  idSubCat?: string ;
 }
 
 const productsReducer = createReducer(
   {
-    item: { _id: '' },
+    item: {
+      _id: '',
+      description: '',
+      name: '',
+      price: 0,
+      status: false,
+    },
     items: [],
     loading: false,
-  
   },
   on(getProductsPending, (state: IProductState) => ({
     ...state,
@@ -62,14 +67,11 @@ const productsReducer = createReducer(
     items: [...state.items, ...products],
     loading: false,
   })),
-  // tslint:disable-next-line: variable-name
-  on(removeFromStateProducts, (state: IProductState, _action) => {
-    return ({
-      ...state,
-      items: [],
-      loading: false,
-    });
-  }),
+  on(removeFromStateProducts, (state: IProductState, _action) => ({
+    ...state,
+    items: [],
+    loading: false,
+  })),
   on(getProductPending, (state: IProductState) => ({
     ...state,
     loading: true,
@@ -83,13 +85,11 @@ const productsReducer = createReducer(
     ...state,
     loading: true,
   })),
-  on(clearProduct, (state: IProductState) => ({
-    ...state,
-    loading: false,
-    item: { _id: '' },
-  }))
 );
 
-export function reducer(state: IProductState | undefined, action: any) {
+export function reducerProducts(
+  state: IProductState | undefined,
+  action: any
+  ) {
   return productsReducer(state, action);
 }

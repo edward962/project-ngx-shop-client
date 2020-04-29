@@ -1,10 +1,11 @@
 import { IStore } from 'src/app/store/reducers';
 import {
+  getProductsSuccess,
+  getProductSuccess,
   getProductPending,
+  getProductsPending,
   createFeedbackPending,
   createFeedbackSuccess,
-  getProductsPending,
-  getProductsSuccess,
   getProductsPagingSuccess,
 } from './../actions/products.actions';
 
@@ -12,21 +13,38 @@ import { Injectable } from '@angular/core';
 import { Observable, EMPTY } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 
-import { switchMap, mergeMap, withLatestFrom, catchError } from 'rxjs/operators';
+import {
+  switchMap,
+  catchError,
+  mergeMap,
+  map,
+  withLatestFrom,
+} from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
-import { ProductsService } from 'src/app/shared/services/products.service';
+
 import { IProduct } from 'src/app/interfaces/product.interface';
-import { go } from 'src/app/store/actions/router.actions';
+import { ProductsService } from 'src/app/shared/services/products.service';
+import { go } from '../actions/router.actions';
 
 @Injectable()
 export class ProductsEffects {
   constructor(
     private actions: Actions,
     private productsService: ProductsService,
-    private store: Store<IStore>
+    private store: Store<IStore>,
   ) {}
 
+  // public getProduct$: Observable<any> = createEffect(() =>
+  //   this.actions.pipe(
+  //     ofType(getProductPending),
+  //     switchMap(({ id }) =>
+  //       this.productsService
+  //         .getProduct(id)
+  //         .pipe(map((product: IProduct) => getProductSuccess({ product }))),
+  //     ),
+  //   ),
+  // );
   // public addFeedback$: Observable<any> = createEffect(() =>
   //   this.actions.pipe(
   //     ofType(createFeedbackPending),
@@ -38,16 +56,16 @@ export class ProductsEffects {
   //           mergeMap(() => [
   //             createFeedbackSuccess(),
   //             getProductPending({ id: product }),
-  //           ])
-  //         )
-  //     )
-  //   )
+  //           ]),
+  //         ),
+  //     ),
+  //   ),
   // );
-   public getProducts$: Observable<any> = createEffect(() =>
+  public getProducts$: Observable<any> = createEffect(() =>
     this.actions.pipe(
       ofType(getProductsPending),
       switchMap(({ type, ...search }) => {
-        return this.productsService.getProducts(search).pipe(
+        return this.productsService.getProductsBySubCategory(search).pipe(
           mergeMap((products: IProduct[]) => {
             if (products.length === 0) {
               return [
