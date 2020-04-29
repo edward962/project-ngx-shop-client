@@ -59,7 +59,7 @@ const productsReducer = createReducer(
   })),
   on(getProductsSuccess, (state: IProductState, { products }) => ({
     ...state,
-    items: [...products],
+    items: products.items,
     loading: false,
   })),
   on(getProductsPagingSuccess, (state: IProductState, { products }) => ({

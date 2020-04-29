@@ -9,7 +9,8 @@ import { IProduct, IPriceData, IProductQuery } from 'src/app/interfaces/product.
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { BrandsService } from 'src/app/shared/services/brands.service';
-import { getProductsPending } from '../store/actions/products.actions';
+import { getProductsPending } from 'src/app/store/actions/products.actions';
+
 
 @Component({
   selector: 'app-product-list',
@@ -23,7 +24,10 @@ export class ProductListComponent implements OnInit {
   public isShow = false;
   public currentIndex: number | null = null;
   public query!: IProductQuery;
-  public products: any;
+  public products$?: Observable<any>
+  = this.store.select(
+    'products', 'items'
+  );
   public priceRange!: IPriceData;
   public productName = '';
   public brands: any;
@@ -41,8 +45,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(
-         query => this.getProductsByIdCategory(query, this.priceRange, this.productName, this.selectedBrands));
-       
+         query => this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands));
     this.categories$ = this.categoriesService.getCategories();
   }
   public hover(index: number) {
@@ -50,14 +53,19 @@ export class ProductListComponent implements OnInit {
     this.isShow = !this.isShow;
   }
 
-  public getProductsByIdCategory( query: any, priceRange: IPriceData, productName: string , selectedBrands: string){
+  public getProductsByIdCategory( query: any, priceRange: IPriceData, selectedBrands: string){
     this.query = query;
-    // this.store.dispatch(getProductsPending(query.id));
-    this.productsService
-    .getProductsBySubCategory(query.id, priceRange, productName, selectedBrands)
-    .subscribe(
-      (data) => (this.products = data)
-    );
+    const search = { id: query.id, priceRange, productName: query.name, selectedBrands} ;
+    this.store.dispatch(getProductsPending(search));
+
+    // old cod
+    // this.productsService
+    // .getProductsBySubCategory(query.id, priceRange, productName, selectedBrands)
+    // .subscribe(
+    //   (data) => (this.products = data)
+    // );
+
+
     this.brandsService.getBrands(query.id, priceRange).subscribe( brands => this.brands = brands);
   }
 
