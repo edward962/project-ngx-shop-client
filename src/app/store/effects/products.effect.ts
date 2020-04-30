@@ -6,24 +6,19 @@ import {
   getProductsPending,
   createFeedbackPending,
   createFeedbackSuccess,
-  getProductsPagingSuccess,
 } from './../actions/products.actions';
 
 import { Injectable } from '@angular/core';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 
 import {
   switchMap,
-  catchError,
-  mergeMap,
   map,
   withLatestFrom,
 } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
-
-import { IProduct } from 'src/app/interfaces/product.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Injectable()

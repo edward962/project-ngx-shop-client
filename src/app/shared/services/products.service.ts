@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProduct, IPriceData } from 'src/app/interfaces/product.interface';
+import { IProduct } from 'src/app/interfaces/product.interface';
 import { IFeedback } from 'src/app/store/reducers/products.reducer';
 
 @Injectable()
@@ -34,7 +34,6 @@ export class ProductsService {
   }
 
   public getProductById(id: string): Observable<IProduct> {
-    console.log(id)
     return this.http.get<IProduct>(`/products/${id}`);
   }
 }

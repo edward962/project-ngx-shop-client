@@ -20,8 +20,7 @@ export class SideMenuComponent {
   public categories: ICategory[] = [];
   public show: string | undefined;
   public currentIndex: number | null = null;
-  public currentSubCategory: any;
-  public defaultValue: any;
+  public defaultValue?: number;
   public onChange!: void;
 
 constructor(
@@ -47,14 +46,10 @@ constructor(
         break;
       }
     }
-    this.currentSubCategory = currentCategory || this.defaultValue;
   }
 
   public registerOnChange(fn: any) {
       this.onChange = fn;
    }
   public registerOnTouched() {}
-   public subCategoryToggle(subCategory: any) {
-    this.currentSubCategory = subCategory;
-  }
  }

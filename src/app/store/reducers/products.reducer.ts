@@ -60,7 +60,7 @@ const productsReducer = createReducer(
   })),
   on(getProductsSuccess, (state: IProductState, { products }) => ({
     ...state,
-    items: products.items,
+    items: products,
     loading: false,
   })),
   on(getProductsPagingSuccess, (state: IProductState, { products }) => ({

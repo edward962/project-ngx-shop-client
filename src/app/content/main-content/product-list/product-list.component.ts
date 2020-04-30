@@ -24,9 +24,9 @@ export class ProductListComponent implements OnInit {
   public isShow = false;
   public currentIndex: number | null = null;
   public query!: IProductQuery;
-  public products$?: Observable<any>
+  public products$?: Observable<IProduct[]>
   = this.store.select(
-    'products', 'items'
+    'products', 'items', 'items'
   );
   public priceRange!: IPriceData;
   public productName = '';
@@ -57,15 +57,6 @@ export class ProductListComponent implements OnInit {
     this.query = query;
     const search = { id: query.id, priceRange, productName: query.name, selectedBrands} ;
     this.store.dispatch(getProductsPending(search));
-
-    // old cod
-    // this.productsService
-    // .getProductsBySubCategory(query.id, priceRange, productName, selectedBrands)
-    // .subscribe(
-    //   (data) => (this.products = data)
-    // );
-
-
     this.brandsService.getBrands(query.id, priceRange).subscribe( brands => this.brands = brands);
   }
 
@@ -100,6 +91,6 @@ export class ProductListComponent implements OnInit {
     if (brands.join(',')){
       this.router.navigate(['.'], { relativeTo: this.activatedRoute,
         queryParams: { id, name, value, highValue, productName, brandsQuery }});
-      }
+    }
   }
  }
