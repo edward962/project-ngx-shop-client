@@ -84,6 +84,7 @@ export class OneProductComponent implements OnInit {
         feedback
       })
     );
+    this.feedbackForm.reset();
   }
 
   public async addToBusket(product: IProduct): Promise<void> {
