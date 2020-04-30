@@ -55,6 +55,7 @@ export class ProductListComponent implements OnInit {
 
   public getProductsByIdCategory( query: any, priceRange: IPriceData, selectedBrands: string){
     this.query = query;
+    console.log('query.id', query.id, 'priceRange', query.priceRange )
     const search = { id: query.id, priceRange, productName: query.name, selectedBrands} ;
     this.store.dispatch(getProductsPending(search));
     this.brandsService.getBrands(query.id, priceRange).subscribe( brands => this.brands = brands);
@@ -84,13 +85,26 @@ export class ProductListComponent implements OnInit {
   public async addToBusket(product: IProduct): Promise<void> {
     this.store.dispatch(addProductToCart({ product }));
   }
+
+
+
   public getBrands(brands: string[]){
-    const brandsQuery = brands.join(',');
-    this.selectedBrands = brandsQuery;
+    const brandsForQuery = brands.join(',');
+    this.selectedBrands = brandsForQuery;
     const  {id, name, value, highValue, productName} = this.query;
     if (brands.join(',')){
       this.router.navigate(['.'], { relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue, productName, brandsQuery }});
+        queryParams: { id, name, value, highValue, productName, brandsQuery: brandsForQuery }});
     }
+    const  {brandsQuery } = this.query;
+    if ( brandsQuery ){
+      if ( brandsForQuery < brandsQuery && brandsForQuery.length === 0) {
+          this.router.navigate(['.'], { relativeTo: this.activatedRoute,
+            queryParams: { id, name, value, highValue, productName }});
+        }
+    }
+  }
+  ngDoCheck(){
+    console.log(this.brands)
   }
  }
