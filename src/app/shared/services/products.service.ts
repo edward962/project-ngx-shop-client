@@ -28,7 +28,7 @@ export class ProductsService {
       ? priceData
       : { value: 0, highValue: 1000000000 };
     return this.http.get<IProduct>(
-      `/products/?subCat=${id}&brands=${selectedBrandsQuery}&&prices=${priceRange.value},${priceRange.highValue}&text=${productName}`
+      `/products/?subCat=${id}&brands=${selectedBrandsQuery}&prices=${priceRange.value},${priceRange.highValue}&text=${productName}`
     );
   }
 
