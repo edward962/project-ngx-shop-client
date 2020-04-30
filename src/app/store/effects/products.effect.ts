@@ -42,30 +42,27 @@ export class ProductsEffects {
           .getProductById(id)
           .pipe(
             map((product: any) => {
-              console.log(product);
-              return getProductSuccess({ product });
+                return getProductSuccess({ product });
             })
         ),
       ),
     ),
   );
-  // public addFeedback$: Observable<any> = createEffect(() =>
-  //   this.actions.pipe(
-  //     ofType(createFeedbackPending),
-  //     withLatestFrom(this.store.select('products', 'item', '_id')),
-  //     switchMap(([{ feedback }, product]) =>
-  //       this.productsService
-  //         .createFeedback({ ...feedback, product })
-  //         .pipe(
-  // //           mergeMap(() => [
-  // //             createFeedbackSuccess(),
-  // //             getProductPending({ id: product }),
-  //           // ]
-  //           // ),
-  //         // ),
-  //     ),
-  //   ),
-  // );
+  public addFeedback$: Observable<any> = createEffect(() =>
+    this.actions.pipe(
+      ofType(createFeedbackPending),
+      withLatestFrom(this.store.select('products', 'item', '_id')),
+      switchMap(([{ feedback }, product]) =>
+        this.productsService
+          .createFeedback({...feedback, product })
+          .pipe(
+             map((data) => {
+               return createFeedbackSuccess();
+            })
+            ),
+          ),
+      ),
+  );
 
 
 
