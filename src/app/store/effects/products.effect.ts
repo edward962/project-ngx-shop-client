@@ -16,6 +16,7 @@ import {
   switchMap,
   map,
   withLatestFrom,
+  mergeMap,
 } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
@@ -51,9 +52,10 @@ export class ProductsEffects {
         this.productsService
           .createFeedback({...feedback, product })
           .pipe(
-             map((data) => {
-               return createFeedbackSuccess();
-            })
+            mergeMap(() => [
+              createFeedbackSuccess(),
+              getProductPending({ id: product }),
+            ]),
             ),
           ),
       ),

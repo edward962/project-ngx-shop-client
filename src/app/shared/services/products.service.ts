@@ -9,7 +9,6 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   public createFeedback(feedback: IFeedback): Observable<IFeedback> {
-    console.log('feedback in services',feedback);
     return this.http.post<IFeedback>(`/feedbacks`, feedback);
   }
 
