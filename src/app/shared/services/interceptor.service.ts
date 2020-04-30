@@ -37,12 +37,12 @@ export class InterceptorService implements HttpInterceptor {
       map((res: HttpResponse<IRes>) => {
         return res.clone({ body: res.body && res.body.data });
       }),
-      catchError((error) => {
+      catchError(() => {
         return EMPTY;
       })
     );
   }
-  private _isHttpResponse(event: HttpEvent<any>): event is HttpResponse<IRes> {
+  private _isHttpResponse(event: HttpEvent<IRes>): event is HttpResponse<IRes> {
     if (event instanceof HttpResponse) {
       return true;
     }

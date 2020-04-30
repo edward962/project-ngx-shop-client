@@ -6,7 +6,6 @@ import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-// import { createFeedbackPending } from '../../store/actions/products.actions';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { IFeedback } from 'src/app/store/reducers/products.reducer';
 import { createFeedbackPending, getProductPending } from 'src/app/store/actions/products.actions';
@@ -75,7 +74,6 @@ export class OneProductComponent implements OnInit {
 
   public async addFeedback(value: IFeedback): Promise<void> {
     this.feedbacks.push(value);
-    console.log('this.feedbacks',this.feedbacks);
     this.store.dispatch(
       createFeedbackPending({
         feedback: { ...value },
@@ -96,6 +94,6 @@ export class OneProductComponent implements OnInit {
     const { id } = this.query;
 
     this.store.dispatch(getProductPending( {id} ));
-    this.product$?.subscribe( product => this.product = product )
+    this.product$?.subscribe( product => this.product = product);
   }
 }

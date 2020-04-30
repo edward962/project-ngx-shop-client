@@ -18,7 +18,7 @@ export interface IStore {
 }
 
 export const reducers: ActionReducerMap<any> = {
-  // cart: reducerCart,
+  cart: reducerCart,
   categories: reducerCategories,
   products: reducerProducts
 };
