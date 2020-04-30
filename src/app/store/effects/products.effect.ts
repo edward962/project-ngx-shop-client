@@ -68,8 +68,9 @@ export class ProductsEffects {
       ofType(getProductsPending),
       switchMap(({ type, ...search }) => {
        return this.productsService.getProductsBySubCategory(search).pipe(
-          map((products: any) => {
-                  return  getProductsSuccess({products});
+          map((productss: any) => {
+            const products = productss.items;
+            return  getProductsSuccess({ products });
           })
         );
       })
