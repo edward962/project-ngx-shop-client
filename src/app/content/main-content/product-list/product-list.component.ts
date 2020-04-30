@@ -24,9 +24,9 @@ export class ProductListComponent implements OnInit {
   public isShow = false;
   public currentIndex: number | null = null;
   public query!: IProductQuery;
-  public products$?: Observable<IProduct[]>
+  public products$: Observable<any>
   = this.store.select(
-    'products', 'items', 'items'
+    'products', 'items'
   );
   public priceRange!: IPriceData;
   public productName = '';

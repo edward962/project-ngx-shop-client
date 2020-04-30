@@ -1,5 +1,4 @@
 export interface IProduct {
-  data: any;
   _id: string;
   feedbacksCount: number;
   images: IProductImage[];
