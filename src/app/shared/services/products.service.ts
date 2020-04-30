@@ -16,21 +16,6 @@ export class ProductsService {
     return this.http.get<IProduct>(`/products`);
   }
 
-  // public getProductsBySubCategory(
-  //   id: string,
-  //   priceData: IPriceData,
-  //   searchByName: string,
-  //   selectedBrands: string | undefined
-  // ): Observable<IProduct> {
-  //   const productName = searchByName ? searchByName : '';
-  //   const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
-  //   const priceRange = priceData
-  //     ? priceData
-  //     : { value: 0, highValue: 1000000000 };
-  //   return this.http.get<IProduct>(
-  //     `/products/?subCat=${id}&brands=${selectedBrandsQuery}&&prices=${priceRange.value},${priceRange.highValue}&text=${productName}`
-  //   );
-  // }
   public getProductsBySubCategory(
     search: any
   ): Observable<IProduct> {
@@ -49,7 +34,6 @@ export class ProductsService {
   }
 
   public getProductById(id: string): Observable<IProduct> {
-    console.log('id',id)
     return this.http.get<IProduct>(`/products/${id}`);
   }
 }

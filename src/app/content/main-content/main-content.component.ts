@@ -18,7 +18,7 @@ import { Store } from '@ngrx/store';
 })
 export class MainContentComponent implements OnInit {
   public categories: ICategory[] = [];
-  public categories$: Observable<any>
+  public categories$: Observable<ICategory[]>
   = this.store.select(
     'categories', 'items'
   );
@@ -41,8 +41,6 @@ export class MainContentComponent implements OnInit {
     const query = this.activatedRoute.snapshot.queryParams;
     this.filterForm.patchValue(query);
     this.store.dispatch(getCategoriesPending());
-    // this.categories$ = this.categoriesService.getCategories();
-    this.categories$.subscribe(i => console.log(i));
     // TODO
     this.products$ = this.productsService.getProducts().pipe(
       map((data: any) => {
