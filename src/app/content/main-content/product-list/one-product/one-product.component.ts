@@ -74,9 +74,14 @@ export class OneProductComponent implements OnInit {
 
   public async addFeedback(value: IFeedback): Promise<void> {
     this.feedbacks.push(value);
+    const feedback = {
+      product: this.product._id,
+      rate: value.rate,
+      advantages: value.advantages,
+     };
     this.store.dispatch(
       createFeedbackPending({
-        feedback: { ...value },
+        feedback
       })
     );
   }

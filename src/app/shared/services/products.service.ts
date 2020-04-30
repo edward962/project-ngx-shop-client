@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProduct, IPriceData } from 'src/app/interfaces/product.interface';
+import { IProduct } from 'src/app/interfaces/product.interface';
 import { IFeedback } from 'src/app/store/reducers/products.reducer';
 
 @Injectable()
@@ -9,13 +9,13 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   public createFeedback(feedback: IFeedback): Observable<IFeedback> {
+    console.log('feedback in services',feedback);
     return this.http.post<IFeedback>(`/feedbacks`, feedback);
   }
 
   public getProducts(): Observable<IProduct> {
     return this.http.get<IProduct>(`/products`);
   }
-
   public getProductsBySubCategory(
     search: any
   ): Observable<IProduct> {

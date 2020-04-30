@@ -36,7 +36,7 @@ export const getProductSuccess = createAction(
 
 export const createFeedbackPending = createAction(
   '[Feedback] Create feedback pending',
-  props<{ feedback: IFeedback }>(),
+  props<{ feedback: any }>(),
 );
 export const createFeedbackSuccess = createAction(
   '[Feedback] Create feedback success',
