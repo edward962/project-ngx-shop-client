@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
@@ -7,16 +7,35 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.sass']
 })
-export class BrandsComponent{
-  public query: any;
+export class BrandsComponent implements OnInit{
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
   ){}
+  public query: any;
   @Output() queryBrands = new EventEmitter();
   @Input() brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];
+  public checkedBrands = ['Gorenje', 'LIEBHERR', 'Nordfrost'];
+  public getBrands(brands: any){
+    this.activatedRoute.queryParams.subscribe(
+      query => this.query = query);
+    const brandsForQuery = brands.join(',');
+    const  {id, name, value, highValue, productName} = this.query;
+    if (brandsForQuery){
+      this.router.navigate(['.'], { relativeTo: this.activatedRoute,
+        queryParams: { id, name, value, highValue, productName, brandsForQuery }});
+    }
+  }
+  public checked(brandName: string){
+    const index = this.brandsToShow.indexOf(brandName);
+    if (index === -1){
+      return false;
+    } else {
+      return true;
+    }
+  }
   public check(brandName: string){
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1){
@@ -32,14 +51,10 @@ export class BrandsComponent{
   public show(){
     this.isShow = !this.isShow;
   }
-  public getBrands(brands: any){
-    this.activatedRoute.queryParams.subscribe(
-      query => this.query = query);
-    const brandsForQuery = brands.join(',');
-    const  {id, name, value, highValue, productName} = this.query;
-    if (brandsForQuery){
-      this.router.navigate(['.'], { relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue, productName, brandsForQuery }});
+  ngOnInit(){
+    if (this.checkedBrands){
+      this.brandsToShow = this.checkedBrands;
     }
   }
 }
+
