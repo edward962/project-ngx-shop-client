@@ -1,17 +1,25 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormArray } from '@angular/forms';
-import { async } from '@angular/core/testing';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.sass']
 })
-export class BrandsComponent{
+export class BrandsComponent implements OnInit{
+
   @Output() queryBrands = new EventEmitter();
   @Input() brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];
+  public checkedBrands = ['Gorenje', 'LIEBHERR', 'Nordfrost'];
+  public checked(brandName: string){
+    const index = this.brandsToShow.indexOf(brandName);
+    if (index === -1){
+      return false;
+    } else {
+      return true;
+    }
+  }
   public check(brandName: string){
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1){
@@ -23,5 +31,10 @@ export class BrandsComponent{
   }
   public show(){
     this.isShow = !this.isShow;
+  }
+  ngOnInit(){
+    if (this.checkedBrands){
+      this.brandsToShow = this.checkedBrands;
+    }
   }
 }
