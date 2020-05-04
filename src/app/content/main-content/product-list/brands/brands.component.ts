@@ -10,24 +10,36 @@ import { getProductsPending } from 'src/app/store/actions/products.actions';
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.sass']
 })
-export class BrandsComponent {
-  public query: any;
+export class BrandsComponent{
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IStore>,
   ){}
+  public query: any;
   @Output() queryBrands = new EventEmitter();
   @Input() brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];
-
-  // tslint:disable-next-line: use-lifecycle-interface
-  // ngOnChanges(){
-  //   console.log('ngOnChanges')
-  //   this.activatedRoute.queryParams.subscribe(
-  //    query =>  this.initialGetProducts(query) );
-  // }
+  public checkedBrands = ['Gorenje', 'LIEBHERR', 'Nordfrost'];
+  public getBrands(brands: any){
+    this.activatedRoute.queryParams.subscribe(
+      query => this.query = query);
+    const brandsForQuery = brands.join(',');
+    const  {id, name, value, highValue, productName} = this.query;
+    if (brandsForQuery){
+      this.router.navigate(['.'], { relativeTo: this.activatedRoute,
+        queryParams: { id, name, value, highValue, productName, brandsForQuery }});
+    }
+  }
+  public checked(brandName: string){
+    const index = this.brandsToShow.indexOf(brandName);
+    if (index === -1){
+      return false;
+    } else {
+      return true;
+    }
+  }
   public check(brandName: string){
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1){
@@ -43,20 +55,9 @@ export class BrandsComponent {
   public show(){
     this.isShow = !this.isShow;
   }
-  public getBrands(brands: any){
-    this.activatedRoute.queryParams.subscribe(
-      query => this.query = query);
-    const brandsForQuery = brands.join(',');
-    const  {id, name, value, highValue, productName} = this.query;
-    if (brandsForQuery){
-      this.router.navigate(['.'], { relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue, productName, brandsForQuery }});
-    }
-  }
 
   public initialGetProducts(query: any){
     if (query.selectedBrands) {
-      // console.log('sekjvoshsdovnsdfo', query);
     }
     const priceForRange = query.priceRange ? query.priceRange : '0,100000';
     const selectedForBrands = query.selectedBrands ? query.selectedBrands : '';
@@ -66,3 +67,4 @@ export class BrandsComponent {
 
   }
 }
+

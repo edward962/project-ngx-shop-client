@@ -19,16 +19,16 @@ export class ProductsService {
     search: any
   ): Observable<IProduct> {
     const {id ,
-      priceData,
+      priceRange,
       searchByName,
       selectedBrands} = search;
     const productName = searchByName ? searchByName : '';
     const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
-    const priceRange = priceData
-      ? priceData
+    const priceData = priceRange
+      ? priceRange
       : { value: 0, highValue: 1000000000 };
     return this.http.get<IProduct>(
-      `/products/?subCat=${id}&brands=${selectedBrandsQuery}&prices=${priceRange.value},${priceRange.highValue}&text=${productName}`
+      `/products/?subCat=${id}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`
     );
   }
 
