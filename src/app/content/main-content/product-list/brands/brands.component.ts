@@ -22,7 +22,7 @@ export class BrandsComponent{
   public isShow = false;
   public brandsToShow: string[] = [];
   public checkedBrands = ['Gorenje', 'LIEBHERR', 'Nordfrost'];
-  public getBrands(brands: any){
+  public getBrands(brands: string[]){
     this.activatedRoute.queryParams.subscribe(
       query => this.query = query);
     const brandsForQuery = brands.join(',');
