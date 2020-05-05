@@ -54,16 +54,5 @@ export class BrandsComponent{
   public show(){
     this.isShow = !this.isShow;
   }
-
-  public initialGetProducts(query: any){
-    if (query.selectedBrands) {
-    }
-    const priceForRange = query.priceRange ? query.priceRange : '0,100000';
-    const selectedForBrands = query.selectedBrands ? query.selectedBrands : '';
-    const search = { id: query.id, priceRange: priceForRange, productName: query.name, selectedBrands: selectedForBrands} ;
-
-    this.store.dispatch(getProductsPending(search));
-
-  }
 }
 
