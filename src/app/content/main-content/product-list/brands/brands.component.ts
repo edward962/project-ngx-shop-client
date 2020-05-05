@@ -16,7 +16,6 @@ export class BrandsComponent{
     private activatedRoute: ActivatedRoute,
     private store: Store<IStore>,
   ){}
-  public query: any;
   @Output() queryBrands = new EventEmitter();
   @Input() brands: string[] | undefined;
   public isShow = false;
