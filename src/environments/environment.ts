@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   baseUrl: 'https://ngx-shop-api.herokuapp.com'
-  // baseUrl: 'http://localhost:8090'
 };
 
 /*
