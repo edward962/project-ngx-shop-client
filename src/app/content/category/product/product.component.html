@@ -8,8 +8,7 @@
               [ngClass]="{ active: j === currentIndex }"
               *ngFor="let image of product?.images; let j = index"
             >
-              <img [src]="image?.url" [alt]="product.name" />
-              <!-- [src]="product.images | imgUrl" -->
+              <img [src]="image?.url" [alt]="product.name"/>
             </li>
           </ol>
           <div class="carousel-inner">
@@ -118,9 +117,6 @@
                 <div class="reviews">
                   <div *ngFor="let feedBack of product.feedbacks" class="review">
                     <h6>Аноним</h6>
-                    <app-ngx-shop-star-rating
-                      [feedbackRate]="feedback.rate | rate"
-                    ></app-ngx-shop-star-rating>
                     {{ feedBack.rate }}
                     <p class="mt-2 mb-0 pt-1">
                       {{ feedBack.advantages }}

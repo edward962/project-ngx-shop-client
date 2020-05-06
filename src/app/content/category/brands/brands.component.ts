@@ -1,8 +1,7 @@
 import { Store } from '@ngrx/store';
-import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IStore } from 'src/app/store/reducers';
-import { getProductsPending } from 'src/app/store/actions/products.actions';
 
 
 @Component({
@@ -15,7 +14,6 @@ export class BrandsComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IStore>,
-    private el: ElementRef
   ){}
   public query: any;
   @Output() queryBrands = new EventEmitter();
@@ -56,37 +54,5 @@ export class BrandsComponent {
   public show(){
     this.isShow = !this.isShow;
   }
-
-  public initialGetProducts(query: any){
-    if (query.selectedBrands) {
-    }
-    const priceForRange = query.priceRange ? query.priceRange : '0,100000';
-    const selectedForBrands = query.selectedBrands ? query.selectedBrands : '';
-    const search = { id: query.id, priceRange: priceForRange, productName: query.name, selectedBrands: selectedForBrands} ;
-
-    this.store.dispatch(getProductsPending(search));
-
-  }
-  public toggleTodo(brandName: string) {
-    console.log(brandName);
-    const el = document.getElementById(brandName);
-    // this.el.nativeElement
-    //   .dispatchEvent(new CustomEvent('', {
-    //     bubbles: true
-    //   }));
-
-
-
-    console.log('foo');
-    el?.dispatchEvent(new CustomEvent('click', {
-      bubbles: false
-    }), );
-  }
-  // ngOnChanges(){
-  //    this.activatedRoute.queryParams.subscribe(
-  //     query => this.query = query.brandsQuery);
-  //    const data = this.query.split(',');
-  //     // toggleTodo(this.query)
-  // }
 }
 

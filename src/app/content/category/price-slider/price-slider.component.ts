@@ -3,8 +3,7 @@ import { Options } from 'ng5-slider';
 
 @Component({
   selector: 'app-price-slider',
-  templateUrl: './price-slider.component.html',
-  styleUrls: ['./price-slider.component.sass']
+  templateUrl: './price-slider.component.html'
 })
 export class PriceSliderComponent {
 

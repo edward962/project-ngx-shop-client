@@ -6,7 +6,6 @@ import { BrandsComponent } from './brands/brands.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
-import { CategoryService } from './category.service';
 
 
 
@@ -17,6 +16,6 @@ import { CategoryService } from './category.service';
     BrandsComponent
   ],
   imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule],
-  providers: [CategoryService, BrandsService],
+  providers: [ BrandsService],
 })
 export class CategoryModule {}
