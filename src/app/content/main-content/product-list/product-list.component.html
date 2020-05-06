@@ -20,11 +20,19 @@
               </h5>
               <ul
                 class="collapse"
+                *ngIf="!isShow"
                 data-parent="#accordion"
                 [ngClass]="{ show: i === currentIndex }"
               >
                 <li *ngFor="let subCategory of category.subCategories">
-                  <a href="{{ subCategory.name }}">{{ subCategory.name }}</a>
+                  <a
+                    [routerLink]="['/category']"
+                    [queryParams]="{
+                      id: subCategory._id,
+                      name: subCategory.name
+                    }"
+                    >{{ subCategory.name }}</a
+                  >
                 </li>
               </ul>
             </li>
@@ -33,36 +41,40 @@
         <h3 class="h5 mt-5 mb-4">Фильтры по товарам</h3>
         <h6 class="mb-2 pb-1">Название</h6>
         <input
-          #input
+          #searchBox
           type="text"
           class="form-control"
-          [formControl]="inputForm"
           placeholder="Фильтр по названию"
+          (input)="addProductNameToQuery(searchBox.value)"
         />
-        <button (click)="searchByProductName(input.value)">search</button>
-        <app-brands></app-brands>
-        <app-price-slider>
-          <!-- (pricesValue)='pricesValue($event)'    -->
+        <app-brands
+          (queryBrands)="getBrands($event)"
+          [brands]="brands"
+        ></app-brands>
+        <app-price-slider (pricesValue)="pricesValue($event)">
         </app-price-slider>
       </div>
       <div class="col-lg-8 col-xl-9">
         <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{ query.name }}</h3>
-        <div *ngFor="let product of products?.items" class="product-list-box">
+        <div *ngFor="let product of products$ | async" class="product-list-box">
           <div
             [routerLink]="['/category/one-product']"
             [queryParams]="{ id: product._id }"
             class="inner-col description-col"
-            (click)="currentProduct(product._id)"
           >
             <div class="product-img">
-              <img width="80" src="{{ product.images[0].url }}" alt="img" />
+              <img
+                width="80"
+                [src]="product.images | imgUrl"
+                [alt]="product.name"
+              />
             </div>
             <div class="product-desc">
               <h4 class="col-title mb-2">
                 {{ product.name }}
               </h4>
               <app-ngx-shop-star-rating
-                feedbackRate="{{ product.rating }}"
+                [feedbackRate]="product.rating | rate"
               ></app-ngx-shop-star-rating>
               <p class="rate-amount d-none d-md-block mt-1">
                 {{ product.feedbacksCount }}
@@ -76,11 +88,11 @@
             </h4>
             <div>
               <button
-                (click)="addToBusket(product._id)"
+                (click)="addToBusket(product)"
                 type="button"
                 class="btn btn-outline-primary"
               >
-                Add to basket
+                Добавить в корзину
               </button>
             </div>
           </div>

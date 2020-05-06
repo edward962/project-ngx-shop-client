@@ -1,3 +1,4 @@
+import { BrandsService } from './../../../shared/services/brands.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductListComponent } from './product-list.component';
@@ -14,6 +15,6 @@ import { Ng5SliderModule } from 'ng5-slider';
     BrandsComponent
   ],
   imports: [SharedModule, ProductListRoutingModule, Ng5SliderModule],
-  providers: [ProductListService],
+  providers: [ProductListService, BrandsService],
 })
 export class ProductListModule {}

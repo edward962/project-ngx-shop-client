@@ -17,43 +17,39 @@ import { ICategory } from 'src/app/interfaces/category.interface';
 })
 export class SideMenuComponent {
   @Input()
-  public categories!: ICategory[];
-  public show: string;
+  public categories: ICategory[] = [];
+  public show: string | undefined;
   public currentIndex: number | null = null;
-  public currentSubCategory: any;
-  public defaultValue: any;
-  public onChange!: any;
+  public defaultValue?: number;
+  public onChange!: void;
 
 constructor(
   public router: Router
 ){}
 
-
-  hover(index: number) {
+  public hover(index: number) {
     this.currentIndex = index;
   }
   // tslint:disable-next-line: variable-name
-  writeValue(_id: string): void {
+  public writeValue(_id: string): void {
     let currentCategory;
     for (const category of this.categories) {
-      for (const subCategory of category.subCategories) {
-        if (subCategory._id === _id) {
-          currentCategory = subCategory;
-          break;
+      if (category && category.subCategories){
+        for (const subCategory of category.subCategories) {
+          if (subCategory._id === _id) {
+            currentCategory = subCategory;
+            break;
+          }
         }
       }
       if (currentCategory) {
         break;
       }
     }
-    this.currentSubCategory = currentCategory || this.defaultValue;
   }
 
-   registerOnChange(fn: any) {
+  public registerOnChange(fn: any) {
       this.onChange = fn;
    }
-   registerOnTouched() {}
-   public subCategoryToggle(subCategory: any) {
-    this.currentSubCategory = subCategory;
-  }
+  public registerOnTouched() {}
  }

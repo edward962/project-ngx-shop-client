@@ -2,31 +2,37 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/product.interface';
+import { IFeedback } from 'src/app/store/reducers/products.reducer';
 
 @Injectable()
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
+  public createFeedback(feedback: IFeedback): Observable<IFeedback> {
+    return this.http.post<IFeedback>(`/feedbacks`, feedback);
+  }
 
   public getProducts(): Observable<IProduct> {
     return this.http.get<IProduct>(`/products`);
   }
-
-  public getProductsBySubCategory(id: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`/products/?subCat=${id}`);
+  public getProductsBySubCategory(
+    search: any
+  ): Observable<IProduct> {
+    const {id ,
+      priceRange,
+      searchByName,
+      selectedBrands} = search;
+    const productName = searchByName ? searchByName : '';
+    const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
+    const priceData = priceRange
+      ? priceRange
+      : { value: 0, highValue: 1000000000 };
+    return this.http.get<IProduct>(
+      `/products/?subCat=${id}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`
+    );
   }
 
-  public getProductsByProductName(name: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`/products/?name=${name}`);
-  }
-
-  public getProductsFilteredByPrice(query: any, id: string): Observable<IProduct> {
-    const {value, highValue} = query;
-    return this.http.get<IProduct>(`/products/?prices=${value},${highValue}&subCat=${id}`);
-  }
-
-  public getProductById(id): Observable<any>{
-    console.log(id)
-    return this.http.get<any>(`/products/${id}`);
+  public getProductById(id: string): Observable<IProduct> {
+    return this.http.get<IProduct>(`/products/${id}`);
   }
 }

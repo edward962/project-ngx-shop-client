@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoriesService } from 'src/app/shared/services/category.service';
 import { ICategory } from 'src/app/interfaces/category.interface';
 import { IProduct } from 'src/app/interfaces/product.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { map } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { getCategoriesPending } from 'src/app/store/actions/category.actions';
+import { ICategoryState } from 'src/app/store/reducers/categories.reducer';
+import { IStore } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-main-content',
@@ -15,14 +18,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MainContentComponent implements OnInit {
   public categories: ICategory[] = [];
-  public categories$!: Observable<ICategory[]>;
+  public categories$: Observable<ICategory[]>
+  = this.store.select(
+    'categories', 'items'
+  );
   public products: IProduct[] = [];
   public products$!: Observable<IProduct[]>;
 
-  public filterForm: FormGroup ;
+  public filterForm: FormGroup | undefined ;
 
   constructor(
-    private categoriesService: CategoriesService,
+    private store: Store<IStore & { categories: ICategoryState }>,
     private productsService: ProductsService,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -34,7 +40,7 @@ export class MainContentComponent implements OnInit {
     });
     const query = this.activatedRoute.snapshot.queryParams;
     this.filterForm.patchValue(query);
-    this.categories$ = this.categoriesService.getCategories();
+    this.store.dispatch(getCategoriesPending());
     // TODO
     this.products$ = this.productsService.getProducts().pipe(
       map((data: any) => {

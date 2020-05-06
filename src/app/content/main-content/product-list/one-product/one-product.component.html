@@ -4,26 +4,30 @@
       <div class="col-lg-5">
         <div id="productCarousel" class="product-carousel carousel slide">
           <ol class="carousel-indicators">
-            <li class="active">
-              <img src="{{ (product?.images)[0].url }}" alt="" />
+            <li
+              [ngClass]="{ active: j === currentIndex }"
+              *ngFor="let image of product?.images; let j = index"
+            >
+              <img [src]="image?.url" [alt]="product.name" />
+              <!-- [src]="product.images | imgUrl" -->
             </li>
           </ol>
           <div class="carousel-inner">
             <div
-              *ngFor="let photo of product?.images; let i = index"
+              *ngFor="let image of product?.images; let i = index"
               class="carousel-item"
               [ngClass]="{ active: i === currentIndex }"
             >
               <div class="img-wrap">
-                <img src="{{ photo?.url }}" alt="" />
+                <img [src]="image?.url" [alt]="product.name" />
               </div>
             </div>
           </div>
-          <a class="carousel-control-prev">
+          <a class="carousel-control-prev" (click)="prev()">
             <span class="carousel-control-prev-icon"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next">
+          <a class="carousel-control-next" (click)="next()">
             <span class="carousel-control-next-icon"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -32,7 +36,9 @@
       <div class="col-lg-7">
         <div class="product-info">
           <h3 class="h5">{{ product?.name }}</h3>
-          <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+          <app-ngx-shop-star-rating
+            [feedbackRate]="product.rating | rate"
+          ></app-ngx-shop-star-rating>
           <p class="rate-amount d-none d-md-block mt-1">
             {{ product?.feedbacksCount }}
           </p>
@@ -55,13 +61,7 @@
               </ul>
               <div>
                 <div class="all-characters">
-                  <a
-                    href="#"
-                    onclick="return false;"
-                    *ngIf="!isShow"
-                    (click)="show()"
-                    >Все характеристики</a
-                  >
+                  <a *ngIf="!isShow" (click)="show()">Все характеристики</a>
                 </div>
 
                 <div *ngIf="isShow === true">
@@ -79,9 +79,7 @@
                     </li>
                   </ul>
                   <div class="characters">
-                    <a href="#" onclick="return false;" (click)="show()"
-                      >Скрыть</a
-                    >
+                    <a (click)="show()">Скрыть</a>
                   </div>
                 </div>
               </div>
@@ -90,23 +88,23 @@
               <h4 class="col-title price-text discount mb-2 mt-0">
                 {{ product?.price | currency: 'EUR' }}
               </h4>
-              <a href="#" class="btn btn-primary btn-lg px-5">Buy now</a>
+              <a
+                class="btn btn-primary btn-lg px-5"
+                (click)="addToBusket(product)"
+                ><span>Добавить в корзину</span></a
+              >
             </div>
           </div>
           <div class="product-info-tabs">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a
-                  href="#"
-                  onclick="return false;"
                   class="nav-item nav-link"
                   [ngClass]="{ active: isShowDesc }"
                   (click)="showDesc()"
                   >Описание</a
                 >
                 <a
-                  href="#"
-                  onclick="return false;"
                   class="nav-item nav-link"
                   [ngClass]="{ active: isShowFeedback }"
                   (click)="showFeedback()"
@@ -118,26 +116,40 @@
               <div *ngIf="isShowDesc">{{ product?.description }}</div>
               <div *ngIf="isShowFeedback">
                 <div class="reviews">
-                  <div
-                    *ngFor="let feedBack of product?.feedbacks"
-                    class="review"
-                  >
-                    <h6>Иван Иванов</h6>
-                    <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+                  <div *ngFor="let feedBack of product.feedbacks" class="review">
+                    <h6>Аноним</h6>
+                    <!-- <app-ngx-shop-star-rating
+                      [feedbackRate]="feedback.rate | rate"
+                    ></app-ngx-shop-star-rating> -->
+                    {{ feedBack.rate }}
                     <p class="mt-2 mb-0 pt-1">
-                      Совершенно не подошел по характеристикам.
+                      {{ feedBack.advantages }}
                     </p>
                   </div>
                   <div class="row">
                     <div class="col-lg-9">
-                      <div class="add-review my-4">
-                        <app-ngx-shop-star-rating></app-ngx-shop-star-rating>
+                      <div class="add-review my-4" [formGroup]="feedbackForm">
+                        <app-ngx-rating formControlName="rate"></app-ngx-rating>
+                        <label class="feedback-inputs-label">
+                          Отзыв
+                          <div
+                            *ngIf="getField('advantages')?.errors?.minlength"
+                            class="form-valid"
+                          >
+                            Отзыв должен состоять минимум из 10 символов
+                          </div>
+                        </label>
                         <div class="form-group">
-                          <textarea class="form-control"></textarea>
+                          <textarea
+                            formControlName="advantages"
+                            class="form-control"
+                          ></textarea>
                         </div>
                         <button
                           type="submit"
                           class="btn btn-outline-primary px-3"
+                          (click)="addFeedback(feedbackForm.value)"
+                          [disabled]="feedbackForm.invalid"
                         >
                           Добавить отзыв
                         </button>

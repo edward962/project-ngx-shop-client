@@ -1,3 +1,5 @@
 <app-ngx-header></app-ngx-header>
-<router-outlet></router-outlet>
+<div [@routeTransition]="getRouterState(main)" class="outlet-wrap">
+    <router-outlet #main="outlet"></router-outlet>
+</div>
 <app-ngx-footer></app-ngx-footer>

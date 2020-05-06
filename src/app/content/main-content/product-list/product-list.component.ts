@@ -1,11 +1,16 @@
+import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from 'src/app/interfaces/category.interface';
-import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { distinctUntilChanged, map, switchMap, debounceTime } from 'rxjs/operators';
+import { IProduct, IPriceData, IProductQuery } from 'src/app/interfaces/product.interface';
+import { addProductToCart } from 'src/app/store/actions/cart.actions';
+import { Store } from '@ngrx/store';
+import { BrandsService } from 'src/app/shared/services/brands.service';
+import { getProductsPending } from 'src/app/store/actions/products.actions';
+
 
 @Component({
   selector: 'app-product-list',
@@ -13,59 +18,89 @@ import { distinctUntilChanged, map, switchMap, debounceTime } from 'rxjs/operato
   styleUrls: ['./product-list.component.sass'],
 })
 export class ProductListComponent implements OnInit {
-  public categories$: Observable<ICategory[]>;
-  public inputForm = new FormControl('');
-  public show: string;
+
+  public categories$: Observable<ICategory[]> | undefined;
+  public show: string | undefined;
+  public isShow = false;
   public currentIndex: number | null = null;
-  public query: any;
-  public products: any;
-  public productsByProductName: any;
-  public filteredByPriceProducts: any;
-
-
-
-  // products$: Observable<any>;
-  // private searchPrices = new Subject<any>();
-
+  public query!: IProductQuery;
+  public products$: Observable<any>
+  = this.store.select(
+    'products', 'items'
+  );
+  public priceRange!: IPriceData;
+  public productName = '';
+  public brands: any;
+  public selectedBrands = '';
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
-    public productsService: ProductsService
+    private store: Store<IStore>,
+    public productsService: ProductsService,
+    public brandsService: BrandsService
   ) {}
-  hover(index: number) {
-    this.currentIndex = index;
-  }
+
+
   ngOnInit() {
-    this.query = this.activatedRoute.snapshot.queryParams;
-    this.productsService
-      .getProductsBySubCategory(this.query.id)
-      .subscribe((data) => (this.products = data));
-    this.productsService.getProductsByProductName(name);
+    this.activatedRoute.queryParams.subscribe(
+         query => this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands));
     this.categories$ = this.categoriesService.getCategories();
-
-
-    // this.products$ = this.searchPrices.pipe(
-    //   debounceTime(1000),
-    //   distinctUntilChanged(),
-    //   switchMap((term: any) => this.productsService.getProductsFilteredByPrice(term, this.query.id)),
-    //   map( hero => hero.data)
-    // );
   }
-  searchByProductName(name: string){
-    this.productsService.getProductsByProductName(name)
-    .subscribe( (data) => this.productsByProductName = data);
-  }
-  async currentProduct(id){
+  public hover(index: number) {
+    this.currentIndex = index;
+    this.isShow = !this.isShow;
   }
 
-  addToBusket(id){}
+  public getProductsByIdCategory( query: any, priceRange: IPriceData, selectedBrands: string){
+    this.query = query;
+    const search = { id: query.id, priceRange, productName: query.name, selectedBrands} ;
+    this.store.dispatch(getProductsPending(search));
+    this.brandsService.getBrands(query.id, priceRange).subscribe( brands => this.brands = brands);
+  }
 
-//   pricesValue(event){
-//     this.searchPrices.next(event);
-//   }
-ngDoCheck(){
-  // console.log(this.particularProduct)
-}
+  public pricesValue( priceRange: IPriceData ){
+    this.priceRange = priceRange;
+    this.addPriceToQuery(priceRange);
+  }
 
+  public addPriceToQuery(priceRange: IPriceData) {
+    const  {id, name} = this.query;
+    const{value, highValue} = priceRange;
+    if (priceRange){
+    this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, value, highValue }});
+    }
+  }
+
+  public addProductNameToQuery(productName: string) {
+    this. productName = productName;
+    const  {id, name, value, highValue} = this.query;
+    if (productName){
+      this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams: { id, name, value, highValue, productName }});
+      }
+  }
+
+  public async addToBusket(product: IProduct): Promise<void> {
+    this.store.dispatch(addProductToCart({ product }));
+  }
+
+
+
+  public getBrands(brands: string[]){
+    const brandsForQuery = brands.join(',');
+    this.selectedBrands = brandsForQuery;
+    const  {id, name, value, highValue, productName} = this.query;
+    if (brands.join(',')){
+      this.router.navigate(['.'], { relativeTo: this.activatedRoute,
+        queryParams: { id, name, value, highValue, productName, brandsQuery: brandsForQuery }});
+    }
+    const  {brandsQuery } = this.query;
+    if ( brandsQuery ){
+      if ( brandsForQuery < brandsQuery && brandsForQuery.length === 0) {
+          this.router.navigate(['.'], { relativeTo: this.activatedRoute,
+            queryParams: { id, name, value, highValue, productName }});
+        }
+    }
+  }
  }
