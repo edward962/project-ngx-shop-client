@@ -6,8 +6,7 @@ import { trueProductsCount } from '../store/reducers/cart.reducer';
 
 @Component({
   selector: 'app-ngx-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass'],
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
   public productCounter$!: Observable<number>;

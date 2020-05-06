@@ -11,8 +11,8 @@ import { CategoriesService } from './services/category.service';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ProductsService } from './services/products.service';
 import { RatePipe } from './pipes/rate.pipe';
-import { RatingComponent } from '../content/main-content/product-list/one-product/rating/rating.component';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
+import { RatingComponent } from '../content/category/product/rating/rating.component';
 
 @NgModule({
   declarations: [StarRatingComponent, RatePipe, RatingComponent, ImgUrlPipe],

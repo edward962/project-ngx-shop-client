@@ -10,8 +10,8 @@ const routes: Routes = [
   {
     path: 'products',
     loadChildren: () =>
-      import('./content/main-content/main-content.module').then(
-        (mod) => mod.MainContentModule
+      import('./content/products/products.module').then(
+        (mod) => mod.ProductsModule
       ),
     data: {
       state: 'products',
@@ -28,8 +28,8 @@ const routes: Routes = [
   {
     path: 'category',
     loadChildren: () =>
-      import('./content/main-content/product-list/product-list.module').then(
-        (mod) => mod.ProductListModule
+      import('./content/category/category.module').then(
+        (mod) => mod.CategoryModule
       ),
     data: {
       state: 'category',

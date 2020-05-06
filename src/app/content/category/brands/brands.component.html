@@ -1,0 +1,40 @@
+<div class="form-group">
+  <h6 class="mb-2 pb-1">
+    <label class="text-dark mb-0">Бренд</label>
+  </h6>
+  <div *ngFor="let brandName of brands; let i = index">
+    <div class="custom-control custom-checkbox mb-2" *ngIf="i <= 5">
+      <input
+        type="checkbox"
+        (click)="check(brandName)"
+        class="custom-control-input"
+        [id]="brandName"
+        [checked]="checked(brandName)"
+      />
+      <label class="custom-control-label text-dark" [for]="brandName">{{
+        brandName
+      }}</label>
+    </div>
+  </div>
+  <div *ngIf="brands?.length > 5">
+    <div class="all-characters">
+      <a *ngIf="!isShow" (click)="show()">Все бренды</a>
+    </div>
+    <div *ngIf="isShow === true">
+      <div *ngFor="let brandName of brands; let i = index">
+        <div class="custom-control custom-checkbox mb-2" *ngIf="i > 5">
+          <input
+            type="checkbox"
+            (click)="check(brandName)"
+            class="custom-control-input"
+            [id]="brandName"
+            (checked)="checked(brandName)"           
+          />
+          <label class="custom-control-label text-dark" [for]="brandName">{{
+            brandName
+          }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
