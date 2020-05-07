@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
     @Input() public category!: ICategory;
     @Input() public index!: number;
     public currentIndex: number | null = null;
-    public isShow = false;
+    public isShow: boolean = false;
 
 
 
