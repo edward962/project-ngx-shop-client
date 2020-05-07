@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 
 @Component({
-  selector: 'app-side-menu',
+  selector: 'ngx-shop-side-menu',
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.sass'],
 })

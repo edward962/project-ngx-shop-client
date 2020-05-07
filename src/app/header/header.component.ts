@@ -5,7 +5,7 @@ import { IStore } from '../store/reducers';
 import { trueProductsCount } from '../store/reducers/cart.reducer';
 
 @Component({
-  selector: 'app-ngx-header',
+  selector: 'ngx-shop-header',
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-ngx-rating',
+  selector: 'mgx-shop-rating',
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.sass'],
   providers: [

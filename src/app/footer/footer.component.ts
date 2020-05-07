@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-ngx-footer',
+  selector: 'ngx-shop-footer',
   templateUrl: './footer.component.html',
 })
 export class FooterComponent {}

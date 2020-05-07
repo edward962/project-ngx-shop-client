@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
 import { IProduct } from 'src/app/store/reducers/cart.reducer';
 
 @Component({
-  selector: 'app-products',
+  selector: 'ngx-shop-products',
   templateUrl: './products.component.html',
 })
 export class ProductsComponent implements OnInit {
