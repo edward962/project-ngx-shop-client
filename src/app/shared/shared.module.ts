@@ -30,13 +30,14 @@ import { CartGuard } from './services/cart.guard';
   ],
   exports: [
     ReactiveFormsModule,
+    MatIconModule,
     RouterModule,
     MatIconModule,
     HttpClientModule,
     CommonModule,
     StarRatingComponent,
     RatePipe,
-    ImgUrlPipe
+    ImgUrlPipe,
   ],
   providers: [
     CategoriesService,
@@ -63,6 +64,7 @@ export class SharedModule {
         {
           provide: APP_INITIALIZER,
           useFactory: (
+            // tslint:disable-next-line: no-any
             store: Store<any>,
             localStorageService: LocalStorageService,
           ) => () => {
@@ -71,13 +73,12 @@ export class SharedModule {
           },
           multi: true,
           deps: [Store, LocalStorageService],
-          
         },
         {
           provide: BASE_URL_TOKEN,
           useValue: environment.baseUrl,
         },
-      ]
+      ],
     };
   }
 }
