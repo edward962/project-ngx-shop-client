@@ -14,12 +14,14 @@ export class BrandsComponent {
     private activatedRoute: ActivatedRoute,
 
   ) {}
+  // tslint:disable-next-line: no-any
   public query: any;
-  @Output() queryBrands = new EventEmitter();
-  @Input() brands: string[] | undefined;
+  @Output() public queryBrands = new EventEmitter();
+  @Input() public brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];
-  public checkedBrands: string[] = ['NAVITEL'];
+  // public checkedBrands: string[] = ['NAVITEL'];
+  // tslint:disable-next-line: no-any
   public getBrands(brands: any) {
     this.activatedRoute.queryParams.subscribe(
       query => this.query = query);
@@ -31,7 +33,7 @@ export class BrandsComponent {
     }
   }
   public checked(brandName: string) {
-    const index = this.checkedBrands.indexOf(brandName);
+    const index = this.brandsToShow.indexOf(brandName);
     if (index === -1) {
       return false;
     } else {
