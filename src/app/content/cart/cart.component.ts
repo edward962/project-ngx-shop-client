@@ -5,13 +5,11 @@ import {
   selectProducts,
 } from 'src/app/store/reducers/cart.reducer';
 
-
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-
 })
 export class CartComponent {
   public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts);

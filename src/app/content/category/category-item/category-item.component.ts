@@ -11,8 +11,6 @@ import { Component, Input } from '@angular/core';
     public currentIndex: number | null = null;
     public isShow: boolean = false;
 
-
-
     public hover(index: number) {
       this.currentIndex = index;
       this.isShow = !this.isShow;
