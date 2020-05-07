@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CartGuard } from './shared/services/cart.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () =>
       import('./content/cart/cart.module').then((mod) => mod.CartModule),
+      canActivate: [CartGuard],
     data: {
       state: 'cart',
     },

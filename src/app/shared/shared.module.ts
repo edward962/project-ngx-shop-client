@@ -32,7 +32,7 @@ import { RatingComponent } from '../content/category/product/rating/rating.compo
     CommonModule,
     StarRatingComponent,
     RatePipe,
-    ImgUrlPipe
+    ImgUrlPipe,
   ],
   providers: [
     CategoriesService,

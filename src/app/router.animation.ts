@@ -66,6 +66,8 @@ export const customTransition: AnimationTriggerMetadata = trigger(
       transition('cart => products', leftAnimation),
       transition('products => cart', rightAnimation),
       transition('cart => category', leftAnimation),
-      transition('category => cart', rightAnimation)
+      transition('category => cart', rightAnimation),
+      transition('product => products', leftAnimation),
+      transition('products => product', rightAnimation),
     ],
   );
