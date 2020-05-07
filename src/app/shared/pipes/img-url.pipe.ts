@@ -9,7 +9,7 @@ export class ImgUrlPipe implements PipeTransform {
     if (!images) {
       return '';
     }
-    const currentImg = images[0];
+    const [currentImg] = images;
     if (!currentImg) {
       return '';
     }

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { map } from 'rxjs/operators';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import {
   ICategoryState,
@@ -26,21 +24,12 @@ export class ProductsComponent implements OnInit {
   public products: IProduct[] = [];
   public products$!: Observable<IProduct[]>;
 
-  public filterForm: FormGroup | undefined;
-
   constructor(
     private store: Store<IStore & { categories: ICategoryState }>,
     private productsService: ProductsService,
-    private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
   ) {}
 
   public ngOnInit() {
-    this.filterForm = this.fb.group({
-      subcategory: [''],
-    });
-    const query = this.activatedRoute.snapshot.queryParams;
-    this.filterForm.patchValue(query);
     this.store.dispatch(getCategoriesPending());
     this.products$ = this.productsService.getProducts().pipe(
       // tslint:disable-next-line: no-any

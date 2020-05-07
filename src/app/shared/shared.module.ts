@@ -1,4 +1,4 @@
-import { RatingComponent } from './../content/category/product/rating/rating.component';
+import { RatingComponent } from '../content/category/content/product/rating/rating.component';
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,6 +29,7 @@ import { CartGuard } from './services/cart.guard';
     RouterModule,
   ],
   exports: [
+    CommonModule,
     ReactiveFormsModule,
     MatIconModule,
     RouterModule,

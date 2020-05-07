@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { getCategoriesPending, getCategoriesSuccess } from '../actions/category.actions';
 
+
 export interface ICategoryState {
 items: ICategory[];
 loading: boolean;
