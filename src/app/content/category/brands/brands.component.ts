@@ -20,7 +20,6 @@ export class BrandsComponent {
   @Input() public brands: string[] | undefined;
   public isShow = false;
   public brandsToShow: string[] = [];
-  // public checkedBrands: string[] = ['NAVITEL'];
   // tslint:disable-next-line: no-any
   public getBrands(brands: any) {
     this.activatedRoute.queryParams.subscribe(
