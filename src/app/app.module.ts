@@ -31,7 +31,7 @@ import { ProductsModule } from './content/products/products.module';
     AppRoutingModule,
     MatIconModule,
     BrowserAnimationsModule,
-    SharedModule,
+    SharedModule.forRoot(),
     ProductsModule,
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, {

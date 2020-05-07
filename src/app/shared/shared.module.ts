@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -13,6 +13,10 @@ import { ProductsService } from './services/products.service';
 import { RatePipe } from './pipes/rate.pipe';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
 import { RatingComponent } from '../content/category/product/rating/rating.component';
+import { Store } from '@ngrx/store';
+import { LocalStorageService } from './services/localStorage.service';
+import { addAllProductsToCart } from '../store/actions/cart.actions';
+import { CartGuard } from './services/cart.guard';
 
 @NgModule({
   declarations: [StarRatingComponent, RatePipe, RatingComponent, ImgUrlPipe],
@@ -52,6 +56,27 @@ export class SharedModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
+      providers: [
+        CategoriesService,
+        CartGuard,
+        LocalStorageService,
+        {
+          provide: APP_INITIALIZER,
+          useFactory: (
+            store: Store<any>,
+            localStorageService: LocalStorageService
+          ) => () => {
+            const products = localStorageService.getFromLocalStorage('cart');
+            store.dispatch(addAllProductsToCart({ products }));
+          },
+          multi: true,
+          deps: [Store, LocalStorageService],
+        },
+        {
+          provide: BASE_URL_TOKEN,
+          useValue: environment.baseUrl,
+        },
+      ],
     };
   }
 }

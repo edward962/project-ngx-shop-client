@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () =>
       import('./content/cart/cart.module').then((mod) => mod.CartModule),
-      canActivate: [CartGuard],
+    canActivate: [CartGuard],
     data: {
       state: 'cart',
     },
