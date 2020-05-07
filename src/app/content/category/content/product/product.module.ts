@@ -1,20 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ProductComponent } from './product.component';
+import { ProductRoutingModule } from './product-routing.module';
 
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: ProductComponent,
-        data: {
-          state: 'product',
-        },
-      },
-    ]),
+    ProductRoutingModule
   ],
 })
 export class ProductModule {}

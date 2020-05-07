@@ -57,7 +57,7 @@
         <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{ query.name }}</h3>
         <div *ngFor="let product of products$ | async" class="product-list-box">
           <div
-            [routerLink]="['/category/one-product']"
+            [routerLink]="['/category/product']"
             [queryParams]="{ id: product._id }"
             class="inner-col description-col"
           >
