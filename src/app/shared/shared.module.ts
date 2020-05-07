@@ -1,3 +1,4 @@
+import { RatingComponent } from './../content/category/product/rating/rating.component';
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +13,6 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { ProductsService } from './services/products.service';
 import { RatePipe } from './pipes/rate.pipe';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
-import { RatingComponent } from '../content/category/product/rating/rating.component';
 import { Store } from '@ngrx/store';
 import { LocalStorageService } from './services/localStorage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
@@ -38,6 +38,7 @@ import { CartGuard } from './services/cart.guard';
     StarRatingComponent,
     RatePipe,
     ImgUrlPipe,
+    RatingComponent,
   ],
   providers: [
     CategoriesService,
