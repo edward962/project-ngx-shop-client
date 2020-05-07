@@ -1,6 +1,5 @@
-import { IProduct } from 'src/app/interfaces/product.interface';
 import { createAction, props } from '@ngrx/store';
-import { ICartProduct } from '../reducers/cart.reducer';
+import { ICartProduct, IProduct } from '../reducers/cart.reducer';
 
 export const addProductToCart = createAction(
   '[Product] Add product to cart',

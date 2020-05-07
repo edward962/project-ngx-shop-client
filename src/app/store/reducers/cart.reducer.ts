@@ -1,5 +1,3 @@
-import { IProduct } from 'src/app/interfaces/product.interface';
-
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import {
   addProductToCart,
@@ -16,6 +14,23 @@ import {
   MemoizedSelector,
   createFeatureSelector,
 } from '@ngrx/store';
+
+
+
+export interface IProduct {
+  _id: string;
+  feedbacksCount: number;
+  images: IProductImage[];
+  name: string;
+  price: number;
+  rating?: number | null;
+  status: boolean;
+}
+
+export interface IProductImage {
+  url: string;
+  source: string;
+}
 
 export interface ICartProduct extends IProduct {
   count: number;
@@ -82,6 +97,7 @@ const cartReducer = createReducer(
 
 export function reducerCart(
   state: EntityState<ICartProduct> | undefined,
+  // tslint:disable-next-line: no-any
   action: any
 ) {
   return cartReducer(state, action);
@@ -93,6 +109,7 @@ export const selectProductsState = createFeatureSelector<
 export const { selectAll } = cartAdapter.getSelectors();
 export const selectProducts = createSelector(selectProductsState, selectAll);
 
+// tslint:disable-next-line: no-any
 export const trueProductsCount: MemoizedSelector<any, number> = createSelector(
   selectProducts,
   (products: ICartProduct[]) => {

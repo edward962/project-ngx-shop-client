@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IPriceData } from 'src/app/interfaces/product.interface';
+import { IPriceData } from 'src/app/content/category/category.component';
 
 @Injectable()
 export class BrandsService {

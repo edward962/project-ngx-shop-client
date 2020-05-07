@@ -17,10 +17,11 @@ export interface IStore {
   routerReducer: typeof routerReducer;
 }
 
+// tslint:disable-next-line: no-any
 export const reducers: ActionReducerMap<any> = {
   cart: reducerCart,
   categories: reducerCategories,
-  products: reducerProducts
+  products: reducerProducts,
 };
 
 export interface IRouterStateUrl {

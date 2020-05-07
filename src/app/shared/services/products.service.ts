@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProduct } from 'src/app/interfaces/product.interface';
-import { IFeedback } from 'src/app/store/reducers/products.reducer';
+import { IFeedback, IProduct } from 'src/app/store/reducers/products.reducer';
 
 @Injectable()
 export class ProductsService {
@@ -16,6 +15,7 @@ export class ProductsService {
     return this.http.get<IProduct>(`/products`);
   }
   public getProductsBySubCategory(
+    // tslint:disable-next-line: no-any
     search: any
   ): Observable<IProduct> {
     const {id ,

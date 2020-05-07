@@ -1,4 +1,3 @@
-import { ICategory } from './../../interfaces/category.interface';
 import { createReducer, on } from '@ngrx/store';
 import { getCategoriesPending, getCategoriesSuccess } from '../actions/category.actions';
 
@@ -7,6 +6,17 @@ items: ICategory[];
 loading: boolean;
 }
 
+export interface ICategory {
+  _id: string;
+  name: string;
+  subCategories?: ISubCategory[];
+}
+
+export interface ISubCategory {
+    _id: string;
+    name: string;
+    category: string;
+}
 
 const categoriesReducer = createReducer(
   {
@@ -27,6 +37,7 @@ const categoriesReducer = createReducer(
 
 export  function reducerCategories(
   state: ICategoryState | undefined,
+  // tslint:disable-next-line: no-any
   action: any
   ) {
   return categoriesReducer(state, action);

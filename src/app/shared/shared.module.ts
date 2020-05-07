@@ -1,4 +1,5 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { RatingComponent } from './../content/category/product/rating/rating.component';
+import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -11,8 +12,11 @@ import { CategoriesService } from './services/category.service';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ProductsService } from './services/products.service';
 import { RatePipe } from './pipes/rate.pipe';
-import { RatingComponent } from '../content/main-content/product-list/one-product/rating/rating.component';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
+import { Store } from '@ngrx/store';
+import { LocalStorageService } from './services/localStorage.service';
+import { addAllProductsToCart } from '../store/actions/cart.actions';
+import { CartGuard } from './services/cart.guard';
 
 @NgModule({
   declarations: [StarRatingComponent, RatePipe, RatingComponent, ImgUrlPipe],
@@ -26,14 +30,15 @@ import { ImgUrlPipe } from './pipes/img-url.pipe';
   ],
   exports: [
     ReactiveFormsModule,
+    MatIconModule,
     RouterModule,
     MatIconModule,
     HttpClientModule,
     CommonModule,
     StarRatingComponent,
     RatePipe,
+    ImgUrlPipe,
     RatingComponent,
-    ImgUrlPipe
   ],
   providers: [
     CategoriesService,
@@ -53,6 +58,28 @@ export class SharedModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
+      providers: [
+        CategoriesService,
+        CartGuard,
+        LocalStorageService,
+        {
+          provide: APP_INITIALIZER,
+          useFactory: (
+            // tslint:disable-next-line: no-any
+            store: Store<any>,
+            localStorageService: LocalStorageService,
+          ) => () => {
+            const products = localStorageService.getFromLocalStorage('cart');
+            store.dispatch(addAllProductsToCart({ products }));
+          },
+          multi: true,
+          deps: [Store, LocalStorageService],
+        },
+        {
+          provide: BASE_URL_TOKEN,
+          useValue: environment.baseUrl,
+        },
+      ],
     };
   }
 }

@@ -1,6 +1,6 @@
-import { IPriceData } from './../../interfaces/product.interface';
 import { createAction, props } from '@ngrx/store';
-import { IProduct, IFeedback } from '../reducers/products.reducer';
+import { IProduct } from '../reducers/products.reducer';
+import { IPriceData } from 'src/app/content/category/category.component';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',
@@ -8,7 +8,7 @@ export const getProductsPending = createAction(
     id: string,
     priceRange: IPriceData,
     productName: string,
-    selectedBrands: string
+    selectedBrands: string,
   }>(),
 );
 
@@ -36,6 +36,7 @@ export const getProductSuccess = createAction(
 
 export const createFeedbackPending = createAction(
   '[Feedback] Create feedback pending',
+  // tslint:disable-next-line: no-any
   props<{ feedback: any }>(),
 );
 export const createFeedbackSuccess = createAction(

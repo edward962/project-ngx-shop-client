@@ -7,12 +7,11 @@ import { trueProductsCount } from '../store/reducers/cart.reducer';
 @Component({
   selector: 'app-ngx-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent implements OnInit {
   public productCounter$!: Observable<number>;
   constructor(private readonly store: Store<IStore>) {}
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.productCounter$ = this.store.select(trueProductsCount);
   }
 }

@@ -90,6 +90,7 @@ const productsReducer = createReducer(
 
 export function reducerProducts(
   state: IProductState | undefined,
+  // tslint:disable-next-line: no-any
   action: any
   ) {
   return productsReducer(state, action);
