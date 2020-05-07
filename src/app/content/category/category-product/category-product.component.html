@@ -15,9 +15,9 @@
         <h4 class="col-title mb-2">
           {{ product.name }}
         </h4>
-        <app-ngx-shop-star-rating
+        <ngx-shop-star-rating
           [feedbackRate]="product.rating | rate"
-        ></app-ngx-shop-star-rating>
+        ></ngx-shop-star-rating>
         <p class="rate-amount d-none d-md-block mt-1">
           {{ product.feedbacksCount }}
         </p>

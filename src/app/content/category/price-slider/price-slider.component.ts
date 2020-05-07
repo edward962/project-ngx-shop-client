@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { Options } from 'ng5-slider';
 
 @Component({
-  selector: 'app-price-slider',
+  selector: 'ngx-shop-price-slider',
   templateUrl: './price-slider.component.html',
 })
 export class PriceSliderComponent {

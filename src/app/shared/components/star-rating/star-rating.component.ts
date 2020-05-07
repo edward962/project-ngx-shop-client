@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-ngx-shop-star-rating',
+  selector: 'ngx-shop-star-rating',
   templateUrl: './star-rating.component.html',
   styleUrls: ['./star-rating.component.sass'],
 })

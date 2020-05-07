@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-brands',
+  selector: 'ngx-shop-brands',
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.sass'],
 })
