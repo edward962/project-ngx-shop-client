@@ -35,9 +35,11 @@ export class CategoryComponent implements OnInit {
   public isShow = false;
   public currentIndex: number | null = null;
   public query!: IProductQuery;
+  // tslint:disable-next-line: no-any
   public products$: Observable<any> = this.store.select('products', 'items');
   public priceRange!: IPriceData;
   public productName = '';
+  // tslint:disable-next-line: no-any
   public brands: any;
   public selectedBrands = '';
 
@@ -50,7 +52,7 @@ export class CategoryComponent implements OnInit {
     public brandsService: BrandsService
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.activatedRoute.queryParams.subscribe((query) =>
       this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands)
     );
@@ -62,6 +64,7 @@ export class CategoryComponent implements OnInit {
   }
 
   public getProductsByIdCategory(
+    // tslint:disable-next-line: no-any
     query: any,
     priceRange: IPriceData,
     selectedBrands: string

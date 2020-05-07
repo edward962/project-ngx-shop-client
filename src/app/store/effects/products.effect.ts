@@ -30,6 +30,7 @@ export class ProductsEffects {
     private store: Store<IStore>,
   ) {}
 
+  // tslint:disable-next-line: no-any
   public getProduct$: Observable<any> = createEffect(() =>
     this.actions.pipe(
       ofType(getProductPending),
@@ -37,6 +38,7 @@ export class ProductsEffects {
         this.productsService
           .getProductById(id)
           .pipe(
+            // tslint:disable-next-line: no-any
             map((product: any) => {
                 return getProductSuccess({ product });
             })
@@ -44,6 +46,7 @@ export class ProductsEffects {
       ),
     ),
   );
+  // tslint:disable-next-line: no-any
   public addFeedback$: Observable<any> = createEffect(() =>
     this.actions.pipe(
       ofType(createFeedbackPending),
@@ -63,11 +66,13 @@ export class ProductsEffects {
 
 
 
+  // tslint:disable-next-line: no-any
   public getProducts$: Observable<any> = createEffect(() =>
     this.actions.pipe(
       ofType(getProductsPending),
       switchMap(({ type, ...search }) => {
        return this.productsService.getProductsBySubCategory(search).pipe(
+          // tslint:disable-next-line: no-any
           map((productss: any) => {
             const products = productss.items;
             return  getProductsSuccess({ products });

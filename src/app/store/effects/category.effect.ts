@@ -8,11 +8,12 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Injectable()
 export class CategoryEffects {
-    productsService?: ProductsService;
+    public productsService?: ProductsService;
   constructor(
     private actions: Actions,
     public categoriesService: CategoriesService
   ) {}
+    // tslint:disable-next-line: no-any
     public getCategories$: Observable<any> = createEffect(() =>
     this.actions.pipe(
         ofType(getCategoriesPending),

@@ -25,7 +25,7 @@ export class SideMenuComponent {
 
 constructor(
   public router: Router
-){}
+) {}
 
   public hover(index: number) {
     this.currentIndex = index;
@@ -48,6 +48,7 @@ constructor(
     }
   }
 
+  // tslint:disable-next-line: no-any
   public registerOnChange(fn: any) {
       this.onChange = fn;
    }

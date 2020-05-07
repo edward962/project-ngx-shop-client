@@ -15,6 +15,7 @@ export class ProductsService {
     return this.http.get<IProduct>(`/products`);
   }
   public getProductsBySubCategory(
+    // tslint:disable-next-line: no-any
     search: any
   ): Observable<IProduct> {
     const {id ,

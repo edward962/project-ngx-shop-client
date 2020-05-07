@@ -34,8 +34,11 @@ export class ProductComponent implements OnInit {
     private store: Store<IStore>,
     private fb: FormBuilder
   ) {}
+  // tslint:disable-next-line: no-any
   public query: any;
+  // tslint:disable-next-line: no-any
   public product$?: Observable<any> = this.store.select('products', 'item');
+  // tslint:disable-next-line: no-any
   public product: any;
   public currentIndex = 0;
   public isShow = false;
@@ -96,7 +99,7 @@ export class ProductComponent implements OnInit {
     return this.feedbackForm.get(name);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.query = this.activatedRoute.snapshot.queryParams;
     const { id } = this.query;
 

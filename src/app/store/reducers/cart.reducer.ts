@@ -97,6 +97,7 @@ const cartReducer = createReducer(
 
 export function reducerCart(
   state: EntityState<ICartProduct> | undefined,
+  // tslint:disable-next-line: no-any
   action: any
 ) {
   return cartReducer(state, action);
@@ -108,6 +109,7 @@ export const selectProductsState = createFeatureSelector<
 export const { selectAll } = cartAdapter.getSelectors();
 export const selectProducts = createSelector(selectProductsState, selectAll);
 
+// tslint:disable-next-line: no-any
 export const trueProductsCount: MemoizedSelector<any, number> = createSelector(
   selectProducts,
   (products: ICartProduct[]) => {

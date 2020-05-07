@@ -13,7 +13,7 @@ import { CategoryComponent } from './category.component';
   declarations: [
     CategoryComponent,
     PriceSliderComponent,
-    BrandsComponent
+    BrandsComponent,
   ],
   imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule],
   providers: [ BrandsService],

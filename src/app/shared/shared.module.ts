@@ -36,7 +36,7 @@ import { CartGuard } from './services/cart.guard';
     CommonModule,
     StarRatingComponent,
     RatePipe,
-    ImgUrlPipe,
+    ImgUrlPipe
   ],
   providers: [
     CategoriesService,
@@ -64,19 +64,20 @@ export class SharedModule {
           provide: APP_INITIALIZER,
           useFactory: (
             store: Store<any>,
-            localStorageService: LocalStorageService
+            localStorageService: LocalStorageService,
           ) => () => {
             const products = localStorageService.getFromLocalStorage('cart');
             store.dispatch(addAllProductsToCart({ products }));
           },
           multi: true,
           deps: [Store, LocalStorageService],
+          
         },
         {
           provide: BASE_URL_TOKEN,
           useValue: environment.baseUrl,
         },
-      ],
+      ]
     };
   }
 }

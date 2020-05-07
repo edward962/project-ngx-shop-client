@@ -37,6 +37,7 @@ const categoriesReducer = createReducer(
 
 export  function reducerCategories(
   state: ICategoryState | undefined,
+  // tslint:disable-next-line: no-any
   action: any
   ) {
   return categoriesReducer(state, action);

@@ -25,13 +25,13 @@
         "check-regex": true
       }
     ],
-    "member-access": false,
     "member-ordering": [
       true,
       {
         "order": ["static-field", "instance-field", "static-method", "instance-method"]
       }
     ],
+    "no-any": true,
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [true, "error", "warn", "log", "debug", "info", "time", "timeEnd", "trace"],
@@ -60,6 +60,7 @@
     "radix": true,
     "members-access": true,
     "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "member-access": [true, "check-accessor"],
     "trailing-comma": [
       true,
       {

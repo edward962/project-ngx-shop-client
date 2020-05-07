@@ -14,9 +14,7 @@ import {
 export class CartGuard implements CanActivate {
   constructor(private readonly store: Store<IStore>) {}
 
-  canActivate(): Observable<boolean> {
-    // tslint:disable-next-line: no-console
-    this.store.select(selectProducts).subscribe(i => console.log(i));
+  public canActivate(): Observable<boolean> {
     return this.store.select(selectProducts).pipe(
       take(1),
       switchMap((products: ICartProduct[]) => {

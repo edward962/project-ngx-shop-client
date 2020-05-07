@@ -35,15 +35,15 @@ export class ProductsComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.filterForm = this.fb.group({
       subcategory: [''],
     });
     const query = this.activatedRoute.snapshot.queryParams;
     this.filterForm.patchValue(query);
     this.store.dispatch(getCategoriesPending());
-    // TODO
     this.products$ = this.productsService.getProducts().pipe(
+      // tslint:disable-next-line: no-any
       map((data: any) => {
         data[Symbol.iterator] = () => data.items[Symbol.iterator]();
         return data;

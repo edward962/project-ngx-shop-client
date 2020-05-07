@@ -12,6 +12,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { BASE_URL_TOKEN } from 'src/app/config';
 
 export interface IRes {
+  // tslint:disable-next-line: no-any
   data: any;
   error?: string;
 }

@@ -5,7 +5,7 @@ import { IProductImage } from 'src/app/store/reducers/cart.reducer';
   name: 'imgUrl',
 })
 export class ImgUrlPipe implements PipeTransform {
-  transform(images: IProductImage[] | undefined): string {
+  public transform(images: IProductImage[] | undefined): string {
     if (!images) {
       return '';
     }
