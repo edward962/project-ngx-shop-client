@@ -1,0 +1,41 @@
+<div  class="product-list-box">
+    <div
+      [routerLink]="['/category/product']"
+      [queryParams]="{ id: product._id }"
+      class="inner-col description-col"
+    >
+      <div class="product-img">
+        <img
+          width="80"
+          [src]="product.images | imgUrl"
+          [alt]="product.name"
+        />
+      </div>
+      <div class="product-desc">
+        <h4 class="col-title mb-2">
+          {{ product.name }}
+        </h4>
+        <app-ngx-shop-star-rating
+          [feedbackRate]="product.rating | rate"
+        ></app-ngx-shop-star-rating>
+        <p class="rate-amount d-none d-md-block mt-1">
+          {{ product.feedbacksCount }}
+        </p>
+      </div>
+    </div>
+    
+    <div class="default-col inner-col price-col">
+      <h4 class="col-title price-text mb-2">
+        {{ product.price | currency: 'EUR' }}
+      </h4>
+      <div>
+        <button
+          (click)="addToBusket(product)"
+          type="button"
+          class="btn btn-outline-primary"
+        >
+          Добавить в корзину
+        </button>
+      </div>
+    </div>
+    </div>

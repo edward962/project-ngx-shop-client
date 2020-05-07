@@ -16,7 +16,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { IProduct } from 'src/app/store/reducers/cart.reducer';
 
 @Component({
-  selector: 'app-product',
+  selector: 'ngx-shop-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.sass'],
 })

@@ -1,0 +1,28 @@
+<div class="list-group-item"
+>
+ <h5
+    class="mb-0"
+    [ngClass]="{ collapsed: index !== currentIndex }"
+    (click)="hover(index)"
+    >
+    {{ category.name }}
+    <img src="assets/icons/icon-angle.svg" alt="angle-right" />
+    </h5>
+    <ul
+    class="collapse"
+    *ngIf="!isShow"
+    data-parent="#accordion"
+    [ngClass]="{ show: index === currentIndex }"
+    >
+        <li *ngFor="let subCategory of category.subCategories">
+            <a
+            [routerLink]="['/category']"
+            [queryParams]="{
+                id: subCategory._id,
+                name: subCategory.name
+            }"
+            >{{ subCategory.name }}</a
+            >
+        </li>
+    </ul>
+</div>
