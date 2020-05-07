@@ -10,6 +10,7 @@ export class SideMenuComponent {
   @Input()
   public categories: ICategory[] = [];
   public currentIndex: number | null = null;
+  
   public hover(index: number) {
     this.currentIndex = index;
   }

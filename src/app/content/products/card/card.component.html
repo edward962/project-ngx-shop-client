@@ -1,4 +1,8 @@
-<div class="card">
+<div
+  class="card"
+  [routerLink]="['/category/product']"
+  [queryParams]="{ id: product._id }"
+>
   <div class="card-img-wrap">
     <img
       class="card-img-top"

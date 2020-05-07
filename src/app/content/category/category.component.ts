@@ -4,12 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from 'src/app/shared/services/category.service';
 import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { BrandsService } from 'src/app/shared/services/brands.service';
-import { getProductsPending } from 'src/app/store/actions/products.actions';
-import { IProduct } from 'src/app/store/reducers/cart.reducer';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
+import { getProductsPending } from 'src/app/store/actions/products.actions';
 
 export interface IPriceData {
   value: number;
@@ -32,8 +30,6 @@ export interface IProductQuery {
 export class CategoryComponent implements OnInit {
   public categories$: Observable<ICategory[]> | undefined;
   public show: string | undefined;
-  public isShow = false;
-  public currentIndex: number | null = null;
   public query!: IProductQuery;
   // tslint:disable-next-line: no-any
   public products$: Observable<any> = this.store.select('products', 'items');
@@ -57,10 +53,6 @@ export class CategoryComponent implements OnInit {
       this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands)
     );
     this.categories$ = this.categoriesService.getCategories();
-  }
-  public hover(index: number) {
-    this.currentIndex = index;
-    this.isShow = !this.isShow;
   }
 
   public getProductsByIdCategory(
@@ -107,10 +99,6 @@ export class CategoryComponent implements OnInit {
         queryParams: { id, name, value, highValue, productName },
       });
     }
-  }
-
-  public async addToBusket(product: IProduct): Promise<void> {
-    this.store.dispatch(addProductToCart({ product }));
   }
 
   public getBrands(brands: string[]) {

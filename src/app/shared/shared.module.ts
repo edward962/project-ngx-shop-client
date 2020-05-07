@@ -1,4 +1,3 @@
-import { RatingComponent } from '../content/category/content/product/rating/rating.component';
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +16,7 @@ import { Store } from '@ngrx/store';
 import { LocalStorageService } from './services/localStorage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
+import { RatingComponent } from '../content/category/product/rating/rating.component';
 
 @NgModule({
   declarations: [StarRatingComponent, RatePipe, RatingComponent, ImgUrlPipe],
