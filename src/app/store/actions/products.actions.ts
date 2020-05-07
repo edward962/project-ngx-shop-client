@@ -8,7 +8,7 @@ export const getProductsPending = createAction(
     id: string,
     priceRange: IPriceData,
     productName: string,
-    selectedBrands: string
+    selectedBrands: string,
   }>(),
 );
 
@@ -36,6 +36,7 @@ export const getProductSuccess = createAction(
 
 export const createFeedbackPending = createAction(
   '[Feedback] Create feedback pending',
+  // tslint:disable-next-line: no-any
   props<{ feedback: any }>(),
 );
 export const createFeedbackSuccess = createAction(

@@ -21,12 +21,12 @@ export class RatingComponent implements ControlValueAccessor {
   public onChange!: Function;
   public highlightRaiting: number | null = null;
 
-  writeValue(): void {}
+  public writeValue(): void {}
   // tslint:disable-next-line: ban-types
-  registerOnChange(fn: Function) {
+  public registerOnChange(fn: Function) {
     this.onChange = fn;
   }
-  registerOnTouched(): void {}
+  public registerOnTouched(): void {}
   public starSelect(index: number) {
     this.currentRating = index;
     this.onChange(this.currentRating);

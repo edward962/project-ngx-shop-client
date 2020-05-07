@@ -8,7 +8,10 @@ import { IStore } from 'src/app/store/reducers';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { IFeedback } from 'src/app/store/reducers/products.reducer';
-import { createFeedbackPending, getProductPending } from 'src/app/store/actions/products.actions';
+import {
+  createFeedbackPending,
+  getProductPending,
+} from 'src/app/store/actions/products.actions';
 import { Observable } from 'rxjs/internal/Observable';
 import { IProduct } from 'src/app/store/reducers/cart.reducer';
 
@@ -31,11 +34,11 @@ export class ProductComponent implements OnInit {
     private store: Store<IStore>,
     private fb: FormBuilder
   ) {}
+  // tslint:disable-next-line: no-any
   public query: any;
-  public product$?: Observable<any>
-            = this.store.select(
-              'products', 'item'
-  );
+  // tslint:disable-next-line: no-any
+  public product$?: Observable<any> = this.store.select('products', 'item');
+  // tslint:disable-next-line: no-any
   public product: any;
   public currentIndex = 0;
   public isShow = false;
@@ -79,10 +82,10 @@ export class ProductComponent implements OnInit {
       product: this.product._id,
       rate: value.rate,
       advantages: value.advantages,
-     };
+    };
     this.store.dispatch(
       createFeedbackPending({
-        feedback
+        feedback,
       })
     );
     this.feedbackForm.reset();
@@ -96,11 +99,11 @@ export class ProductComponent implements OnInit {
     return this.feedbackForm.get(name);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.query = this.activatedRoute.snapshot.queryParams;
     const { id } = this.query;
 
-    this.store.dispatch(getProductPending( {id} ));
-    this.product$?.subscribe( product => this.product = product);
+    this.store.dispatch(getProductPending({ id }));
+    this.product$?.subscribe((product) => (this.product = product));
   }
 }
