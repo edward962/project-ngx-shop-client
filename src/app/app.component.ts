@@ -4,9 +4,9 @@ import { customTransition } from './router.animation';
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'ngx-shop-root',
   templateUrl: './app.component.html',
-  animations: [customTransition ],
+  animations: [customTransition],
 })
 
 export class AppComponent {
