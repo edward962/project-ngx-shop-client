@@ -1,3 +1,6 @@
+*:active
+  outline: none
+
 html,
 body
   height: 100%
@@ -16,7 +19,8 @@ main
 
 .outlet-wrap
   min-height: 88vh
-
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus
+  box-shadow: none
 @media all and (max-width: 767px)
   main
     padding: 0
@@ -496,6 +500,9 @@ form button[type="submit"]:not(.btn-send)
 
 .homepage-cards .card
   height: 100%
+  cursor: pointer
+  &:focus
+    outline: none
 
 .homepage-cards .card-img-wrap
   background-color: #eceeef
@@ -690,7 +697,9 @@ form button[type="submit"]:not(.btn-send)
   flex-direction: row
   margin-bottom: 0.75rem
   height: 200px
-
+.btn-outline-primary:focus
+    box-shadow: none
+    outline: none!important
 .inner-col .col-title
   font-size: 18px
   line-height: 24px
@@ -703,7 +712,10 @@ form button[type="submit"]:not(.btn-send)
   flex-direction: row
   height: 200px
   width: 200px
-
+  cursor: pointer
+  &:focus
+    outline: none
+ 
 .description-col .product-img
   padding: 1.5rem 2.5rem
   display: flex
@@ -755,10 +767,12 @@ form button[type="submit"]:not(.btn-send)
     align-items: center
     justify-content: center
     background: #eceeef
-
+    &:focus
+      outline: none
   .description-col .product-desc,
   .default-col
     padding: 0.875rem 1.25rem
+ 
 
   .description-col + *
     border-left: none
