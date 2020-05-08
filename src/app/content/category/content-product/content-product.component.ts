@@ -5,8 +5,8 @@ import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 
 @Component({
-  selector: 'ngx-shop-category-product',
-  templateUrl: './category-product.component.html',
+  selector: 'ngx-shop-content-product',
+  templateUrl: './content-product.component.html',
 })
 export class CategoryProductComponent {
   @Input() public product!: IProduct;

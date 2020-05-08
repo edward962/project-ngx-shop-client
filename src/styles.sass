@@ -16,6 +16,62 @@ main
 
 .outlet-wrap
   min-height: 88vh
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus
+  box-shadow: none
+
+  .feedback-inputs-label
+    font-size: 16px
+    color: #797878
+    position: relative
+    margin-left: 20px
+    &::before
+        content: "*"
+        position: absolute
+        top: -3px
+        right: -7px
+        color: red
+        font-size: 17px
+        .form-valid
+            position: absolute
+            top: 65px
+            left: 0
+            font-size: 11px
+            width: 500px
+            color: red
+            .form-valid-area
+                position: absolute
+                top: 86px
+                left: 0
+                font-size: 11px
+                width: 500px
+                color: red
+
+.all-characters
+    a
+        color: #007bff
+        &:hover
+            color: #0056b3
+            text-decoration: underline
+            cursor: pointer
+.characters
+    a
+        color: #007bff
+        &:hover
+            color: #0056b3
+            text-decoration: underline
+            cursor: pointer
+.nav-tabs
+    color: #007bff
+    &:hover
+        color: #0056b3
+        cursor: pointer
+.btn-primary
+    color: #007bff
+    &:hover
+        color: #0056b3
+        cursor: pointer
+    span
+        color: #ffffff
 
 @media all and (max-width: 767px)
   main
@@ -496,6 +552,9 @@ form button[type="submit"]:not(.btn-send)
 
 .homepage-cards .card
   height: 100%
+  cursor: pointer
+  &:focus
+    outline: none
 
 .homepage-cards .card-img-wrap
   background-color: #eceeef
@@ -579,6 +638,7 @@ form button[type="submit"]:not(.btn-send)
   border-bottom: none
 
 .counter
+  width: 90px
   display: flex
   flex-direction: row
   align-items: center
@@ -592,7 +652,7 @@ form button[type="submit"]:not(.btn-send)
   cursor: pointer
 
 .counter__value
-  width: 22px
+  width: 45%
   text-align: center
 
 @media all and (max-width: 767px)
@@ -690,7 +750,9 @@ form button[type="submit"]:not(.btn-send)
   flex-direction: row
   margin-bottom: 0.75rem
   height: 200px
-
+.btn-outline-primary:focus
+    box-shadow: none
+    outline: none!important
 .inner-col .col-title
   font-size: 18px
   line-height: 24px
@@ -703,7 +765,10 @@ form button[type="submit"]:not(.btn-send)
   flex-direction: row
   height: 200px
   width: 200px
-
+  cursor: pointer
+  &:focus
+    outline: none
+ 
 .description-col .product-img
   padding: 1.5rem 2.5rem
   display: flex
@@ -755,10 +820,12 @@ form button[type="submit"]:not(.btn-send)
     align-items: center
     justify-content: center
     background: #eceeef
-
+    &:focus
+      outline: none
   .description-col .product-desc,
   .default-col
     padding: 0.875rem 1.25rem
+ 
 
   .description-col + *
     border-left: none

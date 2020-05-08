@@ -1,0 +1,29 @@
+<div id="productCarousel" class="product-carousel carousel slide">
+  <ol class="carousel-indicators">
+    <li
+      [ngClass]="{ active: j === currentIndex }"
+      *ngFor="let image of product?.images; let j = index"
+    >
+      <img [src]="image?.url" [alt]="product.name" />
+    </li>
+  </ol>
+  <div class="carousel-inner">
+    <div
+      *ngFor="let image of product?.images; let i = index"
+      class="carousel-item"
+      [ngClass]="{ active: i === currentIndex }"
+    >
+      <div class="img-wrap">
+        <img [src]="image?.url" [alt]="product.name" />
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" (click)="prev()">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" (click)="next()">
+    <span class="carousel-control-next-icon"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

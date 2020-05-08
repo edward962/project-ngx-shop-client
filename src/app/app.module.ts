@@ -13,14 +13,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
-import { ProductComponent } from './content/category/product/product.component';
 import { ProductsModule } from './content/products/products.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ProductComponent,
     FooterComponent,
   ],
   imports: [
