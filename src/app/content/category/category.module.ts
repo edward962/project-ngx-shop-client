@@ -8,6 +8,8 @@ import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
 import { CategoryProductComponent } from './content-product/content-product.component';
 import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
+import { ProductModule } from './product/product.module';
+
 
 
 
@@ -19,7 +21,7 @@ import { CategoryDropdownComponent } from './category-dropdown/category-dropdown
     CategoryProductComponent,
     CategoryDropdownComponent,
   ],
-  imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule],
+  imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule, ProductModule],
   providers: [ BrandsService],
 })
 export class CategoryModule {}
