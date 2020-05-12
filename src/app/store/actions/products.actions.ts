@@ -16,15 +16,6 @@ export const getProductsSuccess = createAction(
   '[Products] Get products success',
   props<{ products: IProduct[] }>(),
 );
-export const getProductsPagingSuccess = createAction(
-  '[Products] Get products paging success',
-  props<{ products: IProduct[] }>(),
-);
-export const removeFromStateProducts = createAction(
-  '[Products] Remove products from state',
-);
-export const getProductsError = createAction('[Products] Get products error');
-
 export const getProductPending = createAction(
   '[Product] Get product pending',
   props<{ id: string }>(),

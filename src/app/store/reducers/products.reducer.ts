@@ -2,11 +2,8 @@ import { createReducer, on } from '@ngrx/store';
 import {
   getProductsPending,
   getProductsSuccess,
-  getProductsError,
   getProductPending,
   getProductSuccess,
-  getProductsPagingSuccess,
-  removeFromStateProducts,
 } from '../actions/products.actions';
 
 export interface IProductState {
@@ -63,16 +60,6 @@ const productsReducer = createReducer(
     items: products,
     loading: false,
   })),
-  on(getProductsPagingSuccess, (state: IProductState, { products }) => ({
-    ...state,
-    items: [...state.items, ...products],
-    loading: false,
-  })),
-  on(removeFromStateProducts, (state: IProductState, _action) => ({
-    ...state,
-    items: [],
-    loading: false,
-  })),
   on(getProductPending, (state: IProductState) => ({
     ...state,
     loading: true,
@@ -82,10 +69,7 @@ const productsReducer = createReducer(
     item: product,
     loading: false,
   })),
-  on(getProductsError, (state: IProductState) => ({
-    ...state,
-    loading: true,
-  })),
+
 );
 
 export function reducerProducts(

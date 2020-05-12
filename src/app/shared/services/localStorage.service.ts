@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   // tslint:disable-next-line: no-any
   public addToLocalStorage(key: string, data: any): void {
+    console.log('addToLocalStorage')
     try {
       localStorage.setItem(key, JSON.stringify(data));
     } catch (err) {}
