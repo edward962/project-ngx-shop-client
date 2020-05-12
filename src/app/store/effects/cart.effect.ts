@@ -42,13 +42,14 @@ export class CartEffects {
           removeProductFromCart,
           addProductToCart,
           incrementProductInCart,
-          decrementProductInCart
+          decrementProductInCart,
         ),
         withLatestFrom(this.store.select(selectProducts)),
         tap(([, products]) => {
           this.localStorageService.addToLocalStorage('cart', products);
-        })
+        }),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
+  
 }
