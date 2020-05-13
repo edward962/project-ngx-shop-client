@@ -17,9 +17,19 @@ import { LocalStorageService } from './services/localStorage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
 import { RatingComponent } from '../content/category/product/rating/rating.component';
+// import { TooltipDirective } from './tooltip/tooltip.derective';
+import { TooltipModule } from 'ng2-tooltip-directive';
+
 
 @NgModule({
-  declarations: [StarRatingComponent, RatePipe, RatingComponent, ImgUrlPipe],
+  declarations: [
+    StarRatingComponent,
+    RatePipe,
+    RatingComponent,
+    ImgUrlPipe,
+    // TooltipDirective
+ 
+  ],
   imports: [
     ReactiveFormsModule,
     FormsModule,
@@ -27,18 +37,21 @@ import { RatingComponent } from '../content/category/product/rating/rating.compo
     HttpClientModule,
     CommonModule,
     RouterModule,
+    TooltipModule
   ],
   exports: [
     CommonModule,
+    TooltipModule,
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
     CommonModule,
-    StarRatingComponent, 
+    StarRatingComponent,
     MatIconModule,
     RatePipe,
     ImgUrlPipe,
     RatingComponent,
+    // TooltipDirective
   ],
   providers: [
     CategoriesService,
@@ -67,7 +80,7 @@ export class SharedModule {
           useFactory: (
             // tslint:disable-next-line: no-any
             store: Store<any>,
-            localStorageService: LocalStorageService,
+            localStorageService: LocalStorageService
           ) => () => {
             const products = localStorageService.getFromLocalStorage('cart');
             store.dispatch(addAllProductsToCart({ products }));
