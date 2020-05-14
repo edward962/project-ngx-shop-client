@@ -20,6 +20,7 @@ import { RatingComponent } from '../content/category/product/rating/rating.compo
 import { TooltipDirective } from './directives/tooltip.derective';
 
 
+
 @NgModule({
   declarations: [
     StarRatingComponent,

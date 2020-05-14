@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ModalService } from './modal.service';
 
+
 @Component({
   selector: 'ng-shop-modal',
   templateUrl: './modal.component.html',
@@ -29,6 +30,7 @@ export class ModalComponent implements OnInit {
   public constructor(private _modalService: ModalService) {}
 
   public ngOnInit(): void {
+    this._modalService.modalSequence$.subscribe(i => console.log(' ModalComponent',i));
     this._modalService.modalSequence$.subscribe(
       ({ component, resolver, context }: any) => {
         if (!component) {

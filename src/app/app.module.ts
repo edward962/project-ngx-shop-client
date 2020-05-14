@@ -18,8 +18,6 @@ import { ModalModule } from './modal/modal.module';
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

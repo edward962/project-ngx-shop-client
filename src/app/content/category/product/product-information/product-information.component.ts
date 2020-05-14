@@ -22,8 +22,6 @@ export class ProductInformationComponent {
     private _injector: Injector,
   ) {}
   public async addToBusket(product: IProduct): Promise<void> {
-    console.log('addToBusket')
-    // this.store.dispatch(addProductToCart({ product }));
     this._modalService.open({
           component: CardConfirmModalComponent,
           resolver: this._componentFactoryResolver,
@@ -38,7 +36,7 @@ export class ProductInformationComponent {
               this._modalService.close();
             },
           },
-        });
+      });
   };
 
   public show() {
