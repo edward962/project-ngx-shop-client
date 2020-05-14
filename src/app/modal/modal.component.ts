@@ -30,7 +30,6 @@ export class ModalComponent implements OnInit {
   public constructor(private _modalService: ModalService) {}
 
   public ngOnInit(): void {
-    this._modalService.modalSequence$.subscribe(i => console.log(' ModalComponent',i));
     this._modalService.modalSequence$.subscribe(
       ({ component, resolver, context }: any) => {
         if (!component) {
