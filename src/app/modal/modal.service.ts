@@ -11,6 +11,7 @@ export class ModalService {
     injector: any;
     context: any;
   }): void {
+    console.log('open', this._modalSequence$$)
     this._modalSequence$$.next(componentObj);
   }
 
