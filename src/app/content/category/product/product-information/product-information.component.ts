@@ -22,23 +22,22 @@ export class ProductInformationComponent {
     private _injector: Injector,
   ) {}
   public async addToBusket(product: IProduct): Promise<void> {
-    console.log('click addToBusket');
-    console.log(this._modalService);
-    this._modalService.open({
-          component: CardConfirmModalComponent,
-          resolver: this._componentFactoryResolver,
-          injector: this._injector,
-          context: {
-            product: { ...product },
-            save: () => {
-              this.store.dispatch(addProductToCart({ product }));
-              this._modalService.close();
-            },
-            close: () => {
-              this._modalService.close();
-            },
-          },
-        });
+    this.store.dispatch(addProductToCart({ product }));
+    // this._modalService.open({
+    //       component: CardConfirmModalComponent,
+    //       resolver: this._componentFactoryResolver,
+    //       injector: this._injector,
+    //       context: {
+    //         product: { ...product },
+    //         save: () => {
+    //           this.store.dispatch(addProductToCart({ product }));
+    //           this._modalService.close();
+    //         },
+    //         close: () => {
+    //           this._modalService.close();
+    //         },
+    //       },
+    //     });
   };
 
   public show() {
