@@ -17,8 +17,7 @@ import { LocalStorageService } from './services/localStorage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
 import { RatingComponent } from '../content/category/product/rating/rating.component';
-// import { TooltipDirective } from './tooltip/tooltip.derective';
-import { TooltipModule } from 'ng2-tooltip-directive';
+import { TooltipDirective } from './tooltip/tooltip.derective';
 
 
 @NgModule({
@@ -27,7 +26,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     RatePipe,
     RatingComponent,
     ImgUrlPipe,
-    // TooltipDirective
+    TooltipDirective,
  
   ],
   imports: [
@@ -37,11 +36,9 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     HttpClientModule,
     CommonModule,
     RouterModule,
-    TooltipModule
   ],
   exports: [
     CommonModule,
-    TooltipModule,
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
@@ -51,7 +48,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     RatePipe,
     ImgUrlPipe,
     RatingComponent,
-    // TooltipDirective
+    TooltipDirective,
   ],
   providers: [
     CategoriesService,
