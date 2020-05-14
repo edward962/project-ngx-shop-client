@@ -14,8 +14,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { ProductsModule } from './content/products/products.module';
-
-
+import { ModalModule } from './modal/modal.module';
 
 
 
@@ -32,6 +31,7 @@ import { ProductsModule } from './content/products/products.module';
     BrowserAnimationsModule,
     SharedModule.forRoot(),
     ProductsModule,
+    ModalModule.forRoot(),
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, {
       runtimeChecks: {

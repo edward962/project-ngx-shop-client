@@ -1,4 +1,3 @@
-import { ModalService } from './../../modal/modal.service';
 import { BrandsService } from '../../shared/services/brands.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -10,8 +9,7 @@ import { CategoryComponent } from './category.component';
 import { CategoryProductComponent } from './content-product/content-product.component';
 import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
 import { ProductModule } from './product/product.module';
-
-
+import { CardConfirmModalComponent } from '../cart/card-confirm-modal/card-confirm-modal.component';
 
 
 @NgModule({
@@ -21,8 +19,11 @@ import { ProductModule } from './product/product.module';
     BrandsComponent,
     CategoryProductComponent,
     CategoryDropdownComponent,
+    CardConfirmModalComponent,
+    
   ],
   imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule, ProductModule],
   providers: [ BrandsService ],
+  entryComponents: [CardConfirmModalComponent],
 })
 export class CategoryModule {}

@@ -88,4 +88,10 @@ export class TooltipDirective {
     this.renderer.setStyle(this.tooltip, 'top', `${top + scrollPos}px`);
     this.renderer.setStyle(this.tooltip, 'left', `${left}px`);
   }
+  ngOnDestroy(){
+    if(this.tooltip){
+      this.hide()
+    }
+    
+  }
 }
