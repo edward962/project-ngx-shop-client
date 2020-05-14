@@ -15,11 +15,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { ProductsModule } from './content/products/products.module';
 
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+
   ],
   imports: [
     BrowserModule,

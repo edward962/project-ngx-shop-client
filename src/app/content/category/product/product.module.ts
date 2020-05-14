@@ -10,6 +10,5 @@ import { ProductComponent } from './product.component';
 @NgModule({
   declarations: [ProductComponent, ProductDescriptionComponent, ProductInformationComponent, ProductPhotoComponent ],
   imports: [SharedModule, ProductRoutingModule],
-  // exports: [ ProductDescriptionComponent, ProductInformationComponent, ProductPhotoComponent],
 })
 export class ProductModule {}
