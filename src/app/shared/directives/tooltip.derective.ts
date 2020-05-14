@@ -1,12 +1,13 @@
 import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
+
 @Directive({
   selector: '[tooltip]'
 })
 export class TooltipDirective {
   @Input('tooltip') public tooltipTitle: string | undefined;
-  @Input() public placement: string | undefined;
-  @Input() public delay: number | undefined;
+  @Input() public placement: string | undefined  = 'top';
+  @Input() public delay: number | undefined = 700;
   public tooltip: HTMLElement | undefined | null | any ;
   offset = 10;
 

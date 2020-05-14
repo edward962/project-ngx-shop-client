@@ -17,7 +17,8 @@ import { LocalStorageService } from './services/localStorage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
 import { RatingComponent } from '../content/category/product/rating/rating.component';
-import { TooltipDirective } from './tooltip/tooltip.derective';
+import { TooltipDirective } from './directives/tooltip.derective';
+import { ModalModule } from '../modal/modal.module';
 
 
 @NgModule({
