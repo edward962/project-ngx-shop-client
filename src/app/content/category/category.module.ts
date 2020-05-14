@@ -1,3 +1,4 @@
+import { ModalService } from './../../modal/modal.service';
 import { BrandsService } from '../../shared/services/brands.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -22,6 +23,6 @@ import { ProductModule } from './product/product.module';
     CategoryDropdownComponent,
   ],
   imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule, ProductModule],
-  providers: [ BrandsService],
+  providers: [ BrandsService ],
 })
 export class CategoryModule {}

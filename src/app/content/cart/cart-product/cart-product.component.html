@@ -17,6 +17,7 @@
       </h4>
       <div class="rate">
         <ngx-shop-star-rating
+          tooltip="Рейтинг товара"
           [feedbackRate]="product.rating | rate"
         ></ngx-shop-star-rating>
         <span class="rate-amount ml-2 d-inline-block d-md-none"></span>
@@ -31,7 +32,10 @@
   </div>
   <div class="default-col inner-col flex-col justify-content-center">
     <div class="counter">
-      <button type="button" (click)="decrementProductInCart(product)">
+      <button 
+        tooltip='Уменьшить количество товара'
+        placement='left'
+        type="button" (click)="decrementProductInCart(product)">
         <img src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus" />
       </button>
       <span
@@ -42,7 +46,10 @@
         (input)="quantity($event, product)"
         >{{ product.count }}</span
       >
-      <button type="button" (click)="incrementProductInCart(product)">
+      <button
+         tooltip='Увеличить количество товара'
+         placement='right'  
+         type="button" (click)="incrementProductInCart(product)">
         <img src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus" />
       </button>
     </div>
@@ -54,7 +61,9 @@
           </h4>
     </div>
   </div>
-  <mat-icon class="icon" (click)="removeProductFromCart(product)">
+  <mat-icon 
+    tooltip='Убрать товар из корзины'
+    class="icon" (click)="removeProductFromCart(product)">
     cancel
   </mat-icon>
 </div>
