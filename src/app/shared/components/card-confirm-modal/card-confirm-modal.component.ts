@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
 import { IProduct } from 'src/app/store/reducers/cart.reducer';
 
 
@@ -13,3 +13,14 @@ export class CardConfirmModalComponent {
   public close!: () => void;
   public save!: () => void;
 }
+
+
+
+
+
+@NgModule({
+  declarations: [
+      CardConfirmModalComponent
+  ]
+})
+export class CardConfirmModalModule {}

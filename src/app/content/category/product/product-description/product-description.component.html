@@ -30,8 +30,8 @@
             <div class="col-lg-9">
               <div class="add-review my-4" [formGroup]="feedbackForm">
                 <ngx-shop-rating formControlName="rate"
-                tooltip="Оцените товар" placement="left" delay="700"></ngx-shop-rating>
-                <label class="feedback-inputs-label" tooltip="Оставте ваш отзыв о товаре" placement="left" delay="700">
+                tooltip="Оцените товар" position="left"></ngx-shop-rating>
+                <label class="feedback-inputs-label" tooltip="Оставте ваш отзыв о товаре" position="left">
                   Отзыв
                   <div
                     *ngIf="getField('advantages')?.errors?.minlength"

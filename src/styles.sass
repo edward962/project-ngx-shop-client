@@ -74,17 +74,11 @@ main
         cursor: pointer
     span
         color: #ffffff
-
+        
 // tooltip
-.tooltip-example 
-      text-align: center
-      padding: 0 50px
-    
-.tooltip-example [tooltip] 
-  display: inline-block
-  text-align: center
 
 .ng-tooltip 
+  animation-name: tooltipOpacity
   position: absolute
   max-width: 150px
   font-size: 14px
@@ -95,6 +89,7 @@ main
   border-radius: 4px
   z-index: 1000
   opacity: 0
+  transition: .7s 
 
 .ng-tooltip:after 
   content: ""
@@ -130,6 +125,7 @@ main
   border-color: transparent black transparent transparent
 
 .ng-tooltip-show 
+
   opacity: 1  
 
 @media all and (max-width: 767px)

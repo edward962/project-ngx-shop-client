@@ -1,10 +1,10 @@
 import { Directive, Input, ElementRef, HostListener, Renderer2, OnDestroy } from '@angular/core';
 
-enum TooltipPosition {
-  TOP,
-  RIGHT,
-  BOTTOM,
-  LEFT,
+export enum TooltipPosition {
+  TOP ='top',
+  RIGHT = 'right',
+  BOTTOM='bottom',
+  LEFT='left',
 }
 
 @Directive({
@@ -12,8 +12,9 @@ enum TooltipPosition {
 })
 export class TooltipDirective implements OnDestroy {
   @Input('tooltip') public tooltipTitle: string | undefined;
-  @Input() public position: TooltipPosition = TooltipPosition.TOP;
-  @Input() public delay = 700; //TODO remove
+  @Input() public position:TooltipPosition = TooltipPosition.TOP  ;
+
+
   public tooltip: HTMLElement | undefined | null;
   public offset = 10;
 
@@ -61,14 +62,8 @@ export class TooltipDirective implements OnDestroy {
     }
 
     this.renderer.appendChild(document.body, this.tooltip);
-
     this.renderer.addClass(this.tooltip, 'ng-tooltip');
     this.renderer.addClass(this.tooltip, `ng-tooltip-${this.position}`);
-
-    this.renderer.setStyle(this.tooltip, '-webkit-transition', `opacity ${this.delay}ms`);
-    this.renderer.setStyle(this.tooltip, '-moz-transition', `opacity ${this.delay}ms`);
-    this.renderer.setStyle(this.tooltip, '-o-transition', `opacity ${this.delay}ms`);
-    this.renderer.setStyle(this.tooltip, 'transition', `opacity ${this.delay}ms`);
   }
 
   public setPosition() {
@@ -84,6 +79,7 @@ export class TooltipDirective implements OnDestroy {
     let top, left;
 
     if (this.position === TooltipPosition.TOP) {
+      console.log(this.position)
       top = hostPos.top - tooltipPos.height - this.offset;
       left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
     }

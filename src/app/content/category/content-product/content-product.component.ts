@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { ModalService } from 'src/app/modal/modal.service';
-import { CardConfirmModalComponent } from '../../cart/card-confirm-modal/card-confirm-modal.component';
+import { CardConfirmModalComponent } from 'src/app/shared/components/card-confirm-modal/card-confirm-modal.component';
 
 @Component({
   selector: 'ngx-shop-content-product',
