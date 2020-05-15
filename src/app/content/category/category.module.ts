@@ -9,7 +9,7 @@ import { CategoryComponent } from './category.component';
 import { CategoryProductComponent } from './content-product/content-product.component';
 import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
 import { ProductModule } from './product/product.module';
-import { CardConfirmModalComponent } from '../cart/card-confirm-modal/card-confirm-modal.component';
+
 
 
 @NgModule({
@@ -19,11 +19,9 @@ import { CardConfirmModalComponent } from '../cart/card-confirm-modal/card-confi
     BrandsComponent,
     CategoryProductComponent,
     CategoryDropdownComponent,
-    CardConfirmModalComponent,
     
   ],
   imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule, ProductModule],
   providers: [ BrandsService ],
-  entryComponents: [CardConfirmModalComponent],
 })
 export class CategoryModule {}

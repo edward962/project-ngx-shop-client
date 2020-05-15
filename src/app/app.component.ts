@@ -11,7 +11,6 @@ import { customTransition } from './router.animation';
 })
 
 export class AppComponent {
-  public welcomeTxt: string = `Welcome to party!`;
   public getRouterState(outlet: RouterOutlet): Data {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.state;
   }
