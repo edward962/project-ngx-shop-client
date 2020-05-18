@@ -12,16 +12,19 @@ export class ProductPhotoComponent {
 
 public next() {
     if (this.currentIndex === this.product.images.length - 1) {
-      this.currentIndex = this.currentIndex;
+      this.currentIndex = 0;
     } else {
       this.currentIndex += 1;
     }
   }
   public prev() {
     if (this.currentIndex === 0) {
-      this.currentIndex = this.currentIndex;
+      this.currentIndex = this.product.images.length - 1;
     } else {
       this.currentIndex -= 1;
     }
+  }
+  show(i: number){
+    this.currentIndex = i
   }
 }
