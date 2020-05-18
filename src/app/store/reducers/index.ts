@@ -8,12 +8,13 @@ import {
 import { ICartProduct, reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
-import { reducerCategories } from './categories.reducer';
+import { ICategoryState, reducerCategories } from './categories.reducer';
 import { reducerProducts, IProductState } from './products.reducer';
 
 export interface IStore {
   products: IProductState;
   cart: EntityState<ICartProduct>;
+  categories: ICategoryState;
   routerReducer: typeof routerReducer;
 }
 
@@ -22,6 +23,7 @@ export const reducers: ActionReducerMap<any> = {
   cart: reducerCart,
   categories: reducerCategories,
   products: reducerProducts,
+  //TODO router ?
 };
 
 export interface IRouterStateUrl {

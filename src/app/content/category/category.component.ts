@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { BrandsService } from 'src/app/shared/services/brands.service';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getProductsPending } from 'src/app/store/actions/products.actions';
+import { getCategoriesPending } from '../../store/actions/category.actions';
 
 export interface IPriceData {
   value: number;
@@ -28,7 +29,7 @@ export interface IProductQuery {
   templateUrl: './category.component.html',
 })
 export class CategoryComponent implements OnInit {
-  public categories$: Observable<ICategory[]> | undefined;
+  public categories$: Observable<ICategory[]>  = this.store.select('categories', 'items');
   public show: string | undefined;
   public query!: IProductQuery;
   // tslint:disable-next-line: no-any
@@ -44,15 +45,14 @@ export class CategoryComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
     private store: Store<IStore>,
-    public productsService: ProductsService,
     public brandsService: BrandsService
   ) {}
 
   public ngOnInit() {
+    this.store.dispatch(getCategoriesPending());
     this.activatedRoute.queryParams.subscribe((query) =>
       this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands)
     );
-    this.categories$ = this.categoriesService.getCategories();
   }
 
   public getProductsByIdCategory(
