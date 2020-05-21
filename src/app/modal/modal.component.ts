@@ -3,7 +3,6 @@ import {
   ComponentFactory,
   ComponentRef,
   HostListener,
-  Injector,
   OnInit,
   Type,
   ViewChild,
@@ -22,12 +21,12 @@ export class ModalComponent implements OnInit {
   public modal!: ViewContainerRef;
 
   public childComponent!: ComponentFactory<any>;
-  public isOpen: boolean = false;
+  public isOpen = false;
   public modalContext!: ComponentRef<any>;
-  public refInjector!: Injector;
   public component!: Type<any>;
 
-  public constructor(private _modalService: ModalService) {}
+  public constructor(private _modalService: ModalService) {
+  }
 
   public ngOnInit(): void {
     this._modalService.modalSequence$.subscribe(
@@ -47,12 +46,13 @@ export class ModalComponent implements OnInit {
   }
 
   @HostListener('window:keyup', ['$event.keyCode'])
-  public close(code: number = 27): void {
+  public close(code = 27): void {
     if (code !== 27) {
       return;
     }
-    // tslint:disable-next-line:no-unused-expression
-    this.modalContext && this.modalContext.destroy();
+    if (this.modalContext) {
+      this.modalContext.destroy();
+    }
     this.isOpen = false;
   }
 }

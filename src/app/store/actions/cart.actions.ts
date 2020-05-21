@@ -15,10 +15,6 @@ export const incrementProductInCart = createAction(
   '[Product] Increment product in cart',
   props<{ product: ICartProduct }>()
 );
-export const setCountProductInCart = createAction(
-  '[Product] Set count product in cart',
-  props<{ product: ICartProduct }>()
-);
 
 export const decrementProductInCart = createAction(
   '[Products] Decrement product in cart',

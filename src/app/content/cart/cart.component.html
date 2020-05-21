@@ -6,6 +6,9 @@
         <ngx-shop-cart-product
           *ngFor="let product of cart$ | async; trackBy: trackById"
           [product]="product"
+          (increment)="incrementProductInCart($event)"
+          (decrement)="decrementProductInCart($event)"
+          (remove)="removeProductFromCart($event)"
         ></ngx-shop-cart-product>
         <!-- <ngx-shop-order-form></ngx-shop-order-form> -->
       </div>

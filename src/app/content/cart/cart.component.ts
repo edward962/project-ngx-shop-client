@@ -7,16 +7,38 @@ import {
 
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
+import {
+  decrementProductInCart,
+  removeProductFromCart,
+  incrementProductInCart,
+} from '../../store/actions/cart.actions';
+
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'ngx-shop-cart',
   templateUrl: './cart.component.html',
 })
 export class CartComponent {
   public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts);
-  // tslint:disable-next-line: variable-name
-  constructor(private readonly _store: Store<IStore>) {}
-  // tslint:disable-next-line: variable-name
+
+  constructor(private readonly _store: Store<IStore>) {
+  }
+
+  public decrementProductInCart(product: ICartProduct) {
+    if (product.count > 1) {
+      this._store.dispatch(decrementProductInCart({ product }));
+      return;
+    }
+    this._store.dispatch(removeProductFromCart({ product }));
+  }
+
+  public removeProductFromCart(product: ICartProduct) {
+    this._store.dispatch(removeProductFromCart({ product }));
+  }
+
+  public incrementProductInCart(product: ICartProduct) {
+    this._store.dispatch(incrementProductInCart({ product }));
+  }
+
   public trackById(_index: number, item: ICartProduct) {
     return item._id;
   }

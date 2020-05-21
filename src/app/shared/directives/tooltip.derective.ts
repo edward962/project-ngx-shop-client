@@ -79,7 +79,6 @@ export class TooltipDirective implements OnDestroy {
     let top, left;
 
     if (this.position === TooltipPosition.TOP) {
-      console.log(this.position)
       top = hostPos.top - tooltipPos.height - this.offset;
       left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
     }

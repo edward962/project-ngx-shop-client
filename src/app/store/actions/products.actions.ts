@@ -5,10 +5,10 @@ import { IPriceData } from 'src/app/content/category/category.component';
 export const getProductsPending = createAction(
   '[Products] Get products pending',
   props<{
-    id: string,
-    priceRange: IPriceData,
-    productName: string,
-    selectedBrands: string,
+    id?: string,
+    priceRange?: IPriceData,
+    productName?: string,
+    selectedBrands?: string,
   }>(),
 );
 

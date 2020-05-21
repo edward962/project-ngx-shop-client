@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IStore } from '../store/reducers';
@@ -8,10 +8,9 @@ import { trueProductsCount } from '../store/reducers/cart.reducer';
   selector: 'ngx-shop-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
-  public productCounter$!: Observable<number>;
-  constructor(private readonly store: Store<IStore>) {}
-  public ngOnInit(): void {
-    this.productCounter$ = this.store.select(trueProductsCount);
+export class HeaderComponent {
+  public productCounter$: Observable<number> = this.store.select(trueProductsCount);
+
+  constructor(private readonly store: Store<IStore>) {
   }
 }

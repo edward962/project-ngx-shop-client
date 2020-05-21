@@ -5,7 +5,7 @@
       [routerLink]="['/category/product']"
       [queryParams]="{ id: product._id }"
     >
-      <img [src]="product.images | imgUrl" [alt]="product.name" />
+      <img [src]="product.images | imgUrl" [alt]="product.name"/>
     </div>
     <div
       class="product-desc"
@@ -35,28 +35,24 @@
       <button
         tooltip='Уменьшить количество товара'
         type="button" (click)="decrementProductInCart(product)">
-        <img src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus" />
+        <img src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus"/>
       </button>
       <span
         class="counter__value"
-        type="number"
-        min="1"
-        oninput="value = Math.abs(value)"
-        (input)="quantity($event, product)"
-        >{{ product.count }}</span
+      >{{ product.count }}</span
       >
       <button
-         tooltip='Увеличить количество товара'
-         type="button" (click)="incrementProductInCart(product)">
-        <img src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus" />
+        tooltip='Увеличить количество товара'
+        type="button" (click)="incrementProductInCart(product)">
+        <img src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus"/>
       </button>
     </div>
   </div>
   <div class="default-col inner-col flex-col justify-content-center">
-      <div class='price'>
-          <h4 class="mb-0">
-                {{ product.price * product.count | currency: 'EUR' }}
-          </h4>
+    <div class='price'>
+      <h4 class="mb-0">
+        {{ product.price * product.count | currency: 'EUR' }}
+      </h4>
     </div>
   </div>
   <mat-icon

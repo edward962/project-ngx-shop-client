@@ -21,6 +21,7 @@ import {
 
 import { Store } from '@ngrx/store';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { IProduct, IProductState } from '../reducers/products.reducer';
 
 @Injectable()
 export class ProductsEffects {
@@ -28,7 +29,8 @@ export class ProductsEffects {
     private actions: Actions,
     private productsService: ProductsService,
     private store: Store<IStore>,
-  ) {}
+  ) {
+  }
 
   // tslint:disable-next-line: no-any
   public getProduct$: Observable<any> = createEffect(() =>
@@ -40,9 +42,9 @@ export class ProductsEffects {
           .pipe(
             // tslint:disable-next-line: no-any
             map((product: any) => {
-                return getProductSuccess({ product });
-            })
-        ),
+              return getProductSuccess({ product });
+            }),
+          ),
       ),
     ),
   );
@@ -53,17 +55,16 @@ export class ProductsEffects {
       withLatestFrom(this.store.select('products', 'item', '_id')),
       switchMap(([{ feedback }, product]) =>
         this.productsService
-          .createFeedback({...feedback, product })
+          .createFeedback({ ...feedback, product })
           .pipe(
             mergeMap(() => [
               createFeedbackSuccess(),
               getProductPending({ id: product }),
             ]),
-            ),
           ),
       ),
+    ),
   );
-
 
 
   // tslint:disable-next-line: no-any
@@ -71,14 +72,14 @@ export class ProductsEffects {
     this.actions.pipe(
       ofType(getProductsPending),
       switchMap(({ type, ...search }) => {
-       return this.productsService.getProductsBySubCategory(search).pipe(
+        return this.productsService.getProductsBySubCategory(search).pipe(
           // tslint:disable-next-line: no-any
-          map((productss: any) => {
-            const products = productss.items;
-            return  getProductsSuccess({ products });
-          })
+          map((_products: any) => {
+            const products = _products.items;
+            return getProductsSuccess({ products });
+          }),
         );
-      })
-    )
+      }),
+    ),
   );
 }
