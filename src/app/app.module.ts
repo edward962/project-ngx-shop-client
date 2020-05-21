@@ -13,7 +13,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
-import { ProductsModule } from './content/products/products.module';
 import { ModalModule } from './modal/modal.module';
 
 
@@ -23,14 +22,12 @@ import { ModalModule } from './modal/modal.module';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
-    ProductsModule,
     ModalModule.forRoot(),
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers, {

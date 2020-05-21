@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IFeedback, IProduct } from '../../../../../store/reducers/products.reducer';
-import { createFeedbackPending } from '../../../../../store/actions/products.actions';
+import { IFeedback, IProduct } from '../../../../../../store/reducers/products.reducer';
+import { createFeedbackPending } from '../../../../../../store/actions/products.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { IStore } from '../../../../../store/reducers';
+import { IStore } from '../../../../../../store/reducers';
 
 @Component({
   selector: 'ngx-shop-feedbacks',

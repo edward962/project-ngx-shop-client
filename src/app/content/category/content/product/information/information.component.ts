@@ -9,13 +9,13 @@ import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { ModalService } from 'src/app/modal/modal.service';
 import { CardConfirmModalComponent } from 'src/app/shared/components/card-confirm-modal/card-confirm-modal.component';
-import { IProduct } from '../../../../store/reducers/products.reducer';
+import { IProduct } from '../../../../../store/reducers/products.reducer';
 
 @Component({
-  selector: 'ngx-shop-product-information',
-  templateUrl: './product-Information.component.html',
+  selector: 'ngx-shop-information',
+  templateUrl: './information.component.html',
 })
-export class ProductInformationComponent {
+export class InformationComponent {
   // tslint:disable-next-line: no-any
   @Input() public product: any;
   public isShow = false;

@@ -11,42 +11,42 @@ import { filter, map, catchError } from 'rxjs/operators';
 import { Observable, EMPTY } from 'rxjs';
 import { BASE_URL_TOKEN } from 'src/app/config';
 
-export interface IRes {
-  // tslint:disable-next-line: no-any
-  data: any;
+export interface IRes<T> {
+  data: T;
   error?: string;
 }
+
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-  // tslint:disable-next-line: variable-name
-  constructor(@Inject(BASE_URL_TOKEN) private _baseUrl: string) {}
+  constructor(
+    @Inject(BASE_URL_TOKEN) private _baseUrl: string) {
+  }
 
-  public intercept<T extends IRes>(
+  public intercept<T extends IRes<T>>(
     req: HttpRequest<T>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpResponse<T>> {
     const headers: HttpHeaders = req.headers.append(
       'Content-Type',
-      'application/json'
+      'application/json',
     );
     const jsonReq: HttpRequest<T> = req.clone({
       headers,
       url: `${this._baseUrl}${req.url}`,
     });
     return next.handle(jsonReq).pipe(
-      filter(this._isHttpResponse),
-      map((res: HttpResponse<IRes>) => {
+      filter((event: HttpEvent<IRes<T>>): event is HttpResponse<IRes<T>> => {
+        if (event instanceof HttpResponse) {
+          return true;
+        }
+        return false;
+      }),
+      map((res: HttpResponse<IRes<T>>) => {
         return res.clone({ body: res.body && res.body.data });
       }),
       catchError(() => {
         return EMPTY;
-      })
+      }),
     );
-  }
-  private _isHttpResponse(event: HttpEvent<IRes>): event is HttpResponse<IRes> {
-    if (event instanceof HttpResponse) {
-      return true;
-    }
-    return false;
   }
 }

@@ -6,9 +6,9 @@ import { BrandsComponent } from './brands/brands.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
-import { CategoryProductComponent } from './content-product/content-product.component';
 import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
-import { ProductModule } from './product/product.module';
+import { ProductModule } from './content/product/product.module';
+import { CategoryProductComponent } from './product-card/product-card.component';
 
 
 
@@ -19,7 +19,7 @@ import { ProductModule } from './product/product.module';
     BrandsComponent,
     CategoryProductComponent,
     CategoryDropdownComponent,
-    
+
   ],
   imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule, ProductModule],
   providers: [ BrandsService ],

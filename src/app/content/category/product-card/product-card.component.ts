@@ -8,7 +8,7 @@ import { IProduct } from '../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-content-product',
-  templateUrl: './content-product.component.html',
+  templateUrl: './product-card.component.html',
 })
 export class CategoryProductComponent {
   @Input() public product!: IProduct;

@@ -1,6 +1,5 @@
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { BASE_URL_TOKEN } from '../config';
@@ -13,27 +12,24 @@ import { ProductsService } from './services/products.service';
 import { RatePipe } from './pipes/rate.pipe';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
 import { Store } from '@ngrx/store';
-import { LocalStorageService } from './services/localStorage.service';
+import { LocalStorageService } from './services/local-storage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
-import { RatingComponent } from '../content/category/product/product-description/feedbacks/rating/rating.component';
 import { TooltipDirective } from './directives/tooltip.derective';
-
+import { ICartProduct } from '../store/reducers/cart.reducer';
+import { IStore } from '../store/reducers';
 
 
 @NgModule({
   declarations: [
     StarRatingComponent,
     RatePipe,
-    RatingComponent,
     ImgUrlPipe,
     TooltipDirective,
-
   ],
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    MatIconModule,
     HttpClientModule,
     CommonModule,
     RouterModule,
@@ -45,10 +41,8 @@ import { TooltipDirective } from './directives/tooltip.derective';
     HttpClientModule,
     CommonModule,
     StarRatingComponent,
-    MatIconModule,
     RatePipe,
     ImgUrlPipe,
-    RatingComponent,
     TooltipDirective,
   ],
   providers: [
@@ -76,11 +70,10 @@ export class SharedModule {
         {
           provide: APP_INITIALIZER,
           useFactory: (
-            // tslint:disable-next-line: no-any
-            store: Store<any>,
-            localStorageService: LocalStorageService
+            store: Store<IStore>,
+            localStorageService: LocalStorageService,
           ) => () => {
-            const products = localStorageService.getFromLocalStorage('cart');
+            const products: ICartProduct[] = localStorageService.getFromLocalStorage<ICartProduct>('cart');
             store.dispatch(addAllProductsToCart({ products }));
           },
           multi: true,

@@ -1,10 +1,10 @@
 import { Directive, Input, ElementRef, HostListener, Renderer2, OnDestroy } from '@angular/core';
 
 export enum TooltipPosition {
-  TOP ='top',
+  TOP = 'top',
   RIGHT = 'right',
-  BOTTOM='bottom',
-  LEFT='left',
+  BOTTOM = 'bottom',
+  LEFT = 'left',
 }
 
 @Directive({
@@ -12,7 +12,7 @@ export enum TooltipPosition {
 })
 export class TooltipDirective implements OnDestroy {
   @Input('tooltip') public tooltipTitle: string | undefined;
-  @Input() public position:TooltipPosition = TooltipPosition.TOP  ;
+  @Input() public position: TooltipPosition = TooltipPosition.TOP;
 
 
   public tooltip: HTMLElement | undefined | null;
@@ -105,6 +105,5 @@ export class TooltipDirective implements OnDestroy {
     if (this.tooltip) {
       this.hide();
     }
-
   }
 }

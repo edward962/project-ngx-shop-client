@@ -12,7 +12,7 @@ import { removeProductFromCart } from '../actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { selectProducts } from '../reducers/cart.reducer';
 import { go } from '../actions/router.actions';
-import { LocalStorageService } from 'src/app/shared/services/localStorage.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Injectable()
 export class CartEffects {
@@ -29,7 +29,7 @@ export class CartEffects {
       withLatestFrom(this.store.select(selectProducts)),
       filter(([, products]) => products.length < 1),
       map(() => {
-        return go({ path: ['/products'] });
+        return go({ path: ['/'] });
       })
     )
   );
@@ -51,5 +51,5 @@ export class CartEffects {
       ),
     { dispatch: false },
   );
-  
+
 }

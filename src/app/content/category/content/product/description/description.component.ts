@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from '../../../../store/reducers/products.reducer';
+import { IProduct } from '../../../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-product-description',
-  templateUrl: './product-description.component.html',
+  templateUrl: './description.component.html',
 })
-export class ProductDescriptionComponent {
+export class DescriptionComponent {
   @Input() public product!: IProduct;
   public isShowDescription = true;
 

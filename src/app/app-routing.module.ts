@@ -5,14 +5,10 @@ import { CartGuard } from './shared/services/cart.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'products',
     pathMatch: 'full',
-  },
-  {
-    path: 'products',
     loadChildren: () =>
-      import('./content/products/products.module').then(
-        (mod) => mod.ProductsModule
+      import('./content/home/home.module').then(
+        (mod) => mod.HomeModule
       ),
     data: {
       state: 'products',

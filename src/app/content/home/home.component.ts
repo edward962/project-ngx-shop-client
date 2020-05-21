@@ -11,9 +11,9 @@ import { getProductsPending } from '../../store/actions/products.actions';
 
 @Component({
   selector: 'ngx-shop-products',
-  templateUrl: './products.component.html',
+  templateUrl: './home.component.html',
 })
-export class ProductsComponent implements OnInit {
+export class HomeComponent implements OnInit {
   public categories: ICategory[] = [];
   public categories$: Observable<ICategory[]> = this.store.select('categories', 'items');
   public products$: Observable<IProduct[]> = this.store.select('products', 'items');

@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { IProduct } from '../../../../store/reducers/products.reducer';
-import { slideAnimation } from './product-photo-slider.animation';
+import { IProduct } from '../../../../../store/reducers/products.reducer';
+import { slideAnimation } from './photo-slider.animation';
 
 @Component({
   selector: 'ngx-shop-product-photo',
-  templateUrl: './product-photo-slider.component.html',
+  templateUrl: './photo-slider.component.html',
   animations: slideAnimation,
 })
-export class ProductPhotoSliderComponent {
+export class PhotoSliderComponent {
   @Input() public product!: IProduct;
   public currentIndex = 0;
 

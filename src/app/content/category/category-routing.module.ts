@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: () =>
-        import('./product/product.module')
+        import('./content/product/product.module')
         .then(mod => mod.ProductModule),
         data: {
           state: 'product',

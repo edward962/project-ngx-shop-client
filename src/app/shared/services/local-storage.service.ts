@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LocalStorageService {
-  // tslint:disable-next-line: no-any
-  public addToLocalStorage(key: string, data: any): void {
+  public addToLocalStorage<T>(key: string, data: T): void {
     try {
       localStorage.setItem(key, JSON.stringify(data));
-    } catch (err) {}
+    } catch (err) {
+    }
   }
-  // tslint:disable-next-line: no-any
-  public getFromLocalStorage(key: string): any {
+
+  public getFromLocalStorage<T>(key: string): T[] {
     try {
       const jsonStr = localStorage.getItem(key);
       if (!jsonStr) {
