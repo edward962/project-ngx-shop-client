@@ -21,22 +21,31 @@ export class RatingComponent implements ControlValueAccessor {
   public onChange!: Function;
   public highlightRaiting: number | null = null;
 
-  public writeValue(): void {}
+  public writeValue(rating: number): void {
+    this.currentRating = rating;
+  }
+
   // tslint:disable-next-line: ban-types
   public registerOnChange(fn: Function) {
     this.onChange = fn;
   }
-  public registerOnTouched(): void {}
+
+  public registerOnTouched(): void {
+  }
+
   public starSelect(index: number) {
     this.currentRating = index;
     this.onChange(this.currentRating);
   }
+
   public starMouseEnter(index: number) {
     this.highlightRaiting = index;
   }
+
   public starMouseLeave() {
     this.highlightRaiting = null;
   }
+
   public highlight(index: number) {
     if (!this.highlightRaiting || this.highlightRaiting < this.currentRating) {
       return index < this.currentRating;

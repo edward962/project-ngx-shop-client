@@ -19,10 +19,12 @@ export interface IFeedback {
   description?: string;
   product: string;
 }
+
 export interface ISearch {
   text: string;
   subcategory: string;
 }
+
 export interface IProductImage {
   url: string;
   source: string;
@@ -30,13 +32,14 @@ export interface IProductImage {
 
 export interface IProduct {
   _id: string;
+  feedbacksCount: number;
   name: string;
   description: string;
   feedbacks?: IFeedback;
   price: number;
   status: boolean;
-  images?: IProductImage[] | undefined;
-  rating?: number | undefined;
+  images: IProductImage[];
+  rating: number;
 }
 
 const productsReducer = createReducer(
@@ -44,9 +47,12 @@ const productsReducer = createReducer(
     item: {
       _id: '',
       description: '',
+      feedbacksCount: 0,
       name: '',
       price: 0,
+      images: [],
       status: false,
+      rating: 0,
     },
     items: [],
     loading: false,
@@ -69,13 +75,12 @@ const productsReducer = createReducer(
     item: product,
     loading: false,
   })),
-
 );
 
 export function reducerProducts(
   state: IProductState | undefined,
   // tslint:disable-next-line: no-any
-  action: any
-  ) {
+  action: any,
+) {
   return productsReducer(state, action);
 }

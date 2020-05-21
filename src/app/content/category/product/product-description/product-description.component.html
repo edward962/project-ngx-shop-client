@@ -1,63 +1,22 @@
 <div class="product-info-tabs">
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a
-          class="nav-item nav-link"
-          [ngClass]="{ active: isShowDesc }"
-          (click)="showDesc()"
-          >Описание</a
-        >
-        <a
-          class="nav-item nav-link"
-          [ngClass]="{ active: isShowFeedback }"
-          (click)="showFeedback()"
-          >Отзывы</a
-        >
-      </div>
-    </nav>
-    <div class="tab-content">
-      <div *ngIf="isShowDesc">{{ product?.description }}</div>
-      <div *ngIf="isShowFeedback">
-        <div class="reviews">
-          <div *ngFor="let feedBack of product.feedbacks" class="review">
-            <h6>Аноним</h6>
-            {{ feedBack.rate }}
-            <p class="mt-2 mb-0 pt-1">
-              {{ feedBack.advantages }}
-            </p>
-          </div>
-          <div class="row">
-            <div class="col-lg-9">
-              <div class="add-review my-4" [formGroup]="feedbackForm">
-                <ngx-shop-rating formControlName="rate"
-                tooltip="Оцените товар" position="left"></ngx-shop-rating>
-                <label class="feedback-inputs-label" tooltip="Оставте ваш отзыв о товаре" position="left">
-                  Отзыв
-                  <div
-                    *ngIf="getField('advantages')?.errors?.minlength"
-                    class="form-valid"
-                  >
-                    Отзыв должен состоять минимум из 10 символов
-                  </div>
-                </label>
-                <div class="form-group">
-                  <textarea
-                    formControlName="advantages"
-                    class="form-control"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="btn btn-outline-primary px-3"
-                  (click)="addFeedback(feedbackForm.value)"
-                  [disabled]="feedbackForm.invalid"
-                >
-                  Добавить отзыв
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: isShowDescription }"
+        (click)="toggleTab()"
+      >Описание</a
+      >
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: !isShowDescription }"
+        (click)="toggleTab()"
+      >Отзывы     {{ product?.feedbacksCount || 0}}</a
+      >
     </div>
+  </nav>
+  <div class="tab-content">
+    <div *ngIf="isShowDescription">{{ product?.description }}</div>
+    <ngx-shop-feedbacks *ngIf="!isShowDescription" [product]="product"></ngx-shop-feedbacks>
   </div>
+</div>

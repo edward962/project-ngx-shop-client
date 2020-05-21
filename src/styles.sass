@@ -15,7 +15,7 @@ main
   position: relative
 .form-control:focus
   box-shadow: none
-.btn-primary:hover 
+.btn-primary:hover
       color: #fff
 .outlet-wrap
   min-height: 88vh
@@ -74,10 +74,10 @@ main
         cursor: pointer
     span
         color: #ffffff
-        
+
 // tooltip
 
-.ng-tooltip 
+.ng-tooltip
   animation-name: tooltipOpacity
   position: absolute
   max-width: 150px
@@ -89,44 +89,44 @@ main
   border-radius: 4px
   z-index: 1000
   opacity: 0
-  transition: .7s 
+  transition: .7s
 
-.ng-tooltip:after 
+.ng-tooltip:after
   content: ""
   position: absolute
   border-style: solid
 
-.ng-tooltip-top:after 
+.ng-tooltip-top:after
   top: 100%
   left: 50%
   margin-left: -5px
   border-width: 5px
   border-color: black transparent transparent transparent
 
-.ng-tooltip-bottom:after 
+.ng-tooltip-bottom:after
   bottom: 100%
   left: 50%
   margin-left: -5px
   border-width: 5px
   border-color: transparent transparent black transparent
 
-.ng-tooltip-left:after 
+.ng-tooltip-left:after
   top: 50%
   left: 100%
   margin-top: -5px
   border-width: 5px
   border-color: transparent transparent transparent black
 
-.ng-tooltip-right:after 
+.ng-tooltip-right:after
   top: 50%
   right: 100%
   margin-top: -5px
   border-width: 5px
   border-color: transparent black transparent transparent
 
-.ng-tooltip-show 
+.ng-tooltip-show
 
-  opacity: 1  
+  opacity: 1
 
 @media all and (max-width: 767px)
   main
@@ -410,8 +410,7 @@ form button[type="submit"]:not(.btn-send)
 
 .modal-menu__item.is-submenu
   padding-right: 3rem
-  background: url(assets/icons/icon-angle.svg) no-repeat
-  background-position: calc(100% - 1.1rem) center
+  background: url(assets/icons/icon-angle.svg) no-repeat calc(100% - 1.1rem) center
 
 .modal .modal-content
   border-radius: 0 !important
@@ -492,8 +491,7 @@ form button[type="submit"]:not(.btn-send)
 
 .sidebar .list-group-item .dropdown-toggle::after
   content: ""
-  background: url(assets/icons/icon-angle.svg) no-repeat
-  background-position: center
+  background: url(assets/icons/icon-angle.svg) no-repeat center
   background-size: 7px 11px
   border: none
   width: 7px
@@ -769,7 +767,6 @@ form button[type="submit"]:not(.btn-send)
   text-decoration: none
   cursor: pointer
   padding: 0.4rem 0
-  white-space: pre-line
 
 .aside-accordion-menu ul li a:hover,
 .aside-accordion-menu ul li a:active,
@@ -823,7 +820,7 @@ form button[type="submit"]:not(.btn-send)
   cursor: pointer
   &:focus
     outline: none
- 
+
 .description-col .product-img
   padding: 1.5rem 2.5rem
   display: flex
@@ -880,7 +877,7 @@ form button[type="submit"]:not(.btn-send)
   .description-col .product-desc,
   .default-col
     padding: 0.875rem 1.25rem
- 
+
 
   .description-col + *
     border-left: none
@@ -970,12 +967,16 @@ form button[type="submit"]:not(.btn-send)
   margin-bottom: 0
   top: 100%
   bottom: auto
+  cursor: pointer
 
 .product-carousel .carousel-indicators li.active
   border: 1px solid #d9534f
   box-shadow: 0 0 4px rgba(217, 83, 79, 0.5)
+  cursor: pointer
 
 .product-carousel .carousel-item
+  display: block!important
+  position: absolute
   height: 410px
   background-color: #eceeef
 
@@ -990,6 +991,7 @@ form button[type="submit"]:not(.btn-send)
 
 .product-carousel .carousel-control-prev,
 .product-carousel .carousel-control-next
+  cursor: pointer
   width: 34px
   height: 34px
   background: #ffffff
@@ -1105,10 +1107,12 @@ form button[type="submit"]:not(.btn-send)
   color: #31708f
   background: #d9edf7
 
-// footer
 .footer-menu
-
-a
-  &:hover
+ a
+   &:hover
     text-decoration: underline
     cursor: pointer
+
+
+.carousel-inner
+  height: 450px

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from 'src/app/store/reducers/cart.reducer';
+import { IProduct } from '../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-product-card',

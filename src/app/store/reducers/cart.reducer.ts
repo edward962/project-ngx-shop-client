@@ -14,23 +14,7 @@ import {
   MemoizedSelector,
   createFeatureSelector,
 } from '@ngrx/store';
-
-
-
-export interface IProduct {
-  _id: string;
-  feedbacksCount: number;
-  images: IProductImage[];
-  name: string;
-  price: number;
-  rating?: number | null;
-  status: boolean;
-}
-
-export interface IProductImage {
-  url: string;
-  source: string;
-}
+import { IProduct } from './products.reducer';
 
 export interface ICartProduct extends IProduct {
   count: number;

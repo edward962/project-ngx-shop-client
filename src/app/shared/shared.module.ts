@@ -16,7 +16,7 @@ import { Store } from '@ngrx/store';
 import { LocalStorageService } from './services/localStorage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
-import { RatingComponent } from '../content/category/product/rating/rating.component';
+import { RatingComponent } from '../content/category/product/product-description/feedbacks/rating/rating.component';
 import { TooltipDirective } from './directives/tooltip.derective';
 
 
@@ -28,7 +28,7 @@ import { TooltipDirective } from './directives/tooltip.derective';
     RatingComponent,
     ImgUrlPipe,
     TooltipDirective,
- 
+
   ],
   imports: [
     ReactiveFormsModule,

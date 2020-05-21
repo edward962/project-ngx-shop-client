@@ -4,12 +4,12 @@ import {
   ComponentFactoryResolver,
   Injector,
 } from '@angular/core';
-import { IProduct } from 'src/app/store/reducers/cart.reducer';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { ModalService } from 'src/app/modal/modal.service';
 import { CardConfirmModalComponent } from 'src/app/shared/components/card-confirm-modal/card-confirm-modal.component';
+import { IProduct } from '../../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-product-information',

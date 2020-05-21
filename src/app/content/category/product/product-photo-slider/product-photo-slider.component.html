@@ -1,24 +1,28 @@
 <div id="productCarousel" class="product-carousel carousel slide">
   <ol class="carousel-indicators">
     <li
-     
       [ngClass]="{ active: j === currentIndex }"
       *ngFor="let image of product?.images; let j = index"
-      (click) = 'show(j)'
+      (click)='show(j)'
     >
-      <img [src]="image?.url" [alt]="product.name" />
+      <img [src]="image?.url" [alt]="product.name"/>
     </li>
   </ol>
   <div class="carousel-inner">
-    <div
-      *ngFor="let image of product?.images; let i = index"
-      class="carousel-item"
-      [ngClass]="{ active: i === currentIndex }"
-    >
-      <div class="img-wrap">
-        <img [src]="image?.url" [alt]="product.name" />
+    <ng-container *ngFor="let image of product?.images; let i = index">
+      <div
+        [@slideAnimation]="{value: '', params: isSlidedRight ? animateRight : animateLeft}"
+        (@slideAnimation.start)="animationStart()"
+        (@slideAnimation.done)="animationEnd()"
+        *ngIf="i === currentIndex"
+        class="carousel-item"
+      >
+        <div class="img-wrap">
+          <img [src]="image?.url" [alt]="product.name"/>
+        </div>
       </div>
-    </div>
+    </ng-container>
+
   </div>
   <a class="carousel-control-prev" (click)="prev()">
     <span class="carousel-control-prev-icon"></span>

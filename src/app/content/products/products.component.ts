@@ -9,7 +9,7 @@ import {
 } from 'src/app/store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { IProduct } from 'src/app/store/reducers/cart.reducer';
+import { IProduct } from '../../store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-products',
