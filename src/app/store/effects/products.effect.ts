@@ -23,7 +23,6 @@ import {
 
 import { Store } from '@ngrx/store';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { IProduct, IProductState } from '../reducers/products.reducer';
 
 @Injectable()
 export class ProductsEffects {
@@ -90,7 +89,7 @@ export class ProductsEffects {
   public getSuggestedProducts$: Observable<any> = createEffect(() =>
     this.actions.pipe(
       ofType(getSuggestedProductsPending),
-      switchMap(({ type, ...search }) => {
+      switchMap(() => {
         return this.productsService.getSuggestedProducts().pipe(
           // tslint:disable-next-line: no-any
           map((_products: any) => {
