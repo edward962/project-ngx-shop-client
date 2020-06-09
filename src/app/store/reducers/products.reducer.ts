@@ -4,11 +4,14 @@ import {
   getProductsSuccess,
   getProductPending,
   getProductSuccess,
+  getSuggestedProductsSuccess,
+  getSuggestedProductsPending,
 } from '../actions/products.actions';
 
 export interface IProductState {
   item: IProduct;
   items: IProduct[];
+  suggestedProducts: IProduct[];
   loading: boolean;
 }
 
@@ -42,6 +45,7 @@ export interface IProduct {
   rating: number;
 }
 
+
 const productsReducer = createReducer(
   {
     item: {
@@ -55,6 +59,7 @@ const productsReducer = createReducer(
       rating: 0,
     },
     items: [],
+    suggestedProducts: [],
     loading: false,
   },
   on(getProductsPending, (state: IProductState) => ({
@@ -70,9 +75,18 @@ const productsReducer = createReducer(
     ...state,
     loading: true,
   })),
+  on(getSuggestedProductsPending, (state: IProductState) => ({
+    ...state,
+    loading: true,
+  })),
   on(getProductSuccess, (state: IProductState, { product }) => ({
     ...state,
     item: product,
+    loading: false,
+  })),
+  on(getSuggestedProductsSuccess, (state: IProductState,  { products } ) => ({
+    ...state,
+    suggestedProducts:products,
     loading: false,
   })),
 );

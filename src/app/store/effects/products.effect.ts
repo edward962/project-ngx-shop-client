@@ -6,6 +6,8 @@ import {
   getProductsPending,
   createFeedbackPending,
   createFeedbackSuccess,
+  getSuggestedProductsPending,
+  getSuggestedProductsSuccess,
 } from './../actions/products.actions';
 
 import { Injectable } from '@angular/core';
@@ -77,6 +79,23 @@ export class ProductsEffects {
           map((_products: any) => {
             const products = _products.items;
             return getProductsSuccess({ products });
+          }),
+        );
+      }),
+    ),
+  );
+
+
+
+  public getSuggestedProducts$: Observable<any> = createEffect(() =>
+    this.actions.pipe(
+      ofType(getSuggestedProductsPending),
+      switchMap(({ type, ...search }) => {
+        return this.productsService.getSuggestedProducts().pipe(
+          // tslint:disable-next-line: no-any
+          map((_products: any) => {
+            const products = _products.items;
+            return getSuggestedProductsSuccess( {products} );
           }),
         );
       }),
