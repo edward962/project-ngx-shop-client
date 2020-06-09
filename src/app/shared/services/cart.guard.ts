@@ -18,8 +18,6 @@ export class CartGuard implements CanActivate {
   }
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    console.log(route);
-    console.log(state);
     return this.store.select(selectProducts).pipe(
       tap((v) => {
         console.log('AAAAA', v);

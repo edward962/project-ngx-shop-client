@@ -23,16 +23,20 @@ export class ProductsService {
       searchByName,
       selectedBrands,
     } = search;
+    const subCat = id ? id : '';
     const productName = searchByName ? searchByName : '';
     const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
     const priceData = priceRange
       ? priceRange
       : { value: 0, highValue: 1000000000 };
     return this.http.get<IProduct>(
-      `/products/?subCat=${id}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`,
+      `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`,
     );
   }
 
+  public getSuggestedProducts(): Observable<IProduct> {
+    return this.http.get<IProduct>('/products/suggestion');
+  }
   public getProductById(id: string): Observable<IProduct> {
     return this.http.get<IProduct>(`/products/${id}`);
   }
