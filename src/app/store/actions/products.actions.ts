@@ -33,24 +33,10 @@ export const createFeedbackPending = createAction(
 export const createFeedbackSuccess = createAction(
   '[Feedback] Create feedback success',
 );
-
-
-
-
-
-
-
-
 export const getSuggestedProductsPending = createAction(
   '[Products] Get suggested products pending',
-  props<{
-    // id?: string,
-    // priceRange?: IPriceData,
-    // productName?: string,
-    // selectedBrands?: string,
-  }>(),
+  props<{}>(),
 );
-
 export const getSuggestedProductsSuccess = createAction(
   '[Products] Get suggested products success',
   props<{ products: IProduct[] }>(),
