@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ComponentFactoryResolver, Injector } from '@angular/core';
 import { IFeedback, IProduct } from '../../../../../../store/reducers/products.reducer';
 import { createFeedbackPending, getProductPending } from '../../../../../../store/actions/products.actions';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IStore } from '../../../../../../store/reducers';
 import { Observable } from 'rxjs/internal/Observable';
