@@ -1,45 +1,63 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ComponentFactoryResolver, Injector } from '@angular/core';
 import { IFeedback, IProduct } from '../../../../../../store/reducers/products.reducer';
-import { createFeedbackPending } from '../../../../../../store/actions/products.actions';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { createFeedbackPending, getProductPending } from '../../../../../../store/actions/products.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from '../../../../../../store/reducers';
+import { Observable } from 'rxjs/internal/Observable';
+import { ActivatedRoute } from '@angular/router';
+import { ModalService } from 'src/app/modal/modal.service';
 
 @Component({
   selector: 'ngx-shop-feedbacks',
   templateUrl: './feedbacks.component.html',
   styleUrls: ['./feedbacks.component.sass'],
 })
-export class FeedbacksComponent {
+export class FeedbacksComponent  implements OnInit{
 
-  public feedbackForm: FormGroup = this.fb.group({
-    advantages: ['', [Validators.required, Validators.minLength(10)]],
-    rate: ['', [Validators.required]],
-  });
 
-  @Input() public product!: IProduct;
+  public query: any;
+  public product$?: Observable<any> = this.store.select('products', 'item');
+  public product!: IProduct;
+
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private store: Store<IStore>,
-    private fb: FormBuilder,
+    private  _modalService: ModalService,
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private _injector: Injector
   ) {
   }
-
-  public async addFeedback(value: IFeedback): Promise<void> {
-    const feedback = {
-      product: this.product._id,
-      rate: value.rate,
-      advantages: value.advantages,
-    };
-    this.store.dispatch(
-      createFeedbackPending({
-        feedback,
-      }),
-    );
-    this.feedbackForm.reset();
+  public ngOnInit(): void {
+    this.query = this.activatedRoute.snapshot.queryParams;
+    const { id } = this.query;
+    this.store.dispatch(getProductPending({ id }));
+    this.product$?.subscribe((product: IProduct) => (this.product = product));
+ 
   }
-
-  public getField(name: string) {
-    return this.feedbackForm.get(name);
+  public async addFeedback(): Promise<void> {
+    const component = await import(
+      './addFeedback/add-feedback.component'
+    );
+    this._modalService.open({
+      component: component.AddFeedbackComponent,
+      resolver: this._componentFactoryResolver,
+      injector: this._injector,
+      context: {
+        save: (value: IFeedback) => {
+          this.store.dispatch(
+            createFeedbackPending({
+              feedback: { ...value },
+            }),
+          );
+          this._modalService.close();
+        },
+        close: () => {
+          this._modalService.close();
+        },
+      },
+    });
+    
   }
 }
+

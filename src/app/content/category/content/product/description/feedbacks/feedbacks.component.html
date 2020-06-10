@@ -1,4 +1,9 @@
 <div class="reviews">
+  <div class='add-review-container'>
+    <a class="btn btn-primary btn-lg px-5" (click)="addFeedback()"
+    ><span>Добавить отзыв</span></a
+  >
+  </div>
   <div *ngFor="let feedBack of product?.feedbacks" class="review">
     <h6>Аноним</h6>
     <ngx-shop-star-rating [feedbackRate]="feedBack.rate"></ngx-shop-star-rating>
@@ -6,35 +11,5 @@
       {{ feedBack.advantages }}
     </p>
   </div>
-  <div class="row">
-    <div class="col-lg-9">
-      <div class="add-review my-4" [formGroup]="feedbackForm">
-        <ngx-shop-rating formControlName="rate"
-                         tooltip="Оцените товар" position="left"></ngx-shop-rating>
-        <label class="feedback-inputs-label" tooltip="Оставте ваш отзыв о товаре" position="left">
-          Отзыв
-          <div
-            *ngIf="getField('advantages')?.errors?.minlength"
-            class="form-valid"
-          >
-            Отзыв должен состоять минимум из 10 символов
-          </div>
-        </label>
-        <div class="form-group">
-                  <textarea
-                    formControlName="advantages"
-                    class="form-control"
-                  ></textarea>
-        </div>
-        <button
-          type="submit"
-          class="btn btn-outline-primary px-3"
-          (click)="addFeedback(feedbackForm.value)"
-          [disabled]="feedbackForm.invalid"
-        >
-          Добавить отзыв
-        </button>
-      </div>
-    </div>
-  </div>
+  <div class='no-reviews' *ngIf="product?.feedbacks.length == 0">Нет отзывов</div>
 </div>

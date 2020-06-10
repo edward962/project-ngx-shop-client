@@ -6,7 +6,6 @@ import { FeedbacksComponent } from './description/feedbacks/feedbacks.component'
 import { PhotoSliderComponent } from './photo-slider/photo-slider.component';
 import { DescriptionComponent } from './description/description.component';
 import { InformationComponent } from './information/information.component';
-import { RatingComponent } from './description/feedbacks/rating/rating.component';
 
 
 @NgModule({
@@ -16,7 +15,6 @@ import { RatingComponent } from './description/feedbacks/rating/rating.component
     InformationComponent,
     PhotoSliderComponent,
     FeedbacksComponent,
-    RatingComponent,
   ],
   imports: [SharedModule, ProductRoutingModule],
 

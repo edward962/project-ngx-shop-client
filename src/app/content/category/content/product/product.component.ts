@@ -4,7 +4,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import {
-  getProductPending,
+  getProductPending
 } from 'src/app/store/actions/products.actions';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -17,7 +17,9 @@ export class ProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public productsService: ProductsService,
     private store: Store<IStore>,
-  ) {}
+
+  ) { }
+
   // tslint:disable-next-line: no-any
   public query: any;
   // tslint:disable-next-line: no-any
@@ -32,4 +34,5 @@ export class ProductComponent implements OnInit {
     this.store.dispatch(getProductPending({ id }));
     this.product$?.subscribe((product) => (this.product = product));
   }
+
 }

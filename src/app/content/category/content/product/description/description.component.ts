@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
 import { IProduct } from '../../../../../store/reducers/products.reducer';
 
 @Component({
@@ -13,4 +13,6 @@ export class DescriptionComponent {
     this.isShowDescription = !this.isShowDescription;
   }
 
+  public close!: () => void;
+  public save!: (value: object) => void;
 }
