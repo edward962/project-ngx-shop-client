@@ -6,13 +6,14 @@
       {{ feedBack.advantages }}
     </p>
   </div>
+  <div class='no-reviews' *ngIf="product?.feedbacks.length == 0">Нет отзывов</div>
   <div class="row">
     <div class="col-lg-9">
-      <div class="add-review my-4" [formGroup]="feedbackForm">
+      <div class="add-review my-12" [formGroup]="feedbackForm">
         <ngx-shop-rating formControlName="rate"
                          tooltip="Оцените товар" position="left"></ngx-shop-rating>
         <label class="feedback-inputs-label" tooltip="Оставте ваш отзыв о товаре" position="left">
-          Отзыв
+          Добавить отзыв
           <div
             *ngIf="getField('advantages')?.errors?.minlength"
             class="form-valid"
@@ -26,7 +27,8 @@
                     class="form-control"
                   ></textarea>
         </div>
-        <button
+        <div class='button-conrainer'>
+          <button
           type="submit"
           class="btn btn-outline-primary px-3"
           (click)="addFeedback(feedbackForm.value)"
@@ -34,6 +36,9 @@
         >
           Добавить отзыв
         </button>
+        <button class="btn btn-outline-primary px-3 red" (click)="close()">Отменить</button>
+        </div>
+       
       </div>
     </div>
   </div>

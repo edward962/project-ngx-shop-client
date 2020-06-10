@@ -21,8 +21,6 @@ export class CategoryProductComponent {
   ) {}
 
   public async addToBusket(product: IProduct): Promise<void> {
-
-    // this.store.dispatch(addProductToCart({ product }));
     this._modalService.open({
       component: CardConfirmModalComponent,
       resolver: this._componentFactoryResolver,
