@@ -23,8 +23,7 @@ export class ProductComponent implements OnInit {
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _injector: Injector
   ) {}
-  @Output()
-  public addReview: EventEmitter<any> = new EventEmitter<any>();
+
   // tslint:disable-next-line: no-any
   public query: any;
   // tslint:disable-next-line: no-any
