@@ -1,7 +1,8 @@
 <div class="rate">
   <div *ngFor="let star of stars; let i = index" class="stars">
-    <mat-icon [ngClass]="{ 'gold-star': highlight(i) }">{{
-      coloredStar
-    }}</mat-icon>
+    <span 
+    class='fa fa-star'
+    [ngClass]="{ 'checked': highlight(i) }"
+    ></span>
   </div>
 </div>
