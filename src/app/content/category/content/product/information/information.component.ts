@@ -3,8 +3,6 @@ import {
   Input,
   ComponentFactoryResolver,
   Injector,
-  Output,
-  EventEmitter,
 } from '@angular/core';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
@@ -20,8 +18,6 @@ import { IProduct } from '../../../../../store/reducers/products.reducer';
 export class InformationComponent {
   // tslint:disable-next-line: no-any
   @Input() public product: any;
-  @Output()
-  public addReview: EventEmitter<any> = new EventEmitter<any>();
   public isShow = false;
 
   constructor(
@@ -50,8 +46,5 @@ export class InformationComponent {
 
   public show() {
     this.isShow = !this.isShow;
-  }
-  public addFeedback() {
-    this.addReview.emit();
   }
 }

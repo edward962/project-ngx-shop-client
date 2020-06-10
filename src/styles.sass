@@ -74,6 +74,8 @@ main
             color: #0056b3
             text-decoration: underline
             cursor: pointer
+.nav 
+  width: 107%            
 .nav-tabs
     color: #007bff
     &:hover
@@ -385,7 +387,7 @@ form button[type="submit"]:not(.btn-send)
 @media all and (min-width: 767px)
   .modal-content
     min-height: auto
-    border: 1px solid rgba(0, 0, 0, 0.2)
+
 
 .modal-title-block
   font-size: 1rem
@@ -664,6 +666,7 @@ form button[type="submit"]:not(.btn-send)
   display: flex
   flex-wrap: wrap
   flex-direction: row
+  margin-top: 1rem
 
 .rate.rate-sm .icon-star
   width: 1rem
@@ -677,12 +680,7 @@ form button[type="submit"]:not(.btn-send)
 
 .rate.no-reviews .rate-amount
   color: #979797
-.reviews
-  display: flex
-  flex-direction: column
-  align-items: stretch
-  margin-left:80px
-  margin-right:80px
+
 
 .icon-star
   display: flex
@@ -702,11 +700,13 @@ form button[type="submit"]:not(.btn-send)
 
 .review
   border-bottom: 1px solid #ddd
-  padding: 16px 0
+  width: 100%
+  padding: 5px 5px
 
 .add-review
   border-bottom: none
   width: 440px
+  min-height: 290px
   padding: 20px 0
 
 .counter
@@ -828,7 +828,6 @@ form button[type="submit"]:not(.btn-send)
 
 .btn-lg
     margin: .5rem 0
-    width: 100%  
 .inner-col .col-title
   font-size: 18px
   line-height: 24px

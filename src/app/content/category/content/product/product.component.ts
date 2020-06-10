@@ -19,9 +19,7 @@ export class ProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public productsService: ProductsService,
     private store: Store<IStore>,
-    private  _modalService: ModalService,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _injector: Injector
+
   ) {}
 
   // tslint:disable-next-line: no-any
@@ -38,28 +36,5 @@ export class ProductComponent implements OnInit {
     this.store.dispatch(getProductPending({ id }));
     this.product$?.subscribe((product) => (this.product = product));
   }
-  public async addFeedback(): Promise<void> {
-    const component = await import(
-      './description/feedbacks/feedbacks.component'
-    );
-
-    this._modalService.open({
-      component: component.FeedbacksComponent,
-      resolver: this._componentFactoryResolver,
-      injector: this._injector,
-      context: {
-        save: (value: IFeedback) => {
-          this.store.dispatch(
-            createFeedbackPending({
-              feedback: { ...value },
-            }),
-          );
-          this._modalService.close();
-        },
-        close: () => {
-          this._modalService.close();
-        },
-      },
-    });
-  }
+  
 }
