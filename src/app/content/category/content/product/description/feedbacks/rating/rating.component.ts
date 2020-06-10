@@ -4,7 +4,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   selector: 'ngx-shop-rating',
   templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.sass'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
