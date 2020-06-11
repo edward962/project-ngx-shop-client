@@ -1,9 +1,7 @@
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoriesService } from 'src/app/shared/services/category.service';
 import { Observable } from 'rxjs';
-import { ProductsService } from 'src/app/shared/services/products.service';
 import { Store } from '@ngrx/store';
 import { BrandsService } from 'src/app/shared/services/brands.service';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
@@ -43,7 +41,6 @@ export class CategoryComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private categoriesService: CategoriesService,
     private store: Store<IStore>,
     public brandsService: BrandsService
   ) {}

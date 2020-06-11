@@ -9,10 +9,12 @@ import { ICartProduct, reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
 import { ICategoryState, reducerCategories } from './categories.reducer';
-import { reducerProducts, IProductState } from './products.reducer';
+import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
+import { IProductState } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 
 export interface IStore {
-  products: IProductState;
+  product:IProductState,
+  products: IProductsState;
   cart: EntityState<ICartProduct>;
   categories: ICategoryState;
   routerReducer: typeof routerReducer;
@@ -22,7 +24,6 @@ export interface IStore {
 export const reducers: ActionReducerMap<any> = {
   cart: reducerCart,
   categories: reducerCategories,
-  products: reducerProducts,
   //TODO router ?
 };
 

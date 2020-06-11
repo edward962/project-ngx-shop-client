@@ -1,5 +1,5 @@
 import { Component, Input, NgModule } from '@angular/core';
-import { IProduct } from '../../../store/reducers/products.reducer';
+import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
 
 
 @Component({
@@ -13,10 +13,6 @@ export class CardConfirmModalComponent {
   public close!: () => void;
   public save!: () => void;
 }
-
-
-
-
 
 @NgModule({
   declarations: [

@@ -1,17 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  getProductsPending,
-  getProductsSuccess,
-  getProductPending,
-  getProductSuccess,
-  getSuggestedProductsSuccess,
-  getSuggestedProductsPending,
-} from '../actions/products.actions';
+
+import { getProductSuccess, getProductPending } from 'src/app/store/actions/products.actions';
 
 export interface IProductState {
   item: IProduct;
-  items: IProduct[];
-  suggestedProducts: IProduct[];
   loading: boolean;
 }
 
@@ -46,7 +38,7 @@ export interface IProduct {
 }
 
 
-const productsReducer = createReducer(
+const productReducer = createReducer(
   {
     item: {
       _id: '',
@@ -58,24 +50,9 @@ const productsReducer = createReducer(
       status: false,
       rating: 0,
     },
-    items: [],
-    suggestedProducts: [],
     loading: false,
   },
-  on(getProductsPending, (state: IProductState) => ({
-    ...state,
-    loading: true,
-  })),
-  on(getProductsSuccess, (state: IProductState, { products }) => ({
-    ...state,
-    items: products,
-    loading: false,
-  })),
   on(getProductPending, (state: IProductState) => ({
-    ...state,
-    loading: true,
-  })),
-  on(getSuggestedProductsPending, (state: IProductState) => ({
     ...state,
     loading: true,
   })),
@@ -84,17 +61,12 @@ const productsReducer = createReducer(
     item: product,
     loading: false,
   })),
-  on(getSuggestedProductsSuccess, (state: IProductState,  { products } ) => ({
-    ...state,
-    suggestedProducts:products,
-    loading: false,
-  })),
 );
 
-export function reducerProducts(
+export function reducerProduct(
   state: IProductState | undefined,
   // tslint:disable-next-line: no-any
   action: any,
 ) {
-  return productsReducer(state, action);
+  return productReducer(state, action);
 }
