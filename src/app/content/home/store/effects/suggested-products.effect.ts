@@ -20,21 +20,6 @@ export class SuggestedProductsEffects {
     private actions: Actions,
     private productsService: ProductsService,
   ) {}
-// tslint:disable-next-line: no-any
-  // public getProducts$: Observable<any> = createEffect(() =>
-  //   this.actions.pipe(
-  //     ofType(getProductsPending),
-  //     switchMap(({ type, ...search }) => {
-  //       return this.productsService.getProductsBySubCategory(search).pipe(
-  //         // tslint:disable-next-line: no-any
-  //         map((_products: any) => {
-  //           const products = _products.items;
-  //           return getProductsSuccess({ products });
-  //         }),
-  //       );
-  //     }),
-  //   ),
-  // );
   public getSuggestedProducts$: Observable<any> = createEffect(() =>
       this.actions.pipe(
         ofType(getSuggestedProductsPending),

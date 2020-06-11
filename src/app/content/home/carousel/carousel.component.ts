@@ -1,8 +1,4 @@
 import { Component, ChangeDetectorRef, Input } from '@angular/core';
-import { IProduct } from '../../category/content/product/store/reducers/product.reducer';
-import { IStore } from 'src/app/store/reducers';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { slideAnimation } from './carusel.slider.animation';
 
 
@@ -14,8 +10,29 @@ import { slideAnimation } from './carusel.slider.animation';
   animations: slideAnimation,
 })
 export class CarouselComponent{
-  public products$: Observable<any> = this.store.select('suggestedProducts', 'items');
-  public product!: IProduct;
+  public images = [
+    {
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQp_lDXF3nN_o7wjtXLskGvjgjyFRBmIl4pHCX_J_mx-HSrg-8&usqp=CAU',
+      title: '',
+    },
+    {
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcStJ32zQ6CbAXZ-7j8FzSJkIvbsLwrQx3PwrmTUqXBR9Orfe7bH&usqp=CAU',
+      title: '',
+    },
+    {
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTrmsjCuIJVBwyO7qSS6yeoTalqK_TTDczhANud1-UA2zpXoYAD&usqp=CAU',
+      title: '',
+    },
+
+    {
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR34SsksiaBPnLJ7M9GGV235tXP80ZzXCnbrhjGEAV-ErGXiDBi&usqp=CAU',
+      title: '',
+    },
+    {
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqbKWwn2WcCZ_57Zeb2MF2f8LxRX3deBiNQDNyiYUDYncwSE1r&usqp=CAU',
+      title: '',
+    } 
+  ];
   public currentIndex = 0;
 
   public animateRight = { translateEnter: 'translateX(100%)', translateLeave: 'translateX(-100%)' };
@@ -23,20 +40,16 @@ export class CarouselComponent{
   public isSlidedRight = true;
   public slidingBlocked = false;
   constructor(
-    private store: Store<IStore>,
     private readonly cdr: ChangeDetectorRef,
   ){}
 
-ngOnInit(){
-  this.products$?.subscribe((products) => ( products ?  this.product =  products[5] : null));
-}
   public next() {
     if (this.slidingBlocked) {
       return;
     }
     this.isSlidedRight = true;
     this.cdr.detectChanges();
-    if (this.currentIndex === this.product.images.length - 1) {
+    if (this.currentIndex === this.images.length - 1) {
       this.currentIndex = 0;
       return;
     }
@@ -50,7 +63,7 @@ ngOnInit(){
     this.isSlidedRight = false;
     this.cdr.detectChanges();
     if (this.currentIndex === 0) {
-      this.currentIndex = this.product.images.length - 1;
+      this.currentIndex = this.images.length - 1;
       return;
     }
     this.currentIndex -= 1;
