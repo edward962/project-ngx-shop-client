@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
+import { getProductPending, getProductSuccess } from '../actions/product.actions';
 
-import { getProductSuccess, getProductPending } from 'src/app/store/actions/products.actions';
+
 
 export interface IProductState {
   item: IProduct;

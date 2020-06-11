@@ -3,12 +3,10 @@ import {
   getProductsPending,
   getProductsSuccess,
 } from '../actions/products.actions';
-import { getSuggestedProductsPending, getSuggestedProductsSuccess } from 'src/app/store/actions/products.actions';
 import { IProductImage, IFeedback } from '../../content/product/store/reducers/product.reducer';
 
 export interface IProductsState {
   items: IProduct[];
-  suggestedProducts: IProduct[];
   loading: boolean;
 }
 export interface IProduct {
@@ -27,7 +25,6 @@ export interface IProduct {
 const productsReducer = createReducer(
   {
     items: [],
-    suggestedProducts: [],
     loading: false,
   },
   on(getProductsPending, (state: IProductsState) => ({
@@ -37,15 +34,6 @@ const productsReducer = createReducer(
   on(getProductsSuccess, (state: IProductsState, { products }) => ({
     ...state,
     items: products,
-    loading: false,
-  })),
-  on(getSuggestedProductsPending, (state: IProductsState) => ({
-    ...state,
-    loading: true,
-  })),
-  on(getSuggestedProductsSuccess, (state: IProductsState,  { products } ) => ({
-    ...state,
-    suggestedProducts:products,
     loading: false,
   })),
 );

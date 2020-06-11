@@ -1,10 +1,5 @@
 import { IStore } from 'src/app/store/reducers';
-import {
-  getProductSuccess,
-  getProductPending,
-  createFeedbackPending,
-  createFeedbackSuccess,
-} from '../../../../../../store/actions/products.actions';
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
@@ -17,6 +12,7 @@ import {
 } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { ProductsService } from '../../../../../../shared/services/products.service';
+import { getProductPending, getProductSuccess, createFeedbackPending, createFeedbackSuccess } from '../actions/product.actions';
 
 
 @Injectable()

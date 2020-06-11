@@ -1,10 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 import { IProduct } from '../reducers/products.reducer';
+import { IPriceData } from '../../category.component';
 
 export const getProductsPending = createAction(
-  '[Products] Get products pending',
-  props<{ text?: string; subcategory?: string; page: number }>(),
-);
+    '[Products] Get products pending',
+    props<{
+      id?: string,
+      priceRange?: IPriceData,
+      productName?: string,
+      selectedBrands?: string,
+    }>(),
+  );
 
 export const getProductsSuccess = createAction(
   '[Products] Get products success',
