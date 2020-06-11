@@ -7,8 +7,11 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryComponent } from './category.component';
 import { CategoryDropdownComponent } from './category-dropdown/category-dropdown.component';
-import { ProductModule } from './content/product/product.module';
 import { CategoryProductComponent } from './product-card/product-card.component';
+import { EffectsModule } from '@ngrx/effects';
+import { reducerProducts } from './store/reducers/products.reducer';
+import { StoreModule } from '@ngrx/store';
+import { ProductsEffects } from './store/effects/products.effect';
 
 
 
@@ -21,7 +24,10 @@ import { CategoryProductComponent } from './product-card/product-card.component'
     CategoryDropdownComponent,
 
   ],
-  imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule, ProductModule],
-  providers: [ BrandsService ],
+  imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule,
+    StoreModule.forFeature('products', reducerProducts),
+    EffectsModule.forFeature([ProductsEffects]),
+  ],
+  providers: [BrandsService],
 })
-export class CategoryModule {}
+export class CategoryModule { }

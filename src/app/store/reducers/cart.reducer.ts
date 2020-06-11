@@ -13,7 +13,7 @@ import {
   MemoizedSelector,
   createFeatureSelector,
 } from '@ngrx/store';
-import { IProduct } from './products.reducer';
+import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 
 export interface ICartProduct extends IProduct {
   count: number;

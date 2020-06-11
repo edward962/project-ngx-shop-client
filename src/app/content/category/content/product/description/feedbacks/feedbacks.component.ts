@@ -1,11 +1,12 @@
-import { Component, Input, OnInit, ComponentFactoryResolver, Injector } from '@angular/core';
-import { IFeedback, IProduct } from '../../../../../../store/reducers/products.reducer';
+import { Component, OnInit, ComponentFactoryResolver, Injector } from '@angular/core';
 import { createFeedbackPending, getProductPending } from '../../../../../../store/actions/products.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from '../../../../../../store/reducers';
 import { Observable } from 'rxjs/internal/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from 'src/app/modal/modal.service';
+import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
+import { IFeedback } from '../../store/reducers/product.reducer';
 
 @Component({
   selector: 'ngx-shop-feedbacks',
@@ -16,7 +17,7 @@ export class FeedbacksComponent  implements OnInit{
 
 
   public query: any;
-  public product$?: Observable<any> = this.store.select('products', 'item');
+  public product$?: Observable<any> = this.store.select('product', 'item');
   public product!: IProduct;
 
 

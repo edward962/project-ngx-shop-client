@@ -6,8 +6,8 @@ import {
 } from 'src/app/store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { IProduct } from '../../store/reducers/products.reducer';
 import { getProductsPending, getSuggestedProductsPending } from '../../store/actions/products.actions';
+import { IProduct } from '../category/store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-products',
@@ -16,7 +16,7 @@ import { getProductsPending, getSuggestedProductsPending } from '../../store/act
 export class HomeComponent implements OnInit {
   public categories: ICategory[] = [];
   public categories$: Observable<ICategory[]> = this.store.select('categories', 'items');
-  public products$: Observable<IProduct[]> = this.store.select('products', 'suggestedProducts') ;
+  public products$: Observable<IProduct[]> = this.store.select('products','suggestedProducts') ;
 
   constructor(
     private store: Store<IStore>,

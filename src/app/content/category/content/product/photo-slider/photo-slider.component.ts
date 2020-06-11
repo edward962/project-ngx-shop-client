@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { IProduct } from '../../../../../store/reducers/products.reducer';
 import { slideAnimation } from './photo-slider.animation';
+import { IProduct } from '../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-product-photo',

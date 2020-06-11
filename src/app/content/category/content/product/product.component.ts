@@ -23,14 +23,13 @@ export class ProductComponent implements OnInit {
   // tslint:disable-next-line: no-any
   public query: any;
   // tslint:disable-next-line: no-any
-  public product$?: Observable<any> = this.store.select('products', 'item');
+  public product$?: Observable<any> = this.store.select('product', 'item');
   // tslint:disable-next-line: no-any
   public product: any;
 
   public ngOnInit(): void {
     this.query = this.activatedRoute.snapshot.queryParams;
     const { id } = this.query;
-
     this.store.dispatch(getProductPending({ id }));
     this.product$?.subscribe((product) => (this.product = product));
   }

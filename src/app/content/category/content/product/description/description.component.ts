@@ -1,6 +1,5 @@
-import { Component, Input, NgModule } from '@angular/core';
-import { IProduct } from '../../../../../store/reducers/products.reducer';
-
+import { Component, Input } from '@angular/core';
+import { IProduct } from '../../../store/reducers/products.reducer';
 @Component({
   selector: 'ngx-shop-product-description',
   templateUrl: './description.component.html',
