@@ -1,5 +1,4 @@
 import { Component, OnInit, ComponentFactoryResolver, Injector } from '@angular/core';
-import { createFeedbackPending, getProductPending } from '../../../../../../store/actions/products.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from '../../../../../../store/reducers';
 import { Observable } from 'rxjs/internal/Observable';
@@ -7,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalService } from 'src/app/modal/modal.service';
 import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
 import { IFeedback } from '../../store/reducers/product.reducer';
+import { getProductPending, createFeedbackPending } from '../../store/actions/product.actions';
 
 @Component({
   selector: 'ngx-shop-feedbacks',

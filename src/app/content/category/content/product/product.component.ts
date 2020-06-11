@@ -3,10 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
-import {
-  getProductPending
-} from 'src/app/store/actions/products.actions';
+
 import { Observable } from 'rxjs/internal/Observable';
+import { getProductPending } from './store/actions/product.actions';
 
 @Component({
   selector: 'ngx-shop-product',

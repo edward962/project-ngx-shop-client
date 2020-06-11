@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 
-export const caruselSlideAnimation = [
+export const slideAnimation = [
   trigger('slideAnimation', [
     transition(':enter', [
       style({ transform: '{{translateEnter}}' }),

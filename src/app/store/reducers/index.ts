@@ -11,10 +11,12 @@ import { EntityState } from '@ngrx/entity/src';
 import { ICategoryState, reducerCategories } from './categories.reducer';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { IProductState } from 'src/app/content/category/content/product/store/reducers/product.reducer';
+import { ISuggestedProductsState } from 'src/app/content/home/store/reducers/suggested-products.reducer';
 
 export interface IStore {
   product:IProductState,
   products: IProductsState;
+  suggestedProducts: ISuggestedProductsState;
   cart: EntityState<ICartProduct>;
   categories: ICategoryState;
   routerReducer: typeof routerReducer;

@@ -11,8 +11,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducerProduct } from './store/reducers/product.reducer';
 import { ProductEffects } from './store/effects/product.effect';
 
-console.log(';dkfjvbnkjse rv;aud;fhbnae/lrkfna;eoviun')
-
 @NgModule({
   declarations: [
     ProductComponent,

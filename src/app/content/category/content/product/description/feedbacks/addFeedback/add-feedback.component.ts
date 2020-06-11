@@ -4,11 +4,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { IStore } from 'src/app/store/reducers';
-import { getProductPending, createFeedbackPending } from 'src/app/store/actions/products.actions';
 import { RatingComponent } from '../rating/rating.component';
 import { CommonModule } from '@angular/common';
 import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
 import { IFeedback } from '../../../store/reducers/product.reducer';
+import { getProductPending, createFeedbackPending } from '../../../store/actions/product.actions';
 
 @Component({
   selector: 'ngx-shop-add-feedback',

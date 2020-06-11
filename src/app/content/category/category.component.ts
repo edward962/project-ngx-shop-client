@@ -5,8 +5,9 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { BrandsService } from 'src/app/shared/services/brands.service';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
-import { getProductsPending } from 'src/app/store/actions/products.actions';
 import { getCategoriesPending } from '../../store/actions/category.actions';
+import { getProductsPending } from './store/actions/products.actions';
+
 
 export interface IPriceData {
   value: number;
