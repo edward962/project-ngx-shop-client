@@ -11,16 +11,7 @@ import { customTransition } from './router.animation';
 })
 
 export class AppComponent {
-  constructor(private router: Router) { }
   public getRouterState(outlet: RouterOutlet): Data {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.state;
-  }
-  ngOnInit(){
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-          return;
-      }
-      window.scrollTo(0, 0)
-  });
   }
 }

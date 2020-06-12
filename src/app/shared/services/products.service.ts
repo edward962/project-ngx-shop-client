@@ -10,8 +10,8 @@ export class ProductsService {
     private http: HttpClient) {
   }
 
-  public createFeedback(feedback: IFeedback): Observable<IFeedback> {
-    return this.http.post<IFeedback>(`/feedbacks`, feedback);
+  public createFeedback(feedback: IFeedback, product: string): Observable<IFeedback> {
+    return this.http.post<IFeedback>(`/feedbacks`, {...feedback,product});
   }
 
   public getProductsBySubCategory(

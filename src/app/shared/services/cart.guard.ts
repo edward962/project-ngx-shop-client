@@ -19,14 +19,12 @@ export class CartGuard implements CanActivate {
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.store.select(selectProducts).pipe(
-      tap((v) => {
-        console.log('AAAAA', v);
-      }),
       take(1),
       switchMap((products: ICartProduct[]) => {
-        if (Array.isArray(products) && products.length > 0) {
+        if (products?.length > 0) {
           return of(true);
         }
+        // TODO why ?
         //this.store.dispatch(go({ path: ['/'] }));
         return of(false);
       }),

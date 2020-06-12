@@ -16,8 +16,8 @@
         *ngIf="i === currentIndex"
         class="img_wrap"
       >
-        <div class="img-wrap">
-          <img [src]="image?.url" class="clide" [alt]="image?.title"/>
+        <div class="img-wrap"  [ngStyle]="{backgroundImage: getImgUrl(image)}" >
+          <!-- <img [src]="image?.url" class="slide" [alt]="image?.title"/> -->
         </div>
       </div>
     </ng-container>

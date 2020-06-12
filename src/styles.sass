@@ -541,15 +541,16 @@ form button[type="submit"]:not(.btn-send)
   width: 12px
   height: 12px
   opacity: 0.8
-  border: 2px solid #ffffff
+  border: 2px solid #ccccce
   border-radius: 50%
   background-color: transparent
+  cursor: pointer
 
 .main-carousel .carousel-indicators li.active
   width: 12px
   height: 12px
 
-  background-color: #ffffff
+  background-color: #ccccce
   opacity: 0.8
 
 .main-carousel .carousel-control-next,
@@ -559,6 +560,7 @@ form button[type="submit"]:not(.btn-send)
   height: 34px
   top: 50%
   margin-top: -17px
+  cursor: pointer
 
 .main-carousel .carousel-control-next:hover,
 .main-carousel .carousel-control-prev:hover
@@ -851,6 +853,10 @@ form button[type="submit"]:not(.btn-send)
   align-items: center
   justify-content: center
   max-width: 45%
+  overflow: hidden
+.description-col .product-img .product-img-wrap
+  display: flex
+  width: 70%
 
 .description-col .product-desc
   padding: 1.5rem 1.5rem 1.5rem 0.25rem
@@ -890,7 +896,7 @@ form button[type="submit"]:not(.btn-send)
   .product-list-box.-basket .description-col
     border-bottom: 1px solid #c4c4c4
 
-  .description-col .product-img
+  .description-col .product-img-wrap
     padding: 1rem
     display: flex
     align-items: center
@@ -898,6 +904,8 @@ form button[type="submit"]:not(.btn-send)
     background: #eceeef
     &:focus
       outline: none
+  .img
+    max-height: 100%  
   .description-col .product-desc,
   .default-col
     padding: 0.875rem 1.25rem

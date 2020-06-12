@@ -6,5 +6,6 @@ import { IProduct } from '../../category/store/reducers/products.reducer';
   templateUrl: './product-card.component.html',
 })
 export class ProductCardComponent {
-  @Input() public product!: IProduct;
+  @Input() 
+  public product!: IProduct;
 }

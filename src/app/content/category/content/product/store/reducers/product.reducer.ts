@@ -13,7 +13,6 @@ export interface IFeedback {
   advantages?: string;
   limitations?: string;
   description?: string;
-  product: string;
 }
 
 export interface ISearch {

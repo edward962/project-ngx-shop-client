@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-
+interface IModalData {
+  component: Type<any>;
+  context: object;
+}
 @Injectable()
 export class ModalService {
   private _modalSequence$$: Subject<any> = new Subject();
 
-  public open(componentObj: {
-    component: any;
-    resolver: any;
-    injector: any;
-    context: any;
-  }): void {
+  public open(componentObj: IModalData): void {
     this._modalSequence$$.next(componentObj);
   }
 
@@ -18,7 +16,7 @@ export class ModalService {
     this._modalSequence$$.next({});
   }
 
-  public get modalSequence$(): Observable<any> {
+  public get modalSequence$(): Observable<IModalData> {
     return this._modalSequence$$.asObservable();
   }
 }

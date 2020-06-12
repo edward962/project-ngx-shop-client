@@ -1,5 +1,4 @@
-import { Component, Input, NgModule } from '@angular/core';
-import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
+import { Component, NgModule } from '@angular/core';
 
 
 @Component({
@@ -8,8 +7,6 @@ import { IProduct } from 'src/app/content/category/store/reducers/products.reduc
   styleUrls: ['./card-confirm-modal.component.sass'],
 })
 export class CardConfirmModalComponent {
-  @Input()
-  public product!: IProduct;
   public close!: () => void;
   public save!: () => void;
 }

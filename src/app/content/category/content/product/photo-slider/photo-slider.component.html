@@ -2,14 +2,14 @@
   <ol class="carousel-indicators">
     <li
       [ngClass]="{ active: j === currentIndex }"
-      *ngFor="let image of product?.images; let j = index"
+      *ngFor="let image of images; let j = index"
       (click)='show(j)'
     >
-      <img [src]="image?.url" [alt]="product.name"/>
+      <img [src]="image?.url" />
     </li>
   </ol>
   <div class="carousel-inner">
-    <ng-container *ngFor="let image of product?.images; let i = index">
+    <ng-container *ngFor="let image of images; let i = index; trackBy: trackByUrl;">
       <div
         [@slideAnimation]="{value: '', params: isSlidedRight ? animateRight : animateLeft}"
         (@slideAnimation.start)="animationStart()"
@@ -18,17 +18,17 @@
         class="carousel-item"
       >
         <div class="img-wrap">
-          <img [src]="image?.url" [alt]="product.name"/>
+          <img [src]="image?.url" />
         </div>
       </div>
     </ng-container>
 
   </div>
-  <a *ngIf=' product?.images.length > 1' class="carousel-control-prev" (click)="prev()">
+  <a *ngIf='images.length > 1' class="carousel-control-prev" (click)="prev()">
     <span class="carousel-control-prev-icon"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a *ngIf=' product?.images.length > 1' class="carousel-control-next" (click)="next()">
+  <a *ngIf='images.length > 1' class="carousel-control-next" (click)="next()">
     <span class="carousel-control-next-icon"></span>
     <span class="sr-only">Next</span>
   </a>
