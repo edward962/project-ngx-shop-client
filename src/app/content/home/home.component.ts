@@ -27,6 +27,6 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit() {
     this.store.dispatch(getCategoriesPending());
-    this.store.dispatch(getSuggestedProductsPending({}));
+    this.store.dispatch(getSuggestedProductsPending());
   }
 }

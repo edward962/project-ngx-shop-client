@@ -43,7 +43,7 @@ export class ProductEffects {
       withLatestFrom(this.store.select('product', 'item', '_id')),
       switchMap(([{ feedback }, product]) =>
         this.productsService
-          .createFeedback({ ...feedback, product })
+          .createFeedback(feedback, product)
           .pipe(
             mergeMap(() => [
               createFeedbackSuccess(),

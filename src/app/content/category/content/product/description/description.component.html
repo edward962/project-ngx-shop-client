@@ -17,7 +17,7 @@
   </nav>
   <div class="tab-content">
     <div *ngIf="isShowDescription">{{ product?.description }}</div>
-    <ngx-shop-feedbacks *ngIf="!isShowDescription" [product]="product"></ngx-shop-feedbacks>
+    <ngx-shop-feedbacks *ngIf="!isShowDescription"  [feedbacks]="product?.feedbacks"></ngx-shop-feedbacks>
     
   </div>
 </div>

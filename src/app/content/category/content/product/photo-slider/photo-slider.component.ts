@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { slideAnimation } from './photo-slider.animation';
 import { IProduct } from '../../../store/reducers/products.reducer';
+import { IProductImage } from '../store/reducers/product.reducer';
 
 @Component({
   selector: 'ngx-shop-product-photo',
@@ -8,7 +9,8 @@ import { IProduct } from '../../../store/reducers/products.reducer';
   animations: slideAnimation,
 })
 export class PhotoSliderComponent {
-  @Input() public product!: IProduct;
+  @Input() 
+  public images!: IProductImage[];
   public currentIndex = 0;
 
   public animateRight = { translateEnter: 'translateX(100%)', translateLeave: 'translateX(-100%)' };
@@ -27,7 +29,7 @@ export class PhotoSliderComponent {
     }
     this.isSlidedRight = true;
     this.cdr.detectChanges();
-    if (this.currentIndex === this.product.images.length - 1) {
+    if (this.currentIndex === this.images.length - 1) {
       this.currentIndex = 0;
       return;
     }
@@ -41,7 +43,7 @@ export class PhotoSliderComponent {
     this.isSlidedRight = false;
     this.cdr.detectChanges();
     if (this.currentIndex === 0) {
-      this.currentIndex = this.product.images.length - 1;
+      this.currentIndex = this.images.length - 1;
       return;
     }
     this.currentIndex -= 1;
@@ -62,6 +64,10 @@ export class PhotoSliderComponent {
 
   public animationEnd() {
     this.slidingBlocked = false;
+  }
+
+  public trackByUrl(item: IProductImage){
+    return item.url
   }
 }
 

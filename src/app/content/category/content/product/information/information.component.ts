@@ -1,8 +1,6 @@
 import {
   Component,
   Input,
-  ComponentFactoryResolver,
-  Injector,
 } from '@angular/core';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
@@ -23,14 +21,10 @@ export class InformationComponent {
   constructor(
     private store: Store<IStore>,
     private _modalService: ModalService,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _injector: Injector
   ) {}
   public async addToBusket(product: IProduct): Promise<void> {
      this._modalService.open({
       component: CardConfirmModalComponent,
-      resolver: this._componentFactoryResolver,
-      injector: this._injector,
       context: {
         product: { ...product },
         save: () => {

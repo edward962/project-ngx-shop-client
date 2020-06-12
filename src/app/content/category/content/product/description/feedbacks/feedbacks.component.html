@@ -4,12 +4,12 @@
     ><span>Добавить отзыв</span></a
   >
   </div>
-  <div *ngFor="let feedBack of product?.feedbacks" class="review">
+  <div *ngFor="let feedBack of feedbacks" class="review">
     <h6>Аноним</h6>
     <ngx-shop-star-rating [feedbackRate]="feedBack.rate"></ngx-shop-star-rating>
     <p class="mt-2 mb-0 pt-1">
       {{ feedBack.advantages }}
     </p>
   </div>
-  <div class='no-reviews' *ngIf="product?.feedbacks.length == 0">Нет отзывов</div>
+  <div class='no-reviews' *ngIf="feedbacks?.length === 0">Нет отзывов</div>
 </div>

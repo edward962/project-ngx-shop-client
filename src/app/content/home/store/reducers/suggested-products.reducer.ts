@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import { getSuggestedProductsPending, getSuggestedProductsSuccess } from '../actions/suggested-products.actions';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
@@ -8,13 +8,14 @@ export interface ISuggestedProductsState {
   loading:boolean
 }
 
+const initialState : ISuggestedProductsState = {
+  items: [],
+  loading: false,
+}
 
 
 const suggestedProductsReducer = createReducer(
-  {
-    items: [],
-    loading: false,
-  },
+  initialState,
   on(getSuggestedProductsPending, (state: IProductsState) => ({
     ...state,
     loading: true,
@@ -29,7 +30,7 @@ const suggestedProductsReducer = createReducer(
 export function reducerSuggestedProducts(
   state: IProductsState | undefined,
   // tslint:disable-next-line: no-any
-  action: any,
+  action: Action,
 ) {
   return suggestedProductsReducer(state, action);
 }

@@ -11,14 +11,17 @@ export enum TooltipPosition {
   selector: '[tooltip]',
 })
 export class TooltipDirective implements OnDestroy {
-  @Input('tooltip') public tooltipTitle: string | undefined;
-  @Input() public position: TooltipPosition = TooltipPosition.TOP;
-
+  @Input('tooltip')
+  public tooltipTitle: string | undefined;
+  @Input()
+  public position: TooltipPosition = TooltipPosition.TOP;
 
   public tooltip: HTMLElement | undefined | null;
   public offset = 10;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(
+    private readonly _el: ElementRef, 
+    private readonly renderer: Renderer2) {
   }
 
   @HostListener('mouseenter')
@@ -70,7 +73,7 @@ export class TooltipDirective implements OnDestroy {
     if (!this.tooltip) {
       return;
     }
-    const hostPos = this.el.nativeElement.getBoundingClientRect();
+    const hostPos = this._el.nativeElement.getBoundingClientRect();
 
     const tooltipPos = this.tooltip.getBoundingClientRect();
 
