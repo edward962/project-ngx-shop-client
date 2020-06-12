@@ -5,11 +5,14 @@
       class="inner-col description-col"
     >
       <div class="product-img">
-        <img
+        <!-- <div class="product-img-wrap"> -->
+          <img 
+          class ='img'
           width="80"
           [src]="product.images | imgUrl"
           [alt]="product.name"
         />
+        <!-- </div> -->
       </div>
       <div class="product-desc">
         <h4 class="col-title mb-2">

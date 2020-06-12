@@ -1,5 +1,6 @@
 <div class="product-list-box -basket">
   <div class="inner-col description-col">
+    <i class="fa fa-times-circle-o" aria-hidden="true" tooltip='Убрать товар из корзины' (click)="removeProductFromCart(product)"></i>
     <div
       class="product-img"
       [routerLink]="['/category/product']"
@@ -55,5 +56,5 @@
       </h4>
     </div>
   </div>
-  <i class="fa fa-times" aria-hidden="true" tooltip='Убрать товар из корзины' (click)="removeProductFromCart(product)"></i>
+  <!-- <i class="fa fa-times-circle-o" aria-hidden="true" tooltip='Убрать товар из корзины' (click)="removeProductFromCart(product)"></i> -->
 </div>

@@ -12,26 +12,17 @@ import { slideAnimation } from './carusel.slider.animation';
 export class CarouselComponent{
   public images = [
     {
-      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQp_lDXF3nN_o7wjtXLskGvjgjyFRBmIl4pHCX_J_mx-HSrg-8&usqp=CAU',
+      url: 'https://i2.rozetka.ua/owoxads/sliders/20/20389.jpg',
       title: '',
     },
     {
-      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcStJ32zQ6CbAXZ-7j8FzSJkIvbsLwrQx3PwrmTUqXBR9Orfe7bH&usqp=CAU',
+      url: 'https://i2.rozetka.ua/owoxads/sliders/20/20473.jpg',
       title: '',
     },
     {
-      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTrmsjCuIJVBwyO7qSS6yeoTalqK_TTDczhANud1-UA2zpXoYAD&usqp=CAU',
+      url: 'https://i1.rozetka.ua/owoxads/sliders/20/20677.jpg',
       title: '',
-    },
-
-    {
-      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR34SsksiaBPnLJ7M9GGV235tXP80ZzXCnbrhjGEAV-ErGXiDBi&usqp=CAU',
-      title: '',
-    },
-    {
-      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqbKWwn2WcCZ_57Zeb2MF2f8LxRX3deBiNQDNyiYUDYncwSE1r&usqp=CAU',
-      title: '',
-    } 
+    }
   ];
   public currentIndex = 0;
 
@@ -84,5 +75,9 @@ export class CarouselComponent{
 
   public animationEnd() {
     this.slidingBlocked = false;
+  }
+
+  public getImgUrl(image: any) {
+    return `url(${image?.url})`
   }
 }
