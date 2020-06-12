@@ -1,9 +1,7 @@
 import { IStore } from 'src/app/store/reducers';
-
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-
 import {
   switchMap,
   mergeMap,

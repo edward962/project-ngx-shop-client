@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { IProduct } from '../category/store/reducers/products.reducer';
 
 import { getSuggestedProductsPending } from './store/actions/suggested-products.actions';
+import { getProductsPending } from '../category/store/actions/products.actions';
 
 @Component({
   selector: 'ngx-shop-products',
@@ -26,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit() {
     this.store.dispatch(getCategoriesPending());
-    // this.store.dispatch(getProductsPending({}));
     this.store.dispatch(getSuggestedProductsPending({}));
   }
 }
