@@ -1,59 +1,44 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'ngx-shop-brands',
   templateUrl: './brands.component.html',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: BrandsComponent,
+      multi: true,
+    },
+  ],
   styleUrls: ['./brands.component.sass'],
 })
-export class BrandsComponent {
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-  ) {
-  }
-
-  // tslint:disable-next-line: no-any
-  public query: any;
-  @Output() public queryBrands = new EventEmitter();
-  @Input() public brands: string[] | undefined;
+export class BrandsComponent implements ControlValueAccessor {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  @Input()
+  public brands: string[] | undefined;
   public isShow = false;
+  public onChange!: Function;
   public brandsToShow: string[] = [];
-  // tslint:disable-next-line: no-any
-  public getBrands(brands: any) {
-    this.activatedRoute.queryParams.subscribe(
-      query => this.query = query);
-    const brandsForQuery = brands.join(',');
-    const { id, name, value, highValue, productName } = this.query;
-    if (brandsForQuery) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue, productName, brandsForQuery },
-      });
-    }
+  writeValue(brands: string[]): void {
+    this.brandsToShow = brands;
   }
 
-  public checked(brandName: string) {
-    const index = this.brandsToShow.indexOf(brandName);
-    if (index === -1) {
-      return false;
-    } else {
-      return true;
-    }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
   }
+
+  registerOnTouched(fn: any): void {}
 
   public check(brandName: string) {
     const index = this.brandsToShow.indexOf(brandName);
     if (index === -1) {
       this.brandsToShow.push(brandName);
-
     } else {
       this.brandsToShow.splice(index, 1);
-
     }
-    this.getBrands(this.brandsToShow);
-    return this.queryBrands.emit(this.brandsToShow);
+    this.onChange(this.brandsToShow);
   }
 
   public show() {
@@ -72,4 +57,3 @@ export class BrandsComponent {
     return false;
   }
 }
-

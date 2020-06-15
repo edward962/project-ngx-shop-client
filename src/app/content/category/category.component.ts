@@ -7,7 +7,7 @@ import { BrandsService } from 'src/app/shared/services/brands.service';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getCategoriesPending } from '../../store/actions/category.actions';
 import { getProductsPending } from './store/actions/products.actions';
-
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 export interface IPriceData {
   value: number;
@@ -28,7 +28,10 @@ export interface IProductQuery {
   templateUrl: './category.component.html',
 })
 export class CategoryComponent implements OnInit {
-  public categories$: Observable<ICategory[]>  = this.store.select('categories', 'items');
+  public categories$: Observable<ICategory[]> = this.store.select(
+    'categories',
+    'items'
+  );
   public show: string | undefined;
   public query!: IProductQuery;
   // tslint:disable-next-line: no-any
@@ -38,8 +41,13 @@ export class CategoryComponent implements OnInit {
   // tslint:disable-next-line: no-any
   public brands: any;
   public selectedBrands = '';
+  public form: FormGroup = this.fb.group({
+    brands: [[]],
+    prices: [{}],
+  });
 
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IStore>,
@@ -47,6 +55,7 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
+    this.form.valueChanges.subscribe((values) => console.log(values));
     this.store.dispatch(getCategoriesPending());
     this.activatedRoute.queryParams.subscribe((query) =>
       this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands)
