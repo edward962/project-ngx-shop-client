@@ -18,13 +18,14 @@ export class ProductsService {
     // tslint:disable-next-line: no-any
     search: any,
   ): Observable<IProduct> {
+    console.log('search in servise',search)
     const {
-      id,
+      currentCategory,
       priceRange,
       searchByName,
       selectedBrands,
     } = search;
-    const subCat = id ? id : '';
+    const subCat = currentCategory.categoryId ? currentCategory.categoryId : '';
     const productName = searchByName ? searchByName : '';
     const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
     const priceData = priceRange

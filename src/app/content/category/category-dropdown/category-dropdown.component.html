@@ -14,11 +14,11 @@
     data-parent="#accordion"
     [ngClass]="{ show: index === currentIndex }"
     >
-        <li *ngFor="let subCategory of category.subCategories" [routerLink]="['/category']"
-        [queryParams]="{
-            id: subCategory._id,
-            name: subCategory.name
-        }">
+        <li *ngFor="let subCategory of category.subCategories" 
+        (click)="categorySelect({
+            categoryId: subCategory._id,
+            subcategoryName: subCategory.name
+        })">
             <a
             
             >{{ subCategory.name }}

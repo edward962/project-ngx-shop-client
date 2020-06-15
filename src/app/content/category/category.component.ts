@@ -7,6 +7,7 @@ import { BrandsService } from 'src/app/shared/services/brands.service';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getCategoriesPending } from '../../store/actions/category.actions';
 import { getProductsPending } from './store/actions/products.actions';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 export interface IPriceData {
@@ -28,7 +29,7 @@ export interface IProductQuery {
   templateUrl: './category.component.html',
 })
 export class CategoryComponent implements OnInit {
-  public categories$: Observable<ICategory[]>  = this.store.select('categories', 'items');
+  public categories$: Observable<ICategory[]> = this.store.select('categories', 'items');
   public show: string | undefined;
   public query!: IProductQuery;
   // tslint:disable-next-line: no-any
@@ -38,92 +39,24 @@ export class CategoryComponent implements OnInit {
   // tslint:disable-next-line: no-any
   public brands: any;
   public selectedBrands = '';
+  public form: FormGroup = this.fb.group({
+    currentCategory: [{}],
+    searchByName: ['']
+  });
 
   constructor(
-    private router: Router,
+    private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private store: Store<IStore>,
     public brandsService: BrandsService
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.store.dispatch(getCategoriesPending());
     this.activatedRoute.queryParams.subscribe((query) =>
-      this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands)
+      this.query = query
     );
-  }
 
-  public getProductsByIdCategory(
-    // tslint:disable-next-line: no-any
-    query: any,
-    priceRange: IPriceData,
-    selectedBrands: string
-  ) {
-    this.query = query;
-    const search = {
-      id: query.id,
-      priceRange,
-      productName: query.name,
-      selectedBrands,
-    };
-    this.store.dispatch(getProductsPending(search));
-    this.brandsService
-      .getBrands(query.id, priceRange)
-      .subscribe((brands) => (this.brands = brands));
-  }
-
-  public pricesValue(priceRange: IPriceData) {
-    this.priceRange = priceRange;
-    this.addPriceToQuery(priceRange);
-  }
-
-  public addPriceToQuery(priceRange: IPriceData) {
-    const { id, name } = this.query;
-    const { value, highValue } = priceRange;
-    if (priceRange) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue },
-      });
-    }
-  }
-
-  public addProductNameToQuery(productName: string) {
-    this.productName = productName;
-    const { id, name, value, highValue } = this.query;
-    if (productName) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue, productName },
-      });
-    }
-  }
-
-  public getBrands(brands: string[]) {
-    const brandsForQuery = brands.join(',');
-    this.selectedBrands = brandsForQuery;
-    const { id, name, value, highValue, productName } = this.query;
-    if (brands.join(',')) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          id,
-          name,
-          value,
-          highValue,
-          productName,
-          brandsQuery: brandsForQuery,
-        },
-      });
-    }
-    const { brandsQuery } = this.query;
-    if (brandsQuery) {
-      if (brandsForQuery < brandsQuery && brandsForQuery.length === 0) {
-        this.router.navigate(['.'], {
-          relativeTo: this.activatedRoute,
-          queryParams: { id, name, value, highValue, productName },
-        });
-      }
-    }
+    this.form.valueChanges.subscribe((formData) => this.store.dispatch(getProductsPending(formData)))
   }
 }
