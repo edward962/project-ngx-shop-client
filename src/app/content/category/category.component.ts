@@ -48,7 +48,6 @@ export class CategoryComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private store: Store<IStore>,
-    public brandsService: BrandsService
   ) { }
 
   public ngOnInit() {
