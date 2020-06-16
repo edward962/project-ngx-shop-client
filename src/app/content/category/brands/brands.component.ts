@@ -1,6 +1,9 @@
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { IStore } from 'src/app/store/reducers';
 
 @Component({
   selector: 'ngx-shop-brands',
@@ -15,12 +18,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   styleUrls: ['./brands.component.sass'],
 })
 export class BrandsComponent implements ControlValueAccessor {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
-  @Input()
-  public brands: string[] | undefined;
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private store: Store<IStore>
+  ) {}
   public isShow = false;
   public onChange!: Function;
   public brandsToShow: string[] = [];
+  public brands$: Observable<any> = this.store.select('brands', 'items');
+
   writeValue(brands: string[]): void {
     this.brandsToShow = brands;
   }

@@ -6,32 +6,33 @@ import { IFeedback } from 'src/app/content/category/content/product/store/reduce
 
 @Injectable()
 export class ProductsService {
-  constructor(
-    private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
-  public createFeedback(feedback: IFeedback, product: string): Observable<IFeedback> {
-    return this.http.post<IFeedback>(`/feedbacks`, {...feedback,product});
+  public createFeedback(
+    feedback: IFeedback,
+    product: string
+  ): Observable<IFeedback> {
+    return this.http.post<IFeedback>(`/feedbacks`, { ...feedback, product });
   }
 
   public getProductsBySubCategory(
     // tslint:disable-next-line: no-any
-    search: any,
+    search: any
   ): Observable<IProduct> {
     const {
-      id,
+      currentCategory,
       priceRange,
       searchByName,
       selectedBrands,
     } = search;
-    const subCat = id ? id : '';
-    const productName = searchByName ? searchByName : '';
-    const selectedBrandsQuery = selectedBrands ? selectedBrands : '';
+    const subCat = currentCategory ?? '';
+    const productName = searchByName ?? '';
+    const selectedBrandsQuery = selectedBrands ?? '';
     const priceData = priceRange
       ? priceRange
       : { value: 0, highValue: 1000000000 };
     return this.http.get<IProduct>(
-      `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`,
+      `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`
     );
   }
 

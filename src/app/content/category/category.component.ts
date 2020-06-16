@@ -1,13 +1,14 @@
+import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, interval } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { BrandsService } from 'src/app/shared/services/brands.service';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
-import { getCategoriesPending } from '../../store/actions/category.actions';
 import { getProductsPending } from './store/actions/products.actions';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { getBrandsPending } from './store/actions/brands.actions';
+import { debounce } from 'rxjs/operators';
 
 export interface IPriceData {
   value: number;
@@ -33,7 +34,6 @@ export class CategoryComponent implements OnInit {
     'items'
   );
   public show: string | undefined;
-  public query!: IProductQuery;
   // tslint:disable-next-line: no-any
   public products$: Observable<any> = this.store.select('products', 'items');
   public priceRange!: IPriceData;
@@ -44,95 +44,51 @@ export class CategoryComponent implements OnInit {
   public form: FormGroup = this.fb.group({
     brands: [[]],
     prices: [{}],
+    currentSubCategory: [{}],
+    searchByName: [''],
   });
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store<IStore>,
-    public brandsService: BrandsService
+    private store: Store<IStore>
   ) {}
 
   public ngOnInit() {
-    this.form.valueChanges.subscribe((values) => console.log(values));
+    this.form.valueChanges
+      .pipe(debounce(() => interval(1000)))
+      .subscribe((formData) => {
+        console.log(formData);
+        this.store.dispatch(
+          getProductsPending({
+            id: formData.currentSubCategory,
+            priceRange: {
+              value: formData.prices.low,
+              highValue: formData.prices.high,
+            },
+          })
+        );
+        this.store.dispatch(
+          getBrandsPending({
+            id: formData.currentSubCategory,
+            priceRange: {
+              value: formData.prices.low,
+              highValue: formData.prices.high,
+            },
+          })
+        );
+      });
     this.store.dispatch(getCategoriesPending());
-    this.activatedRoute.queryParams.subscribe((query) =>
-      this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands)
-    );
-  }
-
-  public getProductsByIdCategory(
-    // tslint:disable-next-line: no-any
-    query: any,
-    priceRange: IPriceData,
-    selectedBrands: string
-  ) {
-    this.query = query;
-    const search = {
-      id: query.id,
-      priceRange,
-      productName: query.name,
-      selectedBrands,
-    };
-    this.store.dispatch(getProductsPending(search));
-    this.brandsService
-      .getBrands(query.id, priceRange)
-      .subscribe((brands) => (this.brands = brands));
-  }
-
-  public pricesValue(priceRange: IPriceData) {
-    this.priceRange = priceRange;
-    this.addPriceToQuery(priceRange);
-  }
-
-  public addPriceToQuery(priceRange: IPriceData) {
-    const { id, name } = this.query;
-    const { value, highValue } = priceRange;
-    if (priceRange) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue },
-      });
-    }
-  }
-
-  public addProductNameToQuery(productName: string) {
-    this.productName = productName;
-    const { id, name, value, highValue } = this.query;
-    if (productName) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue, productName },
-      });
-    }
-  }
-
-  public getBrands(brands: string[]) {
-    const brandsForQuery = brands.join(',');
-    this.selectedBrands = brandsForQuery;
-    const { id, name, value, highValue, productName } = this.query;
-    if (brands.join(',')) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          id,
-          name,
-          value,
-          highValue,
-          productName,
-          brandsQuery: brandsForQuery,
+    this.activatedRoute.queryParams.subscribe((query) => {
+      this.form.setValue({
+        searchByName: '',
+        brands: [],
+        currentSubCategory: query.subCatId,
+        prices: {
+          low: query.prices.split(',')[0],
+          high: query.prices.split(',')[1],
         },
       });
-    }
-    const { brandsQuery } = this.query;
-    if (brandsQuery) {
-      if (brandsForQuery < brandsQuery && brandsForQuery.length === 0) {
-        this.router.navigate(['.'], {
-          relativeTo: this.activatedRoute,
-          queryParams: { id, name, value, highValue, productName },
-        });
-      }
-    }
+    });
   }
 }

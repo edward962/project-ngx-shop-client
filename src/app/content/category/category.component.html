@@ -9,6 +9,7 @@
               *ngFor="let category of categories$ | async; let i = index"
               [category]="category"
               [index]="i"
+              formControlName="currentSubCategory"
             ></ngx-shop-category-dropdown>
           </div>
           <h3 class="h5 mt-5 mb-4">Фильтры по товарам</h3>
@@ -18,18 +19,14 @@
             type="text"
             class="form-control"
             placeholder="Фильтр по названию"
-            (input)="addProductNameToQuery(searchBox.value)"
+            formControlName="searchByName"
           />
-          <ngx-shop-brands
-            formControlName="brands"
-            (queryBrands)="getBrands($event)"
-            [brands]="brands"
-          ></ngx-shop-brands>
+          <ngx-shop-brands formControlName="brands"></ngx-shop-brands>
           <ngx-shop-price-slider formControlName="prices">
           </ngx-shop-price-slider>
         </div>
         <div class="col-lg-8 col-xl-9">
-          <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{ query.name }}</h3>
+          <!-- <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{ query.name }}</h3> -->
           <ngx-shop-content-product
             *ngFor="let product of products$ | async"
             [product]="product"
