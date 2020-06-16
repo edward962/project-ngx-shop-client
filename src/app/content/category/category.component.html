@@ -26,7 +26,7 @@
           </ngx-shop-price-slider>
         </div>
         <div class="col-lg-8 col-xl-9">
-          <!-- <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{ query.name }}</h3> -->
+          <h3 class="h5 mt-4 mt-md-0 pt-1 mb-4">{{ query.subCatName }}</h3>
           <ngx-shop-content-product
             *ngFor="let product of products$ | async"
             [product]="product"

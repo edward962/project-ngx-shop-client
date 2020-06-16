@@ -38,6 +38,7 @@ export class CategoryComponent implements OnInit {
   public products$: Observable<any> = this.store.select('products', 'items');
   public priceRange!: IPriceData;
   public productName = '';
+  public query?: any;
   // tslint:disable-next-line: no-any
   public brands: any;
   public selectedBrands = '';
@@ -58,7 +59,8 @@ export class CategoryComponent implements OnInit {
     this.form.valueChanges
       .pipe(debounce(() => interval(1000)))
       .subscribe((formData) => {
-        console.log(formData);
+        console.log(formData
+          )
         this.store.dispatch(
           getProductsPending({
             id: formData.currentSubCategory,
@@ -66,6 +68,8 @@ export class CategoryComponent implements OnInit {
               value: formData.prices.low,
               highValue: formData.prices.high,
             },
+            searchByName: formData.searchByName,
+            // selectedBrands: formData.currentSubCategory
           })
         );
         this.store.dispatch(
@@ -80,6 +84,7 @@ export class CategoryComponent implements OnInit {
       });
     this.store.dispatch(getCategoriesPending());
     this.activatedRoute.queryParams.subscribe((query) => {
+      this.query = query,
       this.form.setValue({
         searchByName: '',
         brands: [],

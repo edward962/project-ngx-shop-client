@@ -7,7 +7,7 @@ export const getProductsPending = createAction(
   props<{
     id?: string;
     priceRange?: IPriceData;
-    productName?: string;
+    searchByName?: string;
     selectedBrands?: string;
   }>()
 );
