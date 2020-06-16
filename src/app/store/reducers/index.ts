@@ -1,3 +1,4 @@
+import { IBrandsState } from './../../content/category/store/reducers/brands.reducer';
 import { routerReducer, RouterStateSerializer } from '@ngrx/router-store';
 import {
   ActivatedRouteSnapshot,
@@ -14,11 +15,12 @@ import { IProductState } from 'src/app/content/category/content/product/store/re
 import { ISuggestedProductsState } from 'src/app/content/home/store/reducers/suggested-products.reducer';
 
 export interface IStore {
-  product:IProductState,
+  product: IProductState;
   products: IProductsState;
   suggestedProducts: ISuggestedProductsState;
   cart: EntityState<ICartProduct>;
   categories: ICategoryState;
+  brands: IBrandsState;
   routerReducer: typeof routerReducer;
 }
 

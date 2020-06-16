@@ -1,10 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { getCategoriesPending, getCategoriesSuccess } from '../actions/category.actions';
-
+import {
+  getCategoriesPending,
+  getCategoriesSuccess,
+} from '../actions/category.actions';
 
 export interface ICategoryState {
-items: ICategory[];
-loading: boolean;
+  items: ICategory[];
+  loading: boolean;
 }
 
 export interface ICategory {
@@ -14,14 +16,13 @@ export interface ICategory {
 }
 
 export interface ISubCategory {
-    _id: string;
-    name: string;
-    category: string;
+  _id: string;
+  name: string;
+  category: string;
 }
 
 const categoriesReducer = createReducer(
   {
-
     items: [],
     loading: false,
   },
@@ -33,13 +34,13 @@ const categoriesReducer = createReducer(
     ...state,
     items: categories,
     loading: false,
-  })),
-  );
+  }))
+);
 
-export  function reducerCategories(
+export function reducerCategories(
   state: ICategoryState | undefined,
   // tslint:disable-next-line: no-any
   action: any
-  ) {
+) {
   return categoriesReducer(state, action);
 }

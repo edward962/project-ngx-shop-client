@@ -1,29 +1,19 @@
-<div class="list-group-item"  (click)="hover(index)"
->
- <h5
-    class="mb-0"
-    [ngClass]="{ collapsed: index !== currentIndex }"
-   
-    >
+<div class="list-group-item" (click)="hover(index)">
+  <h5 class="mb-0" [ngClass]="{ collapsed: index !== currentIndex }">
     {{ category.name }}
     <img src="assets/icons/icon-angle.svg" alt="angle-right" />
-    </h5>
-    <ul
+  </h5>
+  <ul
     class="collapse"
     *ngIf="!isShow"
     data-parent="#accordion"
     [ngClass]="{ show: index === currentIndex }"
+  >
+    <li
+      *ngFor="let subCategory of category.subCategories"
+      (click)="categorySelect(subCategory._id)"
     >
-        <li *ngFor="let subCategory of category.subCategories" 
-        (click)="categorySelect({
-            categoryId: subCategory._id,
-            subcategoryName: subCategory.name
-        })">
-            <a
-            
-            >{{ subCategory.name }}
-            </a
-            >
-        </li>
-    </ul>
+      <a>{{ subCategory.name }} </a>
+    </li>
+  </ul>
 </div>

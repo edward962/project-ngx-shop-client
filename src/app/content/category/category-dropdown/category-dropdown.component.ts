@@ -2,12 +2,6 @@ import { Component, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 
-interface ISelectedCategory {
-  idCategory: String;
-  nameSubcategory: String;
-}
-
-
 @Component({
   selector: 'ngx-shop-category-dropdown',
   templateUrl: './category-dropdown.component.html',
@@ -27,19 +21,17 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   public onChange!: Function;
   public currentCategory?: any;
 
-  public writeValue(): void {
-  }
+  public writeValue(): void {}
   public registerOnChange(fn: Function) {
     this.onChange = fn;
   }
-  public registerOnTouched(): void {
-  }
+  public registerOnTouched(): void {}
   public hover(index: number) {
     this.currentIndex = index;
     this.isShow = !this.isShow;
   }
-  public categorySelect(  categoryData : ISelectedCategory ) {
-    this.currentCategory = categoryData;
-    this.onChange(this.currentCategory)
-   }
+  public categorySelect(subCategoryId: string) {
+    this.currentCategory = subCategoryId;
+    this.onChange(this.currentCategory);
   }
+}

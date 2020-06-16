@@ -18,15 +18,10 @@ import { CartGuard } from './services/cart.guard';
 import { TooltipDirective } from './directives/tooltip.derective';
 import { ICartProduct } from '../store/reducers/cart.reducer';
 import { IStore } from '../store/reducers';
-
+import { BrandsService } from './services/brands.service';
 
 @NgModule({
-  declarations: [
-    StarRatingComponent,
-    RatePipe,
-    ImgUrlPipe,
-    TooltipDirective,
-  ],
+  declarations: [StarRatingComponent, RatePipe, ImgUrlPipe, TooltipDirective],
   imports: [
     ReactiveFormsModule,
     FormsModule,
@@ -48,6 +43,7 @@ import { IStore } from '../store/reducers';
   providers: [
     CategoriesService,
     ProductsService,
+    BrandsService,
     {
       provide: BASE_URL_TOKEN,
       useValue: environment.baseUrl,
@@ -71,9 +67,11 @@ export class SharedModule {
           provide: APP_INITIALIZER,
           useFactory: (
             store: Store<IStore>,
-            localStorageService: LocalStorageService,
+            localStorageService: LocalStorageService
           ) => () => {
-            const products: ICartProduct[] = localStorageService.getFromLocalStorage<ICartProduct>('cart');
+            const products: ICartProduct[] = localStorageService.getFromLocalStorage<
+              ICartProduct
+            >('cart');
             store.dispatch(addAllProductsToCart({ products }));
           },
           multi: true,
