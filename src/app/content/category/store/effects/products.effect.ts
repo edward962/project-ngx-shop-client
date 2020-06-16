@@ -22,7 +22,6 @@ export class ProductsEffects {
     this.actions.pipe(
       ofType(getProductsPending),
       switchMap(({ type, ...search }) => {
-        console.log(search);
         return this.productsService.getProductsBySubCategory(search).pipe(
           // tslint:disable-next-line: no-any
           mergeMap((_products: any) => {

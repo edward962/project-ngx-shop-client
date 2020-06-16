@@ -5,9 +5,9 @@ import { IPriceData } from '../../category.component';
 export const getProductsPending = createAction(
   '[Products] Get products pending',
   props<{
-    id?: string;
+    currentCategory?: string;
     priceRange?: IPriceData;
-    productName?: string;
+    searchByName?: string;
     selectedBrands?: string;
   }>()
 );

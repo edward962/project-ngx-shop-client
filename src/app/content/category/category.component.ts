@@ -39,13 +39,11 @@ export class CategoryComponent implements OnInit {
   public products$: Observable<any> = this.store.select('products', 'items');
   public priceRange!: IPriceData;
   public productName = '';
-  // tslint:disable-next-line: no-any
-  public brands: any;
-  public selectedBrands = '';
+  public selectedBrands: string[] = [];
   public form: FormGroup = this.fb.group({
-    brands: [[]],
+    brand: [''],
     prices: [{}],
-    currentSubCategory: [{}],
+    currentSubCategory: [''],
     searchByName: [''],
   });
 
@@ -57,11 +55,17 @@ export class CategoryComponent implements OnInit {
 
   public ngOnInit() {
     this.form.valueChanges.pipe(debounceTime(300)).subscribe((formData) => {
-      //console.log(formData.prices.low, formData.prices.high);
+      const index = this.selectedBrands.indexOf(formData.brand);
+      if (index === -1) {
+        this.selectedBrands.push(formData.brand);
+      } else {
+        this.selectedBrands.splice(index, 1);
+      }
       this.store.dispatch(
         go({
           path: ['/category'],
           query: {
+            brand: this.selectedBrands.join(','),
             subCatId: formData.currentSubCategory,
             searchByName: formData.searchByName,
             prices: `${formData.prices.low},${formData.prices.high}`,
@@ -71,9 +75,14 @@ export class CategoryComponent implements OnInit {
     });
     this.store.dispatch(getCategoriesPending());
     this.activatedRoute.queryParams.subscribe((query) => {
+      if (query.brand) {
+        this.selectedBrands = query.brand.split(',');
+      }
       this.store.dispatch(
         getProductsPending({
-          id: query.subCatId,
+          selectedBrands: query.brand,
+          currentCategory: query.subCatId,
+          searchByName: query.searchByName,
           priceRange: {
             value: query.prices.split(',')[0],
             highValue: query.prices.split(',')[1],
@@ -92,8 +101,8 @@ export class CategoryComponent implements OnInit {
 
       this.form.setValue(
         {
-          searchByName: '',
-          brands: [],
+          searchByName: query.searchByName ?? '',
+          brand: '',
           currentSubCategory: query.subCatId,
           prices: {
             low: query.prices.split(',')[0],

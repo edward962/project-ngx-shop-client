@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IStore } from 'src/app/store/reducers';
@@ -23,6 +23,8 @@ export class BrandsComponent implements ControlValueAccessor {
     private activatedRoute: ActivatedRoute,
     private store: Store<IStore>
   ) {}
+  @Input()
+  public selectedBrands: string[] = [];
   public isShow = false;
   public onChange!: Function;
   public brandsToShow: string[] = [];
@@ -39,13 +41,7 @@ export class BrandsComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {}
 
   public check(brandName: string) {
-    const index = this.brandsToShow.indexOf(brandName);
-    if (index === -1) {
-      this.brandsToShow.push(brandName);
-    } else {
-      this.brandsToShow.splice(index, 1);
-    }
-    this.onChange(this.brandsToShow);
+    this.onChange(brandName);
   }
 
   public show() {

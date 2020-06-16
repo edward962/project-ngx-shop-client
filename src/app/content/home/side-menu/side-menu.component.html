@@ -13,15 +13,9 @@
           class="dropdown-item"
           *ngFor="let subCategory of category.subCategories"
         >
-          <a
-            [routerLink]="['/category']"
-            [queryParams]="{
-              subCatId: subCategory._id,
-              name: subCategory.name,
-              prices: '0,2000'
-            }"
-            >{{ subCategory.name }}</a
-          >
+          <a (click)="redirectToCategory(subCategory._id)">{{
+            subCategory.name
+          }}</a>
         </li>
       </ul>
     </li>
