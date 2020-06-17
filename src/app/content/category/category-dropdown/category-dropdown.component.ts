@@ -29,14 +29,13 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   }
   public registerOnTouched(): void {}
   public hover(index: number) {
-    console.log(this.currentIndex, index);
-
     this.isShow = !this.isShow;
 
     this.currentIndex = index;
   }
   public categorySelect(subCategoryId: string) {
+    this.isShow = !this.isShow;
     this.currentCategory = subCategoryId;
-    // this.onChange(this.currentCategory);
+    this.onChange(this.currentCategory);
   }
 }
