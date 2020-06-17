@@ -1,4 +1,5 @@
-// import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
+import { UnSubscriber } from './../../shared/utils/unsubscriber';
+import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
@@ -9,9 +10,8 @@ import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getProductsPending } from './store/actions/products.actions';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
-import { IProduct } from './store/reducers/products.reducer';
 
 export interface IPriceData {
   value: number;
@@ -31,16 +31,14 @@ export interface IProductQuery {
   selector: 'app-category',
   templateUrl: './category.component.html',
 })
-export class CategoryComponent implements OnInit {
-  public categories$: Observable<ICategory[]> = this._store.select(
-    'categories',
-    'items'
-  );
+export class CategoryComponent extends UnSubscriber implements OnInit {
+  public categories$: Observable<ICategory[]> = this._store
+    .select('categories', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
   public show: string | undefined;
-  public products$: Observable<IProduct[]> = this._store.select(
-    'products',
-    'items'
-  );
+  public products$: Observable<IProduct[]> = this._store
+    .select('products', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
   public priceRange!: IPriceData;
   public productName = '';
   public selectedBrands: string[] = [];
@@ -55,7 +53,9 @@ export class CategoryComponent implements OnInit {
     private readonly _fb: FormBuilder,
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _store: Store<IStore>
-  ) {}
+  ) {
+    super();
+  }
 
   public ngOnInit() {
     this.form.valueChanges.pipe(debounceTime(300)).subscribe((formData) => {
