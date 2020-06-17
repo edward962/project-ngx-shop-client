@@ -13,7 +13,7 @@
       *ngFor="let subCategory of category.subCategories"
       (click)="categorySelect(subCategory._id)"
     >
-      <a>{{ subCategory.name }} </a>
+      <a class='subcategoryName' >{{ subCategory.name }} </a>
     </li>
   </ul>
 </div>
