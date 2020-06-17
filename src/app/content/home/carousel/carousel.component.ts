@@ -1,5 +1,6 @@
-import { Component, ChangeDetectorRef, Input } from '@angular/core';
-import { slideAnimation } from './carusel.slider.animation';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { caruselAnimation } from './carusel.slider.animation';
+import { IProductImage } from '../../category/content/product/store/reducers/product.reducer';
 
 
 
@@ -7,7 +8,7 @@ import { slideAnimation } from './carusel.slider.animation';
   selector: 'ngx-shop-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.sass'],
-  animations: slideAnimation,
+  animations: caruselAnimation,
 })
 export class CarouselComponent{
   public images = [
@@ -25,6 +26,7 @@ export class CarouselComponent{
     }
   ];
   public currentIndex = 0;
+
 
   public animateRight = { translateEnter: 'translateX(100%)', translateLeave: 'translateX(-100%)' };
   public animateLeft = { translateEnter: 'translateX(-100%)', translateLeave: 'translateX(100%)' };
@@ -79,5 +81,8 @@ export class CarouselComponent{
 
   public getImgUrl(image: any) {
     return `url(${image?.url})`
+  }
+  public trackByUrl(item: IProductImage){
+    return item.url
   }
 }

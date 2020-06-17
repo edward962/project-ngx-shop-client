@@ -8,13 +8,13 @@
     </li>
   </ol>
   <div class="carousel-inner">
-    <ng-container  *ngFor="let image of images; let i = index">
+    <ng-container *ngFor="let image of images; let i = index; trackBy: trackByUrl;">
       <div
         [@slideAnimation]="{value: '', params: isSlidedRight ? animateRight : animateLeft}"
         (@slideAnimation.start)="animationStart()"
         (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex"
-       
+        class="carousel-item"
       >
         <div class="img_wrap" [ngStyle]="{backgroundImage: getImgUrl(image)}" >
         </div>
