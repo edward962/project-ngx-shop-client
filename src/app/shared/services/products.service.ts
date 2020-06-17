@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
+import {
+  IProduct,
+  IProductApi,
+} from 'src/app/content/category/store/reducers/products.reducer';
 import { IFeedback } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 
 @Injectable()
@@ -18,7 +21,7 @@ export class ProductsService {
   public getProductsBySubCategory(
     // tslint:disable-next-line: no-any
     search: any
-  ): Observable<IProduct> {
+  ): Observable<IProductApi> {
     const {
       currentCategory,
       priceRange,
@@ -31,7 +34,7 @@ export class ProductsService {
     const priceData = priceRange
       ? priceRange
       : { value: 0, highValue: 1000000000 };
-    return this.http.get<IProduct>(
+    return this.http.get<IProductApi>(
       `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`
     );
   }

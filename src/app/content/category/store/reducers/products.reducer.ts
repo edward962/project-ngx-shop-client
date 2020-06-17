@@ -1,9 +1,12 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import {
   getProductsPending,
   getProductsSuccess,
 } from '../actions/products.actions';
-import { IProductImage, IFeedback } from '../../content/product/store/reducers/product.reducer';
+import {
+  IProductImage,
+  IFeedback,
+} from '../../content/product/store/reducers/product.reducer';
 
 export interface IProductsState {
   items: IProduct[];
@@ -15,12 +18,27 @@ export interface IProduct {
   name: string;
   description: string;
   feedbacks?: IFeedback;
+  characteristics?: ICharacteristics[];
   price: number;
   status: boolean;
   images: IProductImage[];
   rating: number;
 }
+export interface IProductApi {
+  items: IProduct[];
+  quantity: number;
+}
 
+interface ICharacteristics {
+  title: string;
+  items: ICharacteristic[];
+}
+
+interface ICharacteristic {
+  name: string;
+  value: string;
+  isExtended: boolean;
+}
 
 const productsReducer = createReducer(
   {
@@ -35,13 +53,12 @@ const productsReducer = createReducer(
     ...state,
     items: products,
     loading: false,
-  })),
+  }))
 );
 
 export function reducerProducts(
   state: IProductsState | undefined,
-  // tslint:disable-next-line: no-any
-  action: any,
+  action: Action
 ) {
   return productsReducer(state, action);
 }
