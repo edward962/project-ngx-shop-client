@@ -9,16 +9,12 @@ body
   color: #373a3c
   overflow-x: hidden
 
-
-
 .fa-star
-    color: #ccc
+  color: #ccc
 .fa-star:before
-    font-size: 24px 
-.selected 
+  font-size: 24px
+.selected
   color: orange
-
-
 
 main
   flex: 1 0 auto
@@ -27,7 +23,7 @@ main
 .form-control:focus
   box-shadow: none
 .btn-primary:hover
-      color: #fff
+  color: #fff
 .outlet-wrap
   min-height: 88vh
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus
@@ -39,54 +35,54 @@ main
     position: relative
     margin-left: 20px
     &::before
-        content: "*"
+      content: "*"
+      position: absolute
+      top: -3px
+      right: -7px
+      color: red
+      font-size: 17px
+      .form-valid
         position: absolute
-        top: -3px
-        right: -7px
+        top: 65px
+        left: 0
+        font-size: 11px
+        width: 500px
         color: red
-        font-size: 17px
-        .form-valid
-            position: absolute
-            top: 65px
-            left: 0
-            font-size: 11px
-            width: 500px
-            color: red
-            .form-valid-area
-                position: absolute
-                top: 86px
-                left: 0
-                font-size: 11px
-                width: 500px
-                color: red
+        .form-valid-area
+          position: absolute
+          top: 86px
+          left: 0
+          font-size: 11px
+          width: 500px
+          color: red
 
 .all-characters
-    a
-        color: #007bff
-        &:hover
-            color: #0056b3
-            text-decoration: underline
-            cursor: pointer
-.characters
-    a
-        color: #007bff
-        &:hover
-            color: #0056b3
-            text-decoration: underline
-            cursor: pointer
-.nav 
-  width: 107%            
-.nav-tabs
+  a
     color: #007bff
     &:hover
-        color: #0056b3
-        cursor: pointer
-.btn-primary
+      color: #0056b3
+      text-decoration: underline
+      cursor: pointer
+.characters
+  a
+    color: #007bff
     &:hover
-        color: #0056b3
-        cursor: pointer
+      color: #0056b3
+      text-decoration: underline
+      cursor: pointer
+.nav
+  width: 107%
+.nav-tabs
+  color: #007bff
+  &:hover
+    color: #0056b3
+    cursor: pointer
+.btn-primary
+  &:hover
+    color: #0056b3
+    cursor: pointer
     span
-        color: #ffffff
+      color: #ffffff
 
 // tooltip
 
@@ -388,7 +384,6 @@ form button[type="submit"]:not(.btn-send)
   .modal-content
     min-height: auto
 
-
 .modal-title-block
   font-size: 1rem
   line-height: 1
@@ -684,7 +679,6 @@ form button[type="submit"]:not(.btn-send)
 .rate.no-reviews .rate-amount
   color: #979797
 
-
 .icon-star
   display: flex
   position: relative
@@ -782,7 +776,6 @@ form button[type="submit"]:not(.btn-send)
   list-style-type: none
 
 .aside-accordion-menu ul li a
-  white-space: nowrap
   font-size: 0.875rem
   line-height: 1.71
   color: #373a3c
@@ -825,12 +818,11 @@ form button[type="submit"]:not(.btn-send)
   margin-bottom: 0.75rem
   height: 200px
 .btn-outline-primary:focus
-    box-shadow: none
-    outline: none!important
-
+  box-shadow: none
+  outline: none!important
 
 .btn-lg
-    margin: .5rem 0
+  margin: .5rem 0
 .inner-col .col-title
   font-size: 18px
   line-height: 24px
@@ -905,11 +897,10 @@ form button[type="submit"]:not(.btn-send)
     &:focus
       outline: none
   .img
-    max-height: 100%  
+    max-height: 100%
   .description-col .product-desc,
   .default-col
     padding: 0.875rem 1.25rem
-
 
   .description-col + *
     border-left: none
@@ -1139,11 +1130,10 @@ form button[type="submit"]:not(.btn-send)
   background: #d9edf7
 
 .footer-menu
- a
-   &:hover
+a
+  &:hover
     text-decoration: underline
     cursor: pointer
-
 
 .carousel-inner
   height: 450px
