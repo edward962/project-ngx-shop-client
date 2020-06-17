@@ -19,8 +19,7 @@ export class PhotoSliderComponent {
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
-  ) {
-  }
+  ) {}
 
   public next() {
     if (this.slidingBlocked) {

@@ -9,21 +9,23 @@ import { Store } from '@ngrx/store';
 import { IProduct } from '../category/store/reducers/products.reducer';
 
 import { getSuggestedProductsPending } from './store/actions/suggested-products.actions';
+import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
+import { takeUntil } from 'rxjs/operators';
 
 
 @Component({
   selector: 'ngx-shop-products',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends UnSubscriber implements OnInit {
   public categories: ICategory[] = [];
-  public categories$: Observable<ICategory[]> = this._store.select('categories', 'items');
-  public products$: Observable<IProduct[]> = this._store.select('suggestedProducts', 'items') ;
+  public categories$: Observable<ICategory[]> = this._store.select('categories', 'items').pipe(takeUntil(this.unsubscribe$$));
+  public products$: Observable<IProduct[]> = this._store.select('suggestedProducts', 'items').pipe(takeUntil(this.unsubscribe$$)) ;
 
   constructor(
-    private readonly _store: Store<IStore>,
-  ) {
-  }
+    private readonly _store: Store<IStore>) {
+      super()
+    }
 
   public ngOnInit() {
     this._store.dispatch(getCategoriesPending());

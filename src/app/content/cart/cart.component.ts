@@ -12,15 +12,18 @@ import {
   removeProductFromCart,
   incrementProductInCart,
 } from '../../store/actions/cart.actions';
+import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-shop-cart',
   templateUrl: './cart.component.html',
 })
-export class CartComponent {
-  public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts);
+export class CartComponent extends UnSubscriber {
+  public cart$: Observable<ICartProduct[]> = this._store.select(selectProducts).pipe(takeUntil(this.unsubscribe$$));
 
   constructor(private readonly _store: Store<IStore>) {
+    super()
   }
 
   public decrementProductInCart(product: ICartProduct) {
