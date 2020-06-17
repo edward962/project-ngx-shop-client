@@ -2,11 +2,9 @@ import {
   getSuggestedProductsPending,
   getSuggestedProductsSuccess,
 } from '../actions/suggested-products.actions';
-
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-
 import {
   switchMap,
   map,

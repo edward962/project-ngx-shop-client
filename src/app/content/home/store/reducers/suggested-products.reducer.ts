@@ -29,7 +29,6 @@ const suggestedProductsReducer = createReducer(
 
 export function reducerSuggestedProducts(
   state: IProductsState | undefined,
-  // tslint:disable-next-line: no-any
   action: Action,
 ) {
   return suggestedProductsReducer(state, action);

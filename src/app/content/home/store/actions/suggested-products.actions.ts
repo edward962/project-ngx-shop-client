@@ -3,9 +3,9 @@ import { IProduct } from 'src/app/content/category/content/product/store/reducer
 
 
 export const getSuggestedProductsPending = createAction(
-  '[Products] Get suggested products pending'
+  '[Home] Get suggested products pending'
 );
 export const getSuggestedProductsSuccess = createAction(
-  '[Products] Get suggested products success',
-  props<{ products: IProduct[] }>(),
+  '[Home] Get suggested products success',
+   props<{ products: IProduct[] }>(),
 );

@@ -8,9 +8,10 @@ import {
   map,
   withLatestFrom,
 } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 import { ProductsService } from '../../../../../../shared/services/products.service';
 import { getProductPending, getProductSuccess, createFeedbackPending, createFeedbackSuccess } from '../actions/product.actions';
+import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
 
 
 @Injectable()
@@ -21,15 +22,14 @@ export class ProductEffects {
     private store: Store<IStore>,
   ) { }
 
-  public getProduct$: Observable<any> = createEffect(() =>
+  public getProduct$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(getProductPending),
       switchMap(({ id }) =>
         this.productsService
           .getProductById(id)
           .pipe(
-            // tslint:disable-next-line: no-any
-            map((product: any) => {
+            map((product: IProduct) => {
               return getProductSuccess({ product });
             }),
           ),

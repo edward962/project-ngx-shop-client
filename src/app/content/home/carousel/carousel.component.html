@@ -14,9 +14,9 @@
         (@slideAnimation.start)="animationStart()"
         (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex"
-        class="img_wrap"
+       
       >
-        <div class="img-wrap"  [ngStyle]="{backgroundImage: getImgUrl(image)}" >
+        <div class="img_wrap" [ngStyle]="{backgroundImage: getImgUrl(image)}" >
         </div>
       </div>
     </ng-container>

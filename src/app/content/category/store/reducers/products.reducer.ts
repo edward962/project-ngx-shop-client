@@ -9,6 +9,11 @@ export interface IProductsState {
   items: IProduct[];
   loading: boolean;
 }
+
+export interface IProducts{
+  items: IProduct[];
+  quantity: number;
+}
 export interface IProduct {
   _id: string;
   feedbacksCount: number;
