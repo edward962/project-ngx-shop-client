@@ -10,6 +10,10 @@ export interface ISuggestedProductsState {
   items: IProduct[];
   loading: boolean;
 }
+export interface ISuggestedProductsApi {
+  items: IProduct[];
+  quantity: number
+}
 
 const initialState: ISuggestedProductsState = {
   items: [],
@@ -31,7 +35,6 @@ const suggestedProductsReducer = createReducer(
 
 export function reducerSuggestedProducts(
   state: IProductsState | undefined,
-  // tslint:disable-next-line: no-any
   action: Action
 ) {
   return suggestedProductsReducer(state, action);

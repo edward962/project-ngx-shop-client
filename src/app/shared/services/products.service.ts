@@ -6,6 +6,8 @@ import {
   IProductApi,
 } from 'src/app/content/category/store/reducers/products.reducer';
 import { IFeedback } from 'src/app/content/category/content/product/store/reducers/product.reducer';
+import { ISuggestedProductsApi } from 'src/app/content/home/store/reducers/suggested-products.reducer';
+import { Params } from '@angular/router';
 
 @Injectable()
 export class ProductsService {
@@ -19,8 +21,7 @@ export class ProductsService {
   }
 
   public getProductsBySubCategory(
-    // tslint:disable-next-line: no-any
-    search: any
+    search: Params
   ): Observable<IProductApi> {
     const {
       currentCategory,
@@ -39,8 +40,8 @@ export class ProductsService {
     );
   }
 
-  public getSuggestedProducts(): Observable<IProduct> {
-    return this.http.get<IProduct>('/products/suggestion');
+  public getSuggestedProducts(): Observable<ISuggestedProductsApi> {
+    return this.http.get<ISuggestedProductsApi>('/products/suggestion');
   }
   public getProductById(id: string): Observable<IProduct> {
     return this.http.get<IProduct>(`/products/${id}`);
