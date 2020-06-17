@@ -19,7 +19,7 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   public currentIndex: number | null = null;
   public isShow = false;
   public onChange!: Function;
-  public currentCategory?: any;
+  public currentCategory?: String;
 
   public writeValue(): void {}
   public registerOnChange(fn: Function) {

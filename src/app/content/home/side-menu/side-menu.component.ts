@@ -19,7 +19,7 @@ export class SideMenuComponent {
   public hover(index: number) {
     this.currentIndex = index;
   }
-  redirectToCategory(subCatId: string) {
+  redirectTo(subCatId: string) {
     this._store.dispatch(
       go({
         path: ['/category'],

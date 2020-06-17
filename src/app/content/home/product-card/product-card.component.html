@@ -1,7 +1,6 @@
 <div
   class="card"
-  [routerLink]="['/category/product']"
-  [queryParams]="{ id: product._id }"
+  (click)='redirectTo(product._id)'
 >
   <div class="card-img-wrap">
     <img 

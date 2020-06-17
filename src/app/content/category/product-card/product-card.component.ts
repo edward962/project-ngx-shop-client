@@ -5,6 +5,7 @@ import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { ModalService } from 'src/app/modal/modal.service';
 import { CardConfirmModalComponent } from 'src/app/shared/components/card-confirm-modal/card-confirm-modal.component';
 import { IProduct } from '../store/reducers/products.reducer';
+import { go } from 'src/app/store/actions/router.actions';
 
 @Component({
   selector: 'ngx-shop-content-product',
@@ -14,8 +15,8 @@ export class CategoryProductComponent {
   @Input() public product!: IProduct;
 
   constructor(
-    private store: Store<IStore>,
     private _modalService: ModalService,
+    private readonly _store: Store<IStore>,
   ) {}
 
   public async addToBusket(product: IProduct): Promise<void> {
@@ -24,7 +25,7 @@ export class CategoryProductComponent {
       context: {
         product: { ...product },
         save: () => {
-          this.store.dispatch(addProductToCart({ product }));
+          this._store.dispatch(addProductToCart({ product }));
           this._modalService.close();
         },
         close: () => {
@@ -32,5 +33,15 @@ export class CategoryProductComponent {
         },
       },
     });
+  }
+  public redirectTo(productId: string) {
+    this._store.dispatch(
+      go({
+        path: ['/category/product'],
+        query: {
+          id: productId
+        },
+      })
+    );
   }
 }

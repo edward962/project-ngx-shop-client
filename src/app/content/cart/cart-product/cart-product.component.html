@@ -3,15 +3,13 @@
     <i class="fa fa-times-circle-o" aria-hidden="true" tooltip='Убрать товар из корзины' (click)="removeProductFromCart(product)"></i>
     <div
       class="product-img"
-      [routerLink]="['/category/product']"
-      [queryParams]="{ id: product._id }"
+      (click)= 'redirectTo(product._id )'
     >
       <img [src]="product.images | imgUrl" [alt]="product.name"/>
     </div>
     <div
       class="product-desc"
-      [routerLink]="['/category/product']"
-      [queryParams]="{ id: product._id }"
+      (click)= 'redirectTo(product._id )'
     >
       <h4 class="col-title mb-2">
         {{ product.name }}
@@ -56,5 +54,4 @@
       </h4>
     </div>
   </div>
-  <!-- <i class="fa fa-times-circle-o" aria-hidden="true" tooltip='Убрать товар из корзины' (click)="removeProductFromCart(product)"></i> -->
 </div>

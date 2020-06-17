@@ -13,7 +13,7 @@
           class="dropdown-item"
           *ngFor="let subCategory of category.subCategories"
         >
-          <a (click)="redirectToCategory(subCategory._id)">{{
+          <a (click)="redirectTo(subCategory._id)">{{
             subCategory.name
           }}</a>
         </li>

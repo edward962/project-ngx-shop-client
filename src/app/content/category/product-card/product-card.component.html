@@ -1,7 +1,6 @@
 <div  class="product-list-box">
     <div
-      [routerLink]="['/category/product']"
-      [queryParams]="{ id: product._id }"
+      (click)='redirectTo(product._id)'
       class="inner-col description-col"
     >
       <div class="product-img">

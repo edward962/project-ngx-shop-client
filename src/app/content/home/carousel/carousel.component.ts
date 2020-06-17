@@ -31,7 +31,7 @@ export class CarouselComponent{
   public isSlidedRight = true;
   public slidingBlocked = false;
   constructor(
-    private readonly cdr: ChangeDetectorRef,
+    private readonly _cdr: ChangeDetectorRef,
   ){}
 
   public next() {
@@ -39,7 +39,7 @@ export class CarouselComponent{
       return;
     }
     this.isSlidedRight = true;
-    this.cdr.detectChanges();
+    this._cdr.detectChanges();
     if (this.currentIndex === this.images.length - 1) {
       this.currentIndex = 0;
       return;
@@ -52,7 +52,7 @@ export class CarouselComponent{
       return;
     }
     this.isSlidedRight = false;
-    this.cdr.detectChanges();
+    this._cdr.detectChanges();
     if (this.currentIndex === 0) {
       this.currentIndex = this.images.length - 1;
       return;
@@ -65,7 +65,7 @@ export class CarouselComponent{
       return;
     }
     this.isSlidedRight = this.currentIndex < i;
-    this.cdr.detectChanges();
+    this._cdr.detectChanges();
     this.currentIndex = i;
   }
 

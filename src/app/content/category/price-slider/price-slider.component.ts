@@ -1,11 +1,16 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
-import { Router, ActivatedRoute } from '@angular/router';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   FormBuilder,
 } from '@angular/forms';
+
+export interface IPriceValue{
+  low: number;
+  high: number
+}
+
 
 @Component({
   selector: 'ngx-shop-price-slider',
@@ -19,9 +24,9 @@ import {
   ],
 })
 export class PriceSliderComponent implements ControlValueAccessor, OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private readonly _fb: FormBuilder) {}
 
-  public pricesValue: any = {};
+  public pricesValue?: IPriceValue ;
   public onChange!: Function;
   public value = 0;
   public highValue = 2000;
@@ -29,7 +34,7 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     floor: 0,
     ceil: 2000,
   };
-  public priceForm = this.fb.group({
+  public priceForm = this._fb.group({
     low: [this.value],
     high: [this.highValue],
   });
@@ -40,9 +45,7 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
       this.onChange({ low: this.value, high: this.highValue });
     });
   }
-  writeValue(prices: any): void {
-    //console.log(prices);
-    // this.pricesValue = { value, highValue };
+  writeValue(): void {
   }
 
   registerOnChange(fn: any): void {

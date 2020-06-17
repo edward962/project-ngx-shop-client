@@ -8,8 +8,9 @@ import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getProductsPending } from './store/actions/products.actions';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
-import { debounce, debounceTime } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
+import { IProduct } from './store/reducers/products.reducer';
 
 export interface IPriceData {
   value: number;
@@ -30,17 +31,17 @@ export interface IProductQuery {
   templateUrl: './category.component.html',
 })
 export class CategoryComponent implements OnInit {
-  public categories$: Observable<ICategory[]> = this.store.select(
+  public categories$: Observable<ICategory[]> = this._store.select(
     'categories',
     'items'
   );
   public show: string | undefined;
   // tslint:disable-next-line: no-any
-  public products$: Observable<any> = this.store.select('products', 'items');
+  public products$: Observable<IProduct[]> = this._store.select('products', 'items');
   public priceRange!: IPriceData;
   public productName = '';
   public selectedBrands: string[] = [];
-  public form: FormGroup = this.fb.group({
+  public form: FormGroup = this._fb.group({
     brand: [''],
     prices: [{}],
     currentSubCategory: [''],
@@ -48,9 +49,9 @@ export class CategoryComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private store: Store<IStore>
+    private readonly _fb: FormBuilder,
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _store: Store<IStore>
   ) {}
 
   public ngOnInit() {
@@ -61,7 +62,7 @@ export class CategoryComponent implements OnInit {
       } else {
         this.selectedBrands.splice(index, 1);
       }
-      this.store.dispatch(
+      this._store.dispatch(
         go({
           path: ['/category'],
           query: {
@@ -73,12 +74,12 @@ export class CategoryComponent implements OnInit {
         })
       );
     });
-    this.store.dispatch(getCategoriesPending());
-    this.activatedRoute.queryParams.subscribe((query) => {
+    this._store.dispatch(getCategoriesPending());
+    this._activatedRoute.queryParams.subscribe((query) => {
       if (query.brand) {
         this.selectedBrands = query.brand.split(',');
       }
-      this.store.dispatch(
+      this._store.dispatch(
         getProductsPending({
           selectedBrands: query.brand,
           currentCategory: query.subCatId,
@@ -89,7 +90,7 @@ export class CategoryComponent implements OnInit {
           },
         })
       );
-      this.store.dispatch(
+      this._store.dispatch(
         getBrandsPending({
           id: query.subCatId,
           priceRange: {
