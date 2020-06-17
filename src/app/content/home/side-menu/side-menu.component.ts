@@ -7,7 +7,6 @@ import { IStore } from 'src/app/store/reducers';
 @Component({
   selector: 'ngx-shop-side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.sass'],
 })
 export class SideMenuComponent {
   @Input()

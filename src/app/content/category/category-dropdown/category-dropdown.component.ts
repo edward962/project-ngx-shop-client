@@ -33,8 +33,8 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
     this.currentIndex = index;
   }
   public categorySelect(subCategoryId: string) {
-    this.currentCategory = subCategoryId;
     this.isShow = !this.isShow;
+    this.currentCategory = subCategoryId;
     this.onChange(this.currentCategory);
   }
 }

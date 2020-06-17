@@ -7,7 +7,7 @@ import { IProductImage } from '../../category/content/product/store/reducers/pro
 @Component({
   selector: 'ngx-shop-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.sass'],
+
   animations: caruselAnimation,
 })
 export class CarouselComponent{
