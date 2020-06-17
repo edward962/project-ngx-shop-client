@@ -14,12 +14,14 @@ import { ICategory } from 'src/app/store/reducers/categories.reducer';
   ],
 })
 export class CategoryDropdownComponent implements ControlValueAccessor {
-  @Input() public category!: ICategory;
-  @Input() public index!: number;
+  @Input()
+  public category!: ICategory;
+  @Input()
+  public index!: number;
   public currentIndex: number | null = null;
   public isShow = false;
   public onChange!: Function;
-  public currentCategory?: String;
+  public currentCategory?: string;
 
   public writeValue(): void {}
   public registerOnChange(fn: Function) {
@@ -27,11 +29,14 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   }
   public registerOnTouched(): void {}
   public hover(index: number) {
-    this.currentIndex = index;
+    console.log(this.currentIndex, index);
+
     this.isShow = !this.isShow;
+
+    this.currentIndex = index;
   }
   public categorySelect(subCategoryId: string) {
     this.currentCategory = subCategoryId;
-    this.onChange(this.currentCategory);
+    // this.onChange(this.currentCategory);
   }
 }

@@ -58,6 +58,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   }
 
   public ngOnInit() {
+    this._store.dispatch(getCategoriesPending());
     this.form.valueChanges.pipe(debounceTime(300)).subscribe((formData) => {
       const index = this.selectedBrands.indexOf(formData.brand);
       if (index === -1) {
@@ -77,7 +78,6 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         })
       );
     });
-    this._store.dispatch(getCategoriesPending());
     this._activatedRoute.queryParams.subscribe((query) => {
       if (query.brand) {
         this.selectedBrands = query.brand.split(',');
