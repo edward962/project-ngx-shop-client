@@ -1,5 +1,10 @@
 import { Component, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { RatingComponent } from '../rating/rating.component';
 import { CommonModule } from '@angular/common';
 import { IFeedback } from '../../../store/reducers/product.reducer';
@@ -10,17 +15,12 @@ import { IFeedback } from '../../../store/reducers/product.reducer';
   styleUrls: ['./add-feedback.component.sass'],
 })
 export class AddFeedbackComponent {
-
-  public feedbackForm: FormGroup = this.fb.group({
+  public feedbackForm: FormGroup = this._fb.group({
     advantages: ['', [Validators.required, Validators.minLength(10)]],
     rate: ['', [Validators.required]],
   });
 
-
-  constructor(
-    private fb: FormBuilder,
-  ) {
-  }
+  constructor(private readonly _fb: FormBuilder) {}
 
   public async addFeedback(value: IFeedback): Promise<void> {
     const feedback = {
@@ -37,8 +37,7 @@ export class AddFeedbackComponent {
   }
 }
 @NgModule({
-  declarations: [AddFeedbackComponent,RatingComponent],
+  declarations: [AddFeedbackComponent, RatingComponent],
   imports: [CommonModule, ReactiveFormsModule],
 })
-// @ts-ignore
-class AddFeedbackModule {}
+export class AddFeedbackModule {}

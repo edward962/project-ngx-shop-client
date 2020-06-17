@@ -1,8 +1,9 @@
+// import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, interval } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getProductsPending } from './store/actions/products.actions';
@@ -36,8 +37,10 @@ export class CategoryComponent implements OnInit {
     'items'
   );
   public show: string | undefined;
-  // tslint:disable-next-line: no-any
-  public products$: Observable<IProduct[]> = this._store.select('products', 'items');
+  public products$: Observable<IProduct[]> = this._store.select(
+    'products',
+    'items'
+  );
   public priceRange!: IPriceData;
   public productName = '';
   public selectedBrands: string[] = [];

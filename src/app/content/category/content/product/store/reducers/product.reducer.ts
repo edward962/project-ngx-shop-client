@@ -1,7 +1,8 @@
-import { createReducer, on } from '@ngrx/store';
-import { getProductPending, getProductSuccess } from '../actions/product.actions';
-
-
+import { createReducer, on, Action } from '@ngrx/store';
+import {
+  getProductPending,
+  getProductSuccess,
+} from '../actions/product.actions';
 
 export interface IProductState {
   item: IProduct;
@@ -37,7 +38,6 @@ export interface IProduct {
   rating: number;
 }
 
-
 const productReducer = createReducer(
   {
     item: {
@@ -60,13 +60,12 @@ const productReducer = createReducer(
     ...state,
     item: product,
     loading: false,
-  })),
+  }))
 );
 
 export function reducerProduct(
   state: IProductState | undefined,
-  // tslint:disable-next-line: no-any
-  action: any,
+  action: Action
 ) {
   return productReducer(state, action);
 }

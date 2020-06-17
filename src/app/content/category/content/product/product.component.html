@@ -1,10 +1,17 @@
 <main role="main">
   <div class="container">
     <div class="row">
-      <ngx-shop-product-photo [images]="product?.images" class="col-lg-5"></ngx-shop-product-photo>
+      <ngx-shop-product-photo
+        [images]="(product$ | async)?.images"
+        class="col-lg-5"
+      ></ngx-shop-product-photo>
       <div class="col-lg-7">
-      <ngx-shop-information [product]="product"></ngx-shop-information>
-      <ngx-shop-product-description [product]="product" ></ngx-shop-product-description>
+        <ngx-shop-information
+          [product]="product$ | async"
+        ></ngx-shop-information>
+        <ngx-shop-product-description
+          [product]="product$ | async"
+        ></ngx-shop-product-description>
       </div>
     </div>
   </div>

@@ -11,28 +11,23 @@ import { createFeedbackPending } from '../../store/actions/product.actions';
   styleUrls: ['./feedbacks.component.sass'],
 })
 export class FeedbacksComponent {
-
   @Input()
   public feedbacks!: IFeedback[];
 
-
   constructor(
-    private store: Store<IStore>,
-    private  _modalService: ModalService,
-  ) {
-  }
+    private readonly _store: Store<IStore>,
+    private readonly _modalService: ModalService
+  ) {}
   public async addFeedback(): Promise<void> {
-    const component = await import(
-      './addFeedback/add-feedback.component'
-    );
+    const component = await import('./addFeedback/add-feedback.component');
     this._modalService.open({
       component: component.AddFeedbackComponent,
       context: {
         save: (value: IFeedback) => {
-          this.store.dispatch(
+          this._store.dispatch(
             createFeedbackPending({
               feedback: { ...value },
-            }),
+            })
           );
           this._modalService.close();
         },
@@ -41,7 +36,5 @@ export class FeedbacksComponent {
         },
       },
     });
-    
   }
 }
-

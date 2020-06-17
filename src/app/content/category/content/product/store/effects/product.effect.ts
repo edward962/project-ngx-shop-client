@@ -1,3 +1,5 @@
+import { UnSubscriber } from './../../../../../../shared/utils/unsubscriber';
+import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,37 +9,41 @@ import {
   mergeMap,
   map,
   withLatestFrom,
+  takeUntil,
 } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
 import { ProductsService } from '../../../../../../shared/services/products.service';
-import { getProductPending, getProductSuccess, createFeedbackPending, createFeedbackSuccess } from '../actions/product.actions';
-import { IProduct } from 'src/app/content/category/store/reducers/products.reducer';
-
+import {
+  getProductPending,
+  getProductSuccess,
+  createFeedbackPending,
+  createFeedbackSuccess,
+} from '../actions/product.actions';
 
 @Injectable()
-export class ProductEffects {
+export class ProductEffects extends UnSubscriber {
   constructor(
     private actions: Actions,
     private productsService: ProductsService,
-    private store: Store<IStore>,
-  ) { }
+    private store: Store<IStore>
+  ) {
+    super();
+  }
 
   public getProduct$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(getProductPending),
       switchMap(({ id }) =>
-        this.productsService
-          .getProductById(id)
-          .pipe(
-            map((product: IProduct) => {
-              return getProductSuccess({ product });
-            }),
-          ),
+        this.productsService.getProductById(id).pipe(
+          map((product: IProduct) => {
+            return getProductSuccess({ product });
+          })
+        )
       ),
-    ),
+      takeUntil(this.unsubscribe$$)
+    )
   );
-  // tslint:disable-next-line: no-any
-  public addFeedback$: Observable<any> = createEffect(() =>
+  public addFeedback$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(createFeedbackPending),
       withLatestFrom(this.store.select('product', 'item', '_id')),
@@ -48,9 +54,10 @@ export class ProductEffects {
             mergeMap(() => [
               createFeedbackSuccess(),
               getProductPending({ id: product }),
-            ]),
-          ),
+            ])
+          )
       ),
-    ),
+      takeUntil(this.unsubscribe$$)
+    )
   );
 }

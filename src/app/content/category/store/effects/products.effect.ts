@@ -2,34 +2,33 @@ import {
   getProductsSuccess,
   getProductsPending,
 } from './../actions/products.actions';
-
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-
-import { switchMap, map, mergeMap } from 'rxjs/operators';
+import { switchMap, map, takeUntil } from 'rxjs/operators';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { go } from 'src/app/store/actions/router.actions';
+import { Action } from '@ngrx/store';
+import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 
 @Injectable()
-export class ProductsEffects {
+export class ProductsEffects extends UnSubscriber {
   constructor(
-    private actions: Actions,
-    private productsService: ProductsService
-  ) {}
-  // tslint:disable-next-line: no-any
-  public getProducts$: Observable<any> = createEffect(() =>
-    this.actions.pipe(
+    private readonly _actions: Actions,
+    private readonly _productsService: ProductsService
+  ) {
+    super();
+  }
+  public getProducts$: Observable<Action> = createEffect(() =>
+    this._actions.pipe(
       ofType(getProductsPending),
       switchMap(({ type, ...search }) => {
-        return this.productsService.getProductsBySubCategory(search).pipe(
-          // tslint:disable-next-line: no-any
-          mergeMap((_products: any) => {
-            const products = _products.items;
-            return [getProductsSuccess({ products })];
+        return this._productsService.getProductsBySubCategory(search).pipe(
+          map(({ items }) => {
+            return getProductsSuccess({ products: items });
           })
         );
-      })
+      }),
+      takeUntil(this.unsubscribe$$)
     )
   );
 }

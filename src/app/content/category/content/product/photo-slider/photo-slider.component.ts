@@ -8,25 +8,29 @@ import { IProductImage } from '../store/reducers/product.reducer';
   animations: slideAnimation,
 })
 export class PhotoSliderComponent {
-  @Input() 
+  @Input()
   public images!: IProductImage[];
   public currentIndex = 0;
 
-  public animateRight = { translateEnter: 'translateX(100%)', translateLeave: 'translateX(-100%)' };
-  public animateLeft = { translateEnter: 'translateX(-100%)', translateLeave: 'translateX(100%)' };
+  public animateRight = {
+    translateEnter: 'translateX(100%)',
+    translateLeave: 'translateX(-100%)',
+  };
+  public animateLeft = {
+    translateEnter: 'translateX(-100%)',
+    translateLeave: 'translateX(100%)',
+  };
   public isSlidedRight = true;
   public slidingBlocked = false;
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-  ) {}
+  constructor(private readonly _cdr: ChangeDetectorRef) {}
 
   public next() {
     if (this.slidingBlocked) {
       return;
     }
     this.isSlidedRight = true;
-    this.cdr.detectChanges();
+    this._cdr.detectChanges();
     if (this.currentIndex === this.images.length - 1) {
       this.currentIndex = 0;
       return;
@@ -39,7 +43,7 @@ export class PhotoSliderComponent {
       return;
     }
     this.isSlidedRight = false;
-    this.cdr.detectChanges();
+    this._cdr.detectChanges();
     if (this.currentIndex === 0) {
       this.currentIndex = this.images.length - 1;
       return;
@@ -52,7 +56,7 @@ export class PhotoSliderComponent {
       return;
     }
     this.isSlidedRight = this.currentIndex < i;
-    this.cdr.detectChanges();
+    this._cdr.detectChanges();
     this.currentIndex = i;
   }
 
@@ -64,8 +68,7 @@ export class PhotoSliderComponent {
     this.slidingBlocked = false;
   }
 
-  public trackByUrl(item: IProductImage){
-    return item.url
+  public trackByUrl(item: IProductImage) {
+    return item.url;
   }
 }
-

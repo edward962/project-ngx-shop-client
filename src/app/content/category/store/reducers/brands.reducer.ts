@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { getBrandsSuccess } from '../actions/brands.actions';
 
 export interface IBrandsState {
@@ -8,17 +8,6 @@ export interface IBrandsState {
 export interface IBrand {
   brand: String;
 }
-// const brandsReducer = createReducer(
-//   {
-//     items: [],
-//     loading: false,
-//   },
-//   on(getBrandsSuccess, (state: IBrandsState, { brands }) => ({
-//     ...state,
-//     items: brands,
-//     loading: false,
-//   }))
-// );
 
 const brandsReducer = createReducer(
   {
@@ -33,10 +22,6 @@ const brandsReducer = createReducer(
   }))
 );
 
-export function reducerBrands(
-  state: IBrandsState | undefined,
-  // tslint:disable-next-line: no-any
-  action: any
-) {
+export function reducerBrands(state: IBrandsState | undefined, action: Action) {
   return brandsReducer(state, action);
 }

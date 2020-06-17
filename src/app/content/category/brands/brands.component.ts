@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IStore } from 'src/app/store/reducers';
+import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
   selector: 'ngx-shop-brands',
@@ -16,26 +18,29 @@ import { IStore } from 'src/app/store/reducers';
   ],
   styleUrls: ['./brands.component.sass'],
 })
-export class BrandsComponent implements ControlValueAccessor {
-  constructor(
-    private readonly _store: Store<IStore>
-  ) {}
+export class BrandsComponent extends UnSubscriber
+  implements ControlValueAccessor {
+  constructor(private readonly _store: Store<IStore>) {
+    super();
+  }
   @Input()
   public selectedBrands: string[] = [];
   public isShow = false;
   public onChange!: Function;
   public brandsToShow: string[] = [];
-  public brands$: Observable<String[]> = this._store.select('brands', 'items');
+  public brands$: Observable<string[]> = this._store
+    .select('brands', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
 
-  writeValue(brands: string[]): void {
+  public writeValue(brands: string[]): void {
     this.brandsToShow = brands;
   }
 
-  registerOnChange(fn: any): void {
+  public registerOnChange(fn: Function): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(): void {}
+  public registerOnTouched(fn: Function): void {}
 
   public check(brandName: string) {
     this.onChange(brandName);

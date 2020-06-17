@@ -1,4 +1,3 @@
-import { BrandsService } from '../../shared/services/brands.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PriceSliderComponent } from './price-slider/price-slider.component';
