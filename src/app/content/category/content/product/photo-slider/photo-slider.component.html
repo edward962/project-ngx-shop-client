@@ -1,24 +1,19 @@
 <div id="productCarousel" class="product-carousel carousel slide">
   <ol class="carousel-indicators">
-    <li
-      [ngClass]="{ active: j === currentIndex }"
-      *ngFor="let image of images; let j = index"
-      (click)='show(j)'
-    >
+    <li [ngClass]="{ active: j === currentIndex }" *ngFor="let image of images; let j = index" (click)='show(j)'>
       <img [src]="image?.url" />
     </li>
   </ol>
   <div class="carousel-inner">
     <ng-container *ngFor="let image of images; let i = index; trackBy: trackByUrl;">
-      <div
-        [@slideAnimation]="{value: '', params: isSlidedRight ? animateRight : animateLeft}"
-        (@slideAnimation.start)="animationStart()"
-        (@slideAnimation.done)="animationEnd()"
-        *ngIf="i === currentIndex"
-        class="carousel-item"
-      >
+      <div [@slideAnimation]="{value: '', params: isSlidedRight ? animateRight : animateLeft}"
+        (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()" *ngIf="i === currentIndex"
+        class="carousel-item">
         <div class="img-wrap">
-          <img [src]="image?.url" />
+          <img *ngIf="image" [src]="image?.url" />
+          <img *ngIf="!image"
+            [src]="'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'"
+            />
         </div>
       </div>
     </ng-container>
