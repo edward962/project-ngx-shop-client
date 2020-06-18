@@ -15,14 +15,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { ModalModule } from './modal/modal.module';
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

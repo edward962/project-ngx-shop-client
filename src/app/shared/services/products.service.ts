@@ -20,9 +20,8 @@ export class ProductsService {
     return this.http.post<IFeedback>(`/feedbacks`, { ...feedback, product });
   }
 
-  public getProductsBySubCategory(
-    search: Params
-  ): Observable<IProductApi> {
+  public getProductsBySubCategory(search: Params): Observable<IProductApi> {
+    console.log(search);
     const {
       currentCategory,
       priceRange,
@@ -32,12 +31,15 @@ export class ProductsService {
     const subCat = currentCategory ?? '';
     const productName = searchByName ?? '';
     const selectedBrandsQuery = selectedBrands ?? '';
-    const priceData = priceRange
-      ? priceRange
-      : { value: 0, highValue: 1000000000 };
-    return this.http.get<IProductApi>(
-      `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&prices=${priceData.value},${priceData.highValue}&text=${productName}`
-    );
+    if (priceRange) {
+      return this.http.get<IProductApi>(
+        `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&prices=${priceRange[0]},${priceRange[1]}&text=${productName}`
+      );
+    } else {
+      return this.http.get<IProductApi>(
+        `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&text=${productName}`
+      );
+    }
   }
 
   public getSuggestedProducts(): Observable<ISuggestedProductsApi> {

@@ -18,19 +18,15 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
   ],
   styleUrls: ['./brands.component.sass'],
 })
-export class BrandsComponent extends UnSubscriber
-  implements ControlValueAccessor {
-  constructor(private readonly _store: Store<IStore>) {
-    super();
-  }
+export class BrandsComponent implements ControlValueAccessor {
+  constructor(private readonly _store: Store<IStore>) {}
+  @Input()
+  public brands: string[] = [];
   @Input()
   public selectedBrands: string[] = [];
   public isShow = false;
   public onChange!: Function;
   public brandsToShow: string[] = [];
-  public brands$: Observable<string[]> = this._store
-    .select('brands', 'items')
-    .pipe(takeUntil(this.unsubscribe$$));
 
   public writeValue(brands: string[]): void {
     this.brandsToShow = brands;
@@ -43,7 +39,13 @@ export class BrandsComponent extends UnSubscriber
   public registerOnTouched(fn: Function): void {}
 
   public check(brandName: string) {
-    this.onChange(brandName);
+    const index = this.selectedBrands.findIndex((brand) => brand === brandName);
+    if (index < 0) {
+      this.selectedBrands.push(brandName);
+    } else {
+      this.selectedBrands.splice(index, 1);
+    }
+    this.onChange(this.selectedBrands);
   }
 
   public show() {

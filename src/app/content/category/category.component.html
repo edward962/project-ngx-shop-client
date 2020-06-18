@@ -20,10 +20,14 @@
             formControlName="searchByName"
           />
           <ngx-shop-brands
+            [brands]="brands$ | async"
             [selectedBrands]="selectedBrands"
-            formControlName="brand"
+            formControlName="brands"
           ></ngx-shop-brands>
-          <ngx-shop-price-slider formControlName="prices">
+          <ngx-shop-price-slider
+            [pricesValue]="selectedPrices"
+            formControlName="prices"
+          >
           </ngx-shop-price-slider>
         </div>
         <div class="col-lg-8 col-xl-9">

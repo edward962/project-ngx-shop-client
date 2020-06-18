@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { ModalService } from './modal.service';
 
-
 @Component({
   selector: 'ngx-shop-modal',
   templateUrl: './modal.component.html',
@@ -29,8 +28,7 @@ export class ModalComponent implements OnInit {
   public constructor(
     private readonly _modalService: ModalService,
     private readonly _cfr: ComponentFactoryResolver
-    ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this._modalService.modalSequence$.subscribe(
@@ -43,9 +41,9 @@ export class ModalComponent implements OnInit {
         this.childComponent = this._cfr.resolveComponentFactory(component);
         this.modalContext = this.modal.createComponent(this.childComponent, 0);
         Object.keys(context).forEach(
-          (key: string) => (this.modalContext.instance[key] = context[key]),
+          (key: string) => (this.modalContext.instance[key] = context[key])
         );
-      },
+      }
     );
   }
 

@@ -67,8 +67,4 @@ export class PhotoSliderComponent {
   public animationEnd() {
     this.slidingBlocked = false;
   }
-
-  public trackByUrl(item: IProductImage) {
-    return item.url;
-  }
 }

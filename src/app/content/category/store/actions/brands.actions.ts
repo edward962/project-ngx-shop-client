@@ -5,7 +5,7 @@ export const getBrandsPending = createAction(
   '[Brands] Get brands pending',
   props<{
     id?: string;
-    priceRange?: IPriceData;
+    priceRange?: number[];
   }>()
 );
 export const getBrandsSuccess = createAction(

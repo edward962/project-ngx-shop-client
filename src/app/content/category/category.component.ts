@@ -4,11 +4,11 @@ import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getProductsPending } from './store/actions/products.actions';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Form } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
@@ -39,11 +39,15 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public products$: Observable<IProduct[]> = this._store
     .select('products', 'items')
     .pipe(takeUntil(this.unsubscribe$$));
-  public priceRange!: IPriceData;
+  public brands$: Observable<string[]> = this._store
+    .select('brands', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
+  public priceRange?: number[];
   public productName = '';
   public selectedBrands: string[] = [];
+  public selectedPrices: number[] = [];
   public form: FormGroup = this._fb.group({
-    brand: [''],
+    brands: [[]],
     prices: [{}],
     currentSubCategory: [''],
     searchByName: [''],
@@ -59,63 +63,96 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
 
   public ngOnInit() {
     this._store.dispatch(getCategoriesPending());
-    this.form.valueChanges.pipe(debounceTime(300)).subscribe((formData) => {
-      const index = this.selectedBrands.indexOf(formData.brand);
-      if (index === -1) {
-        this.selectedBrands.push(formData.brand);
-      } else {
-        this.selectedBrands.splice(index, 1);
-      }
-      this._store.dispatch(
-        go({
-          path: ['/category'],
-          query: {
-            brand: this.selectedBrands.join(','),
-            subCatId: formData.currentSubCategory,
-            searchByName: formData.searchByName,
-            prices: `${formData.prices.low},${formData.prices.high}`,
-          },
-        })
+    (this.form.get('currentSubCategory') as FormControl).valueChanges
+      .pipe(debounceTime(300), takeUntil(this.unsubscribe$$))
+      .subscribe((currentSubCategory) => {
+        this.selectedBrands = [];
+        this._store.dispatch(
+          go({
+            path: ['/category'],
+            query: {
+              subCatId: currentSubCategory,
+            },
+            extras: { replaceUrl: true },
+          })
+        );
+      });
+    (this.form.get('brands') as FormControl).valueChanges
+      .pipe(debounceTime(300), takeUntil(this.unsubscribe$$))
+      .subscribe((brands) =>
+        this._store.dispatch(
+          go({
+            path: ['/category'],
+            query: {
+              brands: brands.join(',') || undefined,
+            },
+            extras: { queryParamsHandling: 'merge' },
+          })
+        )
       );
-    });
+    (this.form.get('prices') as FormControl).valueChanges
+      .pipe(debounceTime(300), takeUntil(this.unsubscribe$$))
+      .subscribe((prices) => {
+        this._store.dispatch(
+          go({
+            path: ['/category'],
+            query: { prices: `${prices[0]},${prices[1]}` },
+            extras: { queryParamsHandling: 'merge' },
+          })
+        );
+      });
+    (this.form.get('searchByName') as FormControl).valueChanges
+      .pipe(debounceTime(300), takeUntil(this.unsubscribe$$))
+      .subscribe((searchByName) =>
+        this._store.dispatch(
+          go({
+            path: ['/category'],
+            query: { searchByName },
+            extras: { queryParamsHandling: 'merge' },
+          })
+        )
+      );
 
-    this._activatedRoute.queryParams.subscribe((query) => {
-      if (query.brand) {
-        this.selectedBrands = query.brand.split(',');
-      }
-      this._store.dispatch(
-        getProductsPending({
-          selectedBrands: query.brand,
-          currentCategory: query.subCatId,
-          searchByName: query.searchByName,
-          priceRange: {
-            value: query.prices.split(',')[0],
-            highValue: query.prices.split(',')[1],
+    this._activatedRoute.queryParams
+      .pipe(takeUntil(this.unsubscribe$$))
+      .subscribe((query) => {
+        if (query.prices) {
+          this.selectedPrices = query.prices.split(',');
+        }
+        if (query.brands) {
+          this.selectedBrands = query.brands.split(',');
+        }
+        this.form.setValue(
+          {
+            searchByName: query.searchByName ?? '',
+            brands: this.selectedBrands,
+            currentSubCategory: query.subCatId,
+            prices: {
+              low: this.selectedPrices[0],
+              high: this.selectedPrices[1],
+            },
           },
-        })
-      );
-      this._store.dispatch(
-        getBrandsPending({
-          id: query.subCatId,
-          priceRange: {
-            value: query.prices.split(',')[0],
-            highValue: query.prices.split(',')[1],
-          },
-        })
-      );
-
-      this.form.setValue(
-        {
-          searchByName: query.searchByName ?? '',
-          brand: '',
-          currentSubCategory: query.subCatId,
-          prices: {
-            low: query.prices.split(',')[0],
-            high: query.prices.split(',')[1],
-          },
-        },
-        { emitEvent: false }
-      );
-    });
+          { emitEvent: false }
+        );
+        this._store.dispatch(
+          getProductsPending({
+            selectedBrands: query.brands,
+            currentCategory: query.subCatId,
+            searchByName: query.searchByName,
+            priceRange:
+              (this.selectedPrices[0] && [
+                this.selectedPrices[0],
+                this.selectedPrices[1],
+              ]) ||
+              undefined,
+          })
+        );
+        this._store.dispatch(
+          getBrandsPending({
+            id: query.subCatId,
+            priceRange: this.selectedPrices,
+          })
+        );
+      });
   }
 }

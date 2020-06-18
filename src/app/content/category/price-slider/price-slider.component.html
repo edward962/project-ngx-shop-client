@@ -10,7 +10,6 @@
         type="number"
         formControlName="low"
         class="form-control col-4"
-        value="{{ value }}"
         change="userChangeEnd()"
       />
       <label class="col-2 px-0 mb-0 text-center text-dark">до</label>
@@ -19,14 +18,13 @@
         formControlName="high"
         type="number"
         class="form-control col-4"
-        value="{{ highValue }}"
         change="userChangeEnd()"
       />
     </div>
   </form>
   <ng5-slider
-    [(value)]="value"
-    [(highValue)]="highValue"
+    [(value)]="lowTest"
+    [(highValue)]="highTest"
     [options]="options"
     (userChangeEnd)="userChangeEnd()"
   >

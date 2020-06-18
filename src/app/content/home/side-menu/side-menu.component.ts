@@ -24,9 +24,6 @@ export class SideMenuComponent {
         path: ['/category'],
         query: {
           subCatId: subCatId,
-          searchByName: [],
-          brands: [],
-          prices: '0,2000',
         },
       })
     );

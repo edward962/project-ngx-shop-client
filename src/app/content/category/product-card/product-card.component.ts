@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
@@ -16,7 +16,7 @@ export class CategoryProductComponent {
 
   constructor(
     private _modalService: ModalService,
-    private readonly _store: Store<IStore>,
+    private readonly _store: Store<IStore>
   ) {}
 
   public async addToBusket(product: IProduct): Promise<void> {
@@ -39,7 +39,7 @@ export class CategoryProductComponent {
       go({
         path: ['/category/product'],
         query: {
-          id: productId
+          id: productId,
         },
       })
     );

@@ -7,9 +7,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadChildren: () =>
-      import('./content/home/home.module').then(
-        (mod) => mod.HomeModule
-      ),
+      import('./content/home/home.module').then((mod) => mod.HomeModule),
     data: {
       state: 'products',
     },
@@ -40,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

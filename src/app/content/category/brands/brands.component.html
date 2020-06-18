@@ -2,10 +2,10 @@
   <h6 class="mb-2 pb-1">
     <label class="text-dark mb-0">Бренд</label>
   </h6>
-  <div *ngFor="let brandName of brands$ | async; let i = index">
+  <div *ngFor="let brandName of brands; let i = index">
     <div class="custom-control custom-checkbox mb-2" *ngIf="showBrand(i)">
       <input
-        [checked]="selectedBrands.includes(brandName)"
+        [checked]="brandsToShow.includes(brandName)"
         type="checkbox"
         (click)="check(brandName)"
         class="custom-control-input"

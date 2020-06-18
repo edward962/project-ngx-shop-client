@@ -6,7 +6,7 @@ export const getProductsPending = createAction(
   '[Products] Get products pending',
   props<{
     currentCategory?: string;
-    priceRange?: IPriceData;
+    priceRange?: number[];
     searchByName?: string;
     selectedBrands?: string;
   }>()

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Options } from 'ng5-slider';
 import {
   ControlValueAccessor,
@@ -6,11 +6,10 @@ import {
   FormBuilder,
 } from '@angular/forms';
 
-export interface IPriceValue{
+export interface IPriceValue {
   low: number;
-  high: number
+  high: number;
 }
-
 
 @Component({
   selector: 'ngx-shop-price-slider',
@@ -25,27 +24,37 @@ export interface IPriceValue{
 })
 export class PriceSliderComponent implements ControlValueAccessor, OnInit {
   constructor(private readonly _fb: FormBuilder) {}
-
-  public pricesValue?: IPriceValue ;
+  @Input()
+  public pricesValue?: number[];
   public onChange!: Function;
-  public value = 0;
-  public highValue = 2000;
+  public lowTest = 0;
+  public highTest = 2000;
   public options: Options = {
     floor: 0,
     ceil: 2000,
   };
   public priceForm = this._fb.group({
-    low: [this.value],
-    high: [this.highValue],
+    low: [0],
+    high: [2000],
   });
   public ngOnInit() {
+    if (this.pricesValue?.length) {
+      this.lowTest = this.pricesValue[0];
+      this.highTest = this.pricesValue[1];
+    }
+
     this.priceForm.valueChanges.subscribe(({ low, high }) => {
-      this.value = low;
-      this.highValue = high;
-      this.onChange({ low: this.value, high: this.highValue });
+      this.lowTest = low;
+      this.highTest = high;
+      this.onChange([low, high]);
     });
   }
-  writeValue(): void {
+  writeValue(prices: any): void {
+    this.priceForm.setValue(
+      { low: prices.low || 0, high: prices.high || 2000 },
+      { emitEvent: false }
+    );
+    this.pricesValue = prices;
   }
 
   registerOnChange(fn: any): void {
@@ -55,7 +64,12 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
   registerOnTouched(fn: any): void {}
 
   public userChangeEnd() {
-    this.pricesValue = { low: this.value, high: this.highValue };
+    this.priceForm.setValue(
+      { low: this.lowTest, high: this.highTest },
+      { emitEvent: false }
+    );
+    this.pricesValue = [this.lowTest, this.highTest];
+    console.log(this.pricesValue);
     this.onChange(this.pricesValue);
   }
 }
