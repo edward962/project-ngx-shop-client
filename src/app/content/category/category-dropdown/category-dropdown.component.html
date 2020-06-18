@@ -11,7 +11,7 @@
   >
     <li
       *ngFor="let subCategory of category.subCategories"
-      (click)="categorySelect(subCategory._id)"
+      (click)="categorySelect(subCategory._id) && hover(index)"
     >
       <a [ngStyle]="currentCategory === subCategory._id && { color: 'red' }"
         >{{ subCategory.name }}
