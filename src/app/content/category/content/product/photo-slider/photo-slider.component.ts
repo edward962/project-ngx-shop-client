@@ -44,7 +44,7 @@ export class PhotoSliderComponent {
     }
     this.isSlidedRight = false;
     this._cdr.detectChanges();
-    if (this.currentIndex === 0) {
+    if (this.currentIndex === 0 && this.images) {
       this.currentIndex = this.images.length - 1;
       return;
     }
