@@ -35,5 +35,4 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
     this.currentCategory = subCategoryId;
     this.onChange(this.currentCategory);
   }
-
 }

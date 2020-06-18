@@ -78,6 +78,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         })
       );
     });
+
     this._activatedRoute.queryParams.subscribe((query) => {
       if (query.brand) {
         this.selectedBrands = query.brand.split(',');
