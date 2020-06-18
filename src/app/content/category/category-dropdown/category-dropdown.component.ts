@@ -21,13 +21,12 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   public onChange!: Function;
   public currentCategory?: string;
 
-  public writeValue(): void { }
+  public writeValue(): void {}
   public registerOnChange(fn: Function) {
     this.onChange = fn;
   }
-  public registerOnTouched(): void { }
+  public registerOnTouched(): void {}
   public hover(index: number) {
-    console.log(index, this.currentIndex);
     this.isShow = !this.isShow;
     this.currentIndex = index;
   }
