@@ -6,9 +6,7 @@
           <h6 class="mt-4 mt-lg-2 mb-4">Другие категории</h6>
           <div class="aside-accordion-menu list-group">
             <ngx-shop-category-dropdown
-              *ngFor="let category of categories$ | async; let i = index"
-              [category]="category"
-              [index]="i"
+              [categories]="categories$ | async"
               formControlName="currentSubCategory"
             ></ngx-shop-category-dropdown>
           </div>

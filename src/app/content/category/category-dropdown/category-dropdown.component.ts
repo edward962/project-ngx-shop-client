@@ -1,4 +1,3 @@
-import { filter } from 'rxjs/operators';
 import { Component, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
@@ -16,10 +15,7 @@ import { ICategory } from 'src/app/store/reducers/categories.reducer';
 })
 export class CategoryDropdownComponent implements ControlValueAccessor {
   @Input()
-  public category!: ICategory;
-  @Input()
-  public index!: number;
-  @Input()
+  public categories!: ICategory[];
   public currentIndex: number | null = null;
   public isShow = false;
   public onChange!: Function;
@@ -31,7 +27,6 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   }
   public registerOnTouched(): void {}
   public hover(index: number) {
-    //console.log(this.currentIndex, index);
     this.isShow = !this.isShow;
     this.currentIndex = index;
   }

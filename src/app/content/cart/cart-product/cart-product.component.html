@@ -5,7 +5,12 @@
       class="product-img"
       (click)= 'redirectTo(product._id )'
     >
-      <img [src]="product.images | imgUrl" [alt]="product.name"/>
+      <img [src]="product.images | imgUrl" [alt]="product.name " *ngIf="product.images"/>
+      <img 
+      *ngIf='!product.images'
+      [src]="'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'"
+      [alt]="product.name"
+    />
     </div>
     <div
       class="product-desc"

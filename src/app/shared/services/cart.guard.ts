@@ -1,6 +1,6 @@
 import { IStore } from 'src/app/store/reducers';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 import { switchMap, take, tap } from 'rxjs/operators';
@@ -17,7 +17,7 @@ export class CartGuard implements CanActivate {
   ) {
   }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  public canActivate(): Observable<boolean> {
     return this.store.select(selectProducts).pipe(
       take(1),
       switchMap((products: ICartProduct[]) => {
