@@ -27,6 +27,7 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   }
   public registerOnTouched(): void {}
   public hover(index: number) {
+    console.log(index, this.currentIndex);
     this.isShow = !this.isShow;
     this.currentIndex = index;
   }
