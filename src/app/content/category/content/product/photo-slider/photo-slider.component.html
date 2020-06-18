@@ -11,13 +11,16 @@
         class="carousel-item">
         <div class="img-wrap">
           <img *ngIf="image" [src]="image?.url" />
-          <img *ngIf="!image"
-            [src]="'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'"
-            />
         </div>
       </div>
     </ng-container>
-
+    <ng-container *ngIf="!images" >
+      <div class="carousel-item">
+        <div class="img-wrap">
+          <img  [src]="'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'" />
+        </div>
+      </div>
+    </ng-container>
   </div>
   <a *ngIf='images?.length > 1' class="carousel-control-prev" (click)="prev()">
     <span class="carousel-control-prev-icon"></span>
