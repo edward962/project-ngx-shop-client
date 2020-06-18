@@ -1,4 +1,5 @@
-<div class="list-group-item" (click)="hover(index)">
+
+<div *ngFor="let category of categories; let i = index"  class="list-group-item"  (click)="hover(i)">
   <h5 class="mb-0">
     {{ category.name }}
     <img src="assets/icons/icon-angle.svg" alt="angle-right" />
@@ -7,7 +8,8 @@
     class="collapse"
     *ngIf="isShow"
     data-parent="#accordion"
-    [ngClass]="{ show: index === currentIndex }"
+    [ngClass]="{ show: i === currentIndex }"
+    
   >
     <li
       *ngFor="let subCategory of category.subCategories"
@@ -19,3 +21,41 @@
     </li>
   </ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="list-group-item" (click)="hover(index)">
+  <h5 class="mb-0">
+    {{ category.name }}
+    <img src="assets/icons/icon-angle.svg" alt="angle-right" />
+  </h5>
+
+  <ul
+    class="collapse"
+    *ngIf="isShow"
+    data-parent="#accordion"
+    [ngClass]="{ show: index === currentIndex }"
+    
+  >
+    <li
+      *ngFor="let subCategory of category.subCategories"
+      (click)="categorySelect(subCategory._id)"
+    >
+      <a [ngStyle]="currentCategory === subCategory._id && { color: 'red' }"
+        >{{ subCategory.name }}
+      </a>
+    </li>
+  </ul>
+</div> -->
