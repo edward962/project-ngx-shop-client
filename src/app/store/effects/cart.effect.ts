@@ -1,9 +1,4 @@
-import {
-  Actions,
-  createEffect,
-  ofType,
-  CreateEffectMetadata,
-} from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   addProductToCart,
   incrementProductInCart,

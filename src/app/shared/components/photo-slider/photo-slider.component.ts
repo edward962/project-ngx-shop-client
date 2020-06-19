@@ -1,15 +1,19 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { slideAnimation } from './photo-slider.animation';
 import { IProductImage } from 'src/app/shared/interfaces/product.inteface';
+import { slideAnimation } from './photo-slider.animation';
 
 @Component({
-  selector: 'ngx-shop-product-photo',
+  selector: 'ngx-shop-photo-slider',
   templateUrl: './photo-slider.component.html',
   animations: slideAnimation,
 })
 export class PhotoSliderComponent {
   @Input()
   public images!: IProductImage[];
+  @Input()
+  public slideClass!: string;
+  @Input()
+  public isBottomButtons: boolean = true;
   public currentIndex = 0;
 
   public animateRight = {
@@ -22,7 +26,6 @@ export class PhotoSliderComponent {
   };
   public isSlidedRight = true;
   public slidingBlocked = false;
-
   constructor(private readonly _cdr: ChangeDetectorRef) {}
 
   public next() {
@@ -44,7 +47,7 @@ export class PhotoSliderComponent {
     }
     this.isSlidedRight = false;
     this._cdr.detectChanges();
-    if (this.currentIndex === 0 && this.images) {
+    if (this.currentIndex === 0) {
       this.currentIndex = this.images.length - 1;
       return;
     }

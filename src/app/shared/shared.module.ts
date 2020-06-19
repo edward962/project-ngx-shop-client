@@ -19,9 +19,16 @@ import { TooltipDirective } from './directives/tooltip.derective';
 import { IStore } from '../store/reducers';
 import { BrandsService } from './services/brands.service';
 import { IProduct } from './interfaces/product.inteface';
+import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
 
 @NgModule({
-  declarations: [StarRatingComponent, RatePipe, ImgUrlPipe, TooltipDirective],
+  declarations: [
+    StarRatingComponent,
+    RatePipe,
+    ImgUrlPipe,
+    TooltipDirective,
+    PhotoSliderComponent,
+  ],
   imports: [
     ReactiveFormsModule,
     FormsModule,
@@ -35,6 +42,7 @@ import { IProduct } from './interfaces/product.inteface';
     RouterModule,
     HttpClientModule,
     CommonModule,
+    PhotoSliderComponent,
     StarRatingComponent,
     RatePipe,
     ImgUrlPipe,

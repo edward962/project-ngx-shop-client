@@ -15,6 +15,20 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 })
 export class HomeComponent extends UnSubscriber implements OnInit {
   public categories: ICategory[] = [];
+  public imagesDef = [
+    {
+      url: 'assets/images/20389.jpg',
+      title: '',
+    },
+    {
+      url: 'assets/images/20473.jpg',
+      title: '',
+    },
+    {
+      url: 'assets/images/20677.jpg',
+      title: '',
+    },
+  ];
   public categories$: Observable<ICategory[]> = this._store
     .select('categories', 'items')
     .pipe(takeUntil(this.unsubscribe$$));

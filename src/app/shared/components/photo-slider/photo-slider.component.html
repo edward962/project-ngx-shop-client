@@ -1,11 +1,11 @@
-<div id="productCarousel" class="product-carousel carousel slide">
+<div id="productCarousel" class="{{ slideClass }}">
   <ol class="carousel-indicators">
     <li
       [ngClass]="{ active: j === currentIndex }"
       *ngFor="let image of images; let j = index"
       (click)="show(j)"
     >
-      <img [src]="image?.url" />
+      <img [src]="image?.url" *ngIf="isBottomButtons" />
     </li>
   </ol>
   <div class="carousel-inner">
