@@ -50,8 +50,8 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     });
   }
   public writeValue(prices: number[]): void {
-    this.low = prices[0] || 0;
-    this.high = prices[1] || 2000;
+    //this.low = prices[0] || 0;
+    //this.high = prices[1] || 2000;
     this.priceForm.setValue(
       { low: prices[0] || 0, high: prices[1] || 2000 },
       { emitEvent: false }

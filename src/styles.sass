@@ -1,6 +1,12 @@
+
 html,
 body
   height: 100%
+  -webkit-user-select: none 
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
 
 body
   font-family: "Helvetica Neue", sans-serif
@@ -142,8 +148,14 @@ main
   border-color: transparent black transparent transparent
 
 .ng-tooltip-show
-
   opacity: 1
+
+.ng5-slider-span.ng5-slider-pointer.ng5-slider-active
+  outline: none  
+
+.ng5-slider span.ng5-slider-span.ng5-slider-pointer.ng5-slider-active
+  &:after 
+   background-color: white
 
 @media all and (max-width: 767px)
   main

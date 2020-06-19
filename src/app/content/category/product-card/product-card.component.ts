@@ -20,19 +20,20 @@ export class CategoryProductComponent {
   ) {}
 
   public async addToBusket(product: IProduct): Promise<void> {
-    this._modalService.open({
-      component: CardConfirmModalComponent,
-      context: {
-        product: { ...product },
-        save: (): void => {
-          this._store.dispatch(addProductToCart({ product }));
-          this._modalService.close();
-        },
-        close: (): void => {
-          this._modalService.close();
-        },
-      },
-    });
+    this._store.dispatch(addProductToCart({ product }));
+    // this._modalService.open({
+    //   component: CardConfirmModalComponent,
+    //   context: {
+    //     product: { ...product },
+    //     save: (): void => {
+    //       this._store.dispatch(addProductToCart({ product }));
+    //       this._modalService.close();
+    //     },
+    //     close: (): void => {
+    //       this._modalService.close();
+    //     },
+    //   },
+    // });
   }
   public redirectTo(productId: string): void {
     window.scroll(0, 0);

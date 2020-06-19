@@ -20,19 +20,20 @@ export class InformationComponent {
     private readonly _modalService: ModalService
   ) {}
   public async addToBusket(product: IProduct): Promise<void> {
-    this._modalService.open({
-      component: CardConfirmModalComponent,
-      context: {
-        product: { ...product },
-        save: (): void => {
-          this._store.dispatch(addProductToCart({ product }));
-          this._modalService.close();
-        },
-        close: (): void => {
-          this._modalService.close();
-        },
-      },
-    });
+    this._store.dispatch(addProductToCart({ product }));
+    // this._modalService.open({
+    //   component: CardConfirmModalComponent,
+    //   context: {
+    //     product: { ...product },
+    //     save: (): void => {
+    //       this._store.dispatch(addProductToCart({ product }));
+    //       this._modalService.close();
+    //     },
+    //     close: (): void => {
+    //       this._modalService.close();
+    //     },
+    //   },
+    // });
   }
 
   public show(): void {

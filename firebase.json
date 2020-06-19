@@ -1,0 +1,20 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false
+  },
+  "database": {
+    "rules": {
+      ".read": false,
+      ".write": false
+    }
+  },
+  "hosting": {
+    "public": "dist/ngx-shop-client",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
