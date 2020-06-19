@@ -23,7 +23,7 @@ export class FeedbacksComponent {
     this._modalService.open({
       component: component.AddFeedbackComponent,
       context: {
-        save: (value: IFeedback) => {
+        save: (value: IFeedback): void => {
           this._store.dispatch(
             createFeedbackPending({
               feedback: { ...value },
@@ -31,7 +31,7 @@ export class FeedbacksComponent {
           );
           this._modalService.close();
         },
-        close: () => {
+        close: (): void => {
           this._modalService.close();
         },
       },

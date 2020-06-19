@@ -3,7 +3,7 @@ import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getProductsPending } from './store/actions/products.actions';
@@ -46,9 +46,9 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     super();
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this._store.dispatch(getCategoriesPending());
-    this.getForm$('currentSubCategory').subscribe((currentSubCategory) => {
+    this.getForm$('currentSubCategory').subscribe((currentSubCategory): void => {
       this.selectedBrands = [];
       this._store.dispatch(
         go({
@@ -60,7 +60,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         })
       );
     });
-    this.getForm$('brands').subscribe((brands) =>
+    this.getForm$('brands').subscribe((brands): void =>
       this._store.dispatch(
         go({
           path: ['/category'],
@@ -71,7 +71,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         })
       )
     );
-    this.getForm$('prices').subscribe((prices) => {
+    this.getForm$('prices').subscribe((prices): void => {
       this._store.dispatch(
         go({
           path: ['/category'],
@@ -80,7 +80,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         })
       );
     });
-    this.getForm$('searchByName').subscribe((searchByName) =>
+    this.getForm$('searchByName').subscribe((searchByName): void =>
       this._store.dispatch(
         go({
           path: ['/category'],
@@ -92,7 +92,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
 
     this._activatedRoute.queryParams
       .pipe(takeUntil(this.unsubscribe$$))
-      .subscribe((query) => {
+      .subscribe((query): void => {
         if (query.prices) {
           this.selectedPrices = query.prices.split(',');
         } else {
@@ -101,7 +101,6 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         if (query.brands) {
           this.selectedBrands = query.brands.split(',');
         }
-        console.log(this.selectedPrices);
         this.form.setValue(
           {
             searchByName: query.searchByName ?? '',

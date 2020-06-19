@@ -28,7 +28,7 @@ export class PhotoSliderComponent {
   public slidingBlocked = false;
   constructor(private readonly _cdr: ChangeDetectorRef) {}
 
-  public next() {
+  public next(): void {
     if (this.slidingBlocked) {
       return;
     }
@@ -41,7 +41,7 @@ export class PhotoSliderComponent {
     this.currentIndex += 1;
   }
 
-  public prev() {
+  public prev(): void {
     if (this.slidingBlocked) {
       return;
     }
@@ -54,7 +54,7 @@ export class PhotoSliderComponent {
     this.currentIndex -= 1;
   }
 
-  public show(i: number) {
+  public show(i: number): void {
     if (this.slidingBlocked) {
       return;
     }
@@ -63,11 +63,11 @@ export class PhotoSliderComponent {
     this.currentIndex = i;
   }
 
-  public animationStart() {
+  public animationStart(): void {
     this.slidingBlocked = true;
   }
 
-  public animationEnd() {
+  public animationEnd(): void {
     this.slidingBlocked = false;
   }
 }

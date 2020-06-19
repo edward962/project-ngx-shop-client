@@ -21,8 +21,10 @@ export class ProductsEffects extends UnSubscriber {
   public getProducts$: Observable<Action> = createEffect(() =>
     this._actions.pipe(
       ofType(getProductsPending),
+      // tslint:disable-next-line:typedef
       switchMap(({ type, ...search }) => {
         return this._productsService.getProductsBySubCategory(search).pipe(
+          // tslint:disable-next-line:typedef
           map(({ items: products }) => {
             return getProductsSuccess({ products });
           })

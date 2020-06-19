@@ -17,12 +17,13 @@ import {
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 export const cartAdapter: EntityAdapter<IProduct> = createEntityAdapter({
-  selectId: (product: IProduct) => product._id,
+  selectId: (product: IProduct): string => product._id,
 });
 
 const initialState: EntityState<IProduct> = cartAdapter.getInitialState({});
 const cartReducer = createReducer(
   initialState,
+  // tslint:disable-next-line:typedef
   on(addProductToCart, (state: EntityState<IProduct>, { product }) => {
     const entity: IProduct | undefined = state.entities[product._id];
     return cartAdapter.upsertOne(
@@ -33,12 +34,16 @@ const cartReducer = createReducer(
       state
     );
   }),
+  // tslint:disable-next-line:typedef
   on(addAllProductsToCart, (state: EntityState<IProduct>, { products }) => {
+    // tslint:disable-next-line: deprecation
     return cartAdapter.addAll(products, state);
   }),
+  // tslint:disable-next-line:typedef
   on(removeProductFromCart, (state: EntityState<IProduct>, { product }) => {
     return cartAdapter.removeOne(product._id, state);
   }),
+  // tslint:disable-next-line:typedef
   on(incrementProductInCart, (state: EntityState<IProduct>, { product }) => {
     return cartAdapter.updateOne(
       {
@@ -48,6 +53,7 @@ const cartReducer = createReducer(
       state
     );
   }),
+  // tslint:disable-next-line:typedef
   on(decrementProductInCart, (state: EntityState<IProduct>, { product }) => {
     return cartAdapter.updateOne(
       {
@@ -62,7 +68,7 @@ const cartReducer = createReducer(
 export function reducerCart(
   state: EntityState<IProduct> | undefined,
   action: Action
-) {
+): EntityState<IProduct> {
   return cartReducer(state, action);
 }
 
@@ -75,7 +81,9 @@ export const selectProducts = createSelector(selectProductsState, selectAll);
 export const trueProductsCount: MemoizedSelector<
   object,
   number
+// tslint:disable-next-line:typedef
 > = createSelector(selectProducts, (products: IProduct[]) => {
+  // tslint:disable-next-line:typedef
   return products.reduce((count: number, product: IProduct) => {
     return (count += product.count ?? 0);
   }, 0);

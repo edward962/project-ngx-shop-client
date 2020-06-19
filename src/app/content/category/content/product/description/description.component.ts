@@ -7,11 +7,11 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 export class DescriptionComponent {
   @Input() public product!: IProduct;
   public isShowDescription = true;
-
-  public toggleTab() {
+  public close!: () => void;
+  public save!: (value: object) => void;
+  public toggleTab(): void {
     this.isShowDescription = !this.isShowDescription;
   }
 
-  public close!: () => void;
-  public save!: (value: object) => void;
+
 }

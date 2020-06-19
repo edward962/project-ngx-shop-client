@@ -15,10 +15,10 @@ export class SideMenuComponent {
 
   constructor(private _store: Store<IStore>) {}
 
-  public hover(index: number) {
+  public hover(index: number): void {
     this.currentIndex = index;
   }
-  redirectTo(subCatId: string) {
+  public redirectTo(subCatId: string): void {
     this._store.dispatch(
       go({
         path: ['/category'],

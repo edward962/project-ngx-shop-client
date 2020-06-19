@@ -25,7 +25,7 @@ export class CartComponent extends UnSubscriber {
     super();
   }
 
-  public decrementProductInCart(product: IProduct) {
+  public decrementProductInCart(product: IProduct): void {
     if (product.count && product.count > 1) {
       this._store.dispatch(decrementProductInCart({ product }));
       return;
@@ -33,15 +33,15 @@ export class CartComponent extends UnSubscriber {
     this._store.dispatch(removeProductFromCart({ product }));
   }
 
-  public removeProductFromCart(product: IProduct) {
+  public removeProductFromCart(product: IProduct): void {
     this._store.dispatch(removeProductFromCart({ product }));
   }
 
-  public incrementProductInCart(product: IProduct) {
+  public incrementProductInCart(product: IProduct): void {
     this._store.dispatch(incrementProductInCart({ product }));
   }
 
-  public trackById(_index: number, item: IProduct) {
+  public trackById(_index: number, item: IProduct): string {
     return item._id;
   }
 }

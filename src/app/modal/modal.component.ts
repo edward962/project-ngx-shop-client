@@ -20,9 +20,12 @@ export class ModalComponent implements OnInit {
   @ViewChild('modalContent', { read: ViewContainerRef, static: false })
   public modal!: ViewContainerRef;
 
+  // tslint:disable-next-line:no-any
   public childComponent!: ComponentFactory<any>;
   public isOpen = false;
+  // tslint:disable-next-line:no-any
   public modalContext!: ComponentRef<any>;
+  // tslint:disable-next-line:no-any
   public component!: Type<any>;
 
   public constructor(
@@ -32,7 +35,8 @@ export class ModalComponent implements OnInit {
 
   public ngOnInit(): void {
     this._modalService.modalSequence$.subscribe(
-      ({ component, context }: any) => {
+      // tslint:disable-next-line:no-any
+      ({ component, context }: any): void => {
         if (!component) {
           this.close();
           return;
@@ -41,7 +45,7 @@ export class ModalComponent implements OnInit {
         this.childComponent = this._cfr.resolveComponentFactory(component);
         this.modalContext = this.modal.createComponent(this.childComponent, 0);
         Object.keys(context).forEach(
-          (key: string) => (this.modalContext.instance[key] = context[key])
+          (key: string): void => (this.modalContext.instance[key] = context[key])
         );
       }
     );

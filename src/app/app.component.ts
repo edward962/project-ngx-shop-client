@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, Data, Router, NavigationEnd } from '@angular/router';
+import { RouterOutlet, Data } from '@angular/router';
 import { customTransition } from './router.animation';
 
 @Component({

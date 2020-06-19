@@ -40,7 +40,7 @@ export class HomeComponent extends UnSubscriber implements OnInit {
     super();
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this._store.dispatch(getCategoriesPending());
     this._store.dispatch(getSuggestedProductsPending());
   }

@@ -4,6 +4,7 @@ import {
   FormGroup,
   Validators,
   ReactiveFormsModule,
+  AbstractControl,
 } from '@angular/forms';
 import { RatingComponent } from '../rating/rating.component';
 import { CommonModule } from '@angular/common';
@@ -21,7 +22,11 @@ export class AddFeedbackComponent {
   });
 
   constructor(private readonly _fb: FormBuilder) {}
-
+  public close!: () => void;
+  public save!: (value: object) => void;
+  public getField(name: string): AbstractControl | null {
+    return this.feedbackForm.get(name);
+  }
   public async addFeedback(value: IFeedback): Promise<void> {
     const feedback = {
       rate: value.rate,
@@ -29,11 +34,6 @@ export class AddFeedbackComponent {
     };
     this.feedbackForm.reset();
     this.save(feedback);
-  }
-  public close!: () => void;
-  public save!: (value: object) => void;
-  public getField(name: string) {
-    return this.feedbackForm.get(name);
   }
 }
 @NgModule({
