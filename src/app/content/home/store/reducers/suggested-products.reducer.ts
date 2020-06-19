@@ -1,10 +1,10 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import {
   getSuggestedProductsPending,
   getSuggestedProductsSuccess,
 } from '../actions/suggested-products.actions';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 export interface ISuggestedProductsState {
   items: IProduct[];
@@ -12,7 +12,7 @@ export interface ISuggestedProductsState {
 }
 export interface ISuggestedProductsApi {
   items: IProduct[];
-  quantity: number
+  quantity: number;
 }
 
 const initialState: ISuggestedProductsState = {

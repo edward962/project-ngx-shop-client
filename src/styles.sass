@@ -26,7 +26,7 @@ main
   padding: 40px 0 20px
   position: relative
 .form-control:focus
-  box-shadow: none 
+  box-shadow: none
 .btn-primary:hover
   color: #fff
 .outlet-wrap
@@ -86,13 +86,11 @@ main
   span
     color: #ffffff
 
-  
   &:hover
     color: #0056b3
     cursor: pointer
     span
       color: #373a3c
- 
 
 // tooltip
 
@@ -669,7 +667,8 @@ form button[type="submit"]:not(.btn-send)
 
 .homepage-cards .card-img-top
   width: auto
-  height: 100%
+  max-width: 160px
+  max-height: 100%
 
 .homepage-cards .card .flex-grow
   flex-grow: 1
@@ -1014,6 +1013,7 @@ form button[type="submit"]:not(.btn-send)
 .product-carousel .carousel-indicators li img
   width: auto
   max-width: 94%
+  height: 40px
 
 .product-carousel .carousel-indicators
   display: flex

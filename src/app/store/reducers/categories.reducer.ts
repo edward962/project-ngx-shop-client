@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import {
   getCategoriesPending,
   getCategoriesSuccess,
@@ -39,8 +39,7 @@ const categoriesReducer = createReducer(
 
 export function reducerCategories(
   state: ICategoryState | undefined,
-  // tslint:disable-next-line: no-any
-  action: any
-) {
+  action: Action
+): ICategoryState {
   return categoriesReducer(state, action);
 }

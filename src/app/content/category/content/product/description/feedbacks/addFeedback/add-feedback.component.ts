@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { RatingComponent } from '../rating/rating.component';
 import { CommonModule } from '@angular/common';
-import { IFeedback } from '../../../store/reducers/product.reducer';
+import { IFeedback } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-add-feedback',

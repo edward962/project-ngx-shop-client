@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {
-  IProduct,
-  IProductApi,
-} from 'src/app/content/category/store/reducers/products.reducer';
-import { IFeedback } from 'src/app/content/category/content/product/store/reducers/product.reducer';
+import { IProductApi } from 'src/app/content/category/store/reducers/products.reducer';
 import { ISuggestedProductsApi } from 'src/app/content/home/store/reducers/suggested-products.reducer';
 import { Params } from '@angular/router';
+import { IFeedback, IProduct } from '../interfaces/product.inteface';
 
 @Injectable()
 export class ProductsService {
@@ -20,24 +17,23 @@ export class ProductsService {
     return this.http.post<IFeedback>(`/feedbacks`, { ...feedback, product });
   }
 
-  public getProductsBySubCategory(search: Params): Observable<IProductApi> {
-    console.log(search);
-    const {
-      currentCategory,
-      priceRange,
-      searchByName,
-      selectedBrands,
-    } = search;
-    const subCat = currentCategory ?? '';
-    const productName = searchByName ?? '';
-    const selectedBrandsQuery = selectedBrands ?? '';
-    if (priceRange) {
+  public getProductsBySubCategory({
+    currentCategory,
+    priceRange,
+    searchByName,
+    selectedBrands,
+  }: Params): Observable<IProductApi> {
+    if (priceRange.length > 0) {
       return this.http.get<IProductApi>(
-        `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&prices=${priceRange[0]},${priceRange[1]}&text=${productName}`
+        `/products/?subCat=${currentCategory ?? ''}&brands=${
+          selectedBrands ?? ''
+        }&prices=${priceRange[0]},${priceRange[1]}&text=${searchByName ?? ''}`
       );
     } else {
       return this.http.get<IProductApi>(
-        `/products/?subCat=${subCat}&brands=${selectedBrandsQuery}&text=${productName}`
+        `/products/?subCat=${currentCategory}&brands=${
+          selectedBrands ?? ''
+        }&text=${searchByName ?? ''}`
       );
     }
   }

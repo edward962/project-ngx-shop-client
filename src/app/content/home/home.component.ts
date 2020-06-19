@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getCategoriesPending } from 'src/app/store/actions/category.actions';
-import {
-  ICategory,
-} from 'src/app/store/reducers/categories.reducer';
+import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { IProduct } from '../category/store/reducers/products.reducer';
-
 import { getSuggestedProductsPending } from './store/actions/suggested-products.actions';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
-
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-products',
@@ -19,13 +15,16 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class HomeComponent extends UnSubscriber implements OnInit {
   public categories: ICategory[] = [];
-  public categories$: Observable<ICategory[]> = this._store.select('categories', 'items').pipe(takeUntil(this.unsubscribe$$));
-  public products$: Observable<IProduct[]> = this._store.select('suggestedProducts', 'items').pipe(takeUntil(this.unsubscribe$$)) ;
+  public categories$: Observable<ICategory[]> = this._store
+    .select('categories', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
+  public products$: Observable<IProduct[]> = this._store
+    .select('suggestedProducts', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
 
-  constructor(
-    private readonly _store: Store<IStore>) {
-      super()
-    }
+  constructor(private readonly _store: Store<IStore>) {
+    super();
+  }
 
   public ngOnInit() {
     this._store.dispatch(getCategoriesPending());

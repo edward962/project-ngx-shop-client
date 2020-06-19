@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IStore } from '../../../../../../store/reducers';
 import { ModalService } from 'src/app/modal/modal.service';
-import { IFeedback } from '../../store/reducers/product.reducer';
 import { createFeedbackPending } from '../../store/actions/product.actions';
+import { IFeedback } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-feedbacks',

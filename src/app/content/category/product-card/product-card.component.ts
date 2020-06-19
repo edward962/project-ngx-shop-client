@@ -4,8 +4,8 @@ import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { ModalService } from 'src/app/modal/modal.service';
 import { CardConfirmModalComponent } from 'src/app/shared/components/card-confirm-modal/card-confirm-modal.component';
-import { IProduct } from '../store/reducers/products.reducer';
 import { go } from 'src/app/store/actions/router.actions';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-content-product',
@@ -35,6 +35,7 @@ export class CategoryProductComponent {
     });
   }
   public redirectTo(productId: string) {
+    window.scroll(0, 0);
     this._store.dispatch(
       go({
         path: ['/category/product'],

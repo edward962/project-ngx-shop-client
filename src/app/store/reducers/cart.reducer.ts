@@ -12,83 +12,71 @@ import {
   createSelector,
   MemoizedSelector,
   createFeatureSelector,
+  Action,
 } from '@ngrx/store';
-import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
-export interface ICartProduct extends IProduct {
-  count: number;
-}
-
-export const cartAdapter: EntityAdapter<ICartProduct> = createEntityAdapter({
-  selectId: (product: ICartProduct) => product._id,
+export const cartAdapter: EntityAdapter<IProduct> = createEntityAdapter({
+  selectId: (product: IProduct) => product._id,
 });
 
-const initialState: EntityState<ICartProduct> = cartAdapter.getInitialState({});
+const initialState: EntityState<IProduct> = cartAdapter.getInitialState({});
 const cartReducer = createReducer(
   initialState,
-  on(addProductToCart, (state: EntityState<ICartProduct>, { product }) => {
-    const entity: ICartProduct | undefined = state.entities[product._id];
+  on(addProductToCart, (state: EntityState<IProduct>, { product }) => {
+    const entity: IProduct | undefined = state.entities[product._id];
     return cartAdapter.upsertOne(
       {
         ...product,
-        count: entity ? entity.count + 1 : 1,
+        count: entity?.count ? entity.count + 1 : 1,
       },
       state
     );
   }),
-  on(addAllProductsToCart, (state: EntityState<ICartProduct>, { products }) => {
-    // tslint:disable-next-line: deprecation
+  on(addAllProductsToCart, (state: EntityState<IProduct>, { products }) => {
     return cartAdapter.addAll(products, state);
   }),
-  on(removeProductFromCart, (state: EntityState<ICartProduct>, { product }) => {
+  on(removeProductFromCart, (state: EntityState<IProduct>, { product }) => {
     return cartAdapter.removeOne(product._id, state);
   }),
-  on(
-    incrementProductInCart,
-    (state: EntityState<ICartProduct>, { product }) => {
-      return cartAdapter.updateOne(
-        {
-          id: product._id,
-          changes: { count: product.count + 1 },
-        },
-        state
-      );
-    }
-  ),
-  on(
-    decrementProductInCart,
-    (state: EntityState<ICartProduct>, { product }) => {
-      return cartAdapter.updateOne(
-        {
-          id: product._id,
-          changes: { count: product.count - 1 },
-        },
-        state
-      );
-    }
-  )
+  on(incrementProductInCart, (state: EntityState<IProduct>, { product }) => {
+    return cartAdapter.updateOne(
+      {
+        id: product._id,
+        changes: { count: product.count && product.count + 1 },
+      },
+      state
+    );
+  }),
+  on(decrementProductInCart, (state: EntityState<IProduct>, { product }) => {
+    return cartAdapter.updateOne(
+      {
+        id: product._id,
+        changes: { count: product.count && product.count - 1 },
+      },
+      state
+    );
+  })
 );
 
 export function reducerCart(
-  state: EntityState<ICartProduct> | undefined,
-  // tslint:disable-next-line: no-any
-  action: any
+  state: EntityState<IProduct> | undefined,
+  action: Action
 ) {
   return cartReducer(state, action);
 }
 
-export const selectProductsState = createFeatureSelector<
-  EntityState<ICartProduct>
->('cart');
+export const selectProductsState = createFeatureSelector<EntityState<IProduct>>(
+  'cart'
+);
 export const { selectAll } = cartAdapter.getSelectors();
 export const selectProducts = createSelector(selectProductsState, selectAll);
 
-// tslint:disable-next-line: no-any
-export const trueProductsCount: MemoizedSelector<any, number> = createSelector(
-  selectProducts,
-  (products: ICartProduct[]) => {
-    return products.reduce((count: number, product: ICartProduct) => {
-      return (count += product.count);
-    }, 0);
-  }
-);
+export const trueProductsCount: MemoizedSelector<
+  object,
+  number
+> = createSelector(selectProducts, (products: IProduct[]) => {
+  return products.reduce((count: number, product: IProduct) => {
+    return (count += product.count ?? 0);
+  }, 0);
+});

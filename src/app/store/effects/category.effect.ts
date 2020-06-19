@@ -1,3 +1,4 @@
+import { Action } from '@ngrx/store';
 import { CategoriesService } from './../../shared/services/category.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -14,8 +15,7 @@ export class CategoryEffects {
     private actions: Actions,
     public categoriesService: CategoriesService
   ) {}
-  // tslint:disable-next-line: no-any
-  public getCategories$: Observable<any> = createEffect(() =>
+  public getCategories$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(getCategoriesPending),
       switchMap(() => {

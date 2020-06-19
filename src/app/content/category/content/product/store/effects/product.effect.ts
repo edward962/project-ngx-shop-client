@@ -1,5 +1,4 @@
 import { UnSubscriber } from './../../../../../../shared/utils/unsubscriber';
-import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -19,6 +18,7 @@ import {
   createFeedbackPending,
   createFeedbackSuccess,
 } from '../actions/product.actions';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Injectable()
 export class ProductEffects extends UnSubscriber {

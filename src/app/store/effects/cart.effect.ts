@@ -1,18 +1,26 @@
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import {
+  Actions,
+  createEffect,
+  ofType,
+  CreateEffectMetadata,
+} from '@ngrx/effects';
 import {
   addProductToCart,
   incrementProductInCart,
   decrementProductInCart,
+  cartSuccess,
 } from './../actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
 import { map, withLatestFrom, filter, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { removeProductFromCart } from '../actions/cart.actions';
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 import { selectProducts } from '../reducers/cart.reducer';
 import { go } from '../actions/router.actions';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { TypedAction } from '@ngrx/store/src/models';
 
 @Injectable()
 export class CartEffects {
@@ -22,8 +30,7 @@ export class CartEffects {
     private localStorageService: LocalStorageService
   ) {}
 
-  // tslint:disable-next-line: no-any
-  public removeProduct$: Observable<any> = createEffect(() =>
+  public removeProduct$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(removeProductFromCart),
       withLatestFrom(this.store.select(selectProducts)),
@@ -34,22 +41,19 @@ export class CartEffects {
     )
   );
 
-  // tslint:disable-next-line: no-any
-  public toLocalStorage$: Observable<any> = createEffect(
-    () =>
-      this.actions.pipe(
-        ofType(
-          removeProductFromCart,
-          addProductToCart,
-          incrementProductInCart,
-          decrementProductInCart,
-        ),
-        withLatestFrom(this.store.select(selectProducts)),
-        tap(([, products]) => {
-          this.localStorageService.addToLocalStorage('cart', products);
-        }),
+  public toLocalStorage$: Observable<Action> = createEffect(() =>
+    this.actions.pipe(
+      ofType(
+        removeProductFromCart,
+        addProductToCart,
+        incrementProductInCart,
+        decrementProductInCart
       ),
-    { dispatch: false },
+      withLatestFrom(this.store.select(selectProducts)),
+      tap(([, products]) => {
+        this.localStorageService.addToLocalStorage('cart', products);
+      }),
+      map(() => cartSuccess())
+    )
   );
-
 }

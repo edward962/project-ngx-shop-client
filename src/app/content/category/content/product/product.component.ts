@@ -1,4 +1,3 @@
-import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -7,6 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { getProductPending } from './store/actions/product.actions';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-product',

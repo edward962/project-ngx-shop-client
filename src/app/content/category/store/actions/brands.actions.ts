@@ -1,11 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { IPriceData } from '../../category.component';
 
 export const getBrandsPending = createAction(
   '[Brands] Get brands pending',
   props<{
-    id?: string;
-    priceRange?: number[];
+    id: string;
+    prices: number[];
   }>()
 );
 export const getBrandsSuccess = createAction(

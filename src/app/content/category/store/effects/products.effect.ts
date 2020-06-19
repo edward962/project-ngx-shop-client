@@ -23,8 +23,8 @@ export class ProductsEffects extends UnSubscriber {
       ofType(getProductsPending),
       switchMap(({ type, ...search }) => {
         return this._productsService.getProductsBySubCategory(search).pipe(
-          map(({ items }) => {
-            return getProductsSuccess({ products: items });
+          map(({ items: products }) => {
+            return getProductsSuccess({ products });
           })
         );
       }),

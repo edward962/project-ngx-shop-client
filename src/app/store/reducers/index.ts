@@ -5,27 +5,31 @@ import {
   Params,
   RouterStateSnapshot,
 } from '@angular/router';
-
-import { ICartProduct, reducerCart } from './cart.reducer';
+import { reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
 import { ICategoryState, reducerCategories } from './categories.reducer';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { IProductState } from 'src/app/content/category/content/product/store/reducers/product.reducer';
 import { ISuggestedProductsState } from 'src/app/content/home/store/reducers/suggested-products.reducer';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 export interface IStore {
   product: IProductState;
   products: IProductsState;
   suggestedProducts: ISuggestedProductsState;
-  cart: EntityState<ICartProduct>;
+  cart: EntityState<IProduct>;
   categories: ICategoryState;
   brands: IBrandsState;
   routerReducer: typeof routerReducer;
 }
 
-// tslint:disable-next-line: no-any
-export const reducers: ActionReducerMap<any> = {
+interface IReducers {
+  cart: EntityState<IProduct>;
+  categories: ICategoryState;
+}
+
+export const reducers: ActionReducerMap<IReducers> = {
   cart: reducerCart,
   categories: reducerCategories,
   //TODO router ?

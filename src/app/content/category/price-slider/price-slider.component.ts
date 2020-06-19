@@ -27,8 +27,8 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
   @Input()
   public pricesValue?: number[];
   public onChange!: Function;
-  public lowTest = 0;
-  public highTest = 2000;
+  public low = 0;
+  public high = 2000;
   public options: Options = {
     floor: 0,
     ceil: 2000,
@@ -39,37 +39,38 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
   });
   public ngOnInit() {
     if (this.pricesValue?.length) {
-      this.lowTest = this.pricesValue[0];
-      this.highTest = this.pricesValue[1];
+      this.low = this.pricesValue[0];
+      this.high = this.pricesValue[1];
     }
 
     this.priceForm.valueChanges.subscribe(({ low, high }) => {
-      this.lowTest = low;
-      this.highTest = high;
+      this.low = low;
+      this.high = high;
       this.onChange([low, high]);
     });
   }
-  writeValue(prices: any): void {
+  writeValue(prices: number[]): void {
+    this.low = prices[0] || 0;
+    this.high = prices[1] || 2000;
     this.priceForm.setValue(
-      { low: prices.low || 0, high: prices.high || 2000 },
+      { low: prices[0] || 0, high: prices[1] || 2000 },
       { emitEvent: false }
     );
     this.pricesValue = prices;
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: Function): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {}
+  registerOnTouched(): void {}
 
-  public userChangeEnd() {
+  public userChangeEnd(): void {
     this.priceForm.setValue(
-      { low: this.lowTest, high: this.highTest },
+      { low: this.low, high: this.high },
       { emitEvent: false }
     );
-    this.pricesValue = [this.lowTest, this.highTest];
-    console.log(this.pricesValue);
+    this.pricesValue = [this.low, this.high];
     this.onChange(this.pricesValue);
   }
 }

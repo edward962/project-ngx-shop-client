@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 export class BrandsService {
   constructor(private http: HttpClient) {}
 
-  public getBrands({ prices, id }: any) {
+  public getBrands({ prices, id }: { prices: number[]; id: string }) {
     const priceRange = prices.length > 0 ? prices : [0, 2000];
     return this.http.get(
       `/brands?subCat=${id}&prices=${priceRange[0]},${priceRange[1]}`

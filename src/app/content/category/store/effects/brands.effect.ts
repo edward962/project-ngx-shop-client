@@ -18,9 +18,9 @@ export class BrandsEffects extends UnSubscriber {
   public getBrands$: Observable<Action> = createEffect(() =>
     this._actions.pipe(
       ofType(getBrandsPending),
-      switchMap(({ id, priceRange: prices }) => {
+      switchMap(({ type, ...query }) => {
         return this._brandsService
-          .getBrands({ prices, id })
+          .getBrands(query)
           .pipe(map((data) => getBrandsSuccess({ brands: data as string[] })));
       }),
       takeUntil(this.unsubscribe$$)

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICartProduct } from 'src/app/store/reducers/cart.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { go } from 'src/app/store/actions/router.actions';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-cart-product',
@@ -11,44 +11,38 @@ import { go } from 'src/app/store/actions/router.actions';
 })
 export class CartProductComponent {
   @Input()
-  public product!: ICartProduct;
+  public product!: IProduct;
   @Output()
-  public decrement: EventEmitter<ICartProduct> = new EventEmitter<ICartProduct>();
-
-  @Output()
-  public increment: EventEmitter<ICartProduct> = new EventEmitter<ICartProduct>();
+  public decrement: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
   @Output()
-  public remove: EventEmitter<ICartProduct> = new EventEmitter<ICartProduct>();
+  public increment: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
-  constructor(
-    private readonly _store: Store<IStore>,
-  ) {
-  }
+  @Output()
+  public remove: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
-  public decrementProductInCart(product: ICartProduct) {
+  constructor(private readonly _store: Store<IStore>) {}
+
+  public decrementProductInCart(product: IProduct) {
     this.decrement.emit(product);
   }
 
-  public removeProductFromCart(product: ICartProduct) {
+  public removeProductFromCart(product: IProduct) {
     this.remove.emit(product);
   }
 
-  public incrementProductInCart(product: ICartProduct) {
+  public incrementProductInCart(product: IProduct) {
     this.increment.emit(product);
   }
-
-
 
   public redirectTo(productId: string) {
     this._store.dispatch(
       go({
         path: ['/category/product'],
         query: {
-          id: productId
+          id: productId,
         },
       })
     );
   }
 }
-

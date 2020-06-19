@@ -1,8 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { caruselAnimation } from './carusel.slider.animation';
-import { IProductImage } from '../../category/content/product/store/reducers/product.reducer';
-
-
+import { IProductImage } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-carousel',
@@ -10,7 +8,7 @@ import { IProductImage } from '../../category/content/product/store/reducers/pro
 
   animations: caruselAnimation,
 })
-export class CarouselComponent{
+export class CarouselComponent {
   public images = [
     {
       url: 'https://i2.rozetka.ua/owoxads/sliders/20/20389.jpg',
@@ -23,18 +21,21 @@ export class CarouselComponent{
     {
       url: 'https://i1.rozetka.ua/owoxads/sliders/20/20677.jpg',
       title: '',
-    }
+    },
   ];
   public currentIndex = 0;
 
-
-  public animateRight = { translateEnter: 'translateX(100%)', translateLeave: 'translateX(-100%)' };
-  public animateLeft = { translateEnter: 'translateX(-100%)', translateLeave: 'translateX(100%)' };
+  public animateRight = {
+    translateEnter: 'translateX(100%)',
+    translateLeave: 'translateX(-100%)',
+  };
+  public animateLeft = {
+    translateEnter: 'translateX(-100%)',
+    translateLeave: 'translateX(100%)',
+  };
   public isSlidedRight = true;
   public slidingBlocked = false;
-  constructor(
-    private readonly _cdr: ChangeDetectorRef,
-  ){}
+  constructor(private readonly _cdr: ChangeDetectorRef) {}
 
   public next() {
     if (this.slidingBlocked) {
@@ -79,10 +80,10 @@ export class CarouselComponent{
     this.slidingBlocked = false;
   }
 
-  public getImgUrl(image: any) {
-    return `url(${image?.url})`
+  public getImgUrl(image: IProductImage) {
+    return `url(${image?.url})`;
   }
-  public trackByUrl(item: IProductImage){
-    return item.url
+  public trackByUrl(item: IProductImage) {
+    return item.url;
   }
 }

@@ -19,11 +19,11 @@ import { ProductEffects } from './store/effects/product.effect';
     PhotoSliderComponent,
     FeedbacksComponent,
   ],
-  imports: [SharedModule, ProductRoutingModule,
+  imports: [
+    SharedModule,
+    ProductRoutingModule,
     StoreModule.forFeature('product', reducerProduct),
     EffectsModule.forFeature([ProductEffects]),
   ],
-
 })
-export class ProductModule {
-}
+export class ProductModule {}

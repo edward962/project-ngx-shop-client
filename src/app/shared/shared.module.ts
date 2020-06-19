@@ -16,9 +16,9 @@ import { LocalStorageService } from './services/local-storage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
 import { TooltipDirective } from './directives/tooltip.derective';
-import { ICartProduct } from '../store/reducers/cart.reducer';
 import { IStore } from '../store/reducers';
 import { BrandsService } from './services/brands.service';
+import { IProduct } from './interfaces/product.inteface';
 
 @NgModule({
   declarations: [StarRatingComponent, RatePipe, ImgUrlPipe, TooltipDirective],
@@ -69,8 +69,8 @@ export class SharedModule {
             store: Store<IStore>,
             localStorageService: LocalStorageService
           ) => () => {
-            const products: ICartProduct[] = localStorageService.getFromLocalStorage<
-              ICartProduct
+            const products: IProduct[] = localStorageService.getFromLocalStorage<
+              IProduct
             >('cart');
             store.dispatch(addAllProductsToCart({ products }));
           },
