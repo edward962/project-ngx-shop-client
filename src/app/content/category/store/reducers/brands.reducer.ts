@@ -15,6 +15,7 @@ const brandsReducer = createReducer(
     loading: false,
   },
 
+  // tslint:disable-next-line:typedef
   on(getBrandsSuccess, (state: IBrandsState, { brands }) => ({
     ...state,
     items: brands ?? [''],
@@ -22,6 +23,6 @@ const brandsReducer = createReducer(
   }))
 );
 
-export function reducerBrands(state: IBrandsState | undefined, action: Action) {
+export function reducerBrands(state: IBrandsState | undefined, action: Action): IBrandsState {
   return brandsReducer(state, action);
 }

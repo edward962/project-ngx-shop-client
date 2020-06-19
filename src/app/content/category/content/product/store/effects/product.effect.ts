@@ -30,11 +30,14 @@ export class ProductEffects extends UnSubscriber {
     super();
   }
 
+  // tslint:disable-next-line:typedef
   public getProduct$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(getProductPending),
+      // tslint:disable-next-line:typedef
       switchMap(({ id }) =>
         this.productsService.getProductById(id).pipe(
+          // tslint:disable-next-line:typedef
           map((product: IProduct) => {
             return getProductSuccess({ product });
           })
@@ -43,10 +46,12 @@ export class ProductEffects extends UnSubscriber {
       takeUntil(this.unsubscribe$$)
     )
   );
+  // tslint:disable-next-line:typedef
   public addFeedback$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(createFeedbackPending),
       withLatestFrom(this.store.select('product', 'item', '_id')),
+      // tslint:disable-next-line:typedef
       switchMap(([{ feedback }, product]) =>
         this.productsService
           .createFeedback(feedback, product)

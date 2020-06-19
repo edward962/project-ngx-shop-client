@@ -24,17 +24,17 @@ export class CategoryProductComponent {
       component: CardConfirmModalComponent,
       context: {
         product: { ...product },
-        save: () => {
+        save: (): void => {
           this._store.dispatch(addProductToCart({ product }));
           this._modalService.close();
         },
-        close: () => {
+        close: (): void => {
           this._modalService.close();
         },
       },
     });
   }
-  public redirectTo(productId: string) {
+  public redirectTo(productId: string): void {
     window.scroll(0, 0);
     this._store.dispatch(
       go({

@@ -26,10 +26,12 @@ const categoriesReducer = createReducer(
     items: [],
     loading: false,
   },
+  // tslint:disable-next-line:typedef
   on(getCategoriesPending, (state: ICategoryState) => ({
     ...state,
     loading: true,
   })),
+  // tslint:disable-next-line:typedef
   on(getCategoriesSuccess, (state: ICategoryState, { categories }) => ({
     ...state,
     items: categories,

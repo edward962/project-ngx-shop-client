@@ -24,18 +24,18 @@ export class InformationComponent {
       component: CardConfirmModalComponent,
       context: {
         product: { ...product },
-        save: () => {
+        save: (): void => {
           this._store.dispatch(addProductToCart({ product }));
           this._modalService.close();
         },
-        close: () => {
+        close: (): void => {
           this._modalService.close();
         },
       },
     });
   }
 
-  public show() {
+  public show(): void {
     this.isShow = !this.isShow;
   }
 }

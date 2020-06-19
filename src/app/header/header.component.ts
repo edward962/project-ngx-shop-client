@@ -15,6 +15,6 @@ export class HeaderComponent extends UnSubscriber {
     .pipe(takeUntil(this.unsubscribe$$));
 
   constructor(private readonly _store: Store<IStore>) {
-    super()
+    super();
   }
 }

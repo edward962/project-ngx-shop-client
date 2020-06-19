@@ -37,19 +37,19 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     low: [0],
     high: [2000],
   });
-  public ngOnInit() {
+  public ngOnInit(): void {
     if (this.pricesValue?.length) {
       this.low = this.pricesValue[0];
       this.high = this.pricesValue[1];
     }
 
-    this.priceForm.valueChanges.subscribe(({ low, high }) => {
+    this.priceForm.valueChanges.subscribe(({ low, high }): void => {
       this.low = low;
       this.high = high;
       this.onChange([low, high]);
     });
   }
-  writeValue(prices: number[]): void {
+  public writeValue(prices: number[]): void {
     this.low = prices[0] || 0;
     this.high = prices[1] || 2000;
     this.priceForm.setValue(
@@ -59,11 +59,11 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     this.pricesValue = prices;
   }
 
-  registerOnChange(fn: Function): void {
+  public registerOnChange(fn: Function): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(): void {}
+  public registerOnTouched(): void {}
 
   public userChangeEnd(): void {
     this.priceForm.setValue(

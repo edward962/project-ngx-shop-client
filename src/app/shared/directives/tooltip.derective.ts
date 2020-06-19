@@ -20,12 +20,12 @@ export class TooltipDirective implements OnDestroy {
   public offset = 10;
 
   constructor(
-    private readonly _el: ElementRef, 
+    private readonly _el: ElementRef,
     private readonly renderer: Renderer2) {
   }
 
   @HostListener('mouseenter')
-  public onMouseEnter() {
+  public onMouseEnter(): void {
     if (this.tooltip) {
       return;
     }
@@ -33,20 +33,20 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseleave')
-  public onMouseLeave() {
+  public onMouseLeave(): void {
     if (!this.tooltip) {
       return;
     }
     this.hide();
   }
 
-  public show() {
+  public show(): void {
     this.create();
     this.setPosition();
     this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
   }
 
-  public hide() {
+  public hide(): void {
     if (!this.tooltip) {
       return;
     }
@@ -55,7 +55,7 @@ export class TooltipDirective implements OnDestroy {
     this.tooltip = null;
   }
 
-  public create() {
+  public create(): void {
     this.tooltip = this.renderer.createElement('span');
     if (this.tooltipTitle) {
       this.renderer.appendChild(
@@ -69,7 +69,7 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.addClass(this.tooltip, `ng-tooltip-${this.position}`);
   }
 
-  public setPosition() {
+  public setPosition(): void {
     if (!this.tooltip) {
       return;
     }
@@ -104,7 +104,7 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.setStyle(this.tooltip, 'left', `${left}px`);
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     if (this.tooltip) {
       this.hide();
     }

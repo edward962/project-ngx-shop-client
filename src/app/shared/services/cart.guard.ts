@@ -15,6 +15,7 @@ export class CartGuard implements CanActivate {
   public canActivate(): Observable<boolean> {
     return this.store.select(selectProducts).pipe(
       take(1),
+      // tslint:disable-next-line:typedef
       switchMap((products: IProduct[]) => {
         if (products?.length > 0) {
           return of(true);

@@ -29,10 +29,12 @@ const productReducer = createReducer(
     },
     loading: false,
   },
+  // tslint:disable-next-line:typedef
   on(getProductPending, (state: IProductState) => ({
     ...state,
     loading: true,
   })),
+  // tslint:disable-next-line:typedef
   on(getProductSuccess, (state: IProductState, { product }) => ({
     ...state,
     item: product,
@@ -43,6 +45,9 @@ const productReducer = createReducer(
 export function reducerProduct(
   state: IProductState | undefined,
   action: Action
-) {
+): {
+    item: IProduct;
+    loading: boolean;
+} {
   return productReducer(state, action);
 }

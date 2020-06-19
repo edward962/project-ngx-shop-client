@@ -23,19 +23,19 @@ export class CartProductComponent {
 
   constructor(private readonly _store: Store<IStore>) {}
 
-  public decrementProductInCart(product: IProduct) {
+  public decrementProductInCart(product: IProduct): void {
     this.decrement.emit(product);
   }
 
-  public removeProductFromCart(product: IProduct) {
+  public removeProductFromCart(product: IProduct): void {
     this.remove.emit(product);
   }
 
-  public incrementProductInCart(product: IProduct) {
+  public incrementProductInCart(product: IProduct): void {
     this.increment.emit(product);
   }
 
-  public redirectTo(productId: string) {
+  public redirectTo(productId: string): void {
     this._store.dispatch(
       go({
         path: ['/category/product'],

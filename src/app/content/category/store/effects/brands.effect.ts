@@ -18,9 +18,11 @@ export class BrandsEffects extends UnSubscriber {
   public getBrands$: Observable<Action> = createEffect(() =>
     this._actions.pipe(
       ofType(getBrandsPending),
+      // tslint:disable-next-line: typedef
       switchMap(({ type, ...query }) => {
         return this._brandsService
           .getBrands(query)
+          // tslint:disable-next-line:typedef
           .pipe(map((data) => getBrandsSuccess({ brands: data as string[] })));
       }),
       takeUntil(this.unsubscribe$$)

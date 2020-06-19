@@ -22,10 +22,12 @@ const initialState: ISuggestedProductsState = {
 
 const suggestedProductsReducer = createReducer(
   initialState,
+  // tslint:disable-next-line:typedef
   on(getSuggestedProductsPending, (state: IProductsState) => ({
     ...state,
     loading: true,
   })),
+  // tslint:disable-next-line:typedef
   on(getSuggestedProductsSuccess, (state: IProductsState, { products }) => ({
     ...state,
     items: products,
@@ -36,6 +38,9 @@ const suggestedProductsReducer = createReducer(
 export function reducerSuggestedProducts(
   state: IProductsState | undefined,
   action: Action
-) {
+): {
+  items: IProduct[];
+  loading: boolean;
+} {
   return suggestedProductsReducer(state, action);
 }

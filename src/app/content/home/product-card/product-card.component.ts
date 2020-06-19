@@ -13,7 +13,7 @@ export class ProductCardComponent {
   public product!: IProduct;
   constructor(private readonly _store: Store<IStore>) {}
 
-  public redirectTo(productId: string) {
+  public redirectTo(productId: string): void {
     this._store.dispatch(
       go({
         path: ['/category/product'],

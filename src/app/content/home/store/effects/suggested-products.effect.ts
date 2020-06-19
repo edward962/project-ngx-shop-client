@@ -23,8 +23,10 @@ export class SuggestedProductsEffects {
   public getSuggestedProducts$: Observable<Action> = createEffect(() =>
       this._actions.pipe(
         ofType(getSuggestedProductsPending),
+        // tslint:disable-next-line:typedef
         switchMap(() => {
           return this._productsService.getSuggestedProducts().pipe(
+            // tslint:disable-next-line:typedef
             map(( { items: products }) => {
               return getSuggestedProductsSuccess( { products} );
             }),

@@ -65,9 +65,11 @@ export class SharedModule {
         LocalStorageService,
         {
           provide: APP_INITIALIZER,
+          // tslint:disable-next-line:typedef
           useFactory: (
             store: Store<IStore>,
             localStorageService: LocalStorageService
+          // tslint:disable-next-line:typedef
           ) => () => {
             const products: IProduct[] = localStorageService.getFromLocalStorage<
               IProduct

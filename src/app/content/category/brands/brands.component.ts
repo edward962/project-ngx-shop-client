@@ -1,10 +1,6 @@
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IStore } from 'src/app/store/reducers';
-import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+
 
 @Component({
   selector: 'ngx-shop-brands',
@@ -19,7 +15,6 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
   styleUrls: ['./brands.component.sass'],
 })
 export class BrandsComponent implements ControlValueAccessor {
-  constructor(private readonly _store: Store<IStore>) {}
   @Input()
   public brands: string[] = [];
   @Input()
@@ -36,10 +31,10 @@ export class BrandsComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: Function): void {}
+  public registerOnTouched(): void {}
 
-  public check(brandName: string) {
-    const index = this.selectedBrands.findIndex((brand) => brand === brandName);
+  public check(brandName: string): void {
+    const index = this.selectedBrands.findIndex((brand): boolean => brand === brandName);
     if (index < 0) {
       this.selectedBrands.push(brandName);
     } else {
@@ -48,7 +43,7 @@ export class BrandsComponent implements ControlValueAccessor {
     this.onChange(this.selectedBrands);
   }
 
-  public show() {
+  public show(): void {
     this.isShow = !this.isShow;
   }
 

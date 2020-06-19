@@ -15,11 +15,14 @@ export class CategoryEffects {
     private actions: Actions,
     public categoriesService: CategoriesService
   ) {}
+  // tslint:disable-next-line:typedef
   public getCategories$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(getCategoriesPending),
+      // tslint:disable-next-line:typedef
       switchMap(() => {
         return this.categoriesService.getCategories().pipe(
+          // tslint:disable-next-line:typedef
           map((categories) => {
             return getCategoriesSuccess({ categories });
           })

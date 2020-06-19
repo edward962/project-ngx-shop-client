@@ -41,10 +41,11 @@ export class InterceptorService implements HttpInterceptor {
         }
         return false;
       }),
+      // tslint:disable-next-line:typedef
       map((res: HttpResponse<IRes<T>>) => {
         return res.clone({ body: res.body && res.body.data });
       }),
-      catchError(() => {
+      catchError((): Observable<never> => {
         return EMPTY;
       }),
     );
