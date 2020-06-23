@@ -1,14 +1,15 @@
 <div class="col-lg-12">
+  <div class="backdrop" [ngClass]="{ show: currentName }" ></div>
   <ul class="list-group sidebar">
     <li
       *ngFor="let category of categories; let i = index"
       class="list-group-item dropdown"
-      [ngClass]="{ show: i === currentIndex }"
+      [ngClass]="{ show: category.name === currentName }"
     >
-      <a class="nav-link dropdown-toggle" (mouseenter)="hover(i)">
+      <a class="nav-link dropdown-toggle" (mouseenter)="hover(category.name)" (mouseleave)="mouseLeave()">
         {{ category.name }}
       </a>
-      <ul class="dropdown-menu" [ngClass]="{ show: i === currentIndex }">
+      <ul class="dropdown-menu"  (mouseenter)="hover(category.name)"   (mouseleave)="mouseLeave()"[ngClass]="{ show: category.name === currentName }">
         <li
           class="dropdown-item"
           *ngFor="let subCategory of category.subCategories"

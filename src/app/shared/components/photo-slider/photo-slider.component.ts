@@ -13,7 +13,7 @@ export class PhotoSliderComponent {
   @Input()
   public slideClass!: string;
   @Input()
-  public isBottomButtons: boolean = true;
+  public isBottomButtons = true;
   public currentIndex = 0;
 
   public animateRight = {

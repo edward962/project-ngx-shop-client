@@ -11,12 +11,15 @@ import { IStore } from 'src/app/store/reducers';
 export class SideMenuComponent {
   @Input()
   public categories: ICategory[] = [];
-  public currentIndex: number | null = null;
+  public currentName: string | null = null;
 
-  constructor(private _store: Store<IStore>) {}
+  constructor(private _store: Store<IStore>) { }
 
-  public hover(index: number): void {
-    this.currentIndex = index;
+  public hover(name: string): void {
+    this.currentName = name;
+  }
+  public mouseLeave(): void {
+    this.currentName = null;
   }
   public redirectTo(subCatId: string): void {
     this._store.dispatch(

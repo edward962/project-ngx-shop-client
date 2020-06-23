@@ -8,6 +8,7 @@ import { getSuggestedProductsPending } from './store/actions/suggested-products.
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'ngx-shop-products',
@@ -35,8 +36,14 @@ export class HomeComponent extends UnSubscriber implements OnInit {
   public products$: Observable<IProduct[]> = this._store
     .select('suggestedProducts', 'items')
     .pipe(takeUntil(this.unsubscribe$$));
+  public form: FormGroup = this._fb.group({
+      currentSubCategory: [''],
+    });
 
-  constructor(private readonly _store: Store<IStore>) {
+  constructor(
+    private readonly _store: Store<IStore>,
+    private readonly _fb: FormBuilder
+    ) {
     super();
   }
 

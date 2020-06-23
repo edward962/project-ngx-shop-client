@@ -21,6 +21,7 @@ import { BrandsService } from './services/brands.service';
 import { IProduct } from './interfaces/product.inteface';
 import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
 
+
 @NgModule({
   declarations: [
     StarRatingComponent,
@@ -28,6 +29,7 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
     ImgUrlPipe,
     TooltipDirective,
     PhotoSliderComponent,
+
   ],
   imports: [
     ReactiveFormsModule,
@@ -47,7 +49,7 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
     RatePipe,
     ImgUrlPipe,
     TooltipDirective,
-  ],
+    ],
   providers: [
     CategoriesService,
     ProductsService,
