@@ -1,25 +1,16 @@
 <div id="productCarousel" class="{{ slideClass }}">
   <ol class="carousel-indicators">
-    <li
-      [ngClass]="{ active: j === currentIndex }"
-      *ngFor="let image of images; let j = index"
-      (click)="show(j)"
-    >
+    <li [ngClass]="{ active: j === currentIndex }" *ngFor="let image of images; let j = index" (click)="show(j)">
       <img [src]="image?.url" *ngIf="isBottomButtons" />
     </li>
   </ol>
   <div class="carousel-inner">
     <ng-container *ngFor="let image of images; let i = index">
-      <div
-        [@slideAnimation]="{
+      <div [@slideAnimation]="{
           value: '',
           params: isSlidedRight ? animateRight : animateLeft
-        }"
-        (@slideAnimation.start)="animationStart()"
-        (@slideAnimation.done)="animationEnd()"
-        *ngIf="i === currentIndex"
-        class="carousel-item"
-      >
+        }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
+        *ngIf="i === currentIndex" class="carousel-item">
         <div class="img-wrap">
           <img *ngIf="image" [src]="image?.url" />
         </div>
@@ -28,11 +19,9 @@
     <ng-container *ngIf="!images">
       <div class="carousel-item">
         <div class="img-wrap">
-          <img
-            [src]="
+          <img [src]="
               'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'
-            "
-          />
+            " />
         </div>
       </div>
     </ng-container>

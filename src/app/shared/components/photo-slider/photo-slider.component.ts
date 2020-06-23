@@ -7,6 +7,7 @@ import { slideAnimation } from './photo-slider.animation';
   templateUrl: './photo-slider.component.html',
   animations: slideAnimation,
 })
+
 export class PhotoSliderComponent {
   @Input()
   public images!: IProductImage[];

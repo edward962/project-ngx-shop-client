@@ -17,9 +17,10 @@
         position="top"
         [feedbackRate]="product.rating | rate"
       ></ngx-shop-star-rating>
-      <p class="rate-amount d-none d-md-block mt-1">
-        {{ product.feedbacksCount }}
+      <p class="rate-amount d-none d-md-block mt-1" *ngIf="product.rating ">
+        {{ product.feedbacksCount }} reviews
       </p>
+      <p class="rate-amount d-none d-md-block mt-1" *ngIf="!product.rating ">no reviews</p>
     </div>
   </div>
 
