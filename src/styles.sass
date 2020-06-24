@@ -153,9 +153,20 @@ main
 .ng5-slider-span.ng5-slider-pointer.ng5-slider-active
   outline: none  
 
-.ng5-slider span.ng5-slider-span.ng5-slider-pointer.ng5-slider-active
-  &:after 
-   background-color: white
+.ng5-slider .ng5-slider-pointer:after  
+  display: contents !important
+.ng5-slider .ng5-slider-selection
+  background: #f7685b  !important
+
+
+.ng5-slider.animate .ng5-slider-bubble.ng5-slider-limit  
+  display: none
+.ng5-slider.animate .ng5-slider-bubble
+  display: none
+
+
+.ng5-slider-span .ng5-slider-bar
+  height: 2px !important
 
 @media all and (max-width: 767px)
   main
@@ -1002,6 +1013,11 @@ form button[type="submit"]:not(.btn-send)
   right: 0
   z-index: 1
 
+.ng5-slider .ng5-slider-pointer 
+  background-color: #f7685b !important
+  width: 18px !important
+  height: 18px !important
+  top: -7px !important
 .range-slider
   position: relative
   display: flex
@@ -1217,3 +1233,11 @@ a
         height: 450px
         background-repeat: no-repeat
         background-size: 100% 100%
+
+
+
+
+
+
+
+
