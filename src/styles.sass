@@ -250,6 +250,7 @@ basket
   .product-carousel,
   .product-carousel .carousel-item
     height: 245px
+    background-color: #eceeef
 
   .product-carousel .carousel-item .img-wrap img
     max-width: 225px
@@ -689,6 +690,14 @@ li
 .main-carousel .carousel-caption
   top: 20px
   text-align: center
+
+.main-carousel .carousel-caption .h1 
+  font-family: "Akzidenz-Grotesk Pro", sans-serif
+  font-size: 32px
+  line-height: 36px
+  font-weight: 900
+  color: #373a3c
+  margin-bottom: 1.5rem
 @media (min-width: 767px)
   .navbar-brand
     margin-left: 0
@@ -771,6 +780,9 @@ a
 
 .carousel-inner
   height: 450px
+.carousel-caption 
+  top: 20px
+  text-align: center
 
 .form-inline.form-inline-flex .form-control
   display: inline-flex
@@ -980,12 +992,18 @@ a
 .main-carousel .carousel-caption .h1
   font-size: 46px
   line-height: 50px
+.main-carousel .carousel-caption  div
+  max-height: 50px
 .main-carousel .carousel-caption .btn
   background-color: #4100ac
   border: 1px solid #4100ac
   padding: 0.5rem 1rem
   color: #fff
-
+  max-width: 200px
+  max-height: 50px
+.main-carousel .carousel-caption .btn img
+  width: 6px
+  height: 10px
 .main-carousel .carousel-caption .btn:hover
   opacity: 0.9
 
