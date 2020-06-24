@@ -29,7 +29,7 @@
         <span class="rate-amount ml-2" *ngIf="product.feedbacksCount">{{ product.feedbacksCount }}</span>
         
       </div>
-      <span class="rate-amount ml-2" *ngIf="!product.feedbacksCount">no reviews</span>
+      <span class="rate-amount ml-2" *ngIf="!product.feedbacksCount">нет отзывов</span>
       <p class="card-text price-text">
         <strong>{{ product.price | currency: 'EUR' }}</strong>
       </p>

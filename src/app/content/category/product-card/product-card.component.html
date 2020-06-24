@@ -18,9 +18,9 @@
         [feedbackRate]="product.rating | rate"
       ></ngx-shop-star-rating>
       <p class="rate-amount d-none d-md-block mt-1" *ngIf="product.rating ">
-        {{ product.feedbacksCount }} reviews
+        {{ product.feedbacksCount }} отзывов
       </p>
-      <p class="rate-amount d-none d-md-block mt-1" *ngIf="!product.rating ">no reviews</p>
+      <p class="rate-amount d-none d-md-block mt-1" *ngIf="!product.rating ">нет отзывов</p>
     </div>
   </div>
 
