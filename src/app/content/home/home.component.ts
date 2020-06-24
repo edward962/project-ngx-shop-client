@@ -29,6 +29,14 @@ export class HomeComponent extends UnSubscriber implements OnInit {
       url: 'assets/images/20677.jpg',
       title: '',
     },
+    {
+      url: 'assets/images/sale.jpg',
+      title: '',
+    },
+    {
+      url: 'assets/images/mobile-sunday.jpg',
+      title: '',
+    },
   ];
   public categories$: Observable<ICategory[]> = this._store
     .select('categories', 'items')
