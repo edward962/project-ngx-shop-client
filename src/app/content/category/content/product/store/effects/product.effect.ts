@@ -1,3 +1,4 @@
+import { UnSubscriber } from './../../../../../../shared/utils/unsubscriber';
 import { IStore } from 'src/app/store/reducers';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,40 +8,50 @@ import {
   mergeMap,
   map,
   withLatestFrom,
+  takeUntil,
 } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 import { ProductsService } from '../../../../../../shared/services/products.service';
-import { getProductPending, getProductSuccess, createFeedbackPending, createFeedbackSuccess } from '../actions/product.actions';
-
+import {
+  getProductPending,
+  getProductSuccess,
+  createFeedbackPending,
+  createFeedbackSuccess,
+} from '../actions/product.actions';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Injectable()
-export class ProductEffects {
+export class ProductEffects extends UnSubscriber {
   constructor(
     private actions: Actions,
     private productsService: ProductsService,
-    private store: Store<IStore>,
-  ) { }
+    private store: Store<IStore>
+  ) {
+    super();
+  }
 
-  public getProduct$: Observable<any> = createEffect(() =>
+  // tslint:disable-next-line:typedef
+  public getProduct$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(getProductPending),
+      // tslint:disable-next-line:typedef
       switchMap(({ id }) =>
-        this.productsService
-          .getProductById(id)
-          .pipe(
-            // tslint:disable-next-line: no-any
-            map((product: any) => {
-              return getProductSuccess({ product });
-            }),
-          ),
+        this.productsService.getProductById(id).pipe(
+          // tslint:disable-next-line:typedef
+          map((product: IProduct) => {
+            return getProductSuccess({ product });
+          })
+        )
       ),
-    ),
+      takeUntil(this.unsubscribe$$)
+    )
   );
-  // tslint:disable-next-line: no-any
-  public addFeedback$: Observable<any> = createEffect(() =>
+  // tslint:disable-next-line:typedef
+  public addFeedback$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(createFeedbackPending),
       withLatestFrom(this.store.select('product', 'item', '_id')),
+      // tslint:disable-next-line:typedef
       switchMap(([{ feedback }, product]) =>
         this.productsService
           .createFeedback(feedback, product)
@@ -48,9 +59,10 @@ export class ProductEffects {
             mergeMap(() => [
               createFeedbackSuccess(),
               getProductPending({ id: product }),
-            ]),
-          ),
+            ])
+          )
       ),
-    ),
+      takeUntil(this.unsubscribe$$)
+    )
   );
 }

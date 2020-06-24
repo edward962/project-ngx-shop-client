@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IStore } from '../../../../../../store/reducers';
 import { ModalService } from 'src/app/modal/modal.service';
-import { IFeedback } from '../../store/reducers/product.reducer';
 import { createFeedbackPending } from '../../store/actions/product.actions';
+import { IFeedback } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-feedbacks',
@@ -11,37 +11,30 @@ import { createFeedbackPending } from '../../store/actions/product.actions';
   styleUrls: ['./feedbacks.component.sass'],
 })
 export class FeedbacksComponent {
-
   @Input()
   public feedbacks!: IFeedback[];
 
-
   constructor(
-    private store: Store<IStore>,
-    private  _modalService: ModalService,
-  ) {
-  }
+    private readonly _store: Store<IStore>,
+    private readonly _modalService: ModalService
+  ) {}
   public async addFeedback(): Promise<void> {
-    const component = await import(
-      './addFeedback/add-feedback.component'
-    );
+    const component = await import('./addFeedback/add-feedback.component');
     this._modalService.open({
       component: component.AddFeedbackComponent,
       context: {
-        save: (value: IFeedback) => {
-          this.store.dispatch(
+        save: (value: IFeedback): void => {
+          this._store.dispatch(
             createFeedbackPending({
               feedback: { ...value },
-            }),
+            })
           );
           this._modalService.close();
         },
-        close: () => {
+        close: (): void => {
           this._modalService.close();
         },
       },
     });
-    
   }
 }
-

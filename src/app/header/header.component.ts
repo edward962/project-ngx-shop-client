@@ -11,10 +11,10 @@ import { UnSubscriber } from '../shared/utils/unsubscriber';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent extends UnSubscriber {
-  public productCounter$: Observable<number> = this.store.select(trueProductsCount)
+  public productCounter$: Observable<number> = this._store.select(trueProductsCount)
     .pipe(takeUntil(this.unsubscribe$$));
 
-  constructor(private readonly store: Store<IStore>) {
-    super()
+  constructor(private readonly _store: Store<IStore>) {
+    super();
   }
 }

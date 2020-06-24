@@ -13,7 +13,6 @@ export class CardConfirmModalComponent {
 
 @NgModule({
   declarations: [
-      CardConfirmModalComponent
-  ]
+    CardConfirmModalComponent],
 })
-export class CardConfirmModalModule {}
+export class CardConfirmModalModule { }

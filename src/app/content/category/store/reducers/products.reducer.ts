@@ -1,47 +1,49 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import {
   getProductsPending,
   getProductsSuccess,
 } from '../actions/products.actions';
-import { IProductImage, IFeedback } from '../../content/product/store/reducers/product.reducer';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 export interface IProductsState {
   items: IProduct[];
   loading: boolean;
 }
-export interface IProduct {
-  _id: string;
-  feedbacksCount: number;
-  name: string;
-  description: string;
-  feedbacks?: IFeedback;
-  price: number;
-  status: boolean;
-  images: IProductImage[];
-  rating: number;
+
+export interface IProducts {
+  items: IProduct[];
+  quantity: number;
 }
 
+export interface IProductApi {
+  items: IProduct[];
+  quantity: number;
+}
 
 const productsReducer = createReducer(
   {
     items: [],
     loading: false,
   },
+  // tslint:disable-next-line:typedef
   on(getProductsPending, (state: IProductsState) => ({
     ...state,
     loading: true,
   })),
+  // tslint:disable-next-line:typedef
   on(getProductsSuccess, (state: IProductsState, { products }) => ({
     ...state,
     items: products,
     loading: false,
-  })),
+  }))
 );
 
 export function reducerProducts(
   state: IProductsState | undefined,
-  // tslint:disable-next-line: no-any
-  action: any,
-) {
+  action: Action
+): {
+  items: IProduct[];
+  loading: boolean;
+} {
   return productsReducer(state, action);
 }

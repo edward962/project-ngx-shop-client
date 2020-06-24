@@ -16,8 +16,10 @@ import { LocalStorageService } from './services/local-storage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
 import { TooltipDirective } from './directives/tooltip.derective';
-import { ICartProduct } from '../store/reducers/cart.reducer';
 import { IStore } from '../store/reducers';
+import { BrandsService } from './services/brands.service';
+import { IProduct } from './interfaces/product.inteface';
+import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { IStore } from '../store/reducers';
     RatePipe,
     ImgUrlPipe,
     TooltipDirective,
+    PhotoSliderComponent,
+
   ],
   imports: [
     ReactiveFormsModule,
@@ -40,14 +44,16 @@ import { IStore } from '../store/reducers';
     RouterModule,
     HttpClientModule,
     CommonModule,
+    PhotoSliderComponent,
     StarRatingComponent,
     RatePipe,
     ImgUrlPipe,
     TooltipDirective,
-  ],
+    ],
   providers: [
     CategoriesService,
     ProductsService,
+    BrandsService,
     {
       provide: BASE_URL_TOKEN,
       useValue: environment.baseUrl,
@@ -69,11 +75,15 @@ export class SharedModule {
         LocalStorageService,
         {
           provide: APP_INITIALIZER,
+          // tslint:disable-next-line:typedef
           useFactory: (
             store: Store<IStore>,
-            localStorageService: LocalStorageService,
+            localStorageService: LocalStorageService
+          // tslint:disable-next-line:typedef
           ) => () => {
-            const products: ICartProduct[] = localStorageService.getFromLocalStorage<ICartProduct>('cart');
+            const products: IProduct[] = localStorageService.getFromLocalStorage<
+              IProduct
+            >('cart');
             store.dispatch(addAllProductsToCart({ products }));
           },
           multi: true,

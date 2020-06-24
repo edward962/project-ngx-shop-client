@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ICartProduct } from '../reducers/cart.reducer';
-import { IProduct } from 'src/app/content/category/content/product/store/reducers/product.reducer';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 export const addProductToCart = createAction(
   '[Product] Add product to cart',
@@ -9,19 +8,21 @@ export const addProductToCart = createAction(
 
 export const removeProductFromCart = createAction(
   '[Product] Remove product from cart',
-  props<{ product: ICartProduct }>()
+  props<{ product: IProduct }>()
 );
 export const incrementProductInCart = createAction(
   '[Product] Increment product in cart',
-  props<{ product: ICartProduct }>()
+  props<{ product: IProduct }>()
 );
 
 export const decrementProductInCart = createAction(
   '[Products] Decrement product in cart',
-  props<{ product: ICartProduct }>()
+  props<{ product: IProduct }>()
 );
 
 export const addAllProductsToCart = createAction(
   '[Product] Add all products to cart',
-  props<{ products: ICartProduct[] }>()
+  props<{ products: IProduct[] }>()
 );
+
+export const cartSuccess = createAction('[Product] Cart success');

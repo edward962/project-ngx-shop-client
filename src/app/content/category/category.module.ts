@@ -1,4 +1,3 @@
-import { BrandsService } from '../../shared/services/brands.service';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PriceSliderComponent } from './price-slider/price-slider.component';
@@ -12,8 +11,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducerProducts } from './store/reducers/products.reducer';
 import { StoreModule } from '@ngrx/store';
 import { ProductsEffects } from './store/effects/products.effect';
-
-
+import { reducerBrands } from './store/reducers/brands.reducer';
+import { BrandsEffects } from './store/effects/brands.effect';
 
 @NgModule({
   declarations: [
@@ -22,12 +21,15 @@ import { ProductsEffects } from './store/effects/products.effect';
     BrandsComponent,
     CategoryProductComponent,
     CategoryDropdownComponent,
-
   ],
-  imports: [SharedModule, CategoryRoutingModule, Ng5SliderModule,
+  imports: [
+    SharedModule,
+    CategoryRoutingModule,
+    Ng5SliderModule,
     StoreModule.forFeature('products', reducerProducts),
-    EffectsModule.forFeature([ProductsEffects]),
+    StoreModule.forFeature('brands', reducerBrands),
+    EffectsModule.forFeature([ProductsEffects, BrandsEffects]),
   ],
-  providers: [BrandsService],
+  providers: [],
 })
-export class CategoryModule { }
+export class CategoryModule {}

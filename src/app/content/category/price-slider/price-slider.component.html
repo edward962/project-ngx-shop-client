@@ -1,13 +1,32 @@
 <div class="form-group">
-    <h6 class="mb-2 pb-1">
-      <label class="text-dark mb-0">Цена</label>
-    </h6>
+  <h6 class="mb-2 pb-1">
+    <label class="text-dark mb-0">Цена</label>
+  </h6>
+  <form [formGroup]="priceForm">
     <div class="form-group row align-items-center mx-0">
       <label class="col-2 px-0 mb-0 text-center text-dark">От</label>
-      <input type="number" class="form-control col-4" value={{value}}/>
-      <label class="col-2 px-0 mb-0 text-center text-dark" >до</label>
-      <input type="number" class="form-control col-4" value={{highValue}}/>
+      <input
+        min="0"
+        type="number"
+        formControlName="low"
+        class="form-control col-4"
+        change="userChangeEnd()"
+      />
+      <label class="col-2 px-0 mb-0 text-center text-dark">до</label>
+      <input
+        max="2000"
+        formControlName="high"
+        type="number"
+        class="form-control col-4"
+        change="userChangeEnd()"
+      />
     </div>
-    <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options" (userChangeEnd)= "userChangeEnd()">
-    </ng5-slider>
+  </form>
+  <ng5-slider
+    [(value)]="low"
+    [(highValue)]="high"
+    [options]="options"
+    (userChangeEnd)="userChangeEnd()"
+  >
+  </ng5-slider>
 </div>

@@ -1,18 +1,26 @@
 <div class="product-list-box -basket">
   <div class="inner-col description-col">
-    <i class="fa fa-times-circle-o" aria-hidden="true" tooltip='Убрать товар из корзины' (click)="removeProductFromCart(product)"></i>
-    <div
-      class="product-img"
-      [routerLink]="['/category/product']"
-      [queryParams]="{ id: product._id }"
-    >
-      <img [src]="product.images | imgUrl" [alt]="product.name"/>
+    <i
+      class="fa fa-times-circle-o"
+      aria-hidden="true"
+      tooltip="Убрать товар из корзины"
+      (click)="removeProductFromCart(product)"
+    ></i>
+    <div class="product-img" (click)="redirectTo(product._id)">
+      <img
+        [src]="product.images | imgUrl"
+        [alt]="product.name"
+        *ngIf="product.images"
+      />
+      <img
+        *ngIf="!product.images"
+        [src]="
+          'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'
+        "
+        [alt]="product.name"
+      />
     </div>
-    <div
-      class="product-desc"
-      [routerLink]="['/category/product']"
-      [queryParams]="{ id: product._id }"
-    >
+    <div class="product-desc" (click)="redirectTo(product._id)">
       <h4 class="col-title mb-2">
         {{ product.name }}
       </h4>
@@ -23,9 +31,10 @@
         ></ngx-shop-star-rating>
         <span class="rate-amount ml-2 d-inline-block d-md-none"></span>
       </div>
-      <p class="rate-amount d-none d-md-block mt-1">
-        {{ product.feedbacksCount }}
+      <p class="rate-amount d-none d-md-block mt-1" *ngIf="product.feedbacksCount ">
+        {{ product.feedbacksCount }} отзывов
       </p>
+      <p class="rate-amount d-none d-md-block mt-1" *ngIf="!product.feedbacksCount ">нет отзывов</p>
       <p class="price-text mb-0 mt-2 d-inline-block d-md-none">
         <strong>{{ product.price | currency: 'EUR' }}</strong>
       </p>
@@ -34,27 +43,27 @@
   <div class="default-col inner-col flex-col justify-content-center">
     <div class="counter">
       <button
-        tooltip='Уменьшить количество товара'
-        type="button" (click)="decrementProductInCart(product)">
-        <img src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus"/>
-      </button>
-      <span
-        class="counter__value"
-      >{{ product.count }}</span
+        tooltip="Уменьшить количество товара"
+        type="button"
+        (click)="decrementProductInCart(product)"
       >
+        <img src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus" />
+      </button>
+      <span class="counter__value">{{ product.count }}</span>
       <button
-        tooltip='Увеличить количество товара'
-        type="button" (click)="incrementProductInCart(product)">
-        <img src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus"/>
+        tooltip="Увеличить количество товара"
+        type="button"
+        (click)="incrementProductInCart(product)"
+      >
+        <img src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus" />
       </button>
     </div>
   </div>
   <div class="default-col inner-col flex-col justify-content-center">
-    <div class='price'>
+    <div class="price">
       <h4 class="mb-0">
-        {{ product.price * product.count | currency: 'EUR' }}
+        {{ product?.price * product?.count | currency: 'EUR' }}
       </h4>
     </div>
   </div>
-  <!-- <i class="fa fa-times-circle-o" aria-hidden="true" tooltip='Убрать товар из корзины' (click)="removeProductFromCart(product)"></i> -->
 </div>

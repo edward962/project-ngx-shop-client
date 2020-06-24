@@ -6,17 +6,19 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    // tslint:disable-next-line:typedef
     loadChildren: () =>
-      import('./content/home/home.module').then(
-        (mod) => mod.HomeModule
-      ),
+      // tslint:disable-next-line:typedef
+      import('./content/home/home.module').then((mod) => mod.HomeModule),
     data: {
       state: 'products',
     },
   },
   {
     path: 'cart',
+    // tslint:disable-next-line:typedef
     loadChildren: () =>
+      // tslint:disable-next-line:typedef
       import('./content/cart/cart.module').then((mod) => mod.CartModule),
     canActivate: [CartGuard],
     data: {
@@ -25,8 +27,10 @@ const routes: Routes = [
   },
   {
     path: 'category',
+    // tslint:disable-next-line:typedef
     loadChildren: () =>
       import('./content/category/category.module').then(
+        // tslint:disable-next-line:typedef
         (mod) => mod.CategoryModule
       ),
     data: {

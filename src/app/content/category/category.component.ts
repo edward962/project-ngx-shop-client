@@ -1,129 +1,139 @@
+import { UnSubscriber } from './../../shared/utils/unsubscriber';
+import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { BrandsService } from 'src/app/shared/services/brands.service';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
-import { getCategoriesPending } from '../../store/actions/category.actions';
 import { getProductsPending } from './store/actions/products.actions';
-
-
-export interface IPriceData {
-  value: number;
-  highValue: number;
-}
-
-export interface IProductQuery {
-  id?: string;
-  name?: string;
-  value?: string;
-  highValue?: string;
-  productName?: string;
-  brandsQuery?: string;
-}
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { getBrandsPending } from './store/actions/brands.actions';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { go } from 'src/app/store/actions/router.actions';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
 })
-export class CategoryComponent implements OnInit {
-  public categories$: Observable<ICategory[]>  = this.store.select('categories', 'items');
+export class CategoryComponent extends UnSubscriber implements OnInit {
+  public categories$: Observable<ICategory[]> = this._store
+    .select('categories', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
   public show: string | undefined;
-  public query!: IProductQuery;
-  // tslint:disable-next-line: no-any
-  public products$: Observable<any> = this.store.select('products', 'items');
-  public priceRange!: IPriceData;
-  public productName = '';
-  // tslint:disable-next-line: no-any
-  public brands: any;
-  public selectedBrands = '';
+  public products$: Observable<IProduct[]> = this._store
+    .select('products', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
+  public brands$: Observable<string[]> = this._store
+    .select('brands', 'items')
+    .pipe(takeUntil(this.unsubscribe$$));
+  public priceRange?: number[];
+  public selectedBrands: string[] = [];
+  public selectedPrices: number[] = [];
+  public initSubCategoryId?: string;
+  public form: FormGroup = this._fb.group({
+    brands: [[]],
+    prices: [[]],
+    currentSubCategory: [''],
+    searchByName: [''],
+  });
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private store: Store<IStore>,
-    public brandsService: BrandsService
-  ) {}
-
-  public ngOnInit() {
-    this.store.dispatch(getCategoriesPending());
-    this.activatedRoute.queryParams.subscribe((query) =>
-      this.getProductsByIdCategory(query, this.priceRange, this.selectedBrands)
-    );
-  }
-
-  public getProductsByIdCategory(
-    // tslint:disable-next-line: no-any
-    query: any,
-    priceRange: IPriceData,
-    selectedBrands: string
+    private readonly _fb: FormBuilder,
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _store: Store<IStore>
   ) {
-    this.query = query;
-    const search = {
-      id: query.id,
-      priceRange,
-      productName: query.name,
-      selectedBrands,
-    };
-    this.store.dispatch(getProductsPending(search));
-    this.brandsService
-      .getBrands(query.id, priceRange)
-      .subscribe((brands) => (this.brands = brands));
+    super();
   }
 
-  public pricesValue(priceRange: IPriceData) {
-    this.priceRange = priceRange;
-    this.addPriceToQuery(priceRange);
-  }
+  public ngOnInit(): void {
+    this._store.dispatch(getCategoriesPending());
+    this.getForm$('currentSubCategory').subscribe((currentSubCategory): void => {
+      this.selectedBrands = [];
+      this._store.dispatch(
+        go({
+          path: ['/category'],
+          query: {
+            subCatId: currentSubCategory,
+          },
+          extras: { replaceUrl: true },
+        })
+      );
+    });
+    this.getForm$('brands').subscribe((brands): void =>
+      this._store.dispatch(
+        go({
+          path: ['/category'],
+          query: {
+            brands: (brands as string[]).join(',') || undefined,
+          },
+          extras: { queryParamsHandling: 'merge' },
+        })
+      )
+    );
+    this.getForm$('prices').subscribe((prices): void => {
+      this._store.dispatch(
+        go({
+          path: ['/category'],
+          query: { prices: `${prices[0]},${prices[1]}` },
+          extras: { queryParamsHandling: 'merge' },
+        })
+      );
+    });
+    this.getForm$('searchByName').subscribe((searchByName): void =>
+      this._store.dispatch(
+        go({
+          path: ['/category'],
+          query: { searchByName },
+          extras: { queryParamsHandling: 'merge' },
+        })
+      )
+    );
 
-  public addPriceToQuery(priceRange: IPriceData) {
-    const { id, name } = this.query;
-    const { value, highValue } = priceRange;
-    if (priceRange) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue },
+    this._activatedRoute.queryParams
+      .pipe(takeUntil(this.unsubscribe$$))
+      .subscribe((query): void => {
+        this.initSubCategoryId = query.subCatId;
+        if (query.prices) {
+          this.selectedPrices = query.prices.split(',');
+        } else {
+          this.selectedPrices = [];
+        }
+        if (query.brands) {
+          this.selectedBrands = query.brands.split(',');
+        }
+        this.form.setValue(
+          {
+            searchByName: query.searchByName ?? '',
+            brands: this.selectedBrands,
+            currentSubCategory: query.subCatId,
+            prices: this.selectedPrices,
+          },
+          { emitEvent: false }
+        );
+        this._store.dispatch(
+          getProductsPending({
+            selectedBrands: query.brands,
+            currentCategory: query.subCatId,
+            searchByName: query.searchByName,
+            priceRange: this.selectedPrices,
+          })
+        );
+        this._store.dispatch(
+          getBrandsPending({
+            id: query.subCatId,
+            prices: this.selectedPrices,
+          })
+        );
       });
-    }
   }
-
-  public addProductNameToQuery(productName: string) {
-    this.productName = productName;
-    const { id, name, value, highValue } = this.query;
-    if (productName) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { id, name, value, highValue, productName },
-      });
-    }
-  }
-
-  public getBrands(brands: string[]) {
-    const brandsForQuery = brands.join(',');
-    this.selectedBrands = brandsForQuery;
-    const { id, name, value, highValue, productName } = this.query;
-    if (brands.join(',')) {
-      this.router.navigate(['.'], {
-        relativeTo: this.activatedRoute,
-        queryParams: {
-          id,
-          name,
-          value,
-          highValue,
-          productName,
-          brandsQuery: brandsForQuery,
-        },
-      });
-    }
-    const { brandsQuery } = this.query;
-    if (brandsQuery) {
-      if (brandsForQuery < brandsQuery && brandsForQuery.length === 0) {
-        this.router.navigate(['.'], {
-          relativeTo: this.activatedRoute,
-          queryParams: { id, name, value, highValue, productName },
-        });
-      }
-    }
+  public getForm$(
+    controlName: string
+  ): Observable<string[] | string | number[]> {
+    return (this.form.get(controlName) as FormControl).valueChanges.pipe(
+      debounceTime(300),
+      takeUntil(this.unsubscribe$$)
+    );
   }
 }

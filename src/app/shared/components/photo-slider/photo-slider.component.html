@@ -1,0 +1,77 @@
+<div id="productCarousel" class="{{ slideClass }}">
+  <ol *ngIf='!isBaner' class="carousel-indicators">
+    <li [ngClass]="{ active: j === currentIndex }" *ngFor="let image of images; let j = index" (click)="show(j)">
+      <img [src]="image?.url" *ngIf="isBottomButtons" />
+    </li>
+  </ol>
+  <ol *ngIf='isBaner' class="carousel-indicators">
+    <li [ngClass]="{ active: j === currentIndex }" *ngFor="let baner of banerListCategories; let j = index"
+      (click)="show(j)">
+    </li>
+  </ol>
+
+
+
+  <div *ngIf='!isBaner' class="carousel-inner">
+    <ng-container *ngFor="let image of images; let i = index">
+      <div [@slideAnimation]="{
+          value: '',
+          params: isSlidedRight ? animateRight : animateLeft
+        }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
+        *ngIf="i === currentIndex" class="carousel-item">
+        <div class="img-wrap">
+          <img *ngIf="image" [src]="image?.url" />
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!images">
+      <div class="carousel-item">
+        <div class="img-wrap">
+          <img [src]="
+              'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'
+            " />
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngIf='isBaner' class="carousel-inner">
+    <ng-container *ngFor="let baner of banerListCategories; let i = index">
+      <div [@slideAnimation]="{
+        value: '',
+        params: isSlidedRight ? animateRight : animateLeft
+      }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()" *ngIf="i === currentIndex"
+        class="carousel-item">
+        <img class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
+        <div class="container">
+          <div class="carousel-caption">
+            <h3 class="h1">ЛУЧШИЕ ИЗ КАТЕГОРИИ {{baner.title}}</h3>
+            <div>
+              <a class="btn" (click)='redirectTo(baner.subCategoryId)' role="button">
+                
+Посмотреть все предложения
+                <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <a *ngIf="!banerListCategories && images?.length > 1" class="carousel-control-prev" (click)="prev(images)">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a *ngIf="!banerListCategories && images?.length > 1" class="carousel-control-next" (click)="next(images)">
+    <span class="carousel-control-next-icon"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <a *ngIf="banerListCategories?.length > 1" class="carousel-control-prev" (click)="prev(banerListCategories)">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a *ngIf="banerListCategories?.length > 1" class="carousel-control-next" (click)="next(banerListCategories)">
+    <span class="carousel-control-next-icon"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

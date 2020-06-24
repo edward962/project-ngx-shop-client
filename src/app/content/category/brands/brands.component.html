@@ -5,11 +5,11 @@
   <div *ngFor="let brandName of brands; let i = index">
     <div class="custom-control custom-checkbox mb-2" *ngIf="showBrand(i)">
       <input
+        [checked]="brandsToShow.includes(brandName)"
         type="checkbox"
         (click)="check(brandName)"
         class="custom-control-input"
         [id]="brandName"
-        [checked]="checked(brandName)"
       />
       <label class="custom-control-label text-dark" [for]="brandName">{{
         brandName
@@ -18,6 +18,6 @@
   </div>
 
   <div class="all-characters">
-    <a *ngIf="!isShow" (click)="show()">Все бренды</a>
+    <a *ngIf="!isShow" (click)="show()">еще</a>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from '../../../store/reducers/products.reducer';
+import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 @Component({
   selector: 'ngx-shop-product-description',
   templateUrl: './description.component.html',
@@ -7,11 +7,11 @@ import { IProduct } from '../../../store/reducers/products.reducer';
 export class DescriptionComponent {
   @Input() public product!: IProduct;
   public isShowDescription = true;
-
-  public toggleTab() {
+  public close!: () => void;
+  public save!: (value: object) => void;
+  public toggleTab(): void {
     this.isShowDescription = !this.isShowDescription;
   }
 
-  public close!: () => void;
-  public save!: (value: object) => void;
+
 }
