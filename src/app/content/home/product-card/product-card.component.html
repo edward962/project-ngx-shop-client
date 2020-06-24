@@ -20,16 +20,20 @@
     <h5 class="card-title">
       {{ product.name }}
     </h5>
-    <div class="rate">
-      <ngx-shop-star-rating
-        tooltip="Рейтинг товара"
-        [feedbackRate]="product.rating | rate"
-      ></ngx-shop-star-rating>
-      <span class="rate-amount ml-2" *ngIf="product.feedbacksCount">{{ product.feedbacksCount }}</span>
+    <div>
+      <div class="rate">
+        <ngx-shop-star-rating
+          tooltip="Рейтинг товара"
+          [feedbackRate]="product.rating | rate"
+        ></ngx-shop-star-rating>
+        <span class="rate-amount ml-2" *ngIf="product.feedbacksCount">{{ product.feedbacksCount }}</span>
+        
+      </div>
+      <span class="rate-amount ml-2" *ngIf="!product.feedbacksCount">no reviews</span>
+      <p class="card-text price-text">
+        <strong>{{ product.price | currency: 'EUR' }}</strong>
+      </p>
     </div>
-    <span class="rate-amount ml-2" *ngIf="!product.feedbacksCount">no reviews</span>
-    <p class="card-text price-text">
-      <strong>{{ product.price | currency: 'EUR' }}</strong>
-    </p>
+    
   </div>
 </div>

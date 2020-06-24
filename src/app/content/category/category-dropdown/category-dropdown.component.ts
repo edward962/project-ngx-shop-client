@@ -16,6 +16,8 @@ import { ICategory } from 'src/app/store/reducers/categories.reducer';
 export class CategoryDropdownComponent implements ControlValueAccessor {
   @Input()
   public categories!: ICategory[];
+  @Input()
+  public initSubCategoryId?: string;
   public currentIndex: number | null = null;
   public isShow = false;
   public onChange!: Function;
@@ -34,5 +36,8 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
     this.isShow = !this.isShow;
     this.currentCategory = subCategoryId;
     this.onChange(this.currentCategory);
+  }
+  public current( subCategoryId: string ): boolean {
+    return this.currentCategory === subCategoryId || this.initSubCategoryId === subCategoryId;
   }
 }

@@ -33,50 +33,19 @@ main
   position: relative
 .form-control:focus
   box-shadow: none
-.btn-primary:hover
-  color: #fff
 .outlet-wrap
   min-height: 88vh
-.btn-outline-primary:not(:disabled):not(.disabled):active:focus
-  box-shadow: none
-
-  .feedback-inputs-label
-    font-size: 16px
-    color: #797878
-    position: relative
-    margin-left: 20px
-    &::before
-      content: "*"
-      position: absolute
-      top: -3px
-      right: -7px
-      color: red
-      font-size: 17px
-      .form-valid
-        position: absolute
-        top: 65px
-        left: 0
-        font-size: 11px
-        width: 500px
-        color: red
-        .form-valid-area
-          position: absolute
-          top: 86px
-          left: 0
-          font-size: 11px
-          width: 500px
-          color: red
 
 .all-characters
   a
-    color: #007bff
+    color: #007bff !important
     &:hover
       color: #0056b3
       text-decoration: underline
       cursor: pointer
 .characters
   a
-    color: #007bff
+    color: #007bff !important
     &:hover
       color: #0056b3
       text-decoration: underline
@@ -216,10 +185,54 @@ body.no-scroll
 .basket.basket_not-empty .product-counter
   display: inline-block
 
-.navbar-brand
+basket
   margin-left: 1rem
   margin-right: 0
+.list-group-item
+    border-radius: 0 !important
 
+.list-group-item.dropdown.show
+  border-top-right-radius: 0
+  border-right-color: transparent
+  color: #d9534f
+
+.list-group-item.dropdown.show ~ .list-group-item:last-child,
+.list-group-item.dropdown.show
+  border-bottom-right-radius: 0
+
+.list-group-item a
+  cursor: pointer
+
+.sidebar
+  position: relative
+  z-index: 100
+
+.backdrop
+  background-color: rgba(0, 0, 0, 0.5)
+  opacity: 0
+  visibility: hidden
+  z-index: 99
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+
+.backdrop.show
+  opacity: 1
+  visibility: visible
+.products-list
+  margin-top: 51px
+.sidebar .dropdown-menu.show
+  top: -1px !important
+  left: 100% !important
+  transform: none !important
+  margin: 0
+  border: 1px solid #ddd
+  border-top-left-radius: 0
+  border-bottom-left-radius: 0
+  border-left-color: transparent
+  padding: 0.55rem 0
 @media (min-width: 767px)
   .navbar-brand
     margin-left: 0
@@ -275,11 +288,11 @@ body.no-scroll
     border: 1px solid #ddd
     padding: 2rem
 
-form button[type="submit"]:not(.btn-send)
-  padding-left: 3rem
-  padding-right: 3rem
-  font-weight: 500
-  width: 100%
+// form button[type="submit"]:not(.btn-send)
+//   padding-left: 3rem
+//   padding-right: 3rem
+//   font-weight: 500
+//   width: 100%
 
 @media all and (min-width: 767px)
   form button[type="submit"]:not(.btn-send)
@@ -457,52 +470,6 @@ form button[type="submit"]:not(.btn-send)
 .modal .close
   cursor: pointer
 
-@media all and (max-width: 767px)
-  .list-group-item
-    border-radius: 0 !important
-
-.list-group-item.dropdown.show
-  border-top-right-radius: 0
-  border-right-color: transparent
-  color: #d9534f
-
-.list-group-item.dropdown.show ~ .list-group-item:last-child,
-.list-group-item.dropdown.show
-  border-bottom-right-radius: 0
-
-.list-group-item a
-  cursor: pointer
-
-.sidebar
-  position: relative
-  z-index: 100
-
-.backdrop
-  background-color: rgba(0, 0, 0, 0.5)
-  opacity: 0
-  visibility: hidden
-  z-index: 99
-  position: fixed
-  top: 0
-  left: 0
-  height: 100%
-  width: 100%
-
-.backdrop.show
-  opacity: 1
-  visibility: visible
-.products-list
-  margin-top: 51px
-.sidebar .dropdown-menu.show
-  top: -1px !important
-  left: 100% !important
-  transform: none !important
-  margin: 0
-  border: 1px solid #ddd
-  border-top-left-radius: 0
-  border-bottom-left-radius: 0
-  border-left-color: transparent
-  padding: 0.55rem 0
 
 @media all and (max-width: 576px)
   .sidebar
@@ -700,6 +667,7 @@ form button[type="submit"]:not(.btn-send)
 .homepage-cards .card .card-body
   display: flex
   flex-direction: column
+  justify-content: space-between  
 
 .homepage-cards .card .card-title
   font-size: 18px
@@ -726,7 +694,7 @@ form button[type="submit"]:not(.btn-send)
   flex-wrap: wrap
   flex-direction: row
   align-items: flex-end
-  margin-top: 1rem
+  // margin-top: 1rem
 
 .rate.rate-sm .icon-star
   width: 1rem
@@ -877,7 +845,7 @@ form button[type="submit"]:not(.btn-send)
   flex: 1 0 auto
   flex-direction: row
   margin-bottom: 0.75rem
-  height: 200px
+  height: 150px
 .btn-outline-primary:focus
   box-shadow: none
   outline: none!important
@@ -901,7 +869,7 @@ form button[type="submit"]:not(.btn-send)
     outline: none
 
 .description-col .product-img
-  padding: 1.5rem 2.5rem
+  padding: 0 2em 3.5em 2em
   display: flex
   align-items: center
   justify-content: center
@@ -913,7 +881,8 @@ form button[type="submit"]:not(.btn-send)
 
 .description-col .product-desc
   padding: 1.5rem 1.5rem 1.5rem 0.25rem
-
+  h4 
+    font-size: 18px
 .default-col
   padding: 1.5rem
   border-left: 1px solid #c4c4c4

@@ -31,6 +31,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public priceRange?: number[];
   public selectedBrands: string[] = [];
   public selectedPrices: number[] = [];
+  public initSubCategoryId?: string;
   public form: FormGroup = this._fb.group({
     brands: [[]],
     prices: [[]],
@@ -93,6 +94,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     this._activatedRoute.queryParams
       .pipe(takeUntil(this.unsubscribe$$))
       .subscribe((query): void => {
+        this.initSubCategoryId = query.subCatId;
         if (query.prices) {
           this.selectedPrices = query.prices.split(',');
         } else {
