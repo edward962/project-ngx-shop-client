@@ -22,12 +22,12 @@ export class PhotoSliderComponent {
   public isBaner = false;
   public banerListCategories = [{
     subCategoryId: '5ec67e1b8d5f8a2cad771ca4',
-    title: 'LAPTOP',
+    title: 'КОМПЬЮТЕРЫ',
   }, {
-    subCategoryId: '5ec67e1b8d5f8a2cad771c22', title: 'SMARTPHONES',
+    subCategoryId: '5ec67e1b8d5f8a2cad771c22', title: 'СМАРТФОНЫ',
   }, {
-    subCategoryId: '5ec67e1b8d5f8a2cad771d12',
-    title: ' DVR',
+    subCategoryId: '5ec67e1b8d5f8a2cad771d22',
+    title: ' АВТОЗВУК',
   }];
   public currentIndex = 0;
 
@@ -46,59 +46,27 @@ export class PhotoSliderComponent {
     private readonly _store: Store<IStore>) { }
 
 
-  // FOR SLIDER
-  public next(): void {
+  public next( arr: any): void {
     if (this.slidingBlocked) {
       return;
     }
     this.isSlidedRight = true;
     this._cdr.detectChanges();
-    if (this.currentIndex === this.images.length - 1) {
+    if (this.currentIndex === arr.length - 1) {
       this.currentIndex = 0;
       return;
     }
     this.currentIndex += 1;
   }
 
-  public prev(): void {
+  public prev(arr: any): void {
     if (this.slidingBlocked) {
       return;
     }
     this.isSlidedRight = false;
     this._cdr.detectChanges();
     if (this.currentIndex === 0) {
-      this.currentIndex = this.images.length - 1;
-      return;
-    }
-    this.currentIndex -= 1;
-  }
-
-
-
-
-// FOR BANER
-
-  public nextBaner(): void {
-    if (this.slidingBlocked) {
-      return;
-    }
-    this.isSlidedRight = true;
-    this._cdr.detectChanges();
-    if (this.currentIndex === this.banerListCategories.length - 1) {
-      this.currentIndex = 0;
-      return;
-    }
-    this.currentIndex += 1;
-  }
-
-  public prevBaner(): void {
-    if (this.slidingBlocked) {
-      return;
-    }
-    this.isSlidedRight = false;
-    this._cdr.detectChanges();
-    if (this.currentIndex === 0) {
-      this.currentIndex = this.banerListCategories.length - 1;
+      this.currentIndex = arr.length - 1;
       return;
     }
     this.currentIndex -= 1;
