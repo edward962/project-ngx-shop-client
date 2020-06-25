@@ -10,8 +10,6 @@
     </li>
   </ol>
 
-
-
   <div *ngIf='!isBaner' class="carousel-inner">
     <ng-container *ngFor="let image of images; let i = index">
       <div [@slideAnimation]="{
@@ -22,8 +20,11 @@
         <div class="img-wrap">
           <img *ngIf="image" [src]="image?.url" />
         </div>
+
       </div>
+
     </ng-container>
+
     <ng-container *ngIf="!images">
       <div class="carousel-item">
         <div class="img-wrap">
@@ -48,8 +49,8 @@
             <h3 class="h1">ЛУЧШИЕ ИЗ КАТЕГОРИИ {{baner.title}}</h3>
             <div>
               <a class="btn" (click)='redirectTo(baner.subCategoryId)' role="button">
-                
-Посмотреть все предложения
+
+                Посмотреть все предложения
                 <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
               </a>
             </div>

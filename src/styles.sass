@@ -64,12 +64,12 @@ main
     cursor: pointer
     span
       color: #373a3c
-.btn-primary:focus       
-  box-shadow: none 
-.btn-primary:active 
-  box-shadow: none 
+.btn-primary:focus
+  box-shadow: none
+.btn-primary:active
+  box-shadow: none
 .btn-primary:not(:disabled):not(.disabled):active:focus
-  box-shadow: none 
+  box-shadow: none
 // tooltip
 
 .ng-tooltip
@@ -137,6 +137,33 @@ main
 
 .ng5-slider-span .ng5-slider-bar
   height: 2px !important
+// loader
+.loader
+  margin: 0 auto  
+  min-height: 50% 
+  height: calc(100vh - 17vh )
+  display: flex
+  flex-direction: column
+  justify-content: center
+.sbl-circ 
+  height: 48px
+  width: 48px
+  color: #5a5a5a
+  position: relative
+  display: inline-block
+  border: 5px solid
+  border-radius: 50%
+  border-top-color: transparent
+  animation: rotate 1s linear infinite
+
+@keyframes rotate 
+  0% 
+    transform: rotate(0)
+  100%
+    transform: rotate(360deg)
+
+
+
 
 .main-carousel
   border-radius: 4px
@@ -240,6 +267,7 @@ basket
   visibility: visible
 .products-list
   margin-top: 51px
+  min-height: 100px
 .sidebar .dropdown-menu.show
   top: -1px !important
   left: 100% !important
@@ -257,6 +285,7 @@ basket
     background-color: #eceeef
 
   .product-carousel .carousel-item .img-wrap img
+    mix-blend-mode: multiply
     max-width: 225px
 
   .product-carousel,
@@ -323,7 +352,7 @@ basket
   margin-bottom: 0.75rem
   height: 150px
 .btn-outline-primary
-  color: #007bff  
+  color: #007bff
 .btn-outline-primary:focus
   box-shadow: none
   outline: none!important
@@ -353,6 +382,7 @@ basket
   justify-content: center
   max-width: 45%
   overflow: hidden
+  mix-blend-mode: multiply
 .description-col .product-img .product-img-wrap
   display: flex
   width: 70%
@@ -405,6 +435,7 @@ basket
       outline: none
   .img
     max-height: 100%
+
   .description-col .product-desc,
   .default-col
     padding: 0.875rem 1.25rem
@@ -489,7 +520,6 @@ basket
   width: auto
   max-width: 94%
   height: 40px
-
 .product-carousel .carousel-indicators
   display: flex
   flex-direction: row
@@ -527,6 +557,7 @@ li
   justify-content: center
 
 .product-carousel .carousel-item .img-wrap img
+  mix-blend-mode: multiply
   max-width: 300px
 
 .product-carousel .carousel-control-prev,
@@ -697,7 +728,7 @@ li
   top: 20px
   text-align: center
 
-.main-carousel .carousel-caption .h1 
+.main-carousel .carousel-caption .h1
   font-family: "Akzidenz-Grotesk Pro", sans-serif
   font-size: 32px
   line-height: 36px
@@ -786,7 +817,7 @@ a
 
 .carousel-inner
   height: 450px
-.carousel-caption 
+.carousel-caption
   top: 20px
   text-align: center
 
@@ -1032,6 +1063,7 @@ a
   width: auto
   max-width: 160px
   max-height: 100%
+  mix-blend-mode: multiply
 
 .homepage-cards .card .flex-grow
   flex-grow: 1

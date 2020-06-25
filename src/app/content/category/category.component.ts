@@ -29,6 +29,8 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     .select('brands', 'items')
     .pipe(takeUntil(this.unsubscribe$$));
   public priceRange?: number[];
+  public isLoading$ = this._store
+  .select('products', 'loading');
   public selectedBrands: string[] = [];
   public selectedPrices: number[] = [];
   public initSubCategoryId?: string;
