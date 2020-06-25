@@ -21,12 +21,12 @@ export class PhotoSliderComponent {
   @Input()
   public isBaner = false;
   public banerListCategories = [{
-    subCategoryId: '5ec67e1b8d5f8a2cad771ca4',
+    subCategoryId: '5ef4c36bf63cdf28bc1ac60f',
     title: 'КОМПЬЮТЕРЫ',
   }, {
-    subCategoryId: '5ec67e1b8d5f8a2cad771c22', title: 'СМАРТФОНЫ',
+    subCategoryId: '5ef4c36bf63cdf28bc1ac58d', title: 'СМАРТФОНЫ',
   }, {
-    subCategoryId: '5ec67e1b8d5f8a2cad771d22',
+    subCategoryId: '5ef4c36bf63cdf28bc1ac68d',
     title: ' АВТОЗВУК',
   }];
   public currentIndex = 0;
