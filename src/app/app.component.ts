@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, Data } from '@angular/router';
-import { customTransition } from './router.animation';
+import { fadeAnimation } from './router.animation';
 
 @Component({
   selector: 'ngx-shop-root',
   templateUrl: './app.component.html',
-  animations: [customTransition],
+  animations: [fadeAnimation],
 })
 export class AppComponent {
   public getRouterState(outlet: RouterOutlet): Data {
