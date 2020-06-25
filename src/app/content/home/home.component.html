@@ -2,12 +2,10 @@
   <div class="backdrop"></div>
   <div class="container" [formGroup]="form">
     <div class="row flex-column-reverse flex-lg-row">
-      <ngx-shop-side-menu
-        [categories]="categories$ | async"
-      ></ngx-shop-side-menu>
-     <div class="col-lg-9"> 
-        <ngx-shop-photo-slider [isBottomButtons]="false" [slideClass]="'main-carousel carousel slide'" [isBaner] = 'true'
-        ></ngx-shop-photo-slider>
+      <ngx-shop-side-menu class="col-lg-3" [categories]="categories$ | async"></ngx-shop-side-menu>
+      <div class="col-lg-9">
+        <ngx-shop-photo-slider [isBottomButtons]="false" [slideClass]="'main-carousel carousel slide'" [isBaner]='true'>
+        </ngx-shop-photo-slider>
         <div class="row justify-content-end">
           <div>
             <h3 class="section-title">Рекомендации для Вас</h3>
