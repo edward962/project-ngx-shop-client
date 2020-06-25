@@ -8,7 +8,6 @@
             <ngx-shop-category-dropdown
               [categories]="categories$ | async"
               formControlName="currentSubCategory"
-              [initSubCategoryId] = 'initSubCategoryId'
             ></ngx-shop-category-dropdown>
           </div>
           <h3 class="h5 mt-5 mb-4">Фильтры по товарам</h3>
@@ -31,12 +30,20 @@
           >
           </ngx-shop-price-slider>
         </div>
-        <div class="col-lg-8 col-xl-9 products-list">
-          <ngx-shop-content-product
-            *ngFor="let product of products$ | async"
-            [product]="product"
-          ></ngx-shop-content-product>
-        </div>
+  
+        
+        <ng-container *ngIf=" !(isLoading$ | async)  ;else second">
+          <div  class="col-lg-8 col-xl-9 products-list">
+            <ngx-shop-content-product
+              *ngFor="let product of products$ | async"
+              [product]="product"
+            ></ngx-shop-content-product>
+          </div>
+        </ng-container>
+        <ng-template #second>
+          <div  class="loader"> <div class="sbl-circ"></div></div>
+        </ng-template>
+
       </div>
     </form>
   </div>

@@ -64,12 +64,12 @@ main
     cursor: pointer
     span
       color: #373a3c
-.btn-primary:focus       
-  box-shadow: none 
-.btn-primary:active 
-  box-shadow: none 
+.btn-primary:focus
+  box-shadow: none
+.btn-primary:active
+  box-shadow: none
 .btn-primary:not(:disabled):not(.disabled):active:focus
-  box-shadow: none 
+  box-shadow: none
 // tooltip
 
 .ng-tooltip
@@ -137,6 +137,33 @@ main
 
 .ng5-slider-span .ng5-slider-bar
   height: 2px !important
+// loader
+.loader
+  margin: 0 auto  
+  min-height: 50% 
+  height: calc(100vh - 17vh )
+  display: flex
+  flex-direction: column
+  justify-content: center
+.sbl-circ 
+  height: 48px
+  width: 48px
+  color: #5a5a5a
+  position: relative
+  display: inline-block
+  border: 5px solid
+  border-radius: 50%
+  border-top-color: transparent
+  animation: rotate 1s linear infinite
+
+@keyframes rotate 
+  0% 
+    transform: rotate(0)
+  100%
+    transform: rotate(360deg)
+
+
+
 
 .main-carousel
   border-radius: 4px
@@ -240,6 +267,7 @@ basket
   visibility: visible
 .products-list
   margin-top: 51px
+  min-height: 100px
 .sidebar .dropdown-menu.show
   top: -1px !important
   left: 100% !important
@@ -324,7 +352,7 @@ basket
   margin-bottom: 0.75rem
   height: 150px
 .btn-outline-primary
-  color: #007bff  
+  color: #007bff
 .btn-outline-primary:focus
   box-shadow: none
   outline: none!important
@@ -700,7 +728,7 @@ li
   top: 20px
   text-align: center
 
-.main-carousel .carousel-caption .h1 
+.main-carousel .carousel-caption .h1
   font-family: "Akzidenz-Grotesk Pro", sans-serif
   font-size: 32px
   line-height: 36px
@@ -789,7 +817,7 @@ a
 
 .carousel-inner
   height: 450px
-.carousel-caption 
+.carousel-caption
   top: 20px
   text-align: center
 

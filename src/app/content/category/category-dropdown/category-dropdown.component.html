@@ -1,5 +1,5 @@
 <div
-  *ngFor="let category of categories; let i = index"
+  *ngFor="let category of categoriesArr; let i = index"
   class="list-group-item"
   (click)="hover(i)"
 
@@ -18,7 +18,7 @@
       *ngFor="let subCategory of category.subCategories"
       (click)="categorySelect(subCategory._id)"
     >
-      <a [ngStyle]="current(subCategory._id)   && { color: 'red' }" 
+      <a [ngStyle]="subCategory._id === currentCategory && { color: 'red' }" 
         >{{ subCategory.name }}
       </a>
     </li>
