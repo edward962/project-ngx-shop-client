@@ -192,7 +192,14 @@ main
   ngx-shop-product-card .card 
     flex-direction: column
   
-  .product-list-box -basket
+  .product-list-box .-basket
+    border: 1px solid #cccccc
+    border-radius: 4px
+    display: flex
+    flex: 1 0 auto
+    flex-direction: row
+    flex-wrap: wrap
+    margin-bottom: 0.75rem
   //  .description-col
   //   flex: 0
   //   width: 100%
@@ -247,6 +254,8 @@ main
     height: auto
     .card-img-wrap
       width: 155px
+      min-height: 150px
+      // height: fit-content
   .default-col
     display: none
 
@@ -867,6 +876,9 @@ li
     
 
 @media all and (min-width: 767px)
+.card-img-wrap
+    // width: 155px
+    min-height: 150px    
 .p-notice
   margin-top: 1rem
 
@@ -1146,7 +1158,7 @@ a
   ngx-shop-side-menu
     padding-right: 15px
     padding-left: 15px
-    
+
   .main-carousel .carousel-caption
     max-width: 45%
     left: 6rem
@@ -1328,7 +1340,8 @@ a
 @media all and (min-width: 767px)
   .product-info
     margin-top: 0
-
+  .card-img-wrap
+    min-height: 150px  
 
 
 

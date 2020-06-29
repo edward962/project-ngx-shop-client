@@ -1,6 +1,6 @@
 img
-    height: 100%
-    max-width: 152px
+    height: auto
+    max-width: 80px
 .inner-col .description-col
   &:focus
     outline: none
@@ -23,4 +23,37 @@ img
     font-weight: 100
     &:hover
         cursor: pointer
- 
+@media all and (max-width: 1200px) 
+     ._basket
+        position: relative
+        .fa 
+            position: absolute
+            left: 5px
+            top: 5px
+        border: 1px solid #cccccc
+        border-radius: 4px
+        display: flex
+        flex: 1 0 auto
+        flex-direction: row
+        flex-wrap: wrap
+        margin-bottom: 0.75rem
+        .description-col
+            border-bottom:  1px solid #c4c4c4 
+            flex: 1 0 65%
+            .product-desc
+                width: 50%
+            .product-img
+                img
+                    height: auto
+                width: 80px
+        .counter-value   
+            border-bottom:  1px solid #c4c4c4    
+
+
+@media all and (max-width: 441px)  
+    ._basket 
+        .counter-value   
+            border-bottom: none 
+            border-left: none 
+        .price-wrap
+            border-left: 1px solid #c4c4c4      
