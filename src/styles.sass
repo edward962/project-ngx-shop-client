@@ -70,6 +70,7 @@ main
   box-shadow: none
 .btn-primary:not(:disabled):not(.disabled):active:focus
   box-shadow: none
+
 // tooltip
 
 .ng-tooltip
@@ -181,7 +182,74 @@ main
       background-size: 100% 100%
       background-position-x: center
 
+
+@media all and (min-width: 768px)
+  .description-col .product-img
+    background: white
+
+
+
+  ngx-shop-product-card .card 
+    flex-direction: column
+  
+  .product-list-box -basket
+  //  .description-col
+  //   flex: 0
+  //   width: 100%
+  //   border-bottom: 1px solid #c4c4c4
+  //   min-height: 135px
+  //   .product-img
+  //     padding: 16px 0 0 0 
+  //     height: 112px  
+  //     width: 122px
+  //     margin: auto
+  //   .product-desc
+  //     margin-left: 10px
+  //     height: 112px  
+  //     padding: 1rem 0.5rem 1rem 0.5rem
+  //     h4
+  //       font-size: 14px
+  //       font-weight: 600
+  //     p
+  //       font-size: 16px  
+  // .sidebar .dropdown-menu.show 
+  //   left: 0
+  //   width: 100% 
+  //   margin-top: 40px
+  //   border: none
+  // .product-list-box
+  //   flex-direction: column
+  //   height: auto
+  //   margin-bottom: 0
+  // .parameters
+  //   display: flex
+  //   flex-direction: row
+  //   justify-content: space-between
+  //   .counter-value
+  //     width:166px
+  //     margin: auto
+  //     border-left: none 
+  //   .price-wrap
+  //     width:70%  
+
+  
+
 @media all and (max-width: 767px)
+  
+
+  .sidebar .list-group-item 
+    border-left: none
+    border-right: none
+    a
+     padding: 1.0625rem 2rem 1.0625rem 1.25rem
+  ngx-shop-product-card .card 
+    flex-direction: row
+    height: auto
+    .card-img-wrap
+      width: 155px
+  .default-col
+    display: none
+
   main
     padding: 0
 
@@ -270,7 +338,7 @@ basket
   min-height: 100px
 .sidebar .dropdown-menu.show
   top: -1px !important
-  left: 100% !important
+  left: 100% 
   transform: none !important
   margin: 0
   border: 1px solid #ddd
@@ -350,7 +418,7 @@ basket
   flex: 1 0 auto
   flex-direction: row
   margin-bottom: 0.75rem
-  height: 150px
+  // height: 150px
 .btn-outline-primary
   color: #007bff
 .btn-outline-primary:focus
@@ -369,26 +437,34 @@ basket
   flex: 1 0 65%
   display: flex
   flex-direction: row
-  height: 200px
+  // height: 200px
   width: 200px
+  // flex: 1 0 100%
+  // display: flex
+  // flex-direction: row
   cursor: pointer
   &:focus
     outline: none
 
 .description-col .product-img
-  padding: 0 2em 3.5em 2em
+  padding: 1em 1.5em
+  min-width: 130px
   display: flex
   align-items: center
   justify-content: center
   max-width: 45%
   overflow: hidden
-  mix-blend-mode: multiply
+  // mix-blend-mode: multiply
+  background: #eceeef
+  img
+    mix-blend-mode: multiply
+
 .description-col .product-img .product-img-wrap
   display: flex
   width: 70%
 
 .description-col .product-desc
-  padding: 1.5rem 1.5rem 1.5rem 0.25rem
+  padding: 1rem
   h4
     font-size: 18px
 .default-col
@@ -591,6 +667,7 @@ li
   .homepage-cards .card
     flex-direction: row
 
+
   .homepage-cards .card .card-body
     padding: 0.5rem 1.25rem
 
@@ -643,7 +720,7 @@ li
   padding: 0
 
 .sidebar .list-group-item > a
-  padding: 1.0625rem 2rem 1.0625rem 1.25rem
+  padding: 0.75rem 2rem 0.75rem 1.25rem
   line-height: 1
 
 .sidebar .list-group-item .dropdown-toggle::after
@@ -664,8 +741,6 @@ li
 
 .main-carousel
   height: 280px
-  width: calc(100% + 30px)
-  margin-left: -15px
   border-radius: 0
 .main-carousel img
   height: 300px
@@ -735,7 +810,7 @@ li
   font-weight: 900
   color: #373a3c
   margin-bottom: 1.5rem
-@media (min-width: 767px)
+@media (min-width: 768px)
   .navbar-brand
     margin-left: 0
     margin-right: 1rem
@@ -789,6 +864,7 @@ li
   .jumbotron.jumbotron-form
     border: 1px solid #ddd
     padding: 2rem
+    
 
 @media all and (min-width: 767px)
 .p-notice
@@ -1012,7 +1088,65 @@ a
 .btn-social.-twitter
   background-color: #1d8ef0
 
+
+@media all and (max-width: 767px)
+  .description-col
+    flex: 0
+    width: 100%
+    // border-bottom: 1px solid #c4c4c4
+    // padding: 1em 0
+    // min-height: 155px
+    .product-img
+      // margin: auto 0
+      // height: 112px
+      max-width: 100px
+      // margin: 1em 0
+      img
+        mix-blend-mode: multiply
+    .product-desc
+      padding: 0.875rem 1.25rem
+      // margin-left: 10px
+      height: auto 
+      // padding: 0 0.5rem 1rem 0.5rem
+      h4
+        font-size: 14px
+        font-weight: 600
+      p
+        font-size: 16px  
+  .sidebar .dropdown-menu.show 
+    left: 0
+    width: 100% 
+    margin-top: 40px
+    border: none
+  .product-list-box
+    flex-direction: column
+    margin: 1em 0
+    height: auto
+    margin-bottom: 0
+  .parameters
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    .counter-value
+      width:166px
+      margin: auto
+      border-left: none 
+    .price-wrap
+      width:70%  
+ 
 @media all and (min-width: 992px)
+  .parameters
+    flex-direction: row
+    .counter-value
+      // margin: auto
+      border-left: none 
+    .price-wrap
+      // width:50%  
+     
+  ngx-shop-side-menu
+    padding-right: 15px
+    padding-left: 15px
+    
   .main-carousel .carousel-caption
     max-width: 45%
     left: 6rem
@@ -1057,11 +1191,13 @@ a
   justify-content: center
   align-items: center
   padding: 0.7rem
-  height: 180px
+  // height: 180px
+
 
 .homepage-cards .card-img-top
   width: auto
-  max-width: 160px
+  // max-width: 160px
+  max-width: 122px
   max-height: 100%
   mix-blend-mode: multiply
 
@@ -1072,6 +1208,7 @@ a
   display: flex
   flex-direction: column
   justify-content: space-between
+  padding: 0.5rem 1.25rem
 
 .homepage-cards .card .card-title
   font-size: 18px
@@ -1191,3 +1328,14 @@ a
 @media all and (min-width: 767px)
   .product-info
     margin-top: 0
+
+
+
+
+
+
+  // ///////////////////////////////////////
+    
+
+
+    
