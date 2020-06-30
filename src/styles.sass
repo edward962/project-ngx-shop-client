@@ -183,31 +183,7 @@ main
       background-position-x: center
 
 
-@media all and (min-width: 768px)
-  .product-info
-    margin-top: 0
-  .card-img-wrap
-    min-height: 150px  
-  .price-wrap
-    border-left: none
-  .description-col .product-img
-    background: white
-  ngx-shop-product-card .card 
-    flex-direction: column
-  
-  .product-list-box .-basket
-    border: 1px solid #cccccc
-    border-radius: 4px
-    display: flex
-    flex: 1 0 auto
-    flex-direction: row
-    flex-wrap: wrap
-    margin-bottom: 0.75rem
-  
-@media (min-width: 768px)
-  .navbar-brand
-    margin-left: 0
-    margin-right: 1rem
+
 
 .footer
   flex-shrink: 0
@@ -486,6 +462,8 @@ a
 
 
 @media all and (max-width: 767px)
+  .product-carousel, .product-carousel .carousel-item
+    height: 245px
   .sidebar .list-group-item 
     border-left: none
     border-right: none
@@ -811,7 +789,7 @@ basket
   align-items: center
 
 .product-carousel
-  height: 410px
+  height: 245px
   border-radius: 4px 4px 0 0
 
 .product-carousel .carousel-indicators li
@@ -851,7 +829,7 @@ basket
 .product-carousel .carousel-item
   display: block!important
   position: absolute
-  height: 410px
+  height: 245px
   background-color: #eceeef
 li
   white-space: pre-wrap
@@ -1074,9 +1052,6 @@ li
     .price-wrap
       width:70%  
 
- 
-
-     
   ngx-shop-side-menu
     padding-right: 15px
     padding-left: 15px
@@ -1286,3 +1261,36 @@ li
     border-bottom-left-radius: 0
     border-left-color: transparent
     padding: 0.55rem 0
+
+
+@media all and (min-width: 768px)
+  .product-carousel
+     height: 410px
+
+  .product-carousel .carousel-item
+    height: 410px
+
+  .product-info
+    margin-top: 0
+  .card-img-wrap
+    min-height: 150px  
+  .price-wrap
+    border-left: none
+  .description-col .product-img
+    background: white
+  ngx-shop-product-card .card 
+    flex-direction: column
+  
+  .product-list-box .-basket
+    border: 1px solid #cccccc
+    border-radius: 4px
+    display: flex
+    flex: 1 0 auto
+    flex-direction: row
+    flex-wrap: wrap
+    margin-bottom: 0.75rem
+  
+@media (min-width: 768px)
+  .navbar-brand
+    margin-left: 0
+    margin-right: 1rem    
