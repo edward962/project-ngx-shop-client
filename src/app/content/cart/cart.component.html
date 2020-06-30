@@ -6,7 +6,7 @@
         <ngx-shop-cart-product *ngFor="let product of cart$ | async; trackBy: trackById" [product]="product"
           (increment)="incrementProductInCart($event)" (decrement)="decrementProductInCart($event)"
           (remove)="removeProductFromCart($event)"></ngx-shop-cart-product>
-        <h3 class="h5 mb-4 mt-5 text-md-center">Your details</h3>
+        <!-- <h3 class="h5 mb-4 mt-5 text-md-center">Your details</h3>
         <div class="jumbotron jumbotron-light jumbotron-form mb-0">
           <div class="row">
             <div class="col-md-6">
@@ -36,7 +36,7 @@
           <button type="submit" class="btn btn-primary btn-lg">
             Confirm and pay
           </button>
-        </div>
+        </div> -->
 
       </div>
     </div>

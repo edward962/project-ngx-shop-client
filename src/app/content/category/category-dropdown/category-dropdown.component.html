@@ -3,8 +3,7 @@
   class="list-group-item"
   (click)="hover(i)"
 
->
-  <h5 class="mb-0">
+>  <h5 class="mb-0">
     {{ category.name }}
     <img src="assets/icons/icon-angle.svg" alt="angle-right" />
   </h5>
@@ -22,5 +21,86 @@
         >{{ subCategory.name }}
       </a>
     </li>
-  </ul>
-</div>
+  </ul> 
+ </div>
+
+<!-- 
+<div id="accordion" class="aside-accordion-menu list-group" *ngFor="let category of categoriesArr; let i = index"
+  (click)="hover(i)">
+  <div class="list-group-item">
+    <h5 class="mb-0" id="headingOne" >
+      {{ category.name }}
+      <img src="assets/icons/icon-angle.svg" alt="angle-right" />
+    </h5>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <ul    class="collapse" data-parent="#accordion" [ngClass]="{ show: i === currentIndex }">
+        <li *ngFor="let subCategory of category.subCategories" (click)="categorySelect(subCategory._id)"><a
+            [ngStyle]="subCategory._id === currentCategory && { color: 'red' }">{{ subCategory.name }}</a></li>
+
+      </ul>
+    </div>
+  </div>
+<div class="list-group-item">
+    <h5
+      class="mb-0"
+      id="headingTwo"
+      data-toggle="collapse"
+      data-target="#collapseTwo"
+      aria-expanded="false"
+      aria-controls="collapseTwo"
+    >
+      Home Cinema, TV & Video
+      <img src="assets/icons/icon-angle.svg" alt="angle-right" />
+    </h5>
+    <div
+      id="collapseTwo"
+      class="collapse"
+      aria-labelledby="headingTwo"
+      data-parent="#accordion"
+    >
+ 
+    </div>
+  </div>
+  <div class="list-group-item">
+    <h5
+      class="mb-0"
+      id="headingThree"
+      data-toggle="collapse"
+      data-target="#collapseThree"
+      aria-expanded="false"
+      aria-controls="collapseThree"
+    >
+      Mobile Phones
+      <img src="assets/icons/icon-angle.svg" alt="angle-right" />
+    </h5>
+    <div
+      id="collapseThree"
+      class="collapse"
+      aria-labelledby="headingThree"
+      data-parent="#accordion"
+    >
+ 
+    </div>
+  </div>
+  <div class="list-group-item">
+    <h5
+      class="mb-0"
+      id="headingFour"
+      data-toggle="collapse"
+      data-target="#collapseFour"
+      aria-expanded="false"
+      aria-controls="collapseFour"
+    >
+      Computers & Components
+      <img src="assets/icons/icon-angle.svg" alt="angle-right" />
+    </h5>
+    <div
+      id="collapseFour"
+      class="collapse"
+      aria-labelledby="headingFour"
+      data-parent="#accordion"
+    >
+    
+    </div>
+  </div> -->
+<!-- </div> -->

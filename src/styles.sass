@@ -17,11 +17,229 @@ main
   position: relative
 
 
+.fa-star
+  color: #ccc
+.fa-star:before
+  font-size: 20px
+.selected
+  color: orange
+
+.ng5-slider-span.ng5-slider-pointer.ng5-slider-active
+  outline: none
+
+.ng5-slider .ng5-slider-pointer:after
+  display: contents !important
+.ng5-slider .ng5-slider-selection
+  background: #f7685b  !important
+
+.ng5-slider.animate .ng5-slider-bubble.ng5-slider-limit
+  display: none
+.ng5-slider.animate .ng5-slider-bubble
+  display: none
+
+.ng5-slider-span .ng5-slider-bar
+  height: 2px !important  
+
+
+.ng5-slider .ng5-slider-pointer
+  background-color: #f7685b !important
+  width: 18px !important
+  height: 18px !important
+  top: -7px !important
+.range-slider
+  position: relative
+  display: flex
+  flex-direction: row
+  align-items: center
+
+
+.ng-tooltip
+  animation-name: tooltipOpacity
+  position: absolute
+  max-width: 150px
+  font-size: 14px
+  text-align: center
+  color: #f8f8f2
+  padding: 3px 8px
+  background: #282a36
+  border-radius: 4px
+  z-index: 1000
+  opacity: 0
+  transition: .7s
+
+.ng-tooltip:after
+  content: ""
+  position: absolute
+  border-style: solid
+
+.ng-tooltip-top:after
+  top: 100%
+  left: 50%
+  margin-left: -5px
+  border-width: 5px
+  border-color: black transparent transparent transparent
+
+.ng-tooltip-bottom:after
+  bottom: 100%
+  left: 50%
+  margin-left: -5px
+  border-width: 5px
+  border-color: transparent transparent black transparent
+
+.ng-tooltip-left:after
+  top: 50%
+  left: 100%
+  margin-top: -5px
+  border-width: 5px
+  border-color: transparent transparent transparent black
+
+.ng-tooltip-right:after
+  top: 50%
+  right: 100%
+  margin-top: -5px
+  border-width: 5px
+  border-color: transparent black transparent transparent
+
+.ng-tooltip-show
+  opacity: 1
+
+
+
+
+.rate
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  align-items: flex-end
+
+.rate.rate-sm .icon-star
+  width: 1rem
+  height: 1rem
+
+.rate-amount
+  font-size: 14px
+  margin-bottom: 5px
+  line-height: 20px
+  font-weight: 300
+
+.rate.no-reviews .rate-amount
+  color: #979797
+
+.icon-star
+  display: flex
+  position: relative
+  width: 1.25rem
+  height: 1.25rem
+  background: url(assets/icons/icon-star-border.svg) center no-repeat
+  background-size: contain
+
+.icon-star.active
+  background: url(assets/icons/icon-star-border-active.svg) center no-repeat
+  background-size: contain
+
+.icon-star.checked
+  background: url(assets/icons/icon-star.svg) center no-repeat
+  background-size: contain
+
+.description-col .product-img 
+    background: #eceeef
+    img 
+      mix-blend-mode: multiply
+
+
+.main-carousel
+  height: 280px
+  width: calc(100% + 30px)
+  margin-left: -15px
+  border-radius: 0
+
+.main-carousel .slide-content-img
+  position: absolute
+  right: 0
+  top: 50%
+  transform: translate(0, -50%)
+
+.main-carousel .carousel-indicators li
+  width: 12px
+  height: 12px
+  opacity: 0.8
+  border: 2px solid #ccccce
+  border-radius: 50%
+  background-color: transparent
+  cursor: pointer
+.main-carousel .carousel-indicators li.active
+  width: 12px
+  height: 12px
+
+  background-color: #ccccce
+  opacity: 0.8
+
+.main-carousel .carousel-control-next,
+.main-carousel .carousel-control-prev
+  background-color: rgba(255, 255, 255, 0.4)
+  width: 34px
+  height: 34px
+  top: 50%
+  margin-top: -17px
+  cursor: pointer
+
+.main-carousel .carousel-control-next:hover,
+.main-carousel .carousel-control-prev:hover
+  background-color: rgba(255, 255, 255, 1)
+
+.main-carousel .carousel-control-next
+  right: 1rem
+
+.main-carousel .carousel-control-prev
+  left: 1rem
+.main-carousel .carousel-inner .carousel-item .img-wrap img
+  width: 100%
+.carousel-control-next-icon,
+.carousel-control-prev-icon
+  width: 7px
+  height: 11px
+
+.main-carousel .carousel-control-prev-icon
+  background-image: url(assets/icons/icon-angle.svg)
+  transform: rotate(180deg)
+  margin-left: -3px
+
+.main-carousel .carousel-control-next-icon
+  background-image: url(assets/icons/icon-angle.svg)
+
+.main-carousel .carousel-caption
+  top: 20px
+  text-align: center
+
+.main-carousel .carousel-caption .h1
+  font-family: "Akzidenz-Grotesk Pro", sans-serif
+  font-size: 32px
+  line-height: 36px
+  font-weight: 900
+  color: #373a3c
+  margin-bottom: 1.5rem  
+.main-carousel
+  border-radius: 4px
+  overflow: hidden
+  margin: auto
+  width: 100%
+  height: 270px
+  .carousel-item
+    display: block!important
+    position: absolute
+    height: 270px
+    .img_wrap
+      height: 270px
+      background-repeat: no-repeat
+      background-size: 100% 100%
+      background-position-x: center
+
 @media all and (max-width: 767px) 
   main 
     padding: 0
   
-
+  .carousel-inner
+    height: 300px
 
 body.no-scroll 
   overflow: hidden
@@ -80,6 +298,11 @@ body.no-scroll
 
 
 @media (min-width: 767px) 
+  .carousel-inner
+    height: 450px
+  .carousel-caption
+    top: 20px
+    text-align: center
   .navbar-brand 
     margin-left: 0
     margin-right: 1rem
@@ -318,9 +541,9 @@ form button[type="submit"]:not(.btn-send)
   min-height: 100%
 
 
-@media all and (min-width: 767px) 
-  .modal-content 
-    border: 1px solid rgba(0, 0, 0, 0.2)
+
+.modal-content 
+  border: 1px solid rgba(0, 0, 0, 0.2)
   
 
 
@@ -378,8 +601,120 @@ form button[type="submit"]:not(.btn-send)
 @media all and (max-width: 767px) 
   .list-group-item 
     border-radius: 0 !important
-  
+  .product-carousel,
+  .product-carousel .carousel-item
+    height: 245px
+    background-color: #eceeef
 
+  .product-carousel .carousel-item .img-wrap img
+    mix-blend-mode: multiply
+    max-width: 225px
+
+  .product-carousel,
+  .product-carousel .carousel-indicators
+    border-radius: 0
+
+  .product-carousel
+    width: calc(100% + 30px)
+    margin-left: -15px
+    margin-right: -15px
+  .product-carousel
+    height: 410px
+    border-radius: 4px 4px 0 0
+
+.product-carousel .carousel-indicators li
+  width: 48px
+  height: 48px
+  margin-right: 0.5rem
+  margin-left: 0
+  background: #ffffff
+  border: 1px solid #979797
+  display: flex
+  align-items: center
+  justify-content: center
+
+.product-carousel .carousel-indicators li img
+  width: auto
+  max-width: 94%
+  height: 40px
+.product-carousel .carousel-indicators
+  display: flex
+  flex-direction: row
+  justify-content: flex-start
+  padding: 1rem
+  background: #e3e5e6
+  border-radius: 0 0 4px 4px
+  margin-right: 0
+  margin-left: 0
+  margin-bottom: 0
+  top: 100%
+  bottom: auto
+  cursor: pointer
+
+.product-carousel .carousel-indicators li.active
+  border: 1px solid #d9534f
+  box-shadow: 0 0 4px rgba(217, 83, 79, 0.5)
+  cursor: pointer
+
+.product-carousel .carousel-item
+  display: block!important
+  position: absolute
+  height: 410px
+  background-color: #eceeef
+li
+  white-space: pre-wrap
+  .subcategoryName
+    display: flex
+    width: 191px
+    white-space: pre-wrap
+.product-carousel .carousel-item .img-wrap
+  display: flex
+  height: 100%
+  align-items: center
+  justify-content: center
+
+.product-carousel .carousel-item .img-wrap img
+  mix-blend-mode: multiply
+  max-width: 300px
+
+.product-carousel .carousel-control-prev,
+.product-carousel .carousel-control-next
+  cursor: pointer
+  width: 34px
+  height: 34px
+  background: #ffffff
+  opacity: 0.4
+  top: 50%
+  transform: translate(0, -50%)
+
+.product-carousel .carousel-control-prev
+  left: 1rem
+
+.product-carousel .carousel-control-next
+  right: 1rem
+
+.product-carousel .carousel-control-prev-icon,
+.product-carousel .carousel-control-next-icon
+  color: #212121
+
+.product-carousel .carousel-control-prev-icon
+  background-image: url(assets/icons/icon-angle.svg)
+  transform: rotate(180deg)
+  margin-left: -3px
+
+.product-carousel .carousel-control-next-icon
+  background-image: url(assets/icons/icon-angle.svg)
+.main-carousel .carousel-caption
+  top: 20px
+  text-align: center
+
+.main-carousel .carousel-caption .h1
+  font-family: "Akzidenz-Grotesk Pro", sans-serif
+  font-size: 32px
+  line-height: 36px
+  font-weight: 900
+  color: #373a3c
+  margin-bottom: 1.5rem
 
 .list-group-item.dropdown.show 
   border-top-right-radius: 0
@@ -402,11 +737,11 @@ form button[type="submit"]:not(.btn-send)
 
 
 .backdrop 
+  position: fixed
   background-color: rgba(0, 0, 0, 0.5)
   opacity: 0
   visibility: hidden
   z-index: 99
-  position: absolute
   top: 0
   left: 0
   height: 100%
@@ -430,6 +765,9 @@ form button[type="submit"]:not(.btn-send)
   padding: 0.55rem 0
 
 
+
+  
+
 @media all and (max-width: 576px) 
   .sidebar 
     margin-left: -15px
@@ -443,12 +781,7 @@ form button[type="submit"]:not(.btn-send)
     border-right: none
   
 
-  .sidebar .dropdown-menu.show 
-    top: 100% !important
-    left: 0 !important
-    width: 100%
-    border: transparent
-    border-radius: 0
+ 
   
 
 
@@ -594,6 +927,8 @@ form button[type="submit"]:not(.btn-send)
   border: 1px solid #4100ac
   padding: 0.5rem 1rem
   color: #fff
+  a img
+    width: 30px
 
 
 .main-carousel .carousel-caption .btn:hover 
@@ -616,6 +951,9 @@ form button[type="submit"]:not(.btn-send)
 
 .homepage-cards .card-img-top 
   width: auto
+  max-width: 100%
+  mix-blend-mode: multiply
+  max-height: 150px
 
 
 .homepage-cards .card .flex-grow 
@@ -623,6 +961,7 @@ form button[type="submit"]:not(.btn-send)
 
 
 .homepage-cards .card .card-body 
+  justify-content: space-between
   display: flex
   flex-direction: column
 
@@ -786,7 +1125,6 @@ form button[type="submit"]:not(.btn-send)
 
 
 .aside-accordion-menu ul li a 
-  white-space: nowrap
   font-size: 0.875rem
   line-height: 1.71
   color: #373a3c
@@ -844,8 +1182,7 @@ form button[type="submit"]:not(.btn-send)
 
 
 .description-col 
-  // flex: 1 0 65%
-  flex: 0 0 60%
+  flex: 1 0 62%
   display: flex
   flex-direction: row
 
@@ -1073,7 +1410,13 @@ form button[type="submit"]:not(.btn-send)
 .product-carousel .carousel-control-next-icon 
   background-image: url(assets/icons/icon-angle.svg)
 
-
+@media all and (max-width: 991px)
+   .sidebar .dropdown-menu.show 
+    top: 100% !important
+    left: 0 !important
+    width: 100%
+    border: transparent
+    border-radius: 0
 @media all and (max-width: 767px) 
   .product-carousel,
   .product-carousel .carousel-item 
@@ -1189,4 +1532,3 @@ form button[type="submit"]:not(.btn-send)
 .alert.alert-primary 
   color: #31708f
   background: #d9edf7
-
