@@ -163,9 +163,6 @@ main
   100%
     transform: rotate(360deg)
 
-
-
-
 .main-carousel
   border-radius: 4px
   overflow: hidden
@@ -181,9 +178,6 @@ main
       background-repeat: no-repeat
       background-size: 100% 100%
       background-position-x: center
-
-
-
 
 .footer
   flex-shrink: 0
@@ -462,6 +456,18 @@ a
 
 
 @media all and (max-width: 767px)
+  // ngx-shop-add-feedback
+  //   width: 100%
+  .review
+    margin: auto
+  .main-carousel .carousel-caption .h1 
+    font-family: "Akzidenz-Grotesk Pro", sans-serif
+    font-size: 32px
+    line-height: 36px
+    font-weight: 900
+    color: #373a3c
+    margin-bottom: 1.5rem
+
   .product-carousel, .product-carousel .carousel-item
     height: 245px
   .sidebar .list-group-item 
@@ -473,7 +479,7 @@ a
     flex-direction: row
     height: auto
     .card-img-wrap
-      width: 155px
+      min-width: 155px
       min-height: 150px
   .default-col
     display: none
@@ -1177,6 +1183,7 @@ li
   padding: 5px 5px
 
 .add-review
+  margin: auto
   border-bottom: none
   width: 440px
   min-height: 290px
@@ -1199,6 +1206,17 @@ li
 .counter__value
   width: 45%
   text-align: center
+
+
+
+@media all and ( max-width: 450px)
+  .main-carousel .carousel-caption .h1
+    font-family: "Akzidenz-Grotesk Pro", sans-serif
+    font-size: 32px
+    line-height: 36px
+    font-weight: 900
+    color: #373a3c
+    margin-bottom: 1.5rem
 
 @media all and (max-width: 576px)
   .sidebar
@@ -1231,13 +1249,6 @@ li
 .p-notice
   margin-top: 1.5rem
 
-@media all and (min-width: 768px)
-  .product-info
-    margin-top: 0
-  .card-img-wrap
-    height: 150px
-  .price-wrap
-    border-left: none
    
 @media all and (max-width: 991px)
   .sidebar .dropdown-menu.show
