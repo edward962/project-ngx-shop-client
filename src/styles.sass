@@ -200,50 +200,289 @@ main
     flex-direction: row
     flex-wrap: wrap
     margin-bottom: 0.75rem
-  //  .description-col
-  //   flex: 0
-  //   width: 100%
-  //   border-bottom: 1px solid #c4c4c4
-  //   min-height: 135px
-  //   .product-img
-  //     padding: 16px 0 0 0 
-  //     height: 112px  
-  //     width: 122px
-  //     margin: auto
-  //   .product-desc
-  //     margin-left: 10px
-  //     height: 112px  
-  //     padding: 1rem 0.5rem 1rem 0.5rem
-  //     h4
-  //       font-size: 14px
-  //       font-weight: 600
-  //     p
-  //       font-size: 16px  
-  // .sidebar .dropdown-menu.show 
-  //   left: 0
-  //   width: 100% 
-  //   margin-top: 40px
-  //   border: none
-  // .product-list-box
-  //   flex-direction: column
-  //   height: auto
-  //   margin-bottom: 0
-  // .parameters
-  //   display: flex
-  //   flex-direction: row
-  //   justify-content: space-between
-  //   .counter-value
-  //     width:166px
-  //     margin: auto
-  //     border-left: none 
-  //   .price-wrap
-  //     width:70%  
-
   
+@media (min-width: 768px)
+  .navbar-brand
+    margin-left: 0
+    margin-right: 1rem
+
+.footer
+  flex-shrink: 0
+  border-top: 1px solid #eceeef
+  background-color: #fff
+  padding: 1.275rem 0
+  color: #818a91
+  font-size: 0.875rem
+
+.footer-inner
+  display: flex
+  flex-direction: column
+
+.footer-menu
+  margin-bottom: 1rem
+
+.footer-menu a
+  display: flex
+  margin-bottom: 0.5rem
+
+@media (min-width: 767px)
+  .footer
+    background-color: #f2f2f2
+
+  .footer-inner
+    flex-direction: row
+    justify-content: space-between
+
+  .footer-menu
+    margin-bottom: 0
+
+  .footer-menu a
+    display: inline-flex
+    margin-bottom: 0
+
+.jumbotron.jumbotron-light
+  background-color: #fff
+  border: 1px solid #ddd
+
+.jumbotron.jumbotron-form
+  border: none
+  padding: 0
+
+@media (min-width: 576px)
+  .jumbotron
+    padding: 2rem
+
+  .jumbotron.jumbotron-form
+    border: 1px solid #ddd
+    padding: 2rem
+    
+
+@media all and (min-width: 767px)
+.card-img-wrap
+    min-height: 150px    
+.p-notice
+  margin-top: 1rem
+
+.text-success
+  color: #478f47
+
+.product-info ul li,
+.product-info .p-notice
+  line-height: 26px
+
+.form-inline.form-inline-flex
+  display: flex
+  flex-direction: row
+
+.alert.alert-primary
+  color: #31708f
+  background: #d9edf7
+
+.footer-menu
+a
+  &:hover
+    text-decoration: underline
+    cursor: pointer
+
+.carousel-inner
+  height: 450px
+.carousel-caption
+  top: 20px
+  text-align: center
+
+.form-inline.form-inline-flex .form-control
+  display: inline-flex
+  flex: 0 0 calc(100% - 46px)
+
+  .socials
+    flex-direction: row
+    justify-content: center
+    margin-top: 0
+
+  .btn-social
+    padding-left: 1.6rem
+    padding-right: 1.6rem
+
+  .btn-social img
+    transform: none
+    position: relative
+    top: auto
+    left: auto
+    margin-right: 0.4rem
+
+  .btn-social
+    margin: 0 0.275rem
+
+.alert
+  margin-bottom: 2rem
+
+.modal
+  -webkit-overflow-scrolling: touch
+  height: 100%
+
+.modal-header
+  border: none
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  border-radius: 0
+  padding: 1.475rem 2.5rem
+  font-size: 18px
+  font-weight: 700
+  line-height: 24px
+  text-align: center
+  color: #d9534f
+  position: relative
+  border-bottom: 1px solid #dddddd
+  white-space: nowrap
+  text-overflow: ellipsis
+
+  .modal-header
+    padding: 1.6rem
+
+.modal-header .btn-close
+  position: absolute
+  top: 50%
+  right: 1.1rem
+  transform: translate(0, -50%)
+
+.modal-header .arrow-back
+  position: absolute
+  top: 50%
+  left: 1.1rem
+  transform: translate(0, -50%)
+
+.modal-footer
+  border: none
+  padding: 1.4rem 2rem
+
+.modal-body
+  padding: 1.4rem 2rem
+
+.modal-body.-height-auto
+  flex: 0 1 auto
+
+.modal-dialog
+  margin: 0
+  height: 100%
+
+  .modal-dialog
+    margin: 1.5rem auto
+    height: auto
+
+.modal-content
+  border: none
+  min-height: 100%
+
+  .modal-content
+    min-height: auto
+
+.modal-title-block
+  font-size: 1rem
+  line-height: 1
+
+.modal-menu__title
+  padding: 1.5rem 1.0625rem 0.75rem
+  border-bottom: 1px solid #dddddd
+
+.modal-menu__item
+  font-size: 1rem
+  padding: 1.0625rem
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+  color: #373a3c
+  text-decoration: none
+  position: relative
+  border-bottom: 1px solid #dddddd
+  white-space: nowrap
+  text-overflow: ellipsis
+
+.modal-menu__item:hover,
+.modal-menu__item:active,
+.modal-menu__item:focus
+  background-color: #e4e4e4
+  color: #373a3c
+  text-decoration: none
+
+.modal-menu__item.active
+  background-color: #e4e4e4
+
+.modal-menu__item.is-submenu
+  padding-right: 3rem
+  background: url(assets/icons/icon-angle.svg) no-repeat calc(100% - 1.1rem) center
+
+.modal .modal-content
+  border-radius: 0 !important
+
+.modal .close
+  cursor: pointer
+
+  .product-info-tabs
+    margin-top: 3rem
+
+.tab-content > .tab-pane
+  padding-top: 1.5rem
+
+.tab-content > .tab-pane *
+  font-size: 14px
+  line-height: 20px
+
+.tab-content > .tab-pane ul li
+  margin-bottom: 5px
+
+.product-info .nav.nav-tabs
+  position: relative
+
+  form button[type="submit"]:not(.btn-send)
+    width: auto
+
+.form-footer
+  font-size: 0.875rem
+
+.form-group
+  margin-bottom: 1.5rem
+
+.form-group:last-child
+  margin-bottom: 0
+
+.form-group label
+  color: #999
+
+.socials
+  display: flex
+  flex-direction: column
+  margin-top: 3rem
+
+.btn-social
+  color: #fff
+  margin: 0 0 1rem
+  padding-left: 2.4rem
+  padding-right: 2.4rem
+  position: relative
+
+.btn-social:hover
+  opacity: 0.9
+
+.btn-social img
+  position: absolute
+  left: 0.5rem
+  top: 50%
+  transform: translate(0, -50%)
+
+.btn-social.-fb
+  background-color: #2c408e
+
+.btn-social.-vk
+  background-color: #416ca9
+
+.btn-social.-twitter
+  background-color: #1d8ef0
+
 
 @media all and (max-width: 767px)
-  
-
   .sidebar .list-group-item 
     border-left: none
     border-right: none
@@ -255,7 +494,6 @@ main
     .card-img-wrap
       width: 155px
       min-height: 150px
-      // height: fit-content
   .default-col
     display: none
 
@@ -346,14 +584,12 @@ basket
   margin-top: 51px
   min-height: 100px
 .sidebar .dropdown-menu.show
-  top: -1px !important
-  left: 100% 
+  top: 40px !important
+  left: 0 
   transform: none !important
   margin: 0
-  border: 1px solid #ddd
-  border-top-left-radius: 0
-  border-bottom-left-radius: 0
-  border-left-color: transparent
+  width: 100%
+  border: none
   padding: 0.55rem 0
 
   .product-carousel,
@@ -427,7 +663,6 @@ basket
   flex: 1 0 auto
   flex-direction: row
   margin-bottom: 0.75rem
-  // height: 150px
 .btn-outline-primary
   color: #007bff
 .btn-outline-primary:focus
@@ -443,27 +678,21 @@ basket
   margin-top: 0
 
 .description-col
-  flex: 1 0 65%
   display: flex
   flex-direction: row
-  // height: 200px
-  width: 200px
-  // flex: 1 0 100%
-  // display: flex
-  // flex-direction: row
+  width: 623px
   cursor: pointer
   &:focus
     outline: none
 
 .description-col .product-img
-  padding: 1em 1.5em
+  padding: 0em 1.5em
   min-width: 130px
   display: flex
   align-items: center
   justify-content: center
   max-width: 45%
   overflow: hidden
-  // mix-blend-mode: multiply
   background: #eceeef
   img
     mix-blend-mode: multiply
@@ -819,307 +1048,16 @@ li
   font-weight: 900
   color: #373a3c
   margin-bottom: 1.5rem
-@media (min-width: 768px)
-  .navbar-brand
-    margin-left: 0
-    margin-right: 1rem
-
-.footer
-  flex-shrink: 0
-  border-top: 1px solid #eceeef
-  background-color: #fff
-  padding: 1.275rem 0
-  color: #818a91
-  font-size: 0.875rem
-
-.footer-inner
-  display: flex
-  flex-direction: column
-
-.footer-menu
-  margin-bottom: 1rem
-
-.footer-menu a
-  display: flex
-  margin-bottom: 0.5rem
-
-@media (min-width: 767px)
-  .footer
-    background-color: #f2f2f2
-
-  .footer-inner
-    flex-direction: row
-    justify-content: space-between
-
-  .footer-menu
-    margin-bottom: 0
-
-  .footer-menu a
-    display: inline-flex
-    margin-bottom: 0
-
-.jumbotron.jumbotron-light
-  background-color: #fff
-  border: 1px solid #ddd
-
-.jumbotron.jumbotron-form
-  border: none
-  padding: 0
-
-@media (min-width: 576px)
-  .jumbotron
-    padding: 2rem
-
-  .jumbotron.jumbotron-form
-    border: 1px solid #ddd
-    padding: 2rem
-    
-
-@media all and (min-width: 767px)
-.card-img-wrap
-    // width: 155px
-    min-height: 150px    
-.p-notice
-  margin-top: 1rem
-
-.text-success
-  color: #478f47
-
-.product-info ul li,
-.product-info .p-notice
-  line-height: 26px
-
-.form-inline.form-inline-flex
-  display: flex
-  flex-direction: row
-
-.alert.alert-primary
-  color: #31708f
-  background: #d9edf7
-
-.footer-menu
-a
-  &:hover
-    text-decoration: underline
-    cursor: pointer
-
-.carousel-inner
-  height: 450px
-.carousel-caption
-  top: 20px
-  text-align: center
-
-.form-inline.form-inline-flex .form-control
-  display: inline-flex
-  flex: 0 0 calc(100% - 46px)
-
-  .socials
-    flex-direction: row
-    justify-content: center
-    margin-top: 0
-
-  .btn-social
-    padding-left: 1.6rem
-    padding-right: 1.6rem
-
-  .btn-social img
-    transform: none
-    position: relative
-    top: auto
-    left: auto
-    margin-right: 0.4rem
-
-  .btn-social
-    margin: 0 0.275rem
-
-.alert
-  margin-bottom: 2rem
-
-.modal
-  -webkit-overflow-scrolling: touch
-  height: 100%
-
-.modal-header
-  border: none
-  display: flex
-  flex-direction: row
-  justify-content: center
-  align-items: center
-  border-radius: 0
-  padding: 1.475rem 2.5rem
-  font-size: 18px
-  font-weight: 700
-  line-height: 24px
-  text-align: center
-  color: #d9534f
-  position: relative
-  border-bottom: 1px solid #dddddd
-  white-space: nowrap
-  text-overflow: ellipsis
-
-  .modal-header
-    padding: 1.6rem
-
-.modal-header .btn-close
-  position: absolute
-  top: 50%
-  right: 1.1rem
-  transform: translate(0, -50%)
-
-.modal-header .arrow-back
-  position: absolute
-  top: 50%
-  left: 1.1rem
-  transform: translate(0, -50%)
-
-.modal-footer
-  border: none
-  padding: 1.4rem 2rem
-
-.modal-body
-  padding: 1.4rem 2rem
-
-.modal-body.-height-auto
-  flex: 0 1 auto
-
-.modal-dialog
-  margin: 0
-  height: 100%
-
-  .modal-dialog
-    margin: 1.5rem auto
-    height: auto
-
-.modal-content
-  border: none
-  min-height: 100%
-
-  .modal-content
-    min-height: auto
-
-.modal-title-block
-  font-size: 1rem
-  line-height: 1
-
-.modal-menu__title
-  padding: 1.5rem 1.0625rem 0.75rem
-  border-bottom: 1px solid #dddddd
-
-.modal-menu__item
-  font-size: 1rem
-  padding: 1.0625rem
-  display: flex
-  flex-direction: row
-  align-items: center
-  justify-content: space-between
-  color: #373a3c
-  text-decoration: none
-  position: relative
-  border-bottom: 1px solid #dddddd
-  white-space: nowrap
-  text-overflow: ellipsis
-
-.modal-menu__item:hover,
-.modal-menu__item:active,
-.modal-menu__item:focus
-  background-color: #e4e4e4
-  color: #373a3c
-  text-decoration: none
-
-.modal-menu__item.active
-  background-color: #e4e4e4
-
-.modal-menu__item.is-submenu
-  padding-right: 3rem
-  background: url(assets/icons/icon-angle.svg) no-repeat calc(100% - 1.1rem) center
-
-.modal .modal-content
-  border-radius: 0 !important
-
-.modal .close
-  cursor: pointer
-
-  .product-info-tabs
-    margin-top: 3rem
-
-.tab-content > .tab-pane
-  padding-top: 1.5rem
-
-.tab-content > .tab-pane *
-  font-size: 14px
-  line-height: 20px
-
-.tab-content > .tab-pane ul li
-  margin-bottom: 5px
-
-.product-info .nav.nav-tabs
-  position: relative
-
-  form button[type="submit"]:not(.btn-send)
-    width: auto
-
-.form-footer
-  font-size: 0.875rem
-
-.form-group
-  margin-bottom: 1.5rem
-
-.form-group:last-child
-  margin-bottom: 0
-
-.form-group label
-  color: #999
-
-.socials
-  display: flex
-  flex-direction: column
-  margin-top: 3rem
-
-.btn-social
-  color: #fff
-  margin: 0 0 1rem
-  padding-left: 2.4rem
-  padding-right: 2.4rem
-  position: relative
-
-.btn-social:hover
-  opacity: 0.9
-
-.btn-social img
-  position: absolute
-  left: 0.5rem
-  top: 50%
-  transform: translate(0, -50%)
-
-.btn-social.-fb
-  background-color: #2c408e
-
-.btn-social.-vk
-  background-color: #416ca9
-
-.btn-social.-twitter
-  background-color: #1d8ef0
-
-
-@media all and (max-width: 767px)
   .description-col
     flex: 0
     width: 100%
-    // border-bottom: 1px solid #c4c4c4
-    // padding: 1em 0
-    // min-height: 155px
     .product-img
-      // margin: auto 0
-      // height: 112px
       max-width: 100px
-      // margin: 1em 0
       img
         mix-blend-mode: multiply
     .product-desc
       padding: 0.875rem 1.25rem
-      // margin-left: 10px
       height: auto 
-      // padding: 0 0.5rem 1rem 0.5rem
       h4
         font-size: 14px
         font-weight: 600
@@ -1135,25 +1073,14 @@ a
     margin: 1em 0
     height: auto
     margin-bottom: 0
-  .parameters
-    display: flex
-    flex-direction: row
-    justify-content: space-between
     .counter-value
       width:166px
       margin: auto
-      border-left: none 
     .price-wrap
       width:70%  
+
  
-@media all and (min-width: 992px)
-  .parameters
-    flex-direction: row
-    .counter-value
-      // margin: auto
-      border-left: none 
-    .price-wrap
-      // width:50%  
+
      
   ngx-shop-side-menu
     padding-right: 15px
@@ -1203,12 +1130,9 @@ a
   justify-content: center
   align-items: center
   padding: 0.7rem
-  // height: 180px
-
 
 .homepage-cards .card-img-top
   width: auto
-  // max-width: 160px
   max-width: 122px
   max-height: 100%
   mix-blend-mode: multiply
@@ -1337,18 +1261,11 @@ a
 .p-notice
   margin-top: 1.5rem
 
-@media all and (min-width: 767px)
+@media all and (min-width: 768px)
   .product-info
     margin-top: 0
   .card-img-wrap
     min-height: 150px  
-
-
-
-
-
-  // ///////////////////////////////////////
-    
-
-
-    
+  .price-wrap
+    border-left: none
+   

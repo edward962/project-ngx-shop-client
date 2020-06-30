@@ -39,7 +39,7 @@ img
         margin-bottom: 0.75rem
         .description-col
             border-bottom:  1px solid #c4c4c4 
-            flex: 1 0 65%
+            flex: 1 0 75%
             .product-desc
                 width: 50%
             .product-img
@@ -47,7 +47,8 @@ img
                     height: auto
                 width: 80px
         .counter-value   
-            border-bottom:  1px solid #c4c4c4    
+            border-bottom:  none
+            border-left:  none
 
 
 @media all and (max-width: 441px)  
@@ -57,3 +58,15 @@ img
             border-left: none 
         .price-wrap
             border-left: 1px solid #c4c4c4      
+
+
+@media all and (min-width: 768px)  
+    ._basket 
+        .counter-value   
+            border-bottom: 1px solid #c4c4c4     
+            border-left: 1px solid #c4c4c4                      
+@media all and (min-width: 1201px)   
+  .price-wrap
+    border-left: 1px solid #c4c4c4
+  .counter-value   
+    border-bottom: none       !important  
