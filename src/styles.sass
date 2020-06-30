@@ -184,11 +184,14 @@ main
 
 
 @media all and (min-width: 768px)
+  .product-info
+    margin-top: 0
+  .card-img-wrap
+    min-height: 150px  
+  .price-wrap
+    border-left: none
   .description-col .product-img
     background: white
-
-
-
   ngx-shop-product-card .card 
     flex-direction: column
   
@@ -583,14 +586,14 @@ basket
 .products-list
   margin-top: 51px
   min-height: 100px
-.sidebar .dropdown-menu.show
-  top: 40px !important
-  left: 0 
-  transform: none !important
-  margin: 0
-  width: 100%
-  border: none
-  padding: 0.55rem 0
+// .sidebar .dropdown-menu.show
+//   top: 40px !important
+//   left: 0 
+//   transform: none !important
+//   margin: 0
+//   width: 100%
+//   border: none
+//   padding: 0.55rem 0
 
   .product-carousel,
   .product-carousel .carousel-item
@@ -1039,7 +1042,7 @@ li
 
 .main-carousel .carousel-caption
   top: 20px
-  text-align: center
+  text-align: start
 
 .main-carousel .carousel-caption .h1
   font-family: "Akzidenz-Grotesk Pro", sans-serif
@@ -1134,7 +1137,7 @@ li
 .homepage-cards .card-img-top
   width: auto
   max-width: 122px
-  max-height: 100%
+  max-height: 150px
   mix-blend-mode: multiply
 
 .homepage-cards .card .flex-grow
@@ -1265,7 +1268,29 @@ li
   .product-info
     margin-top: 0
   .card-img-wrap
-    min-height: 150px  
+    height: 150px
   .price-wrap
     border-left: none
    
+@media all and (max-width: 991px)
+  .sidebar .dropdown-menu.show
+    top: 40px !important
+    left: 0 
+    transform: none !important
+    margin: 0
+    width: 100%
+    border: none
+    padding: 0.55rem 0
+
+   
+@media all and (min-width: 992px)   
+  .sidebar .dropdown-menu.show
+    top: -1px !important
+    left: 100% !important
+    transform: none !important
+    margin: 0
+    border: 1px solid #ddd
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+    border-left-color: transparent
+    padding: 0.55rem 0
