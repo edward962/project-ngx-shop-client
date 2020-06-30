@@ -8,9 +8,17 @@ import { fadeAnimation } from './router.animation';
   animations: [fadeAnimation],
 })
 export class AppComponent {
+  public hideFooter = true;
   public getRouterState(outlet: RouterOutlet): Data {
     return (
       outlet && outlet.activatedRouteData && outlet.activatedRouteData.state
     );
+  }
+  public animationStart(): void {
+    this.hideFooter = true;
+  }
+
+  public animationEnd(): void {
+    this.hideFooter = false;
   }
 }
