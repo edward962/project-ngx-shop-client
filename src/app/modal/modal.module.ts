@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   exports: [ModalComponent],
 })
 export class ModalModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<ModalModule> {
     return {
       ngModule: ModalModule,
       providers: [ModalService],

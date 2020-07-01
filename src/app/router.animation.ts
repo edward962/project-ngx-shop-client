@@ -78,9 +78,10 @@ export const customTransition: AnimationTriggerMetadata = trigger(
 
 
 export const fadeAnimation =
+
   trigger('routeTransition', [
     transition('* => *', [
-      query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      query(':enter, :leave', style({ position: 'fixed', width: '100%', height: '100vh' }), {
         optional: true,
       }),
       group([

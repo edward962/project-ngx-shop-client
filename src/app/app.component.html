@@ -1,6 +1,9 @@
 <ngx-shop-header></ngx-shop-header>
-<div [@routeTransition]="getRouterState(main)" class="outlet-wrap">
-  <router-outlet #main="outlet"></router-outlet>
+<div  [@routeTransition]="getRouterState(main)" 
+(@routeTransition.start)="animationStart()" (@routeTransition.done)="animationEnd()"
+class="outlet-wrap">
+  <router-outlet  #main="outlet"></router-outlet>
 </div>
-<ngx-shop-modal></ngx-shop-modal>
 <ngx-shop-footer></ngx-shop-footer>
+<ngx-shop-modal></ngx-shop-modal>
+

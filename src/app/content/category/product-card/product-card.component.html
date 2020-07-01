@@ -21,6 +21,9 @@
         {{ product.feedbacksCount }} отзывов
       </p>
       <p class="rate-amount d-none d-md-block mt-1" *ngIf="!product.rating ">нет отзывов</p>
+      <p class="price-text mb-0 mt-2 d-inline-block d-md-none">
+        <strong>{{ product.price | currency: 'EUR' }}</strong>
+      </p>
     </div>
   </div>
 

@@ -1,26 +1,18 @@
-img
-    height: 100%
-    max-width: 152px
-.inner-col .description-col
-  &:focus
-    outline: none
-
-.description-col .product-desc, .description-col .product-img
-    &:focus
-     outline: none
-.description-col .product-img
-    width: 230px
-.price
-    min-width: 110px
-    &h4
-     margin: 0 auto
-.fa-times-circle-o
-    font-size: 25px
-    color: #7f7f7f
-    position: relative
-    left: 5px
-    top: 3px
-    font-weight: 100
-    &:hover
-        cursor: pointer
- 
+.product-img
+    background: #eceeef
+    img
+        height: auto
+        max-width: 80px
+        mix-blend-mode: multiply
+// .-basket
+//     position: relative
+//     .fa 
+//         position: absolute
+//         left: 5px
+//         top: 5px            
+@media all and (min-width: 768px) 
+    .-basket
+        .description-col 
+            flex: 0 0 60% 
+            display: flex
+            flex-direction: row     

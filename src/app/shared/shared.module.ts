@@ -66,7 +66,7 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
   ],
 })
 export class SharedModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
       providers: [
