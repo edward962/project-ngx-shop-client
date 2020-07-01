@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, Data } from '@angular/router';
 import { fadeAnimation } from './router.animation';
+import { trigger, transition } from '@angular/animations';
 
 @Component({
   selector: 'ngx-shop-root',
   templateUrl: './app.component.html',
-  animations: [fadeAnimation],
+  animations: [	trigger(
+    'blockInitialRenderAnimation',
+    [
+      transition( ':enter', [] ),
+    ]
+  ), fadeAnimation],
 })
 export class AppComponent {
   public hideFooter = true;

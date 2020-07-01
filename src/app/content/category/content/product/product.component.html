@@ -5,8 +5,9 @@
         class="col-lg-5"
         [images]="(product$ | async)?.images"
         [slideClass]="'product-carousel carousel slide'"
+        @blockInitialRenderAnimation
       >
-      </ngx-shop-photo-slider>
+      </ngx-shop-photo-slider >
       <div class="col-lg-7 product-info-block">
         <ngx-shop-information
           [product]="product$ | async"
