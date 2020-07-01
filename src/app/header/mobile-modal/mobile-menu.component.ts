@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 //   styleUrls: ['./mobile-menu.component.sass'],
 })
 export class MobileMenuComponent {
+    public close!: () => void;
+    public save!: () => void;
 }
