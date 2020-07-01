@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IBrand } from 'src/app/content/category/store/reducers/brands.reducer';
 
 
 @Component({
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   templateUrl: './mobile-menu.component.html',
 })
 export class MobileMenuComponent {
-    public close!: () => void;
-    public save!: () => void;
+  @Input()
+  public categories?: IBrand[];
+  public close!: () => void;
+  public save!: () => void;
 }

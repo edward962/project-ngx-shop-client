@@ -8,6 +8,7 @@ import {
   ViewChild,
   ViewContainerRef,
   ComponentFactoryResolver,
+  Renderer2,
 } from '@angular/core';
 import { ModalService } from './modal.service';
 
@@ -30,10 +31,12 @@ export class ModalComponent implements OnInit {
 
   public constructor(
     private readonly _modalService: ModalService,
-    private readonly _cfr: ComponentFactoryResolver
+    private readonly _cfr: ComponentFactoryResolver,
+    private renderer:  Renderer2
   ) {}
 
   public ngOnInit(): void {
+
     this._modalService.modalSequence$.subscribe(
       // tslint:disable-next-line:no-any
       ({ component, context }: any): void => {
@@ -42,6 +45,7 @@ export class ModalComponent implements OnInit {
           return;
         }
         this.isOpen = true;
+        this.renderer.addClass(document.querySelector('html'), 'no-scroll')
         this.childComponent = this._cfr.resolveComponentFactory(component);
         this.modalContext = this.modal.createComponent(this.childComponent, 0);
         Object.keys(context).forEach(
@@ -56,6 +60,7 @@ export class ModalComponent implements OnInit {
     if (code !== 27) {
       return;
     }
+    this.renderer.removeClass(document.querySelector('html'), 'no-scroll')
     if (this.modalContext) {
       this.modalContext.destroy();
     }

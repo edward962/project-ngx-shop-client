@@ -16,7 +16,6 @@ main
   padding: 40px 0 20px
   position: relative
 
-
 .fa-star
   color: #ccc
 .fa-star:before
@@ -234,6 +233,12 @@ main
       background-size: 100% 100%
       background-position-x: center
 
+.modal-header .btn-close 
+  position: absolute
+  top: 50%
+  right: 1.1rem
+  transform: translate(0, -50%)      
+
 @media all and (max-width: 767px) 
   main 
     padding: 0
@@ -303,10 +308,13 @@ body.no-scroll
   .carousel-caption
     top: 20px
     text-align: center
+  .modal-dialog 
+    margin: 0
+    height: auto
+  
 @media (min-width: 992px)     
   .navbar-brand 
     margin-left: 0
-    // margin-right: 1rem
   
 
 
@@ -372,7 +380,8 @@ body.no-scroll
   .jumbotron.jumbotron-form 
     border: 1px solid #ddd
     padding: 2rem
-  
+  .modal-dialog
+    margin: 0
 
 
 form button[type="submit"]:not(.btn-send) 
@@ -478,7 +487,7 @@ form button[type="submit"]:not(.btn-send)
   border: none
   display: flex
   flex-direction: row
-  justify-content: center
+  justify-content: space-between  
   align-items: center
   border-radius: 0
   padding: 1.475rem 2.5rem
@@ -494,41 +503,31 @@ form button[type="submit"]:not(.btn-send)
 
 
 @media all and (min-width: 767px) 
-  .modal-header 
-    padding: 1.6rem
-  
 
 
-.modal-header .btn-close 
-  position: absolute
-  top: 50%
-  right: 1.1rem
-  transform: translate(0, -50%)
+  .modal-header .arrow-back 
+    position: absolute
+    top: 50%
+    left: 1.1rem
+    transform: translate(0, -50%)
 
 
-.modal-header .arrow-back 
-  position: absolute
-  top: 50%
-  left: 1.1rem
-  transform: translate(0, -50%)
+  .modal-footer 
+    border: none
+    padding: 1.4rem 2rem
 
 
-.modal-footer 
-  border: none
-  padding: 1.4rem 2rem
+  .modal-body 
+    padding: 1.4rem 2rem
 
 
-.modal-body 
-  padding: 1.4rem 2rem
+  .modal-body.-height-auto 
+    flex: 0 1 auto
 
 
-.modal-body.-height-auto 
-  flex: 0 1 auto
-
-
-.modal-dialog 
-  margin: 0
-  height: 100%
+  .modal-dialog 
+    margin: 0
+    height: 100%
 
 
 @media all and (min-width: 767px) 
@@ -542,11 +541,6 @@ form button[type="submit"]:not(.btn-send)
   border: none
   min-height: 100%
 
-
-
-.modal-content 
-  border: 1px solid rgba(0, 0, 0, 0.2)
-  
 
 
 .modal-title-block 
@@ -1034,8 +1028,7 @@ li
 
 
 .review 
-  border-bottom: 1px solid #ddd
-  padding: 16px 0
+  padding: 25px 0
 
 
 .add-review 
@@ -1539,3 +1532,8 @@ li
 
 .outlet-wrap
   min-height: calc(100vh - 120px)  
+
+.no-scroll
+  overflow: hidden  
+.modal-dialog
+  margin: 0
