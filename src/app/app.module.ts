@@ -14,9 +14,10 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { ModalModule } from './modal/modal.module';
+import { MobileMenuComponent } from './header/mobile-modal/mobile-menu.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, MobileMenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
