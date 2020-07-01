@@ -27,9 +27,7 @@ export class HeaderComponent extends UnSubscriber {
     this._modalService.open({
       component: MobileMenuComponent,
       context: {
-        // product: { ...product },
         save: (): void => {
-          // this._store.dispatch(addProductToCart({ product }));
           this._modalService.close();
         },
         close: (): void => {
