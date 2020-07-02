@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { ModalService } from 'src/app/modal/modal.service';
-import { CardConfirmModalComponent } from 'src/app/shared/components/card-confirm-modal/card-confirm-modal.component';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'ngx-shop-information',
   templateUrl: './information.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InformationComponent {
   @Input()

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 
 @Component({
   selector: 'ngx-shop-order-form',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderFormComponent {
 }

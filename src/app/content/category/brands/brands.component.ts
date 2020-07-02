@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
@@ -13,6 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
   styleUrls: ['./brands.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BrandsComponent implements ControlValueAccessor {
   @Input()

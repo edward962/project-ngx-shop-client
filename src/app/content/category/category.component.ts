@@ -1,7 +1,7 @@
 import { UnSubscriber } from './../../shared/utils/unsubscriber';
 import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -16,6 +16,7 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryComponent extends UnSubscriber implements OnInit {
   public categories$: Observable<ICategory[]> = this._store

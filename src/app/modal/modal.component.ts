@@ -9,6 +9,8 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   Renderer2,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { ModalService } from './modal.service';
 
@@ -16,6 +18,7 @@ import { ModalService } from './modal.service';
   selector: 'ngx-shop-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent implements OnInit {
   @ViewChild('modalContent', { read: ViewContainerRef, static: false })
@@ -32,7 +35,8 @@ export class ModalComponent implements OnInit {
   public constructor(
     private readonly _modalService: ModalService,
     private readonly _cfr: ComponentFactoryResolver,
-    private renderer:  Renderer2
+    private readonly renderer:  Renderer2,
+    private readonly cdr: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
@@ -51,6 +55,7 @@ export class ModalComponent implements OnInit {
         Object.keys(context).forEach(
           (key: string): void => (this.modalContext.instance[key] = context[key])
         );
+        this.cdr.detectChanges();
       }
     );
   }
@@ -65,5 +70,6 @@ export class ModalComponent implements OnInit {
       this.modalContext.destroy();
     }
     this.isOpen = false;
+    this.cdr.detectChanges();
   }
 }

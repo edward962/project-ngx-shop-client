@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ICategory, ISubCategory } from 'src/app/store/reducers/categories.reducer';
 
@@ -12,6 +12,7 @@ import { ICategory, ISubCategory } from 'src/app/store/reducers/categories.reduc
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryDropdownComponent implements ControlValueAccessor {
   @Input()

@@ -9,6 +9,7 @@ import { IFeedback } from 'src/app/shared/interfaces/product.inteface';
   selector: 'ngx-shop-feedbacks',
   templateUrl: './feedbacks.component.html',
   styleUrls: ['./feedbacks.component.sass'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbacksComponent {
   @Input()

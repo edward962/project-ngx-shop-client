@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { IProductImage } from 'src/app/shared/interfaces/product.inteface';
 import { slideAnimation } from './photo-slider.animation';
 import { Store } from '@ngrx/store';
@@ -9,6 +9,7 @@ import { go } from 'src/app/store/actions/router.actions';
   selector: 'ngx-shop-photo-slider',
   templateUrl: './photo-slider.component.html',
   animations: slideAnimation,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class PhotoSliderComponent {

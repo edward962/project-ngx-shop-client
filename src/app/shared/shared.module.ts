@@ -29,7 +29,6 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
     ImgUrlPipe,
     TooltipDirective,
     PhotoSliderComponent,
-
   ],
   imports: [
     ReactiveFormsModule,
@@ -43,7 +42,6 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    CommonModule,
     PhotoSliderComponent,
     StarRatingComponent,
     RatePipe,

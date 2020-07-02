@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -14,6 +14,7 @@ import { IFeedback } from 'src/app/shared/interfaces/product.inteface';
   selector: 'ngx-shop-add-feedback',
   templateUrl: './add-feedback.component.html',
   styleUrls: ['./add-feedback.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddFeedbackComponent {
   public feedbackForm: FormGroup = this._fb.group({

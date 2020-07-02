@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet, Data } from '@angular/router';
 import { fadeAnimation } from './router.animation';
 
@@ -6,6 +6,7 @@ import { fadeAnimation } from './router.animation';
   selector: 'ngx-shop-root',
   templateUrl: './app.component.html',
   animations: [fadeAnimation],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   public getRouterState(outlet: RouterOutlet): Data {

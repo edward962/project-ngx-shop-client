@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { getProductPending } from './store/actions/product.actions';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 @Component({
   selector: 'ngx-shop-product',
   templateUrl: './product.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent extends UnSubscriber implements OnInit {
   constructor(

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { go } from 'src/app/store/actions/router.actions';
@@ -8,6 +8,7 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
   selector: 'ngx-shop-cart-product',
   templateUrl: './cart-product.component.html',
   styleUrls: ['./cart-product.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartProductComponent {
   @Input()

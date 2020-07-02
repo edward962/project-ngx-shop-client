@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IStore } from '../store/reducers';
@@ -13,6 +13,7 @@ import { getCategoriesPending } from '../store/actions/category.actions';
 @Component({
   selector: 'ngx-shop-header',
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent extends UnSubscriber {
   public productCounter$: Observable<number> = this._store.select(trueProductsCount)

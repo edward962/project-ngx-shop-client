@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 @Component({
   selector: 'ngx-shop-product-description',
   templateUrl: './description.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DescriptionComponent {
   @Input() public product!: IProduct;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { selectProducts } from 'src/app/store/reducers/cart.reducer';
 import { Store } from '@ngrx/store';
@@ -12,9 +12,11 @@ import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
+
 @Component({
   selector: 'ngx-shop-cart',
   templateUrl: './cart.component.html',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartComponent extends UnSubscriber {
   public cart$: Observable<IProduct[]> = this._store
