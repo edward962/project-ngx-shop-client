@@ -39,13 +39,8 @@ export class ProductEffects extends UnSubscriber {
         this.productsService.getProductById(id).pipe(
           // tslint:disable-next-line:typedef
           map((product: IProduct) => {
-            console.log(product);
             return getProductSuccess({ product });
-          }),
-          // catchError(error => {
-          //   console.log(error);
-          //   return of(getProductError());
-          // })
+          })
         )
       ),
       takeUntil(this.unsubscribe$$)

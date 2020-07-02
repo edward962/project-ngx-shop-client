@@ -15,8 +15,14 @@
       "prefix": "ngx-shop",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./extra-webpack.config.js",
+              "mergeStrategies": {
+                "externals": "replace"
+              }
+            },
             "outputPath": "dist/ngx-shop-client",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -5,7 +5,7 @@ import { IStore } from 'src/app/store/reducers';
 import { Observable } from 'rxjs/internal/Observable';
 import { getProductPending } from './store/actions/product.actions';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
-import { takeUntil } from 'rxjs/operators/takeUntil';
+import { takeUntil } from 'rxjs/operators';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
