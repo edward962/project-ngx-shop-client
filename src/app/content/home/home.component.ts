@@ -9,6 +9,10 @@ import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IBanner } from './baner/banner.component';
+
+
+
 
 @Component({
   selector: 'ngx-shop-products',
@@ -25,6 +29,16 @@ export class HomeComponent extends UnSubscriber implements OnInit {
   public form: FormGroup = this._fb.group({
       currentSubCategory: [''],
     });
+
+  public bunerItems: IBanner[] = [{
+    subCategoryId: '5ef4c36bf63cdf28bc1ac60f',
+    title: 'КОМПЬЮТЕРЫ',
+  }, {
+    subCategoryId: '5ef4c36bf63cdf28bc1ac58d', title: 'СМАРТФОНЫ',
+  }, {
+    subCategoryId: '5ef4c36bf63cdf28bc1ac68d',
+    title: ' АВТОЗВУК',
+  }];
 
   constructor(
     private readonly _store: Store<IStore>,
