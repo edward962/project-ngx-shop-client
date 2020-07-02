@@ -15,6 +15,7 @@ export const getProductsSuccess = createAction(
   '[Products] Get products success',
   props<{ products: IProduct[] }>()
 );
+
 export const getProductsPagingSuccess = createAction(
   '[Products] Get products paging success',
   props<{ products: IProduct[] }>()
