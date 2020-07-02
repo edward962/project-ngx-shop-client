@@ -1,3 +1,4 @@
+import { BannerSliderComponent } from './baner/banner.component';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCardComponent } from './product-card/product-card.component';
@@ -11,7 +12,7 @@ import { reducerSuggestedProducts } from './store/reducers/suggested-products.re
 import { SuggestedProductsEffects } from './store/effects/suggested-products.effect';
 
 @NgModule({
-  declarations: [HomeComponent, ProductCardComponent, SideMenuComponent],
+  declarations: [HomeComponent, ProductCardComponent, SideMenuComponent, BannerSliderComponent],
   imports: [
     SharedModule,
     HomeRoutingModule,

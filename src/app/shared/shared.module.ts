@@ -19,7 +19,7 @@ import { TooltipDirective } from './directives/tooltip.derective';
 import { IStore } from '../store/reducers';
 import { BrandsService } from './services/brands.service';
 import { IProduct } from './interfaces/product.inteface';
-import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
+
 
 
 @NgModule({
@@ -28,7 +28,6 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
     RatePipe,
     ImgUrlPipe,
     TooltipDirective,
-    PhotoSliderComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -42,7 +41,6 @@ import { PhotoSliderComponent } from './components/photo-slider/photo-slider.com
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    PhotoSliderComponent,
     StarRatingComponent,
     RatePipe,
     ImgUrlPipe,

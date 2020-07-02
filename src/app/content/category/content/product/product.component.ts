@@ -11,7 +11,7 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 @Component({
   selector: 'ngx-shop-product',
   templateUrl: './product.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent extends UnSubscriber implements OnInit {
   constructor(
