@@ -12,6 +12,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
+import { IBrandsState } from './store/reducers/brands.reducer';
 
 @Component({
   selector: 'app-category',
@@ -26,8 +27,8 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public products$: Observable<IProductsState> = this._store
     .select('products')
     .pipe(takeUntil(this.unsubscribe$$));
-  public brands$: Observable<string[]> = this._store
-    .select('brands', 'items')
+  public brands$: Observable<IBrandsState> = this._store
+    .select('brands')
     .pipe(takeUntil(this.unsubscribe$$));
   public priceRange?: number[];
   public selectedBrands: string[] = [];

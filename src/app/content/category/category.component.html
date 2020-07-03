@@ -15,17 +15,20 @@
           <h6 class="mb-2 pb-1">Название</h6>
           <input #searchBox type="text" class="form-control" placeholder="Фильтр по названию"
             formControlName="searchByName" />
-          <ngx-shop-brands [brands]="brands$ | async" [selectedBrands]="selectedBrands" formControlName="brands">
+          <ngx-shop-brands  *ngIf="!(brands$ | async).loading;else brandsLoader" [brands]="(brands$ | async).items" [selectedBrands]="selectedBrands" formControlName="brands">
           </ngx-shop-brands>
+          <ng-template #brandsLoader>
+            <ngx-shop-loader style ="margin-top: 50px"></ngx-shop-loader>
+          </ng-template>
           <ngx-shop-price-slider [pricesValue]="selectedPrices" formControlName="prices">
           </ngx-shop-price-slider>
         </div>
-          <div *ngIf="!(products$ | async).loading ;else second" class="col-lg-8 col-xl-9 products-list">
+          <div *ngIf="!(products$ | async).loading;else second"  class="col-lg-8 col-xl-9 products-list">
             <ngx-shop-content-product *ngFor="let product of (products$ | async).items" [product]="product">
             </ngx-shop-content-product>
           </div>
           <ng-template #second>
-          <ngx-shop-loader style ="padding-left: 140px" class="loader-wrap col-lg-8 col-xl-9 products-list"></ngx-shop-loader>
+          <ngx-shop-loader style="padding-left: 140px;/* padding-bottom: 353px; */height: 50vh;" class="loader-wrap col-lg-8 col-xl-9 products-list"></ngx-shop-loader>
         </ng-template>
       </div>
     </form>
