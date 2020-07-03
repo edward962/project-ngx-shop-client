@@ -5,7 +5,7 @@
     </li>
   </ol>
   <div class="carousel-inner">
-    <div  *ngFor="let image of items; let i = index">
+    <div [@initSliderAnimation] *ngFor="let image of items; let i = index">
       <div [@slideAnimation]="{
             value: '',
             params: isSlidedRight ? animateRight : animateLeft

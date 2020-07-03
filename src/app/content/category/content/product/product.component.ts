@@ -26,6 +26,7 @@ export class ProductComponent extends UnSubscriber implements OnInit {
     .pipe(takeUntil(this.unsubscribe$$));
 
   public ngOnInit(): void {
+    // TODO need resolver !!!!
     const { id } = this._activatedRoute.snapshot.queryParams;
     this._store.dispatch(getProductPending({ id }));
   }
