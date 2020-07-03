@@ -1,3 +1,4 @@
+import { IBrandsState } from './store/reducers/brands.reducer';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { ICategoryState } from './../../store/reducers/categories.reducer';
 import { UnSubscriber } from './../../shared/utils/unsubscriber';
@@ -26,8 +27,8 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public products$: Observable<IProductsState> = this._store
     .select('products')
     .pipe(takeUntil(this.unsubscribe$$));
-  public brands$: Observable<string[]> = this._store
-    .select('brands', 'items')
+  public brands$: Observable<IBrandsState> = this._store
+    .select('brands')
     .pipe(takeUntil(this.unsubscribe$$));
   public priceRange?: number[];
   public selectedBrands: string[] = [];

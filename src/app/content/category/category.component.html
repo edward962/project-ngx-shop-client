@@ -1,11 +1,11 @@
-<main role="main">
+<main role="main" *ngIf="!(categories$ | async).loading;else loader">
   <div  class="container">
     <form [formGroup]="form">
       <div class="row" >
         <div class="col-lg-4 col-xl-3">
           <h6 class="mt-4 mt-lg-2 mb-4">Другие категории</h6>
           <div class="aside-accordion-menu list-group">
-            <ngx-shop-category-dropdown *ngIf="!(categories$ | async).loading;else categoryLoader" [categories]="(categories$ | async).items" formControlName="currentSubCategory">
+            <ngx-shop-category-dropdown  [categories]="(categories$ | async).items" formControlName="currentSubCategory">
             </ngx-shop-category-dropdown>
             <ng-template #categoryLoader>
               <ngx-shop-loader style ="margin-top: 50px"></ngx-shop-loader>
@@ -34,3 +34,6 @@
     </form>
   </div>
 </main>
+<ng-template #loader >
+  <ngx-shop-loader  ></ngx-shop-loader>
+</ng-template>
