@@ -1,39 +1,44 @@
-<main role="main" *ngIf="!(categories$ | async).loading;else loader">
-  <div  class="container">
+<main role="main" *ngIf="!(categories$ | async).loading ;else loader">
+  <div class="container">
     <form [formGroup]="form">
-      <div class="row" >
+      <div class="row">
         <div class="col-lg-4 col-xl-3">
           <h6 class="mt-4 mt-lg-2 mb-4">Другие категории</h6>
           <div class="aside-accordion-menu list-group">
-            <ngx-shop-category-dropdown  [categories]="(categories$ | async).items" formControlName="currentSubCategory">
+            <ngx-shop-category-dropdown [categories]="(categories$ | async).items" formControlName="currentSubCategory">
             </ngx-shop-category-dropdown>
             <ng-template #categoryLoader>
-              <ngx-shop-loader style ="margin-top: 50px"></ngx-shop-loader>
+              <ngx-shop-loader style="margin-top: 50px"></ngx-shop-loader>
             </ng-template>
           </div>
           <h3 class="h5 mt-5 mb-4">Фильтры по товарам</h3>
           <h6 class="mb-2 pb-1">Название</h6>
           <input #searchBox type="text" class="form-control" placeholder="Фильтр по названию"
             formControlName="searchByName" />
-            <ngx-shop-brands  *ngIf="!(brands$ | async).loading;else brandsLoader" [brands]="(brands$ | async).items" [selectedBrands]="selectedBrands" formControlName="brands">
-            </ngx-shop-brands>
-            <ng-template #brandsLoader>
-              <ngx-shop-loader style ="margin-top: 50px"></ngx-shop-loader>
-            </ng-template>
+          <ngx-shop-brands *ngIf="!(brands$ | async).loading;else brandsLoader" [brands]="(brands$ | async).items"
+            [selectedBrands]="selectedBrands" formControlName="brands">
+          </ngx-shop-brands>
+          <ng-template #brandsLoader>
+            <ngx-shop-loader style="margin-top: 50px"></ngx-shop-loader>
+          </ng-template>
           <ngx-shop-price-slider [pricesValue]="selectedPrices" formControlName="prices">
           </ngx-shop-price-slider>
         </div>
-          <div *ngIf="!(products$ | async).loading;else second"  class="col-lg-8 col-xl-9 products-list">
-            <ngx-shop-content-product *ngFor="let product of (products$ | async).items" [product]="product">
-            </ngx-shop-content-product>
-          </div>
-          <ng-template #second>
-          <ngx-shop-loader style="padding-left: 140px;/* padding-bottom: 353px; */height: 50vh;" class="loader-wrap col-lg-8 col-xl-9 products-list"></ngx-shop-loader>
+
+        <div *ngIf="!(products$ | async).loading;else second" class="col-lg-8 col-xl-9 products-list">
+          <ngx-shop-content-product *ngFor="let product of (products$ | async).items" [product]="product">
+          </ngx-shop-content-product>
+        </div>
+        <ng-template #second>
+          <ngx-shop-loader class="col-lg-8  loaderLeft "></ngx-shop-loader>
         </ng-template>
       </div>
     </form>
   </div>
 </main>
-<ng-template #loader >
-  <ngx-shop-loader  ></ngx-shop-loader>
+<ng-template #loader>
+  <ngx-shop-loader class="col-lg-12 loaderCenter"></ngx-shop-loader>
 </ng-template>
+
+
+<!--  -->
