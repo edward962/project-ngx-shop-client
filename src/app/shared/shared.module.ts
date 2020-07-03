@@ -1,3 +1,4 @@
+import { LoaderComponent } from './components/loader/loader.component';
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -28,6 +29,7 @@ import { IProduct } from './interfaces/product.inteface';
     RatePipe,
     ImgUrlPipe,
     TooltipDirective,
+    LoaderComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -45,6 +47,7 @@ import { IProduct } from './interfaces/product.inteface';
     RatePipe,
     ImgUrlPipe,
     TooltipDirective,
+    LoaderComponent,
     ],
   providers: [
     CategoriesService,

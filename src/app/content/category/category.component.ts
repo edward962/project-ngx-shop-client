@@ -1,3 +1,5 @@
+import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
+import { ICategoryState } from './../../store/reducers/categories.reducer';
 import { UnSubscriber } from './../../shared/utils/unsubscriber';
 import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
@@ -5,13 +7,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { getProductsPending } from './store/actions/products.actions';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
 @Component({
   selector: 'app-category',
@@ -19,19 +19,17 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryComponent extends UnSubscriber implements OnInit {
-  public categories$: Observable<ICategory[]> = this._store
-    .select('categories', 'items')
+  public categories$: Observable<ICategoryState> = this._store
+    .select('categories')
     .pipe(takeUntil(this.unsubscribe$$));
   public show: string | undefined;
-  public products$: Observable<IProduct[]> = this._store
-    .select('products', 'items')
+  public products$: Observable<IProductsState> = this._store
+    .select('products')
     .pipe(takeUntil(this.unsubscribe$$));
   public brands$: Observable<string[]> = this._store
     .select('brands', 'items')
     .pipe(takeUntil(this.unsubscribe$$));
   public priceRange?: number[];
-  public isLoading$ = this._store
-  .select('products', 'loading');
   public selectedBrands: string[] = [];
   public selectedPrices: number[] = [];
   public initSubCategoryId?: string;
