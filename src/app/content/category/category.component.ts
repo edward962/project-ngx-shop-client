@@ -1,3 +1,4 @@
+import { IBrandsState } from './store/reducers/brands.reducer';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { ICategoryState } from './../../store/reducers/categories.reducer';
 import { UnSubscriber } from './../../shared/utils/unsubscriber';
