@@ -24,7 +24,7 @@ export interface IPriceValue {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceSliderComponent implements ControlValueAccessor, OnInit {
-  constructor(private readonly _fb: FormBuilder) {}
+  constructor(private readonly _fb: FormBuilder) { }
   @Input()
   public pricesValue?: number[];
   public onChange!: Function;
@@ -51,8 +51,6 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     });
   }
   public writeValue(prices: number[]): void {
-    //this.low = prices[0] || 0;
-    //this.high = prices[1] || 2000;
     this.priceForm.setValue(
       { low: prices[0] || 0, high: prices[1] || 2000 },
       { emitEvent: false }
@@ -64,7 +62,7 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     this.onChange = fn;
   }
 
-  public registerOnTouched(): void {}
+  public registerOnTouched(): void { }
 
   public userChangeEnd(): void {
     this.priceForm.setValue(

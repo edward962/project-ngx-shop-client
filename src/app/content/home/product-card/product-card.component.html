@@ -1,20 +1,10 @@
 <div class="card" (click)="redirectTo(product._id)">
   <div class="card-img-wrap">
-    <img
-      *ngIf="product.images"
-      class="card-img-top"
-      [src]="product.images | imgUrl"
-      [alt]="product.name"
-    />
+    <img *ngIf="product.images" class="card-img-top" [src]="product.images | imgUrl" [alt]="product.name" />
 
-    <img
-      *ngIf="!product.images"
-      class="card-img-top"
-      [src]="
+    <img *ngIf="!product.images" class="card-img-top" [src]="
         'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'
-      "
-      [alt]="product.name"
-    />
+      " [alt]="product.name" />
   </div>
   <div class="card-body">
     <h5 class="card-title">
@@ -22,18 +12,14 @@
     </h5>
     <div>
       <div class="rate">
-        <ngx-shop-star-rating
-          tooltip="Рейтинг товара"
-          [feedbackRate]="product.rating | rate"
-        ></ngx-shop-star-rating>
+        <ngx-shop-star-rating tooltip="Рейтинг товара" [feedbackRate]="product.rating | rate"></ngx-shop-star-rating>
         <span class="rate-amount ml-2" *ngIf="product.feedbacksCount">{{ product.feedbacksCount }}</span>
-        
+
       </div>
       <span class="rate-amount ml-2" *ngIf="!product.feedbacksCount">нет отзывов</span>
       <p class="card-text price-text">
         <strong>{{ product.price | currency: 'EUR' }}</strong>
       </p>
     </div>
-    
   </div>
 </div>

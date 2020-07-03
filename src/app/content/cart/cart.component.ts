@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { selectProducts } from 'src/app/store/reducers/cart.reducer';
 import { Store } from '@ngrx/store';
