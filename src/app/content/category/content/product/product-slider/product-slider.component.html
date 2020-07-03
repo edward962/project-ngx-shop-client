@@ -5,7 +5,7 @@
     </li>
   </ol>
   <div class="carousel-inner">
-    <div @initSliderAnimation *ngFor="let image of items; let i = index">
+    <div  *ngFor="let image of items; let i = index">
       <div [@slideAnimation]="{
             value: '',
             params: isSlidedRight ? animateRight : animateLeft
@@ -14,11 +14,8 @@
         <div class="img-wrap">
           <img *ngIf="image" [src]="image?.url" />
         </div>
-
       </div>
-
     </div>
-
   </div>
 
   <a *ngIf=" items?.length > 1" class="carousel-control-prev" (click)="prev()">
