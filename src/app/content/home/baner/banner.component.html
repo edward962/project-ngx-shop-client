@@ -6,7 +6,7 @@
   </ol>
 
 
-  <div class="carousel-inner">
+  <div class="carousel-inner"  @initSliderAnimation >
     <ng-container *ngFor="let baner of items; let i = index">
       <div [@slideAnimation]="{
           value: '',
