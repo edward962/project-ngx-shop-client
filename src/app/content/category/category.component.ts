@@ -1,4 +1,3 @@
-import { IBrandsState } from './store/reducers/brands.reducer';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { ICategoryState } from './../../store/reducers/categories.reducer';
 import { UnSubscriber } from './../../shared/utils/unsubscriber';
@@ -13,6 +12,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
+import { IBrandsState } from './store/reducers/brands.reducer';
 
 @Component({
   selector: 'app-category',
