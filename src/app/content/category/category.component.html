@@ -15,8 +15,11 @@
           <h6 class="mb-2 pb-1">Название</h6>
           <input #searchBox type="text" class="form-control" placeholder="Фильтр по названию"
             formControlName="searchByName" />
-          <ngx-shop-brands [brands]="brands$ | async" [selectedBrands]="selectedBrands" formControlName="brands">
-          </ngx-shop-brands>
+            <ngx-shop-brands  *ngIf="!(brands$ | async).loading;else brandsLoader" [brands]="(brands$ | async).items" [selectedBrands]="selectedBrands" formControlName="brands">
+            </ngx-shop-brands>
+            <ng-template #brandsLoader>
+              <ngx-shop-loader style ="margin-top: 50px"></ngx-shop-loader>
+            </ng-template>
           <ngx-shop-price-slider [pricesValue]="selectedPrices" formControlName="prices">
           </ngx-shop-price-slider>
         </div>
