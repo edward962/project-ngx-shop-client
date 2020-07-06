@@ -13,15 +13,15 @@
           params: isSlidedRight ? animateRight : animateLeft
         }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex" class="carousel-item">
-        <img loading="lazy" class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
+        <img loading="auto" class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
         <div class="container">
           <div class="carousel-caption">
             <h3 class="h1">ЛУЧШИЕ ИЗ КАТЕГОРИИ {{baner.title}}</h3>
             <div>
-              <a class="btn" (click)='redirectTo(baner.subCategoryId)' role="button">
+              <a class="btn pointer" (click)='redirectTo(baner.subCategoryId)' role="button">
 
                 Посмотреть все предложения
-                <img loading="lazy" src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
+                <img loading="auto" src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
               </a>
             </div>
           </div>
@@ -30,12 +30,12 @@
     </ng-container>
   </div>
 
-  <a *ngIf="items?.length > 1" class="carousel-control-prev" (click)="prev()">
-    <span class="carousel-control-prev-icon"></span>
-    <span class="sr-only">Previous</span>
+  <a *ngIf="items?.length > 1" class="carousel-control-prev pointer" (click)="prev()">
+    <span class="carousel-control-prev-icon pointer"></span>
+    <span class="sr-only pointer">Previous</span>
   </a>
-  <a *ngIf="items?.length > 1" class="carousel-control-next" (click)="next()">
-    <span class="carousel-control-next-icon"></span>
-    <span class="sr-only">Next</span>
+  <a *ngIf="items?.length > 1" class="carousel-control-next pointer" (click)="next()">
+    <span class="carousel-control-next-icon pointer"></span>
+    <span class="sr-only pointer">Next</span>
   </a>
 </div>

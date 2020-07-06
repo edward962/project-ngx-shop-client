@@ -1,7 +1,8 @@
 <div id="productCarousel" class="product-carousel carousel slide">
-  <ol class="carousel-indicators">
-    <li [ngClass]="{ active: j === currentIndex }" *ngFor="let image of items; let j = index" (click)="show(j)">
-      <img loading="lazy" [src]="image?.url" />
+  <ol class="carousel-indicators pointer">
+    <li [ngClass]="{ active: j === currentIndex }" class="pointer" *ngFor="let image of items; let j = index"
+      (click)="show(j)">
+      <img loading="auto" class="pointer" [src]="image?.url" />
     </li>
   </ol>
   <div class="carousel-inner">
@@ -12,17 +13,17 @@
           }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex" class="carousel-item">
         <div class="img-wrap">
-          <img loading="lazy" *ngIf="image" [src]="image?.url" />
+          <img loading="auto" *ngIf="image" [src]="image?.url" />
         </div>
       </div>
     </div>
   </div>
 
-  <a *ngIf=" items?.length > 1" class="carousel-control-prev" (click)="prev()">
+  <a *ngIf=" items?.length > 1" class="carousel-control-prev pointer" (click)="prev()">
     <span class="carousel-control-prev-icon"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a *ngIf=" items?.length > 1" class="carousel-control-next" (click)="next()">
+  <a *ngIf=" items?.length > 1" class="carousel-control-next pointer" (click)="next()">
     <span class="carousel-control-next-icon"></span>
     <span class="sr-only">Next</span>
   </a>
