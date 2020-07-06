@@ -1,25 +1,22 @@
 $spinner: grey
 $background: white
 $size: 50px
-  
+
 html,
-body 
+body
   height: 100%
 
-
-body 
+body
   font-family: "Helvetica Neue", sans-serif
   display: flex
   flex-direction: column
   color: #373a3c
   overflow-x: hidden
 
-
-main 
+main
   flex: 1 0 auto
   padding: 40px 0 20px
   position: relative
-
 
 .loaderCenter
   right: 0
@@ -53,8 +50,7 @@ main
   display: none
 
 .ng5-slider-span .ng5-slider-bar
-  height: 2px !important  
-
+  height: 2px !important
 
 .ng5-slider .ng5-slider-pointer
   background-color: #f7685b !important
@@ -66,7 +62,6 @@ main
   display: flex
   flex-direction: row
   align-items: center
-
 
 .ng-tooltip
   animation-name: tooltipOpacity
@@ -118,9 +113,6 @@ main
 .ng-tooltip-show
   opacity: 1
 
-
-
-
 .rate
   display: flex
   flex-wrap: wrap
@@ -157,12 +149,11 @@ main
   background: url(assets/icons/icon-star.svg) center no-repeat
   background-size: contain
 
-.description-col .product-img 
-    background: #eceeef
-    cursor: pointer
-    img 
-      mix-blend-mode: multiply
-
+.description-col .product-img
+  background: #eceeef
+  cursor: pointer
+  img
+    mix-blend-mode: multiply
 
 .main-carousel
   height: 280px
@@ -235,7 +226,7 @@ main
   line-height: 36px
   font-weight: 900
   color: #373a3c
-  margin-bottom: 1.5rem  
+  margin-bottom: 1.5rem
 .main-carousel
   border-radius: 4px
   overflow: hidden
@@ -252,36 +243,33 @@ main
       background-size: 100% 100%
       background-position-x: center
 
-.modal-header .btn-close 
+.modal-header .btn-close
   position: absolute
   top: 50%
   right: 1.1rem
-  transform: translate(0, -50%)      
+  transform: translate(0, -50%)
 
-@media all and (max-width: 767px) 
-  main 
+@media all and (max-width: 767px)
+  main
     padding: 0
-  
+
   .carousel-inner
     height: 300px
 
-body.no-scroll 
+body.no-scroll
   overflow: hidden
   height: 100%
   position: relative
 
-
-.navbar 
+.navbar
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
 
-
-.navbar-toggler 
+.navbar-toggler
   border: none
   padding: 0
   position: relative
 
-
-.navbar-toggler.has-messages:after 
+.navbar-toggler.has-messages:after
   content: ""
   background: #d9534f
   border: 2px solid #ffffff
@@ -292,12 +280,10 @@ body.no-scroll
   top: -6px
   right: -6px
 
-
-.basket 
+.basket
   position: relative
 
-
-.product-counter 
+.product-counter
   display: none
   position: absolute
   font-size: 10px
@@ -311,202 +297,163 @@ body.no-scroll
   border-radius: 50%
   background-color: #fcb1ab
 
-
-.basket.basket_not-empty .product-counter 
+.basket.basket_not-empty .product-counter
   display: inline-block
 
-
-.navbar-brand 
+.navbar-brand
   margin-left: 1rem
   margin-right: 0
 
-
-@media (min-width: 768px) 
+@media (min-width: 768px)
   .carousel-inner
     height: 450px
   .carousel-caption
     top: 20px
     text-align: center
-  .modal-dialog 
+  .modal-dialog
     margin: 0
     height: auto
-  
-@media (min-width: 992px)     
-  .navbar-brand 
+
+@media (min-width: 992px)
+  .navbar-brand
     margin-left: 0
-  
 
-
-.footer 
+.footer
   top: 100vh
   flex-shrink: 0
   border-top: 1px solid #eceeef
   background-color: #fff
   padding: 1.275rem 0
-  color: #818a91
   font-size: 0.875rem
 
-
-.footer-inner 
+.footer-inner
   display: flex
   flex-direction: column
 
-
-.footer-menu 
+.footer-menu
   margin-bottom: 1rem
 
-
-.footer-menu a 
+.footer-menu a
   display: flex
   margin-bottom: 0.5rem
 
-
-@media (min-width: 767px) 
-  .footer 
+@media (min-width: 767px)
+  .footer
     background-color: #f2f2f2
-  
 
-  .footer-inner 
+  .footer-inner
     flex-direction: row
     justify-content: space-between
-  
 
-  .footer-menu 
+  .footer-menu
     margin-bottom: 0
-  
 
-  .footer-menu a 
+  .footer-menu a
     display: inline-flex
     margin-bottom: 0
-  
 
-
-.jumbotron.jumbotron-light 
+.jumbotron.jumbotron-light
   background-color: #fff
   border: 1px solid #ddd
 
-
-.jumbotron.jumbotron-form 
+.jumbotron.jumbotron-form
   border: none
   padding: 0
 
-
-@media (min-width: 576px) 
-  .jumbotron 
+@media (min-width: 576px)
+  .jumbotron
     padding: 2rem
-  
 
-  .jumbotron.jumbotron-form 
+  .jumbotron.jumbotron-form
     border: 1px solid #ddd
     padding: 2rem
   .modal-dialog
     margin: 0
 
-
-form button[type="submit"]:not(.btn-send) 
+form button[type="submit"]:not(.btn-send)
   padding-left: 3rem
   padding-right: 3rem
   font-weight: 500
   width: 100%
 
-
-@media all and (min-width: 767px) 
-  form button[type="submit"]:not(.btn-send) 
+@media all and (min-width: 767px)
+  form button[type="submit"]:not(.btn-send)
     width: auto
-  
 
-
-.form-footer 
+.form-footer
   font-size: 0.875rem
 
-
-.form-group 
+.form-group
   margin-bottom: 1.5rem
 
-
-.form-group:last-child 
+.form-group:last-child
   margin-bottom: 0
 
-
-.form-group label 
+.form-group label
   color: #999
 
-
-.socials 
+.socials
   display: flex
   flex-direction: column
   margin-top: 3rem
 
-
-.btn-social 
+.btn-social
   color: #fff
   margin: 0 0 1rem
   padding-left: 2.4rem
   padding-right: 2.4rem
   position: relative
 
-
-.btn-social:hover 
+.btn-social:hover
   opacity: 0.9
 
-
-.btn-social img 
+.btn-social img
   position: absolute
   left: 0.5rem
   top: 50%
   transform: translate(0, -50%)
 
-
-.btn-social.-fb 
+.btn-social.-fb
   background-color: #2c408e
 
-.btn-social.-vk 
+.btn-social.-vk
   background-color: #416ca9
 
-
-.btn-social.-twitter 
+.btn-social.-twitter
   background-color: #1d8ef0
 
-
-@media all and (min-width: 767px) 
-  .socials 
+@media all and (min-width: 767px)
+  .socials
     flex-direction: row
     justify-content: center
     margin-top: 0
-  
 
-  .btn-social 
+  .btn-social
     padding-left: 1.6rem
     padding-right: 1.6rem
-  
 
-  .btn-social img 
+  .btn-social img
     transform: none
     position: relative
     top: auto
     left: auto
     margin-right: 0.4rem
-  
 
-  .btn-social 
+  .btn-social
     margin: 0 0.275rem
-  
 
-
-.alert 
+.alert
   margin-bottom: 2rem
 
-
-.modal 
+.modal
   -webkit-overflow-scrolling: touch
   height: 100%
 
-
-.modal-header 
+.modal-header
   border: none
   display: flex
   flex-direction: row
-  justify-content: space-between  
+  justify-content: space-between
   align-items: center
   border-radius: 0
   padding: 1.475rem 2.5rem
@@ -520,59 +467,46 @@ form button[type="submit"]:not(.btn-send)
   white-space: nowrap
   text-overflow: ellipsis
 
+@media all and (min-width: 767px)
 
-@media all and (min-width: 767px) 
-
-
-  .modal-header .arrow-back 
+  .modal-header .arrow-back
     position: absolute
     top: 50%
     left: 1.1rem
     transform: translate(0, -50%)
 
-
-  .modal-footer 
+  .modal-footer
     border: none
     padding: 1.4rem 2rem
 
-
-  .modal-body 
+  .modal-body
     padding: 1.4rem 2rem
 
-
-  .modal-body.-height-auto 
+  .modal-body.-height-auto
     flex: 0 1 auto
 
-
-  .modal-dialog 
+  .modal-dialog
     margin: 0
     height: 100%
 
-
-@media all and (min-width: 767px) 
-  .modal-dialog 
+@media all and (min-width: 767px)
+  .modal-dialog
     margin: 1.5rem auto
     height: auto
-  
 
-
-.modal-content 
+.modal-content
   border: none
   min-height: 100%
 
-
-
-.modal-title-block 
+.modal-title-block
   font-size: 1rem
   line-height: 1
 
-
-.modal-menu__title 
+.modal-menu__title
   padding: 1.5rem 1.0625rem 0.75rem
   border-bottom: 1px solid #dddddd
 
-
-.modal-menu__item 
+.modal-menu__item
   font-size: 1rem
   padding: 1.0625rem
   display: flex
@@ -586,35 +520,30 @@ form button[type="submit"]:not(.btn-send)
   white-space: nowrap
   text-overflow: ellipsis
 
-
 .modal-menu__item:hover,
 .modal-menu__item:active,
-.modal-menu__item:focus 
+.modal-menu__item:focus
   background-color: #e4e4e4
   color: #373a3c
   text-decoration: none
 
-.modal-menu__item.active 
+.modal-menu__item.active
   background-color: #e4e4e4
 
-
-.modal-menu__item.is-submenu 
+.modal-menu__item.is-submenu
   padding-right: 3rem
   background: url(assets/icons/icon-angle.svg) no-repeat
   background-position: calc(100% - 1.1rem) center
 
-
-.modal .modal-content 
+.modal .modal-content
   border-radius: 0 !important
 
-
-.modal .close 
+.modal .close
   cursor: pointer
 
-
 /* sidebar */
-@media all and (max-width: 767px) 
-  .list-group-item 
+@media all and (max-width: 767px)
+  .list-group-item
     border-radius: 0 !important
   .product-carousel,
   .product-carousel .carousel-item
@@ -731,27 +660,23 @@ li
   color: #373a3c
   margin-bottom: 1.5rem
 
-.list-group-item.dropdown.show 
+.list-group-item.dropdown.show
   border-top-right-radius: 0
   border-right-color: transparent
   color: #d9534f
 
-
 .list-group-item.dropdown.show ~ .list-group-item:last-child,
-.list-group-item.dropdown.show 
+.list-group-item.dropdown.show
   border-bottom-right-radius: 0
 
-
-.list-group-item a 
+.list-group-item a
   cursor: pointer
 
-
-.sidebar 
+.sidebar
   position: relative
   z-index: 100
 
-
-.backdrop 
+.backdrop
   position: fixed
   background-color: rgba(0, 0, 0, 0.5)
   opacity: 0
@@ -762,13 +687,11 @@ li
   height: 100%
   width: 100%
 
-
-.backdrop.show 
+.backdrop.show
   opacity: 1
   visibility: visible
 
-
-.sidebar .dropdown-menu.show 
+.sidebar .dropdown-menu.show
   top: -1px !important
   left: 100% !important
   transform: none !important
@@ -779,38 +702,25 @@ li
   border-left-color: transparent
   padding: 0.55rem 0
 
-
-
-  
-
-@media all and (max-width: 576px) 
-  .sidebar 
+@media all and (max-width: 576px)
+  .sidebar
     margin-left: -15px
     margin-right: -15px
-  
 
-
-@media all and (max-width: 767px) 
-  .sidebar .list-group-item 
+@media all and (max-width: 767px)
+  .sidebar .list-group-item
     border-left: none
     border-right: none
-  
 
- 
-  
-
-
-.sidebar .list-group-item 
+.sidebar .list-group-item
   position: relative
   padding: 0
 
-
-.sidebar .list-group-item > a 
+.sidebar .list-group-item > a
   padding: 1.0625rem 2rem 1.0625rem 1.25rem
   line-height: 1
 
-
-.sidebar .list-group-item .dropdown-toggle::after 
+.sidebar .list-group-item .dropdown-toggle::after
   content: ""
   background: url(assets/icons/icon-angle.svg) no-repeat
   background-position: center
@@ -824,35 +734,29 @@ li
   top: 50%
   transform: translate(0, -50%)
 
-
-.sidebar .list-group-item.dropdown.show .dropdown-toggle::after 
+.sidebar .list-group-item.dropdown.show .dropdown-toggle::after
   display: none
 
-
-.main-carousel 
+.main-carousel
   height: 277px
   width: calc(100% + 30px)
   margin-left: -15px
   border-radius: 0
 
-
-@media all and (min-width: 576px) 
-  .main-carousel 
+@media all and (min-width: 576px)
+  .main-carousel
     border-radius: 4px
     overflow: hidden
     margin: auto
     width: 100%
-  
 
-
-.main-carousel .slide-content-img 
+.main-carousel .slide-content-img
   position: absolute
   right: 0
   top: 50%
   transform: translate(0, -50%)
 
-
-.main-carousel .carousel-indicators li 
+.main-carousel .carousel-indicators li
   width: 12px
   height: 12px
   opacity: 0.8
@@ -860,68 +764,56 @@ li
   border-radius: 50%
   background-color: transparent
 
-
-.main-carousel .carousel-indicators li.active 
+.main-carousel .carousel-indicators li.active
   width: 12px
   height: 12px
 
   background-color: #ffffff
   opacity: 0.8
 
-
 .main-carousel .carousel-control-next,
-.main-carousel .carousel-control-prev 
+.main-carousel .carousel-control-prev
   background-color: rgba(255, 255, 255, 0.4)
   width: 34px
   height: 34px
   top: 50%
   margin-top: -17px
 
-
 .main-carousel .carousel-control-next:hover,
-.main-carousel .carousel-control-prev:hover 
+.main-carousel .carousel-control-prev:hover
   background-color: rgba(255, 255, 255, 1)
 
-
-.main-carousel .carousel-control-next 
+.main-carousel .carousel-control-next
   right: 1rem
 
-
-.main-carousel .carousel-control-prev 
+.main-carousel .carousel-control-prev
   left: 1rem
 
-
 .carousel-control-next-icon,
-.carousel-control-prev-icon 
+.carousel-control-prev-icon
   width: 7px
   height: 11px
 
-
-.main-carousel .carousel-control-prev-icon 
+.main-carousel .carousel-control-prev-icon
   background-image: url(assets/icons/icon-angle.svg)
   transform: rotate(180deg)
   margin-left: -3px
 
-
-.main-carousel .carousel-control-next-icon 
+.main-carousel .carousel-control-next-icon
   background-image: url(assets/icons/icon-angle.svg)
 
-
-.main-carousel .carousel-caption 
+.main-carousel .carousel-caption
   top: 20px
   text-align: center
 
-
-@media all and (min-width: 992px) 
-  .main-carousel .carousel-caption 
+@media all and (min-width: 992px)
+  .main-carousel .carousel-caption
     max-width: 45%
     left: 6rem
     right: 6rem
     text-align: left
-  
 
-
-.main-carousel .carousel-caption .h1 
+.main-carousel .carousel-caption .h1
   font-family: "Akzidenz-Grotesk Pro", sans-serif
   font-size: 32px
   line-height: 36px
@@ -929,15 +821,12 @@ li
   color: #373a3c
   margin-bottom: 1.5rem
 
-
-@media all and (min-width: 992px) 
-  .main-carousel .carousel-caption .h1 
+@media all and (min-width: 992px)
+  .main-carousel .carousel-caption .h1
     font-size: 32px
     line-height: 36px
-  
 
-
-.main-carousel .carousel-caption .btn 
+.main-carousel .carousel-caption .btn
   background-color: #4100ac
   border: 1px solid #4100ac
   padding: 0.5rem 1rem
@@ -946,16 +835,13 @@ li
   a img
     width: 30px
 
-
-.main-carousel .carousel-caption .btn:hover 
+.main-carousel .carousel-caption .btn:hover
   opacity: 0.9
 
-
-.homepage-cards .card 
+.homepage-cards .card
   height: 100%
 
-
-.homepage-cards .card-img-wrap 
+.homepage-cards .card-img-wrap
   background-color: #eceeef
   display: flex
   flex-direction: column
@@ -965,73 +851,61 @@ li
   height: 180px
   cursor: pointer
 
-
-.homepage-cards .card-img-top 
+.homepage-cards .card-img-top
   width: auto
   max-width: 100%
   mix-blend-mode: multiply
   max-height: 150px
 
-
-.homepage-cards .card .flex-grow 
+.homepage-cards .card .flex-grow
   flex-grow: 1
 
-
-.homepage-cards .card .card-body 
+.homepage-cards .card .card-body
   justify-content: space-between
   display: flex
   flex-direction: column
 
-
-.homepage-cards .card .card-title 
+.homepage-cards .card .card-title
   font-size: 18px
   line-height: 19px
   font-weight: 500
   margin-bottom: 1.25rem
   cursor: pointer
 
-
-.price-text 
+.price-text
   display: flex
   align-items: center
   margin-top: 1rem
 
-
-.price-text small 
+.price-text small
   font-size: 12px
   line-height: 24px
   text-decoration-line: line-through
   color: #979797
 
-
-.price-text.discount 
+.price-text.discount
   color: #d9534f
 
-
-.rate 
+.rate
   display: flex
   flex-wrap: wrap
   flex-direction: row
 
-
-.rate.rate-sm .icon-star 
+.rate.rate-sm .icon-star
   width: 1rem
   height: 1rem
 
-
-.rate-amount 
+.rate-amount
   font-size: 14px
   line-height: 20px
   font-weight: 300
   margin-bottom: 0
   margin-left: 2px !important
 
-
-.rate.no-reviews .rate-amount 
+.rate.no-reviews .rate-amount
   color: #979797
 
-
-.icon-star 
+.icon-star
   display: flex
   position: relative
   width: 1.25rem
@@ -1039,32 +913,26 @@ li
   background: url(assets/icons/icon-star-border.svg) center no-repeat
   background-size: contain
 
-
-.icon-star.active 
+.icon-star.active
   background: url(assets/icons/icon-star-border-active.svg) center no-repeat
   background-size: contain
 
-
-.icon-star.checked 
+.icon-star.checked
   background: url(assets/icons/icon-star.svg) center no-repeat
   background-size: contain
 
-
-.review 
+.review
   padding: 25px 0
 
-
-.add-review 
+.add-review
   border-bottom: none
 
-
-.counter 
+.counter
   display: flex
   flex-direction: row
   align-items: center
 
-
-.counter > button 
+.counter > button
   background-color: transparent
   padding: 0
   border: none
@@ -1072,86 +940,68 @@ li
   outline: none
   cursor: pointer
 
-
-.counter__value 
+.counter__value
   width: 22px
   text-align: center
 
+@media all and (max-width: 767px)
 
-@media all and (max-width: 767px) 
-  
-  .homepage-cards .card 
+  .homepage-cards .card
     flex-direction: row
-    
 
-  
-
-  .homepage-cards .card .card-body 
+  .homepage-cards .card .card-body
     padding: 0.5rem 1.25rem
-  
 
-  .homepage-cards .card .card-title 
+  .homepage-cards .card .card-title
     font-size: 14px
     line-height: 20px
     margin-bottom: 0.5rem
-  
 
-  .homepage-cards .card .price-text 
+  .homepage-cards .card .price-text
     margin-top: 0.5rem
-  
 
-  .homepage-cards .card-img-top 
+  .homepage-cards .card-img-top
     margin: auto
     display: block
     width: 100%
-  
 
-  .homepage-cards .card-img-wrap 
+  .homepage-cards .card-img-wrap
     height: auto
     width: 122px
     max-width: 122px
     overflow: hidden
     flex: 1 0 122px
-  
+
   ngx-shop-cart-product
     .rate-amount
       margin-left: 5px !important
 
-
-
-  .rate-amount 
+  .rate-amount
     font-size: 12px
     line-height: 21px
     margin-left: 0 !important
-  
 
-  .icon-star 
+  .icon-star
     width: 0.875rem
     height: 0.875rem
-  
 
-
-.section-title 
+.section-title
   font-size: 16px
   line-height: 24px
   margin: 1.5rem 0 1rem
 
-
-@media all and (max-width: 767px) 
-  .aside-accordion-menu 
+@media all and (max-width: 767px)
+  .aside-accordion-menu
     margin: 2rem 0
-  
 
-
-.aside-accordion-menu ul 
+.aside-accordion-menu ul
   padding: 0.5rem 0.75rem
   margin: 0
 
-.aside-accordion-menu ul li 
+.aside-accordion-menu ul li
   list-style-type: none
 
-
-.aside-accordion-menu ul li a 
+.aside-accordion-menu ul li a
   font-size: 0.875rem
   line-height: 1.71
   color: #373a3c
@@ -1159,39 +1009,33 @@ li
   cursor: pointer
   padding: 0.4rem 0
 
-
 .aside-accordion-menu ul li a:hover,
 .aside-accordion-menu ul li a:active,
-.aside-accordion-menu ul li a:focus 
+.aside-accordion-menu ul li a:focus
   opacity: 0.8
 
-
-.aside-accordion-menu .list-group-item 
+.aside-accordion-menu .list-group-item
   cursor: pointer
 
-
-.aside-accordion-menu .list-group-item h5 
+.aside-accordion-menu .list-group-item h5
   padding: 0 1rem 0 0
   position: relative
   font-weight: 400
   font-size: 16px
   line-height: 24px
 
-
 .aside-accordion-menu .list-group-item h5[aria-expanded="true"],
-.aside-accordion-menu .list-group-item:hover h5 
+.aside-accordion-menu .list-group-item:hover h5
   color: #f7685b
 
-
-.aside-accordion-menu .list-group-item h5 > img 
+.aside-accordion-menu .list-group-item h5 > img
   position: absolute
   right: 0
   top: 50%
   transform: translate(0, -50%)
   display: inline-block
 
-
-.product-list-box 
+.product-list-box
   border: 1px solid #cccccc
   border-radius: 4px
   display: flex
@@ -1200,97 +1044,79 @@ li
   flex-wrap: wrap
   margin-bottom: 0.75rem
 
-
-.inner-col .col-title 
+.inner-col .col-title
   font-size: 18px
   line-height: 24px
   color: #373a3c
   margin-top: 0
 
-
-.description-col 
+.description-col
   flex: 1 0 62%
   display: flex
   flex-direction: row
 
-
-.description-col .product-img 
+.description-col .product-img
   padding: 1.5rem 2.5rem
   display: flex
   align-items: center
   justify-content: center
 
-
-
-.description-col .product-desc 
+.description-col .product-desc
   padding: 0.875rem 1.25rem
 
-
-.default-col 
+.default-col
   padding: 1.5rem
   border-left: 1px solid #c4c4c4
 
-
-.flex-col 
+.flex-col
   display: flex
   flex-direction: column
 
-
-.price-col 
+.price-col
   flex: 1 0 35%
 
-
 .price-col .price-text.discount,
-.inner-col .price-text.discount 
+.inner-col .price-text.discount
   color: #d9534f
 
-
 .price-col .price-text small,
-.inner-col .price-text small 
+.inner-col .price-text small
   font-size: 12px
   line-height: 24px
   text-decoration-line: line-through
   color: #979797
 
-
-@media all and (max-width: 767px) 
-  .inner-col .col-title 
+@media all and (max-width: 767px)
+  .inner-col .col-title
     font-size: 14px
     line-height: 20px
-  
 
-  .description-col 
+  .description-col
     flex: 1 0 100%
     display: flex
     flex-direction: row
-  
 
-  .product-list-box.-basket .description-col 
+  .product-list-box.-basket .description-col
     border-bottom: 1px solid #c4c4c4
-  
-  .description-col .product-img 
+
+  .description-col .product-img
     padding: 1rem
     display: flex
     align-items: center
     justify-content: center
     background: #eceeef
-  
 
   .description-col .product-desc,
-  .default-col 
+  .default-col
     padding: 0.875rem 1.25rem
-  
 
-  .description-col + * 
+  .description-col + *
     border-left: none
-  
 
-  .price-col 
+  .price-col
     display: none
-  
 
-
-.range-slider__inner 
+.range-slider__inner
   position: relative
   display: inline-block
   width: 100%
@@ -1302,9 +1128,8 @@ li
   -ms-user-select: none
   -webkit-user-select: none
 
-
 .range-slider__thumb-right,
-.range-slider__thumb-left 
+.range-slider__thumb-left
   position: absolute
   top: 50%
   margin-top: -9px
@@ -1314,24 +1139,20 @@ li
   background-color: #f7685b
   cursor: grab
 
-
 .range-slider_dragging,
 .range-slider_dragging .range-slider__thumb-right,
-.range-slider_dragging .range-slider__thumb-left 
+.range-slider_dragging .range-slider__thumb-left
   cursor: grabbing
 
-
-.range-slider__thumb-left 
+.range-slider__thumb-left
   left: 0
   margin-left: -9px
 
-
-.range-slider__thumb-right 
+.range-slider__thumb-right
   right: 0
   margin-right: -9px
 
-
-.range-slider__progress 
+.range-slider__progress
   background: #f7685b
   position: absolute
   top: 0
@@ -1340,20 +1161,17 @@ li
   right: 0
   z-index: 1
 
-
-.range-slider 
+.range-slider
   position: relative
   display: flex
   flex-direction: row
   align-items: center
 
-
-.product-carousel 
+.product-carousel
   height: 410px
   border-radius: 4px 4px 0 0
 
-
-.product-carousel .carousel-indicators li 
+.product-carousel .carousel-indicators li
   width: 48px
   height: 48px
   margin-right: 0.5rem
@@ -1364,13 +1182,11 @@ li
   align-items: center
   justify-content: center
 
-
-.product-carousel .carousel-indicators li img 
+.product-carousel .carousel-indicators li img
   width: auto
   max-width: 94%
 
-
-.product-carousel .carousel-indicators 
+.product-carousel .carousel-indicators
   display: flex
   flex-direction: row
   justify-content: flex-start
@@ -1383,30 +1199,25 @@ li
   top: 100%
   bottom: auto
 
-
-.product-carousel .carousel-indicators li.active 
+.product-carousel .carousel-indicators li.active
   border: 1px solid #d9534f
   box-shadow: 0 0 4px rgba(217, 83, 79, 0.5)
 
-
-.product-carousel .carousel-item 
+.product-carousel .carousel-item
   height: 410px
   background-color: #eceeef
 
-
-.product-carousel .carousel-item .img-wrap 
+.product-carousel .carousel-item .img-wrap
   display: flex
   height: 100%
   align-items: center
   justify-content: center
 
-
-.product-carousel .carousel-item .img-wrap img 
+.product-carousel .carousel-item .img-wrap img
   max-width: 300px
 
-
 .product-carousel .carousel-control-prev,
-.product-carousel .carousel-control-next 
+.product-carousel .carousel-control-next
   width: 34px
   height: 34px
   background: #ffffff
@@ -1414,170 +1225,140 @@ li
   top: 50%
   transform: translate(0, -50%)
 
-
-.product-carousel .carousel-control-prev 
+.product-carousel .carousel-control-prev
   left: 1rem
 
-
-.product-carousel .carousel-control-next 
+.product-carousel .carousel-control-next
   right: 1rem
 
-
 .product-carousel .carousel-control-prev-icon,
-.product-carousel .carousel-control-next-icon 
+.product-carousel .carousel-control-next-icon
   color: #212121
 
-
-.product-carousel .carousel-control-prev-icon 
+.product-carousel .carousel-control-prev-icon
   background-image: url(assets/icons/icon-angle.svg)
   transform: rotate(180deg)
   margin-left: -3px
 
-
-.product-carousel .carousel-control-next-icon 
+.product-carousel .carousel-control-next-icon
   background-image: url(assets/icons/icon-angle.svg)
 
 @media all and (max-width: 991px)
-   .sidebar .dropdown-menu.show 
+  .sidebar .dropdown-menu.show
     top: 100% !important
     left: 0 !important
     width: 100%
     border: transparent
     border-radius: 0
-@media all and (max-width: 767px) 
+@media all and (max-width: 767px)
   .product-carousel,
-  .product-carousel .carousel-item 
+  .product-carousel .carousel-item
     height: 245px
-  
 
-  .product-carousel .carousel-item .img-wrap img 
+  .product-carousel .carousel-item .img-wrap img
     max-width: 225px
-  
 
   .product-carousel,
-  .product-carousel .carousel-indicators 
+  .product-carousel .carousel-indicators
     border-radius: 0
-  
 
-  .product-carousel 
+  .product-carousel
     width: calc(100% + 30px)
     margin-left: -15px
     margin-right: -15px
-  
 
-
-.product-info-tabs 
+.product-info-tabs
   margin-top: 2rem
 
-
-@media all and (min-width: 767px) 
-  .product-info-tabs 
+@media all and (min-width: 767px)
+  .product-info-tabs
     margin-top: 3rem
-  
 
-
-.tab-content > .tab-pane 
+.tab-content > .tab-pane
   padding-top: 1.5rem
 
-
-.tab-content > .tab-pane * 
+.tab-content > .tab-pane *
   font-size: 14px
   line-height: 20px
 
-
-.tab-content > .tab-pane ul li 
+.tab-content > .tab-pane ul li
   margin-bottom: 5px
 
-
-.product-info .nav.nav-tabs 
+.product-info .nav.nav-tabs
   position: relative
 
-.nav-tabs   
+.nav-tabs
   a
     cursor: pointer
 .col-md-5 .btn .btn-primary .btn-lg .px-3
   cursor: pointer
 
-@media all and (max-width: 576px) 
+@media all and (max-width: 576px)
   .product-info .nav.nav-tabs:before,
-  .product-info .nav.nav-tabs:after 
+  .product-info .nav.nav-tabs:after
     content: ""
     position: absolute
     bottom: -1px
     width: 15px
     height: 1px
     background-color: #dee2e6
-  
 
-  .product-info .nav.nav-tabs:before 
+  .product-info .nav.nav-tabs:before
     left: -15px
-  
 
-  .product-info .nav.nav-tabs:after 
+  .product-info .nav.nav-tabs:after
     right: -15px
-  
 
-  .product-info .btn 
+  .product-info .btn
     width: 100%
-  
-.product-info 
+
+.product-info
   font-size: 14px
   line-height: 20px
   margin-top: 6rem
 
-
-.p-notice 
+.p-notice
   margin-top: 1.5rem
 
-@media all and (min-width: 992px) 
-  .product-info 
+@media all and (min-width: 992px)
+  .product-info
     margin-top: 0
 
-
-@media all and (max-width: 1200px) 
+@media all and (max-width: 1200px)
   .loaderLeft
     right: 0
     position: fixed
     top: 0
-    padding-right:0
+    padding-right: 0
 
-
-@media all and (min-width: 767px) 
-  .p-notice 
+@media all and (min-width: 767px)
+  .p-notice
     margin-top: 1rem
-  
 
-
-.text-success 
+.text-success
   color: #478f47
 
-
 .product-info ul li,
-.product-info .p-notice 
+.product-info .p-notice
   line-height: 26px
 
-
-.form-inline.form-inline-flex 
+.form-inline.form-inline-flex
   display: flex
   flex-direction: row
 
-
-.form-inline.form-inline-flex .form-control 
+.form-inline.form-inline-flex .form-control
   display: inline-flex
   flex: 0 0 calc(100% - 46px)
 
-
-.alert.alert-primary 
+.alert.alert-primary
   color: #31708f
   background: #d9edf7
 
-
-
 .outlet-wrap
-  min-height: calc(100vh - 120px)  
+  min-height: calc(100vh - 120px)
 
 .no-scroll
-  overflow: hidden  
+  overflow: hidden
 .modal-dialog
   margin: 0
 

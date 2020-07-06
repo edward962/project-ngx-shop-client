@@ -21,8 +21,7 @@ import { TooltipDirective } from './directives/tooltip.derective';
 import { IStore } from '../store/reducers';
 import { BrandsService } from './services/brands.service';
 import { IProduct } from './interfaces/product.inteface';
-
-
+import { Meta } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -80,16 +79,27 @@ export class SharedModule {
           // tslint:disable-next-line:typedef
           useFactory: (
             store: Store<IStore>,
-            localStorageService: LocalStorageService
+            localStorageService: LocalStorageService,
+            meta: Meta
             // tslint:disable-next-line:typedef
           ) => () => {
             const products: IProduct[] = localStorageService.getFromLocalStorage<
               IProduct
             >('cart');
+            meta.addTag({
+              name: 'description',
+              content: 'Ngx-shop',
+            });
+            meta.addTag({ name: 'author', content: 'JsDaddy' });
+            meta.addTag({
+              name: 'keywords',
+              content:
+                'Angular, TypeScript, Course, JavaScript, Redux, NgRx, RxJs, Pipes, Directives',
+            });
             store.dispatch(addAllProductsToCart({ products }));
           },
           multi: true,
-          deps: [Store, LocalStorageService],
+          deps: [Store, LocalStorageService, Meta],
         },
         {
           provide: BASE_URL_TOKEN,

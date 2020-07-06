@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { RouterOutlet, Data } from '@angular/router';
 import { fadeAnimation } from './router.animation';
 
@@ -11,13 +11,10 @@ import { fadeAnimation } from './router.animation';
 export class AppComponent {
   public getRouterState(outlet: RouterOutlet): Data {
     return (
-       outlet && outlet.activatedRouteData && outlet.activatedRouteData.state
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData.state
     );
   }
-  public animationStart(): void {
-  }
+  public animationStart(): void {}
 
-  public animationEnd(): void {
-  }
-
+  public animationEnd(): void {}
 }
