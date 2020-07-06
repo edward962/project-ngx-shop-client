@@ -57,12 +57,7 @@ main
   width: 18px !important
   height: 18px !important
   top: -7px !important
-.range-slider
-  position: relative
-  display: flex
-  flex-direction: row
-  align-items: center
-
+  
 .ng-tooltip
   animation-name: tooltipOpacity
   position: absolute
@@ -132,22 +127,6 @@ main
 .rate.no-reviews .rate-amount
   color: #979797
 
-.icon-star
-  display: flex
-  position: relative
-  width: 1.25rem
-  height: 1.25rem
-  background: url(assets/icons/icon-star-border.svg) center no-repeat
-  background-size: contain
-
-.icon-star.active
-  background: url(assets/icons/icon-star-border-active.svg) center no-repeat
-  background-size: contain
-
-.icon-star.checked
-  background: url(assets/icons/icon-star.svg) center no-repeat
-  background-size: contain
-
 .description-col .product-img
   background: #eceeef
   img
@@ -159,12 +138,6 @@ main
   margin-left: -15px
   border-radius: 0
 
-.main-carousel .slide-content-img
-  position: absolute
-  right: 0
-  top: 50%
-  transform: translate(0, -50%)
-
 .main-carousel .carousel-indicators li
   width: 12px
   height: 12px
@@ -175,7 +148,6 @@ main
 .main-carousel .carousel-indicators li.active
   width: 12px
   height: 12px
-
   background-color: #ccccce
   opacity: 0.8
 
@@ -197,8 +169,7 @@ main
 
 .main-carousel .carousel-control-prev
   left: 1rem
-.main-carousel .carousel-inner .carousel-item .img-wrap img
-  width: 100%
+
 .carousel-control-next-icon,
 .carousel-control-prev-icon
   width: 7px
@@ -234,11 +205,6 @@ main
     display: block!important
     position: absolute
     height: 277px
-    .img_wrap
-      height: 270px
-      background-repeat: no-repeat
-      background-size: 100% 100%
-      background-position-x: center
 
 .modal-header .btn-close
   position: absolute
@@ -394,59 +360,7 @@ form button[type="submit"]:not(.btn-send)
 .form-group label
   color: #999
 
-.socials
-  display: flex
-  flex-direction: column
-  margin-top: 3rem
-
-.btn-social
-  color: #fff
-  margin: 0 0 1rem
-  padding-left: 2.4rem
-  padding-right: 2.4rem
-  position: relative
-
-.btn-social:hover
-  opacity: 0.9
-
-.btn-social img
-  position: absolute
-  left: 0.5rem
-  top: 50%
-  transform: translate(0, -50%)
-
-.btn-social.-fb
-  background-color: #2c408e
-
-.btn-social.-vk
-  background-color: #416ca9
-
-.btn-social.-twitter
-  background-color: #1d8ef0
-
 @media all and (min-width: 767px)
-  .socials
-    flex-direction: row
-    justify-content: center
-    margin-top: 0
-
-  .btn-social
-    padding-left: 1.6rem
-    padding-right: 1.6rem
-
-  .btn-social img
-    transform: none
-    position: relative
-    top: auto
-    left: auto
-    margin-right: 0.4rem
-
-  .btn-social
-    margin: 0 0.275rem
-
-.alert
-  margin-bottom: 2rem
-
 .modal
   -webkit-overflow-scrolling: touch
   height: 100%
@@ -471,22 +385,6 @@ form button[type="submit"]:not(.btn-send)
 
 @media all and (min-width: 767px)
 
-  .modal-header .arrow-back
-    position: absolute
-    top: 50%
-    left: 1.1rem
-    transform: translate(0, -50%)
-
-  .modal-footer
-    border: none
-    padding: 1.4rem 2rem
-
-  .modal-body
-    padding: 1.4rem 2rem
-
-  .modal-body.-height-auto
-    flex: 0 1 auto
-
   .modal-dialog
     margin: 0
     height: 100%
@@ -499,14 +397,6 @@ form button[type="submit"]:not(.btn-send)
 .modal-content
   border: none
   min-height: 100%
-
-.modal-title-block
-  font-size: 1rem
-  line-height: 1
-
-.modal-menu__title
-  padding: 1.5rem 1.0625rem 0.75rem
-  border-bottom: 1px solid #dddddd
 
 .modal-menu__item
   font-size: 1rem
@@ -607,10 +497,6 @@ form button[type="submit"]:not(.btn-send)
   background-color: #eceeef
 li
   white-space: pre-wrap
-  .subcategoryName
-    display: flex
-    width: 191px
-    white-space: pre-wrap
 .product-carousel .carousel-item .img-wrap
   display: flex
   height: 100%
@@ -746,12 +632,6 @@ li
     margin: auto
     width: 100%
 
-.main-carousel .slide-content-img
-  position: absolute
-  right: 0
-  top: 50%
-  transform: translate(0, -50%)
-
 .main-carousel .carousel-indicators li
   width: 12px
   height: 12px
@@ -851,9 +731,6 @@ li
   mix-blend-mode: multiply
   max-height: 150px
 
-.homepage-cards .card .flex-grow
-  flex-grow: 1
-
 .homepage-cards .card .card-body
   justify-content: space-between
   display: flex
@@ -869,12 +746,6 @@ li
   display: flex
   align-items: center
   margin-top: 1rem
-
-.price-text small
-  font-size: 12px
-  line-height: 24px
-  text-decoration-line: line-through
-  color: #979797
 
 .price-text.discount
   color: #d9534f
@@ -897,23 +768,6 @@ li
 
 .rate.no-reviews .rate-amount
   color: #979797
-
-.icon-star
-  display: flex
-  position: relative
-  width: 1.25rem
-  height: 1.25rem
-  background: url(assets/icons/icon-star-border.svg) center no-repeat
-  background-size: contain
-
-.icon-star.active
-  background: url(assets/icons/icon-star-border-active.svg) center no-repeat
-  background-size: contain
-
-.icon-star.checked
-  background: url(assets/icons/icon-star.svg) center no-repeat
-  background-size: contain
-
 .review
   padding: 25px 0
 
@@ -972,10 +826,6 @@ li
     font-size: 12px
     line-height: 21px
     margin-left: 0 !important
-
-  .icon-star
-    width: 0.875rem
-    height: 0.875rem
 
 .section-title
   font-size: 16px
@@ -1057,17 +907,6 @@ li
 
 .price-col
   flex: 1 0 35%
-
-.price-col .price-text.discount,
-.inner-col .price-text.discount
-  color: #d9534f
-
-.price-col .price-text small,
-.inner-col .price-text small
-  font-size: 12px
-  line-height: 24px
-  text-decoration-line: line-through
-  color: #979797
 
 @media all and (max-width: 767px)
   .inner-col .col-title
@@ -1257,16 +1096,6 @@ li
   .product-info-tabs
     margin-top: 3rem
 
-.tab-content > .tab-pane
-  padding-top: 1.5rem
-
-.tab-content > .tab-pane *
-  font-size: 14px
-  line-height: 20px
-
-.tab-content > .tab-pane ul li
-  margin-bottom: 5px
-
 .product-info .nav.nav-tabs
   position: relative
 
@@ -1297,9 +1126,6 @@ li
   line-height: 20px
   margin-top: 6rem
 
-.p-notice
-  margin-top: 1.5rem
-
 @media all and (min-width: 992px)
   .product-info
     margin-top: 0
@@ -1312,27 +1138,16 @@ li
     padding-right: 0
 
 @media all and (min-width: 767px)
-  .p-notice
-    margin-top: 1rem
-
-.text-success
-  color: #478f47
 
 .product-info ul li,
 .product-info .p-notice
   line-height: 26px
 
-.form-inline.form-inline-flex
-  display: flex
-  flex-direction: row
 
 .form-inline.form-inline-flex .form-control
   display: inline-flex
   flex: 0 0 calc(100% - 46px)
 
-.alert.alert-primary
-  color: #31708f
-  background: #d9edf7
 
 .outlet-wrap
   min-height: calc(100vh - 120px)
@@ -1341,12 +1156,6 @@ li
   overflow: hidden
 .modal-dialog
   margin: 0
-
-
-
-
-
-
 
 
 
