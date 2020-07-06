@@ -16,27 +16,18 @@ import { ICategory, ISubCategory } from 'src/app/store/reducers/categories.reduc
 })
 export class CategoryDropdownComponent implements ControlValueAccessor {
   @Input()
-  public set categories(cats: ICategory[]) {
-    if (!cats) {
-      return;
-    }
-    this.categoriesArr = cats;
-    this.currentIndex = cats.findIndex(
+  public categories: ICategory[] = [];
+  public currentIndex: number | null = null;
+  public onChange!: Function;
+  public currentCategory?: string;
+  public writeValue(current: string): void {
+    this.currentIndex = this.categories.findIndex(
       (category: ICategory): ISubCategory | undefined => {
         return category.subCategories?.find((subCat: ISubCategory): boolean => {
-          return subCat._id === this.currentCategory;
+          return subCat._id === current;
         });
       }
     );
-  };
-  public categoriesArr: ICategory[] = [];
-
-  public currentIndex: number | null = null;
-
-  public onChange!: Function;
-  public currentCategory?: string;
-
-  public writeValue(current: string): void {
     this.currentCategory = current;
   }
   public registerOnChange(fn: Function): void {

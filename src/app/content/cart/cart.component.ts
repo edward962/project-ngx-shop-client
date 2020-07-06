@@ -16,7 +16,6 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 @Component({
   selector: 'ngx-shop-cart',
   templateUrl: './cart.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartComponent extends UnSubscriber {
   public cart$: Observable<IProduct[]> = this._store

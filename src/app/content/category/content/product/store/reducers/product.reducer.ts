@@ -44,6 +44,7 @@ const productReducer = createReducer(
     item: product,
     loading: false,
   })),
+  // tslint:disable-next-line:typedef
   on(createFeedbackSuccess, (state: IProductState, { rating, feedback }) => ({
     ...state,
     item: {

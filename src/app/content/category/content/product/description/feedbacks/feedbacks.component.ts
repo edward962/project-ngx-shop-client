@@ -9,7 +9,6 @@ import { IFeedback } from 'src/app/shared/interfaces/product.inteface';
   selector: 'ngx-shop-feedbacks',
   templateUrl: './feedbacks.component.html',
   styleUrls: ['./feedbacks.component.sass'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedbacksComponent {
   @Input()
@@ -18,7 +17,7 @@ export class FeedbacksComponent {
   constructor(
     private readonly _store: Store<IStore>,
     private readonly _modalService: ModalService
-  ) {}
+  ) { }
   public async addFeedback(): Promise<void> {
     const component = await import('./addFeedback/add-feedback.component');
     this._modalService.open({

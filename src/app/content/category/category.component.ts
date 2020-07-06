@@ -23,7 +23,6 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public categories$: Observable<ICategoryState> = this._store
     .select('categories')
     .pipe(takeUntil(this.unsubscribe$$));
-  public show: string | undefined;
   public products$: Observable<IProductsState> = this._store
     .select('products')
     .pipe(takeUntil(this.unsubscribe$$));

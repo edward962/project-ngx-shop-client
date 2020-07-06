@@ -60,7 +60,6 @@ export class ProductEffects extends UnSubscriber {
               feedback: { ...feedback, product },
               rating,
             }),
-            // getProductPending({ id: product }),
           ])
         )
       ),

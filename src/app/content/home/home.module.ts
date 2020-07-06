@@ -7,7 +7,6 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
 import { reducerSuggestedProducts } from './store/reducers/suggested-products.reducer';
 import { SuggestedProductsEffects } from './store/effects/suggested-products.effect';
 
@@ -20,4 +19,4 @@ import { SuggestedProductsEffects } from './store/effects/suggested-products.eff
     EffectsModule.forFeature([SuggestedProductsEffects]),
   ],
 })
-export class HomeModule {}
+export class HomeModule { }
