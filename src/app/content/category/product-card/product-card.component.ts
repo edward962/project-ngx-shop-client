@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
@@ -17,7 +17,7 @@ export class CategoryProductComponent {
   constructor(
     private _modalService: ModalService,
     private readonly _store: Store<IStore>
-  ) {}
+  ) { }
 
   public async addToBusket(product: IProduct): Promise<void> {
     this._store.dispatch(addProductToCart({ product }));
@@ -46,4 +46,5 @@ export class CategoryProductComponent {
       })
     );
   }
+
 }
