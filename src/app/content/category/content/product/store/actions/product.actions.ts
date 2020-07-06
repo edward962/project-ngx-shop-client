@@ -12,16 +12,14 @@ export const getProductSuccess = createAction(
   '[Product] Get product success',
   props<{ product: IProduct }>()
 );
-export const getProductError = createAction(
-  '[Product] Get product error',
-);
+export const getProductError = createAction('[Product] Get product error');
 export const createFeedbackPending = createAction(
   '[Feedback] Create feedback pending',
   props<{ feedback: IFeedback }>()
 );
 export const createFeedbackSuccess = createAction(
-  '[Feedback] Create feedback success'
+  '[Feedback] Create feedback success',
+  props<{ rating: number; feedback: IFeedback }>()
 );
 
 export const clearProduct = createAction('[Product] Clear product');
-

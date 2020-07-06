@@ -4,7 +4,7 @@ export interface IProduct {
   count?: number;
   name: string;
   description: string;
-  feedbacks?: IFeedback;
+  feedbacks: IFeedback[];
   characteristics?: ICharacteristics[];
   price: number;
   status: boolean;
@@ -13,6 +13,7 @@ export interface IProduct {
 }
 
 export interface IFeedback {
+  product?: string;
   rate?: number;
   advantages?: string;
   limitations?: string;
