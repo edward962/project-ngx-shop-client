@@ -13,10 +13,9 @@
     <div>
       <div class="rate">
         <ngx-shop-star-rating tooltip="Рейтинг товара" [feedbackRate]="product.rating | rate"></ngx-shop-star-rating>
-        <p class="rate-amount ml-2" *ngIf="product.feedbacksCount">{{ product.feedbacksCount }}</p>
+        <p class="rate-amount ml-2">{{ product.feedbacksCount | review }}</p>
 
       </div>
-      <p class="rate-amount ml-2" *ngIf="!product.feedbacksCount">нет отзывов</p>
       <p class="card-text price-text">
         <strong>{{ product.price | currency: 'EUR' }}</strong>
       </p>
