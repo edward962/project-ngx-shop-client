@@ -8,6 +8,7 @@ import { go } from 'src/app/store/actions/router.actions';
 export interface IBanner {
   subCategoryId: string;
   title: string;
+  image: string;
 }
 
 @Component({
