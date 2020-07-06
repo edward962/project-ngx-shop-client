@@ -7,6 +7,7 @@ import { getProductPending } from './store/actions/product.actions';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProductState } from './store/reducers/product.reducer';
 
 @Component({
   selector: 'ngx-shop-product',
@@ -21,8 +22,8 @@ export class ProductComponent extends UnSubscriber implements OnInit {
     super();
   }
 
-  public product$?: Observable<IProduct> = this._store
-    .select('product', 'item')
+  public product$?: Observable<IProductState> = this._store
+    .select('product')
     .pipe(takeUntil(this.unsubscribe$$));
 
   public ngOnInit(): void {
