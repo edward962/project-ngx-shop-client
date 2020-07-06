@@ -1,10 +1,10 @@
 <div class="product-list-box">
   <div (click)="redirectTo(product._id)" class="inner-col description-col">
-    <div class="product-img">
-      <img loading="lazy" class="img" width="80" [src]="product.images | imgUrl" [alt]="product.name" />
+    <div class="product-img pointer">
+      <img loading="auto" class="img" width="80" [src]="product.images | imgUrl" [alt]="product.name" />
     </div>
     <div class="product-desc">
-      <h4 class="col-title mb-2">
+      <h4 class="col-title mb-2 pointer">
         {{ product.name }}
       </h4>
       <ngx-shop-star-rating tooltip="Рейтинг товара" position="top" [feedbackRate]="product.rating | rate">
