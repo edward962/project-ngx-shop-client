@@ -1,4 +1,4 @@
-<div class="card pointer" (click)="redirectTo(product._id)">
+<div class="card" (click)="redirectTo(product._id)">
   <div class="card-img-wrap pointer">
     <img loading="auto" *ngIf="product.images" class="card-img-top" [src]="product.images | imgUrl"
       [alt]="product.name" />
