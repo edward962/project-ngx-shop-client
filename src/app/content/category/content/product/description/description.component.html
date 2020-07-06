@@ -1,8 +1,8 @@
 <div class="product-info-tabs">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link" [ngClass]="{ active: isShowDescription }" (click)="toggleTab()">Описание</a>
-      <a class="nav-item nav-link" [ngClass]="{ active: !isShowDescription }" (click)="toggleTab()">Отзывы
+      <a class="nav-item nav-link pointer" [ngClass]="{ active: isShowDescription }" (click)="toggleTab()">Описание</a>
+      <a class="nav-item nav-link pointer" [ngClass]="{ active: !isShowDescription }" (click)="toggleTab()">Отзывы
         {{ product?.feedbacksCount || 0}}</a>
     </div>
   </nav>

@@ -11,6 +11,7 @@
         change="userChangeEnd()" />
     </div>
   </form>
-  <ng5-slider [(value)]="low" [(highValue)]="high" [options]="options" (userChangeEnd)="userChangeEnd()">
+  <ng5-slider [(value)]="low" [(highValue)]="high" [options]="options" (userChange)="userChange()"
+    (userChangeEnd)="userChangeEnd()">
   </ng5-slider>
 </div>

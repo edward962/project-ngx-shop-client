@@ -2,7 +2,7 @@
   <div class="inner-col description-col">
     <!-- <i class="fa fa-times-circle-o" aria-hidden="true" tooltip="Убрать товар из корзины"
     (click)="removeProductFromCart(product)"></i> -->
-    <div class="product-img" (click)="redirectTo(product._id)">
+    <div class="product-img pointer" (click)="redirectTo(product._id)">
       <img loading="auto" [src]="product.images | imgUrl" [alt]="product.name" *ngIf="product.images" />
     </div>
     <div class="product-desc">
@@ -20,11 +20,13 @@
   </div>
   <div class="default-col inner-col flex-col justify-content-center">
     <div class="counter">
-      <button type="button" tooltip="Уменьшить количество товара" (click)="decrementProductInCart(product)">
+      <button type="button" class="pointer" tooltip="Уменьшить количество товара"
+        (click)="decrementProductInCart(product)">
         <img loading="auto" src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus" />
       </button>
       <span class="counter__value">{{ product.count }}</span>
-      <button type="button" tooltip="Увеличить количество товара" (click)="incrementProductInCart(product)">
+      <button type="button" class="pointer" tooltip="Увеличить количество товара"
+        (click)="incrementProductInCart(product)">
         <img loading="auto" src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus" />
       </button>
     </div>
