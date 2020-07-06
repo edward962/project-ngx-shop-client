@@ -1,3 +1,4 @@
+import { ReviewPipe } from './pipes/ review.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -28,6 +29,7 @@ import { IProduct } from './interfaces/product.inteface';
     StarRatingComponent,
     RatePipe,
     ImgUrlPipe,
+    ReviewPipe,
     TooltipDirective,
     LoaderComponent,
   ],
@@ -48,7 +50,8 @@ import { IProduct } from './interfaces/product.inteface';
     ImgUrlPipe,
     TooltipDirective,
     LoaderComponent,
-    ],
+    ReviewPipe,
+  ],
   providers: [
     CategoriesService,
     ProductsService,
@@ -78,7 +81,7 @@ export class SharedModule {
           useFactory: (
             store: Store<IStore>,
             localStorageService: LocalStorageService
-          // tslint:disable-next-line:typedef
+            // tslint:disable-next-line:typedef
           ) => () => {
             const products: IProduct[] = localStorageService.getFromLocalStorage<
               IProduct
