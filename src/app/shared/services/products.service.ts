@@ -13,8 +13,8 @@ export class ProductsService {
   public createFeedback(
     feedback: IFeedback,
     product: string
-  ): Observable<IFeedback> {
-    return this.http.post<IFeedback>(`/feedbacks`, { ...feedback, product });
+  ): Observable<IProduct> {
+    return this.http.post<IProduct>(`/feedbacks`, { ...feedback, product });
   }
 
   public getProductsBySubCategory({

@@ -53,14 +53,16 @@ export class ProductEffects extends UnSubscriber {
       withLatestFrom(this.store.select('product', 'item', '_id')),
       // tslint:disable-next-line:typedef
       switchMap(([{ feedback }, product]) =>
-        this.productsService
-          .createFeedback(feedback, product)
-          .pipe(
-            mergeMap(() => [
-              createFeedbackSuccess(),
-              getProductPending({ id: product }),
-            ])
-          )
+        this.productsService.createFeedback(feedback, product).pipe(
+          // tslint:disable-next-line:typedef
+          mergeMap(({ rating }: { rating: number }) => [
+            createFeedbackSuccess({
+              feedback: { ...feedback, product },
+              rating,
+            }),
+            // getProductPending({ id: product }),
+          ])
+        )
       ),
       takeUntil(this.unsubscribe$$)
     )
