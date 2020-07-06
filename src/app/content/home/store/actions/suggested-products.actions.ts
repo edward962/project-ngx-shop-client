@@ -8,3 +8,7 @@ export const getSuggestedProductsSuccess = createAction(
   '[Home] Get suggested products success',
   props<{ products: IProduct[] }>()
 );
+export const clearSuggestedProducts = createAction(
+  '[Home] Clear Suggested Products'
+);
+
