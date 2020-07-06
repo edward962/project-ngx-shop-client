@@ -14,13 +14,14 @@
         }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex" class="carousel-item">
         <img loading="auto" class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
+        <img class="background-image" [src]="baner.image">
         <div class="container">
           <div class="carousel-caption">
-            <h3 class="h1">ЛУЧШИЕ ИЗ КАТЕГОРИИ {{baner.title}}</h3>
+            <h3 class="h1">{{baner.title}}</h3>
             <div>
               <a class="btn pointer" (click)='redirectTo(baner.subCategoryId)' role="button">
 
-                Посмотреть все предложения
+                Посмотреть предложения
                 <img loading="auto" src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
               </a>
             </div>

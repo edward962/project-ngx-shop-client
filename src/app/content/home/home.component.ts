@@ -34,12 +34,15 @@ export class HomeComponent extends UnSubscriber implements OnInit, OnDestroy {
   public loading$: Observable<boolean> = this._store.select(loadingSugestedProductAndCategories);
   public bunerItems: IBanner[] = [{
     subCategoryId: '5ef4c36bf63cdf28bc1ac60f',
-    title: 'КОМПЬЮТЕРЫ',
+    title: 'Компьютеры, ноутбуки и ПО',
+    image: '/assets/images/carousel-laptop.png',
   }, {
-    subCategoryId: '5ef4c36bf63cdf28bc1ac58d', title: 'СМАРТФОНЫ',
+    subCategoryId: '5ef4c36bf63cdf28bc1ac58d', title: 'Смартфоны и гаджеты',
+    image: '/assets/images/carousel-phone.png',
   }, {
-    subCategoryId: '5ef4c36bf63cdf28bc1ac68d',
-    title: ' АВТОЗВУК',
+    subCategoryId: '5ef4c36bf63cdf28bc1ac5e0',
+    title: ' Игры и хобби',
+    image: '/assets/images/carousel-console.png',
   }];
 
   constructor(
