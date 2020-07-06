@@ -3,7 +3,7 @@
     <!-- <i class="fa fa-times-circle-o" aria-hidden="true" tooltip="Убрать товар из корзины"
     (click)="removeProductFromCart(product)"></i> -->
     <div class="product-img" (click)="redirectTo(product._id)">
-      <img [src]="product.images | imgUrl" [alt]="product.name" *ngIf="product.images" />
+      <img loading="lazy" [src]="product.images | imgUrl" [alt]="product.name" *ngIf="product.images" />
     </div>
     <div class="product-desc">
       <h4 class="col-title mb-2">
@@ -21,11 +21,11 @@
   <div class="default-col inner-col flex-col justify-content-center">
     <div class="counter">
       <button type="button" tooltip="Уменьшить количество товара" (click)="decrementProductInCart(product)">
-        <img src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus" />
+        <img loading="lazy" src="/assets/icons/icon-minus-circle-outlined.svg" alt="minus" />
       </button>
       <span class="counter__value">{{ product.count }}</span>
       <button type="button" tooltip="Увеличить количество товара" (click)="incrementProductInCart(product)">
-        <img src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus" />
+        <img loading="lazy" src="/assets/icons/icon-plus-circle-outlined.svg" alt="plus" />
       </button>
     </div>
   </div>

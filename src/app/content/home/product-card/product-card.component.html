@@ -1,8 +1,9 @@
 <div class="card" (click)="redirectTo(product._id)">
   <div class="card-img-wrap">
-    <img *ngIf="product.images" class="card-img-top" [src]="product.images | imgUrl" [alt]="product.name" />
+    <img loading="lazy" *ngIf="product.images" class="card-img-top" [src]="product.images | imgUrl"
+      [alt]="product.name" />
 
-    <img *ngIf="!product.images" class="card-img-top" [src]="
+    <img loading="lazy" *ngIf="!product.images" class="card-img-top" [src]="
         'https://meruherbs.com/wp-content/uploads/2017/07/no-product-image-600x600.png'
       " [alt]="product.name" />
   </div>

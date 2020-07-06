@@ -2,6 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import {
   getSuggestedProductsPending,
   getSuggestedProductsSuccess,
+  clearSuggestedProducts,
 } from '../actions/suggested-products.actions';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
@@ -32,7 +33,9 @@ const suggestedProductsReducer = createReducer(
     ...state,
     items: products,
     loading: false,
-  }))
+  })),
+  // tslint:disable-next-line:typedef
+  on(clearSuggestedProducts, (state: IProductsState) => initialState)
 );
 
 export function reducerSuggestedProducts(

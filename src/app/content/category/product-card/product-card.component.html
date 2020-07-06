@@ -1,7 +1,7 @@
 <div class="product-list-box">
   <div (click)="redirectTo(product._id)" class="inner-col description-col">
     <div class="product-img">
-      <img class="img" width="80" [src]="product.images | imgUrl" [alt]="product.name" />
+      <img loading="lazy" class="img" width="80" [src]="product.images | imgUrl" [alt]="product.name" />
     </div>
     <div class="product-desc">
       <h4 class="col-title mb-2">
