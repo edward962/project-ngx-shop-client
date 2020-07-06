@@ -13,7 +13,7 @@
           params: isSlidedRight ? animateRight : animateLeft
         }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex" class="carousel-item">
-        <img loading="lazy" class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
+        <img loading="auto" class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
         <div class="container">
           <div class="carousel-caption">
             <h3 class="h1">ЛУЧШИЕ ИЗ КАТЕГОРИИ {{baner.title}}</h3>
@@ -21,7 +21,7 @@
               <a class="btn" (click)='redirectTo(baner.subCategoryId)' role="button">
 
                 Посмотреть все предложения
-                <img loading="lazy" src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
+                <img loading="auto" src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
               </a>
             </div>
           </div>

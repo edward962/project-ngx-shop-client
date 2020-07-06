@@ -5,28 +5,12 @@
   <form [formGroup]="priceForm">
     <div class="form-group row align-items-center mx-0">
       <label class="col-2 px-0 mb-0 text-center text-dark">От</label>
-      <input
-        min="0"
-        type="number"
-        formControlName="low"
-        class="form-control col-4"
-        change="userChangeEnd()"
-      />
+      <input min="0" type="number" formControlName="low" class="form-control col-4 pointer" change="userChangeEnd()" />
       <label class="col-2 px-0 mb-0 text-center text-dark">до</label>
-      <input
-        max="2000"
-        formControlName="high"
-        type="number"
-        class="form-control col-4"
-        change="userChangeEnd()"
-      />
+      <input max="2000" formControlName="high" type="number" class="form-control col-4 pointer"
+        change="userChangeEnd()" />
     </div>
   </form>
-  <ng5-slider
-    [(value)]="low"
-    [(highValue)]="high"
-    [options]="options"
-    (userChangeEnd)="userChangeEnd()"
-  >
+  <ng5-slider [(value)]="low" [(highValue)]="high" [options]="options" (userChangeEnd)="userChangeEnd()">
   </ng5-slider>
 </div>
