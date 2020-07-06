@@ -186,6 +186,7 @@ main
   height: 34px
   top: 50%
   margin-top: -17px
+  z-index: 1000
 
 .main-carousel .carousel-control-next:hover,
 .main-carousel .carousel-control-prev:hover
@@ -214,7 +215,7 @@ main
 .main-carousel .carousel-caption
   top: 20px
   text-align: center
-  left: 12%
+  left: 15%
 
 .main-carousel .carousel-caption .h1
   font-family: "Akzidenz-Grotesk Pro", sans-serif
@@ -245,13 +246,18 @@ main
   right: 1.1rem
   transform: translate(0, -50%)
 
+.pointer
+  cursor: pointer
+
+
 @media all and (max-width: 767px)
   main
     padding: 0
 
   .carousel-inner
     height: 300px
-
+.background-image 
+  right: 1%
 body.no-scroll
   overflow: hidden
   height: 100%
@@ -1336,8 +1342,13 @@ li
 .modal-dialog
   margin: 0
 
-.pointer
-  cursor: pointer
+
+
+
+
+
+
+
 
 .background-image 
   position: absolute
