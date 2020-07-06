@@ -2,7 +2,7 @@
   <ol class="carousel-indicators pointer">
     <li [ngClass]="{ active: j === currentIndex }" class="pointer" *ngFor="let image of items; let j = index"
       (click)="show(j)">
-      <img loading="auto" class="pointer" [src]="image?.url" />
+      <img loading="auto" class="pointer" [src]="image?.url" [alt]="image?.source" />
     </li>
   </ol>
   <div class="carousel-inner">
@@ -13,7 +13,7 @@
           }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex" class="carousel-item">
         <div class="img-wrap">
-          <img loading="auto" *ngIf="image" [src]="image?.url" />
+          <img loading="auto" *ngIf="image" [src]="image?.url" [alt]="image?.source" />
         </div>
       </div>
     </div>
