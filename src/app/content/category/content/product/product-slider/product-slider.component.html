@@ -1,7 +1,7 @@
 <div id="productCarousel" class="product-carousel carousel slide">
   <ol class="carousel-indicators">
     <li [ngClass]="{ active: j === currentIndex }" *ngFor="let image of items; let j = index" (click)="show(j)">
-      <img [src]="image?.url" />
+      <img loading="lazy" [src]="image?.url" />
     </li>
   </ol>
   <div class="carousel-inner">
@@ -12,7 +12,7 @@
           }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex" class="carousel-item">
         <div class="img-wrap">
-          <img *ngIf="image" [src]="image?.url" />
+          <img loading="lazy" *ngIf="image" [src]="image?.url" />
         </div>
       </div>
     </div>

@@ -6,14 +6,14 @@
   </ol>
 
 
-  <div class="carousel-inner"  @initSliderAnimation >
+  <div class="carousel-inner" @initSliderAnimation>
     <ng-container *ngFor="let baner of items; let i = index">
       <div [@slideAnimation]="{
           value: '',
           params: isSlidedRight ? animateRight : animateLeft
         }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
         *ngIf="i === currentIndex" class="carousel-item">
-        <img class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
+        <img loading="lazy" class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
         <div class="container">
           <div class="carousel-caption">
             <h3 class="h1">ЛУЧШИЕ ИЗ КАТЕГОРИИ {{baner.title}}</h3>
@@ -21,7 +21,7 @@
               <a class="btn" (click)='redirectTo(baner.subCategoryId)' role="button">
 
                 Посмотреть все предложения
-                <img src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
+                <img loading="lazy" src="assets/icons/icon-angle-white.svg" class="ml-3" alt="" />
               </a>
             </div>
           </div>
