@@ -1,4 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Options } from 'ng5-slider';
 import {
   ControlValueAccessor,
@@ -24,14 +29,17 @@ export interface IPriceValue {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceSliderComponent implements ControlValueAccessor, OnInit {
-  constructor(private readonly _fb: FormBuilder) { }
+  constructor(private readonly _fb: FormBuilder) {}
   @Input()
   public pricesValue?: number[];
   public onChange!: Function;
   public low = 0;
   public high = 2000;
   public options: Options = {
+    animate: false,
     floor: 0,
+    hideLimitLabels: true,
+    hidePointerLabels: true,
     ceil: 2000,
   };
   public priceForm = this._fb.group({
@@ -62,7 +70,7 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     this.onChange = fn;
   }
 
-  public registerOnTouched(): void { }
+  public registerOnTouched(): void {}
 
   public userChangeEnd(): void {
     this.priceForm.setValue(
@@ -71,5 +79,12 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
     );
     this.pricesValue = [this.low, this.high];
     this.onChange(this.pricesValue);
+  }
+  public userChange(): void {
+    this.priceForm.setValue(
+      { low: this.low, high: this.high },
+      { emitEvent: false }
+    );
+    this.pricesValue = [this.low, this.high];
   }
 }
