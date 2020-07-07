@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
-import { IBrandsState } from './store/reducers/brands.reducer';
+import { IBrandsState, IBrand } from './store/reducers/brands.reducer';
 
 @Component({
   selector: 'app-category',
@@ -49,20 +49,39 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   }
 
   public ngOnInit(): void {
-    this._store.dispatch(getCategoriesPending());
-    this.getForm$('currentSubCategory').subscribe((currentSubCategory): void => {
-      this.selectedBrands = [];
+    this.brands$.subscribe((brands: IBrandsState): void => {
+      this.selectedBrands = this.selectedBrands
+        // tslint:disable-next-line: no-any
+        .map((selectedBrand: string): any =>
+          brands.items.find((brand: string): boolean => brand === selectedBrand)
+        )
+        .filter((item: string): string => item);
       this._store.dispatch(
         go({
           path: ['/category'],
           query: {
-            subCatId: currentSubCategory,
+            brands: (this.selectedBrands as string[]).join(',') || undefined,
           },
-          extras: { replaceUrl: true },
+          extras: { queryParamsHandling: 'merge' },
         })
       );
     });
-    this.getForm$('brands').subscribe((brands): void =>
+    this._store.dispatch(getCategoriesPending());
+    this.getForm$('currentSubCategory').subscribe(
+      (currentSubCategory): void => {
+        this.selectedBrands = [];
+        this._store.dispatch(
+          go({
+            path: ['/category'],
+            query: {
+              subCatId: currentSubCategory,
+            },
+            extras: { replaceUrl: true },
+          })
+        );
+      }
+    );
+    this.getForm$('brands').subscribe((brands): void => {
       this._store.dispatch(
         go({
           path: ['/category'],
@@ -71,8 +90,8 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
           },
           extras: { queryParamsHandling: 'merge' },
         })
-      )
-    );
+      );
+    });
     this.getForm$('prices').subscribe((prices): void => {
       this._store.dispatch(
         go({
