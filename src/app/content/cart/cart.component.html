@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h3 class="h5 mb-4 mt-4 text-md-center">Ваш заказ</h3>
+        <h3 class="h5 mb-4 mt-4 text-md-center cart-title">Ваш заказ</h3>
         <ngx-shop-cart-product
           *ngFor="let product of cart$ | async; trackBy: trackById"
           [product]="product"

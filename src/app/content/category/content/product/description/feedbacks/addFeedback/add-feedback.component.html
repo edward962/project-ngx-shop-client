@@ -1,42 +1,48 @@
 <div class="review">
-    <div class='review-header'>
-        <h4>Оставить коментарий</h4>
-      </div>
- <div class="row">
+  <div class="review-header">
+    <h4>Оставить коментарий</h4>
+  </div>
+  <div class="row">
     <div class="col-lg-9">
-    
       <div class="add-review my-12" [formGroup]="feedbackForm">
-   
-          <div class='offer'>
-              Добавить оценку
-              <ngx-shop-rating formControlName="rate"
-              tooltip="Оцените товар" position="left"></ngx-shop-rating>
-          </div>
-        <label class="feedback-inputs-label" tooltip="Оставте ваш отзыв о товаре" position="left">
+        <div class="offer">
+          Добавить оценку
+          <ngx-shop-rating
+            formControlName="rate"
+            tooltip="Оцените товар"
+            position="left"
+          ></ngx-shop-rating>
+        </div>
+        <label
+          class="feedback-inputs-label"
+          tooltip="Оставте ваш отзыв о товаре"
+          position="left"
+        >
           Добавить коментарий
-          <div
-            *ngIf="getField('advantages')?.errors?.minlength"
-            class="form-valid"
-          >
-            Отзыв должен состоять минимум из 10 символов
-          </div>
         </label>
         <div class="form-group">
-                  <textarea
-                    formControlName="advantages"
-                    class="form-control"
-                  ></textarea>
+          <textarea
+            formControlName="advantages"
+            class="form-control"
+          ></textarea>
         </div>
-        <div class='button-conrainer'>
+        <div class="form-valid">
+          <p *ngIf="getField('advantages')?.errors?.minlength">
+            Отзыв должен состоять минимум из 10 символов
+          </p>
+        </div>
+        <div class="button-conrainer">
           <button
-          type="submit"
-          class="btn btn-outline-primary px-3"
-          (click)="addFeedback(feedbackForm.value)"
-          [disabled]="feedbackForm.invalid"
-        >
-          Добавить отзыв
-        </button>
-        <button class="btn btn-primary px-3 second " (click)="close()">Отменить</button>
+            type="submit"
+            class="btn btn-outline-primary px-3"
+            (click)="addFeedback(feedbackForm.value)"
+            [disabled]="feedbackForm.invalid"
+          >
+            Добавить отзыв
+          </button>
+          <button class="btn btn-primary px-3 second" (click)="close()">
+            Отменить
+          </button>
         </div>
       </div>
     </div>
