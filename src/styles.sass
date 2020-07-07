@@ -214,45 +214,6 @@ main
 
 .pointer
   cursor: pointer
-
-
-@media all and (max-width: 767px)
-  main
-    padding: 0
-
-  .carousel-inner
-    height: 300px
-
-  .main-carousel .carousel-control-prev
-    z-index: 500  
-
-
-.background-image 
-  right: 1%
-body.no-scroll
-  overflow: hidden
-  height: 100%
-  position: relative
-
-.navbar
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
-
-.navbar-toggler
-  border: none
-  padding: 0
-  position: relative
-
-.navbar-toggler.has-messages:after
-  content: ""
-  background: #d9534f
-  border: 2px solid #ffffff
-  width: 12px
-  height: 12px
-  border-radius: 50%
-  position: absolute
-  top: -6px
-  right: -6px
-
 .basket
   position: relative
 
@@ -276,6 +237,40 @@ body.no-scroll
 .navbar-brand
   margin-left: 1rem
   margin-right: 0
+
+@media all and (max-width: 767px)
+  main
+    padding: 0
+
+  .carousel-inner
+    height: 300px
+
+  .main-carousel .carousel-control-prev
+    z-index: 500  
+
+  body.no-scroll
+    overflow: hidden
+    height: 100%
+    position: relative
+
+  .navbar
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+
+  .navbar-toggler
+    border: none
+    padding: 0
+    position: relative
+
+  .navbar-toggler.has-messages:after
+    content: ""
+    background: #d9534f
+    border: 2px solid #ffffff
+    width: 12px
+    height: 12px
+    border-radius: 50%
+    position: absolute
+    top: -6px
+    right: -6px
 
 @media (min-width: 768px)
   .carousel-inner
@@ -310,21 +305,6 @@ body.no-scroll
   display: flex
   margin-bottom: 0.5rem
 
-@media (min-width: 767px)
-  .footer
-    background-color: #f2f2f2
-
-  .footer-inner
-    flex-direction: row
-    justify-content: space-between
-
-  .footer-menu
-    margin-bottom: 0
-
-  .footer-menu a
-    display: inline-flex
-    margin-bottom: 0
-
 .jumbotron.jumbotron-light
   background-color: #fff
   border: 1px solid #ddd
@@ -343,29 +323,43 @@ body.no-scroll
   .modal-dialog
     margin: 0
 
-form button[type="submit"]:not(.btn-send)
-  padding-left: 3rem
-  padding-right: 3rem
-  font-weight: 500
-  width: 100%
+
 
 @media all and (min-width: 767px)
   form button[type="submit"]:not(.btn-send)
     width: auto
 
-.form-footer
-  font-size: 0.875rem
+  .form-footer
+    font-size: 0.875rem
 
-.form-group
-  margin-bottom: 1.5rem
+  .form-group
+    margin-bottom: 1.5rem
 
-.form-group:last-child
-  margin-bottom: 0
+  .form-group:last-child
+    margin-bottom: 0
 
-.form-group label
-  color: #999
+  .form-group label
+    color: #999
 
-@media all and (min-width: 767px)
+  .footer
+    background-color: #f2f2f2
+
+  .footer-inner
+    flex-direction: row
+    justify-content: space-between
+
+  .footer-menu
+    margin-bottom: 0
+
+  .footer-menu a
+    display: inline-flex
+    margin-bottom: 0  
+
+form button[type="submit"]:not(.btn-send)
+  padding-left: 3rem
+  padding-right: 3rem
+  font-weight: 500
+  width: 100%
 .modal
   -webkit-overflow-scrolling: touch
   height: 100%
@@ -599,6 +593,10 @@ li
     border-left: none
     border-right: none
 
+
+
+
+
 .sidebar .list-group-item
   position: relative
   padding: 0
@@ -630,12 +628,18 @@ li
   margin-left: -15px
   border-radius: 0
 
+
+
+
 @media all and (min-width: 576px)
   .main-carousel
     border-radius: 4px
     overflow: hidden
     margin: auto
     width: 100%
+
+
+
 
 .main-carousel .carousel-indicators li
   width: 12px
@@ -687,12 +691,16 @@ li
   top: 20px
   text-align: center
 
+
 @media all and (min-width: 992px)
   .main-carousel .carousel-caption
     max-width: 45%
     left: 6rem
     right: 6rem
     text-align: left
+
+
+
 
 .main-carousel .carousel-caption .h1
   font-family: "Akzidenz-Grotesk Pro", sans-serif
@@ -702,10 +710,14 @@ li
   color: #373a3c
   margin-bottom: 1.5rem
 
+
 @media all and (min-width: 992px)
   .main-carousel .carousel-caption .h1
     font-size: 32px
     line-height: 36px
+
+
+
 
 .main-carousel .carousel-caption .btn
   background-color: #4100ac
@@ -796,7 +808,6 @@ li
   text-align: center
 
 @media all and (max-width: 767px)
-
   .homepage-cards .card
     flex-direction: row
 
@@ -832,6 +843,7 @@ li
     line-height: 21px
     margin-left: 0 !important
 
+
 .section-title
   font-size: 16px
   line-height: 24px
@@ -840,6 +852,7 @@ li
 @media all and (max-width: 767px)
   .aside-accordion-menu
     margin: 2rem 0
+
 
 .aside-accordion-menu ul
   padding: 0.5rem 0.75rem
@@ -942,6 +955,8 @@ li
 
   .price-col
     display: none
+
+
 
 .range-slider__inner
   position: relative
@@ -1077,6 +1092,7 @@ li
     width: 100%
     border: transparent
     border-radius: 0
+
 @media all and (max-width: 767px)
   .product-carousel,
   .product-carousel .carousel-item
@@ -1101,9 +1117,9 @@ li
   .product-info-tabs
     margin-top: 3rem
 
+
 .product-info .nav.nav-tabs
   position: relative
-
 .col-md-5 .btn .btn-primary .btn-lg .px-3
   cursor: pointer
 
@@ -1126,6 +1142,7 @@ li
   .product-info .btn
     width: 100%
 
+  
 .product-info
   font-size: 14px
   line-height: 20px
@@ -1143,16 +1160,14 @@ li
     padding-right: 0
 
 @media all and (min-width: 767px)
-
-.product-info ul li,
-.product-info .p-notice
-  line-height: 26px
+  .product-info ul li,
+  .product-info .p-notice
+    line-height: 26px
 
 
 .form-inline.form-inline-flex .form-control
   display: inline-flex
   flex: 0 0 calc(100% - 46px)
-
 
 .outlet-wrap
   min-height: calc(100vh - 120px)
@@ -1161,8 +1176,6 @@ li
   overflow: hidden
 .modal-dialog
   margin: 0
-
-
 
 .background-image 
   position: absolute
