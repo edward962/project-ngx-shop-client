@@ -237,7 +237,19 @@ main
 .navbar-brand
   margin-left: 1rem
   margin-right: 0
-
+.navbar
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+.cart-title
+  margin-top: 0 !important
+.product-info-tabs .nav-link
+    color: #0275D8 
+.nav-tabs .nav-link:hover
+  color: #0275D8 
+.product-info-tabs .nav-link.active
+  &:hover
+    color:#495057
+.all-characters .ng-star-inserted,.all-characters .ng-star-inserted:hover , .characters
+  color: #007bff
 @media all and (max-width: 767px)
   main
     padding: 0
@@ -252,9 +264,6 @@ main
     overflow: hidden
     height: 100%
     position: relative
-
-  .navbar
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
 
   .navbar-toggler
     border: none
