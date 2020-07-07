@@ -13,3 +13,7 @@ export const getBrandsSuccess = createAction(
     brands: string[];
   }>()
 );
+export const getBrandsError = createAction(
+  '[Brands] Get brands error',
+  props<{ err: Error }>()
+);

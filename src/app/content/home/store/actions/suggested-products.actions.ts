@@ -11,4 +11,7 @@ export const getSuggestedProductsSuccess = createAction(
 export const clearSuggestedProducts = createAction(
   '[Home] Clear Suggested Products'
 );
-
+export const getSuggestedProductsError = createAction(
+  '[Home] Get suggested products success',
+  props<{ err: Error }>()
+);

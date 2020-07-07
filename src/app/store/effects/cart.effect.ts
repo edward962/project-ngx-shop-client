@@ -4,11 +4,18 @@ import {
   incrementProductInCart,
   decrementProductInCart,
   cartSuccess,
+  removeProductFromCartError,
 } from './../actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
-import { map, withLatestFrom, filter, tap } from 'rxjs/operators';
+import {
+  map,
+  filter,
+  tap,
+  catchError,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { removeProductFromCart } from '../actions/cart.actions';
 import { Store, Action } from '@ngrx/store';
 import { selectProducts } from '../reducers/cart.reducer';
@@ -32,7 +39,11 @@ export class CartEffects {
       // tslint:disable-next-line:typedef
       map(() => {
         return go({ path: ['/'] });
-      })
+      }),
+      catchError(
+        (err: Error): Observable<Action> =>
+          of(removeProductFromCartError({ err }))
+      )
     )
   );
 

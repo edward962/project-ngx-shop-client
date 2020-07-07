@@ -1,13 +1,14 @@
 import { Action } from '@ngrx/store';
 import { CategoriesService } from './../../shared/services/category.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import {
   getCategoriesPending,
   getCategoriesSuccess,
+  getCategoriesError,
 } from '../actions/category.actions';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CategoryEffects {
@@ -25,7 +26,10 @@ export class CategoryEffects {
           // tslint:disable-next-line:typedef
           map((categories) => {
             return getCategoriesSuccess({ categories });
-          })
+          }),
+          catchError(
+            (err: Error): Observable<Action> => of(getCategoriesError({ err }))
+          )
         );
       })
     )
