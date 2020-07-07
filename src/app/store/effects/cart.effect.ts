@@ -7,13 +7,7 @@ import {
   removeProductFromCartError,
 } from './../actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
-import {
-  map,
-  filter,
-  tap,
-  catchError,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { map, filter, tap, catchError, withLatestFrom } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { removeProductFromCart } from '../actions/cart.actions';
@@ -21,13 +15,15 @@ import { Store, Action } from '@ngrx/store';
 import { selectProducts } from '../reducers/cart.reducer';
 import { go } from '../actions/router.actions';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class CartEffects {
   constructor(
     private actions: Actions,
     private store: Store<IStore>,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private toastr: ToastrService
   ) {}
   // tslint:disable-next-line:typedef
   public removeProduct$: Observable<Action> = createEffect(() =>
@@ -52,7 +48,7 @@ export class CartEffects {
     this.actions.pipe(
       ofType(
         removeProductFromCart,
-        addProductToCart,
+        // addProductToCart,
         incrementProductInCart,
         decrementProductInCart
       ),
@@ -64,5 +60,17 @@ export class CartEffects {
       // tslint:disable-next-line:typedef
       map(() => cartSuccess())
     )
+  );
+  public addProductToStorage$: Observable<Action> = createEffect(
+    () =>
+      this.actions.pipe(
+        ofType(addProductToCart),
+        // tslint:disable-next-line:typedef
+        tap(() => {
+          this.toastr.info('Вы добавили этот товар в корзину');
+          return cartSuccess();
+        })
+      ),
+    { dispatch: false }
   );
 }

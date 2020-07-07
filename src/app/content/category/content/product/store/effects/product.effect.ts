@@ -10,6 +10,7 @@ import {
   withLatestFrom,
   takeUntil,
   catchError,
+  tap,
 } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
 import { ProductsService } from '../../../../../../shared/services/products.service';
@@ -22,13 +23,15 @@ import {
   createFeedbackError,
 } from '../actions/product.actions';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ProductEffects extends UnSubscriber {
   constructor(
     private actions: Actions,
     private productsService: ProductsService,
-    private store: Store<IStore>
+    private store: Store<IStore>,
+    private toastr: ToastrService
   ) {
     super();
   }
@@ -60,6 +63,8 @@ export class ProductEffects extends UnSubscriber {
       // tslint:disable-next-line:typedef
       switchMap(([{ feedback }, product]) =>
         this.productsService.createFeedback(feedback, product).pipe(
+          // tslint:disable-next-line:typedef
+          tap(() => this.toastr.info('Вы успешно добавили отзыв')),
           // tslint:disable-next-line:typedef
           mergeMap(({ rating }: { rating: number }) => [
             createFeedbackSuccess({
