@@ -12,7 +12,6 @@ export const getProductSuccess = createAction(
   '[Product] Get product success',
   props<{ product: IProduct }>()
 );
-export const getProductError = createAction('[Product] Get product error');
 export const createFeedbackPending = createAction(
   '[Feedback] Create feedback pending',
   props<{ feedback: IFeedback }>()

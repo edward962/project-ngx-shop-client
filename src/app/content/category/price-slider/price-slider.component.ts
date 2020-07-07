@@ -11,11 +11,6 @@ import {
   FormBuilder,
 } from '@angular/forms';
 
-export interface IPriceValue {
-  low: number;
-  high: number;
-}
-
 @Component({
   selector: 'ngx-shop-price-slider',
   templateUrl: './price-slider.component.html',

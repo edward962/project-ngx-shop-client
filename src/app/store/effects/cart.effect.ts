@@ -22,7 +22,7 @@ export class CartEffects {
     private store: Store<IStore>,
     private localStorageService: LocalStorageService
   ) {}
-
+  // tslint:disable-next-line:typedef
   public removeProduct$: Observable<Action> = createEffect(() =>
     this.actions.pipe(
       ofType(removeProductFromCart),

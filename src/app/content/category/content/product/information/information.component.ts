@@ -14,9 +14,7 @@ export class InformationComponent {
   public product?: IProduct;
   public isShow = false;
 
-  constructor(
-    private readonly _store: Store<IStore>,
-  ) { }
+  constructor(private readonly _store: Store<IStore>) {}
   public async addToBusket(product: IProduct): Promise<void> {
     this._store.dispatch(addProductToCart({ product }));
   }

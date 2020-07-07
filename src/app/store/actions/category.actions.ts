@@ -7,10 +7,5 @@ export const getCategoriesPending = createAction(
 
 export const getCategoriesSuccess = createAction(
   '[Categories] Get categories success',
-  props<{ categories: ICategory[] }>(),
+  props<{ categories: ICategory[] }>()
 );
-
-export const getCategoriesError = createAction(
-    '[Categories] Get categories error',
-  );
-

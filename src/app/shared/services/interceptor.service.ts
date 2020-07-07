@@ -18,17 +18,15 @@ export interface IRes<T> {
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-  constructor(
-    @Inject(BASE_URL_TOKEN) private _baseUrl: string) {
-  }
+  constructor(@Inject(BASE_URL_TOKEN) private _baseUrl: string) {}
 
   public intercept<T extends IRes<T>>(
     req: HttpRequest<T>,
-    next: HttpHandler,
+    next: HttpHandler
   ): Observable<HttpResponse<T>> {
     const headers: HttpHeaders = req.headers.append(
       'Content-Type',
-      'application/json',
+      'application/json'
     );
     const jsonReq: HttpRequest<T> = req.clone({
       headers,
@@ -45,9 +43,11 @@ export class InterceptorService implements HttpInterceptor {
       map((res: HttpResponse<IRes<T>>) => {
         return res.clone({ body: res.body && res.body.data });
       }),
-      catchError((): Observable<never> => {
-        return EMPTY;
-      }),
+      catchError(
+        (): Observable<never> => {
+          return EMPTY;
+        }
+      )
     );
   }
 }

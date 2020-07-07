@@ -1,11 +1,8 @@
 <ngx-shop-header></ngx-shop-header>
-<div  
-class="outlet-wrap"  >
-<!-- [@routeTransition]="getRouterState(main)" (@routeTransition.start)="animationStart()" -->
-<!-- (@routeTransition.done)="animationEnd() " -->
-  <router-outlet  #main="outlet" >
-  </router-outlet>
+<div class="outlet-wrap">
+  <!-- [@routeTransition]="getRouterState(main)" (@routeTransition.start)="animationStart()" -->
+  <!-- (@routeTransition.done)="animationEnd() " -->
+  <router-outlet #main="outlet"> </router-outlet>
 </div>
 <ngx-shop-footer></ngx-shop-footer>
 <ngx-shop-modal></ngx-shop-modal>
-

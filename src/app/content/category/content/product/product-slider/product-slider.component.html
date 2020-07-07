@@ -1,29 +1,55 @@
 <div id="productCarousel" class="product-carousel carousel slide">
   <ol class="carousel-indicators pointer">
-    <li [ngClass]="{ active: j === currentIndex }" class="pointer" *ngFor="let image of items; let j = index"
-      (click)="show(j)">
-      <img loading="auto" class="pointer" [src]="image?.url" [alt]="image?.source" />
+    <li
+      [ngClass]="{ active: j === currentIndex }"
+      class="pointer"
+      *ngFor="let image of items; let j = index"
+      (click)="show(j)"
+    >
+      <img
+        loading="auto"
+        class="pointer"
+        [src]="image?.url"
+        [alt]="image?.source"
+      />
     </li>
   </ol>
   <div class="carousel-inner">
     <div [@initSliderAnimation] *ngFor="let image of items; let i = index">
-      <div [@slideAnimation]="{
-            value: '',
-            params: isSlidedRight ? animateRight : animateLeft
-          }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
-        *ngIf="i === currentIndex" class="carousel-item">
+      <div
+        [@slideAnimation]="{
+          value: '',
+          params: isSlidedRight ? animateRight : animateLeft
+        }"
+        (@slideAnimation.start)="animationStart()"
+        (@slideAnimation.done)="animationEnd()"
+        *ngIf="i === currentIndex"
+        class="carousel-item"
+      >
         <div class="img-wrap">
-          <img loading="auto" *ngIf="image" [src]="image?.url" [alt]="image?.source" />
+          <img
+            loading="auto"
+            *ngIf="image"
+            [src]="image?.url"
+            [alt]="image?.source"
+          />
         </div>
       </div>
     </div>
   </div>
-
-  <a *ngIf=" items?.length > 1" class="carousel-control-prev pointer" (click)="prev()">
+  <a
+    *ngIf="items?.length > 1"
+    class="carousel-control-prev pointer"
+    (click)="prev()"
+  >
     <span class="carousel-control-prev-icon"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a *ngIf=" items?.length > 1" class="carousel-control-next pointer" (click)="next()">
+  <a
+    *ngIf="items?.length > 1"
+    class="carousel-control-next pointer"
+    (click)="next()"
+  >
     <span class="carousel-control-next-icon"></span>
     <span class="sr-only">Next</span>
   </a>

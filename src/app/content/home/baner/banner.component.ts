@@ -1,9 +1,17 @@
-import { Component, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
-import { slideAnimation, initSliderAnimation, Slider } from 'src/app/shared/utils/slider';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  ChangeDetectorRef,
+} from '@angular/core';
+import {
+  slideAnimation,
+  initSliderAnimation,
+  Slider,
+} from 'src/app/shared/utils/slider';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { go } from 'src/app/store/actions/router.actions';
-
 
 export interface IBanner {
   subCategoryId: string;

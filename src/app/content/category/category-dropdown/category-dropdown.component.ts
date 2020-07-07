@@ -1,6 +1,9 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { ICategory, ISubCategory } from 'src/app/store/reducers/categories.reducer';
+import {
+  ICategory,
+  ISubCategory,
+} from 'src/app/store/reducers/categories.reducer';
 
 @Component({
   selector: 'ngx-shop-category-dropdown',
@@ -21,19 +24,19 @@ export class CategoryDropdownComponent implements ControlValueAccessor {
   public onChange!: Function;
   public currentCategory?: string;
   public writeValue(current: string): void {
-    this.currentIndex = this.categories.findIndex(
-      (category: ICategory): ISubCategory | undefined => {
-        return category.subCategories?.find((subCat: ISubCategory): boolean => {
-          return subCat._id === current;
-        });
-      }
-    );
+    this.currentIndex = this.categories.findIndex((category: ICategory):
+      | ISubCategory
+      | undefined => {
+      return category.subCategories?.find((subCat: ISubCategory): boolean => {
+        return subCat._id === current;
+      });
+    });
     this.currentCategory = current;
   }
   public registerOnChange(fn: Function): void {
     this.onChange = fn;
   }
-  public registerOnTouched(): void { }
+  public registerOnTouched(): void {}
   public hover(index: number): void {
     this.currentIndex = index;
   }

@@ -13,9 +13,7 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 export class CategoryProductComponent {
   @Input() public product!: IProduct;
 
-  constructor(
-    private readonly _store: Store<IStore>
-  ) { }
+  constructor(private readonly _store: Store<IStore>) {}
 
   public async addToBusket(product: IProduct): Promise<void> {
     this._store.dispatch(addProductToCart({ product }));
@@ -31,5 +29,4 @@ export class CategoryProductComponent {
       })
     );
   }
-
 }

@@ -10,8 +10,6 @@ export const getBrandsPending = createAction(
 export const getBrandsSuccess = createAction(
   '[Brands] Get brands success',
   props<{
-    brands?: string[];
+    brands: string[];
   }>()
 );
-
-export const getBrandsFail = createAction('[Brands] Get brands fail');

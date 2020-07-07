@@ -1,4 +1,11 @@
-import { Directive, Input, ElementRef, HostListener, Renderer2, OnDestroy } from '@angular/core';
+import {
+  Directive,
+  Input,
+  ElementRef,
+  HostListener,
+  Renderer2,
+  OnDestroy,
+} from '@angular/core';
 
 export enum TooltipPosition {
   TOP = 'top',
@@ -21,8 +28,8 @@ export class TooltipDirective implements OnDestroy {
 
   constructor(
     private readonly _el: ElementRef,
-    private readonly renderer: Renderer2) {
-  }
+    private readonly renderer: Renderer2
+  ) {}
 
   @HostListener('mouseenter')
   public onMouseEnter(): void {
@@ -60,7 +67,7 @@ export class TooltipDirective implements OnDestroy {
     if (this.tooltipTitle) {
       this.renderer.appendChild(
         this.tooltip,
-        this.renderer.createText(this.tooltipTitle),
+        this.renderer.createText(this.tooltipTitle)
       );
     }
 
@@ -77,7 +84,11 @@ export class TooltipDirective implements OnDestroy {
 
     const tooltipPos = this.tooltip.getBoundingClientRect();
 
-    const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const scrollPos =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
     let top, left;
 

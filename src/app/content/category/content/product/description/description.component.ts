@@ -13,6 +13,4 @@ export class DescriptionComponent {
   public toggleTab(): void {
     this.isShowDescription = !this.isShowDescription;
   }
-
-
 }

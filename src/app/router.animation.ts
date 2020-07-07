@@ -20,7 +20,7 @@ export const rightAnimation: AnimationMetadata[] = [
         style({ transform: 'translateX(100%)' }),
         animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
       ],
-      { optional: true },
+      { optional: true }
     ),
     query(
       ':leave',
@@ -28,7 +28,7 @@ export const rightAnimation: AnimationMetadata[] = [
         style({ transform: 'translateX(0%)' }),
         animate('0.5s ease-in-out', style({ transform: 'translateX(-100%)' })),
       ],
-      { optional: true },
+      { optional: true }
     ),
   ]),
 ];
@@ -44,7 +44,7 @@ export const leftAnimation: AnimationMetadata[] = [
         style({ transform: 'translateX(-100%)' }),
         animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
       ],
-      { optional: true },
+      { optional: true }
     ),
     query(
       ':leave',
@@ -52,7 +52,7 @@ export const leftAnimation: AnimationMetadata[] = [
         style({ transform: 'translateX(0%)' }),
         animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' })),
       ],
-      { optional: true },
+      { optional: true }
     ),
   ]),
 ];
@@ -71,35 +71,35 @@ export const customTransition: AnimationTriggerMetadata = trigger(
     transition('products => product', rightAnimation),
     transition('product => cart', rightAnimation),
     transition('cart => product', leftAnimation),
-  ],
+  ]
 );
 
-
-
-
-export const fadeAnimation =
-
-  trigger('routeTransition', [
-    transition('* => *', [
-      query(':enter, :leave', style({ position: 'fixed', width: '100%', height: '100vh' }), {
+export const fadeAnimation = trigger('routeTransition', [
+  transition('* => *', [
+    query(
+      ':enter, :leave',
+      style({ position: 'fixed', width: '100%', height: '100vh' }),
+      {
         optional: true,
-      }),
-      group([
-        query(
-          ':enter',
-          [
-            style({ opacity: 0 }),
-            animate('1.5s ease-in-out', style({ opacity: 1 })),
-          ],
-          { optional: true },
-        ),
-        query(
-          ':leave',
-          [
-            style({ opacity: 1 }),
-            animate('1.5s ease-in-out', style({ opacity: 0 })),
-          ],
-          { optional: true },
-        ),
-      ]),
-    ])]);
+      }
+    ),
+    group([
+      query(
+        ':enter',
+        [
+          style({ opacity: 0 }),
+          animate('1.5s ease-in-out', style({ opacity: 1 })),
+        ],
+        { optional: true }
+      ),
+      query(
+        ':leave',
+        [
+          style({ opacity: 1 }),
+          animate('1.5s ease-in-out', style({ opacity: 0 })),
+        ],
+        { optional: true }
+      ),
+    ]),
+  ]),
+]);

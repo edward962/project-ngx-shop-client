@@ -6,11 +6,7 @@ import { CartProductComponent } from './cart-product/cart-product.component';
 import { OrderFormComponent } from './order-form/order-form.component';
 
 @NgModule({
-  declarations: [
-    CartComponent,
-    CartProductComponent,
-    OrderFormComponent,
-  ],
+  declarations: [CartComponent, CartProductComponent, OrderFormComponent],
   imports: [SharedModule, CartRoutingModule],
 })
 export class CartModule {}

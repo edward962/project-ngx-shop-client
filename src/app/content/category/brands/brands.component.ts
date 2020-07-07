@@ -1,7 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-
 @Component({
   selector: 'ngx-shop-brands',
   templateUrl: './brands.component.html',
@@ -35,7 +34,9 @@ export class BrandsComponent implements ControlValueAccessor {
   public registerOnTouched(): void {}
 
   public check(brandName: string): void {
-    const index = this.selectedBrands.findIndex((brand): boolean => brand === brandName);
+    const index = this.selectedBrands.findIndex(
+      (brand): boolean => brand === brandName
+    );
     if (index < 0) {
       this.selectedBrands.push(brandName);
     } else {

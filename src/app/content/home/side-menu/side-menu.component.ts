@@ -13,7 +13,7 @@ export class SideMenuComponent {
   public categories: ICategory[] = [];
   public currentName: string | null = null;
 
-  constructor(private _store: Store<IStore>) { }
+  constructor(private _store: Store<IStore>) {}
 
   public hover(name: string): void {
     this.currentName = name;

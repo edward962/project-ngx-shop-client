@@ -12,7 +12,7 @@ export interface ICategoryState {
 export interface ICategory {
   _id: string;
   name: string;
-  subCategories?: ISubCategory[];
+  subCategories: ISubCategory[];
 }
 
 export interface ISubCategory {
@@ -21,11 +21,12 @@ export interface ISubCategory {
   category: string;
 }
 
+const inititalState = {
+  items: [],
+  loading: false,
+};
 const categoriesReducer = createReducer(
-  {
-    items: [],
-    loading: false,
-  },
+  inititalState,
   // tslint:disable-next-line:typedef
   on(getCategoriesPending, (state: ICategoryState) => ({
     ...state,

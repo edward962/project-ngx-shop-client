@@ -1,7 +1,6 @@
 export interface IProduct {
   _id: string;
   feedbacksCount: number;
-  count?: number;
   name: string;
   description: string;
   feedbacks: IFeedback[];
@@ -10,14 +9,14 @@ export interface IProduct {
   status: boolean;
   images: IProductImage[];
   rating: number;
+  brand?: string;
+  count?: number;
 }
 
 export interface IFeedback {
-  product?: string;
-  rate?: number;
-  advantages?: string;
-  limitations?: string;
-  description?: string;
+  product: string;
+  rate: number;
+  advantages: string;
 }
 
 export interface IProductImage {

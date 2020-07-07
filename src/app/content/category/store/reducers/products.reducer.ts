@@ -10,11 +10,6 @@ export interface IProductsState {
   loading: boolean;
 }
 
-export interface IProducts {
-  items: IProduct[];
-  quantity: number;
-}
-
 export interface IProductApi {
   items: IProduct[];
   quantity: number;

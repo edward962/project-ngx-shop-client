@@ -35,12 +35,11 @@ export class ModalComponent implements OnInit {
   public constructor(
     private readonly _modalService: ModalService,
     private readonly _cfr: ComponentFactoryResolver,
-    private readonly renderer:  Renderer2,
+    private readonly renderer: Renderer2,
     private readonly cdr: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
-
     this._modalService.modalSequence$.subscribe(
       // tslint:disable-next-line:no-any
       ({ component, context }: any): void => {
@@ -49,11 +48,12 @@ export class ModalComponent implements OnInit {
           return;
         }
         this.isOpen = true;
-        this.renderer.addClass(document.querySelector('html'), 'no-scroll')
+        this.renderer.addClass(document.querySelector('html'), 'no-scroll');
         this.childComponent = this._cfr.resolveComponentFactory(component);
         this.modalContext = this.modal.createComponent(this.childComponent, 0);
         Object.keys(context).forEach(
-          (key: string): void => (this.modalContext.instance[key] = context[key])
+          (key: string): void =>
+            (this.modalContext.instance[key] = context[key])
         );
         this.cdr.detectChanges();
       }
@@ -65,7 +65,7 @@ export class ModalComponent implements OnInit {
     if (code !== 27) {
       return;
     }
-    this.renderer.removeClass(document.querySelector('html'), 'no-scroll')
+    this.renderer.removeClass(document.querySelector('html'), 'no-scroll');
     if (this.modalContext) {
       this.modalContext.destroy();
     }

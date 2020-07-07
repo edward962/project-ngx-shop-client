@@ -7,14 +7,14 @@ import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { getSuggestedProductsPending, clearSuggestedProducts } from './store/actions/suggested-products.actions';
+import {
+  getSuggestedProductsPending,
+  clearSuggestedProducts,
+} from './store/actions/suggested-products.actions';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IBanner } from './baner/banner.component';
-
-
-
 
 @Component({
   selector: 'ngx-shop-products',
@@ -31,19 +31,26 @@ export class HomeComponent extends UnSubscriber implements OnInit, OnDestroy {
   public form: FormGroup = this._fb.group({
     currentSubCategory: [''],
   });
-  public loading$: Observable<boolean> = this._store.select(loadingSugestedProductAndCategories);
-  public bunerItems: IBanner[] = [{
-    subCategoryId: '5ef4c36bf63cdf28bc1ac60f',
-    title: 'Компьютеры, ноутбуки и ПО',
-    image: '/assets/images/carousel-laptop.png',
-  }, {
-    subCategoryId: '5ef4c36bf63cdf28bc1ac58d', title: 'Смартфоны и гаджеты',
-    image: '/assets/images/carousel-phone.png',
-  }, {
-    subCategoryId: '5ef4c36bf63cdf28bc1ac5e0',
-    title: ' Игры и хобби',
-    image: '/assets/images/carousel-console.png',
-  }];
+  public loading$: Observable<boolean> = this._store.select(
+    loadingSugestedProductAndCategories
+  );
+  public bunerItems: IBanner[] = [
+    {
+      subCategoryId: '5ef4c36bf63cdf28bc1ac60f',
+      title: 'Компьютеры, ноутбуки и ПО',
+      image: '/assets/images/carousel-laptop.png',
+    },
+    {
+      subCategoryId: '5ef4c36bf63cdf28bc1ac58d',
+      title: 'Смартфоны и гаджеты',
+      image: '/assets/images/carousel-phone.png',
+    },
+    {
+      subCategoryId: '5ef4c36bf63cdf28bc1ac5e0',
+      title: ' Игры и хобби',
+      image: '/assets/images/carousel-console.png',
+    },
+  ];
 
   constructor(
     private readonly _store: Store<IStore>,

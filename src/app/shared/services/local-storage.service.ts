@@ -5,8 +5,7 @@ export class LocalStorageService {
   public addToLocalStorage<T>(key: string, data: T): void {
     try {
       localStorage.setItem(key, JSON.stringify(data));
-    } catch (err) {
-    }
+    } catch (err) {}
   }
 
   public getFromLocalStorage<T>(key: string): T[] {

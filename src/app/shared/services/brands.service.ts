@@ -6,7 +6,13 @@ import { Observable } from 'rxjs/internal/Observable';
 export class BrandsService {
   constructor(private http: HttpClient) {}
 
-  public getBrands({ prices, id }: { prices: number[]; id: string }): Observable<Object> {
+  public getBrands({
+    prices,
+    id,
+  }: {
+    prices: number[];
+    id: string;
+  }): Observable<Object> {
     const priceRange = prices.length > 0 ? prices : [0, 2000];
     return this.http.get(
       `/brands?subCat=${id}&prices=${priceRange[0]},${priceRange[1]}`

@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { getBrandsPending } from './store/actions/brands.actions';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
-import { IBrandsState, IBrand } from './store/reducers/brands.reducer';
+import { IBrandsState } from './store/reducers/brands.reducer';
 
 @Component({
   selector: 'app-category',

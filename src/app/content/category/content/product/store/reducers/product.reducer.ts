@@ -12,11 +12,6 @@ export interface IProductState {
   loading: boolean;
 }
 
-export interface ISearch {
-  text: string;
-  subcategory: string;
-}
-
 const initialState: IProductState = {
   item: {
     _id: '',
@@ -28,6 +23,7 @@ const initialState: IProductState = {
     feedbacks: [],
     status: false,
     rating: 0,
+    brand: '',
   },
   loading: false,
 };
@@ -55,6 +51,7 @@ const productReducer = createReducer(
     },
     loading: false,
   })),
+  // tslint:disable-next-line:typedef
   on(clearProduct, (state: IProductState) => initialState)
 );
 

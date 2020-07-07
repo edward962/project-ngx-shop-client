@@ -20,10 +20,12 @@ export class BrandsEffects extends UnSubscriber {
       ofType(getBrandsPending),
       // tslint:disable-next-line: typedef
       switchMap(({ type, ...query }) => {
-        return this._brandsService
-          .getBrands(query)
-          // tslint:disable-next-line:typedef
-          .pipe(map((data) => getBrandsSuccess({ brands: data as string[] })));
+        return (
+          this._brandsService
+            .getBrands(query)
+            // tslint:disable-next-line:typedef
+            .pipe(map((data) => getBrandsSuccess({ brands: data as string[] })))
+        );
       }),
       takeUntil(this.unsubscribe$$)
     )

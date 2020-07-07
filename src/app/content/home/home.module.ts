@@ -11,7 +11,12 @@ import { reducerSuggestedProducts } from './store/reducers/suggested-products.re
 import { SuggestedProductsEffects } from './store/effects/suggested-products.effect';
 
 @NgModule({
-  declarations: [HomeComponent, ProductCardComponent, SideMenuComponent, BannerSliderComponent],
+  declarations: [
+    HomeComponent,
+    ProductCardComponent,
+    SideMenuComponent,
+    BannerSliderComponent,
+  ],
   imports: [
     SharedModule,
     HomeRoutingModule,
@@ -19,4 +24,4 @@ import { SuggestedProductsEffects } from './store/effects/suggested-products.eff
     EffectsModule.forFeature([SuggestedProductsEffects]),
   ],
 })
-export class HomeModule { }
+export class HomeModule {}

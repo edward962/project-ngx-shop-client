@@ -81,7 +81,7 @@ export const selectProducts = createSelector(selectProductsState, selectAll);
 export const trueProductsCount: MemoizedSelector<
   object,
   number
-// tslint:disable-next-line:typedef
+  // tslint:disable-next-line:typedef
 > = createSelector(selectProducts, (products: IProduct[]) => {
   // tslint:disable-next-line:typedef
   return products.reduce((count: number, product: IProduct) => {

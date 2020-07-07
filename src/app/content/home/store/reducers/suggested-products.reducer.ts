@@ -7,16 +7,7 @@ import {
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
-export interface ISuggestedProductsState {
-  items: IProduct[];
-  loading: boolean;
-}
-export interface ISuggestedProductsApi {
-  items: IProduct[];
-  quantity: number;
-}
-
-const initialState: ISuggestedProductsState = {
+const initialState: IProductsState = {
   items: [],
   loading: false,
 };

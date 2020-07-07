@@ -1,28 +1,46 @@
 <div id="productCarousel" class="main-carousel carousel slide">
-
   <ol class="carousel-indicators">
-    <li [ngClass]="{ active: j === currentIndex }" *ngFor="let baner of items; let j = index" (click)="show(j)">
-    </li>
+    <li
+      [ngClass]="{ active: j === currentIndex }"
+      *ngFor="let baner of items; let j = index"
+      (click)="show(j)"
+    ></li>
   </ol>
-
-
   <div class="carousel-inner" @initSliderAnimation>
     <ng-container *ngFor="let baner of items; let i = index">
-      <div [@slideAnimation]="{
+      <div
+        [@slideAnimation]="{
           value: '',
           params: isSlidedRight ? animateRight : animateLeft
-        }" (@slideAnimation.start)="animationStart()" (@slideAnimation.done)="animationEnd()"
-        *ngIf="i === currentIndex" class="carousel-item">
-        <img loading="auto" class="third-slide" src="assets/images/default-slide-img.jpg" alt="Third slide" />
-        <img class="background-image" [src]="baner.image" [alt]="baner.title">
+        }"
+        (@slideAnimation.start)="animationStart()"
+        (@slideAnimation.done)="animationEnd()"
+        *ngIf="i === currentIndex"
+        class="carousel-item"
+      >
+        <img
+          loading="auto"
+          class="third-slide"
+          src="assets/images/default-slide-img.jpg"
+          alt="Third slide"
+        />
+        <img class="background-image" [src]="baner.image" [alt]="baner.title" />
         <div class="container">
           <div class="carousel-caption">
-            <h3 class="h1">{{baner.title}}</h3>
+            <h3 class="h1">{{ baner.title }}</h3>
             <div>
-              <a class="btn pointer" (click)='redirectTo(baner.subCategoryId)' role="button">
-
+              <a
+                class="btn pointer"
+                (click)="redirectTo(baner.subCategoryId)"
+                role="button"
+              >
                 Посмотреть предложения
-                <img loading="auto" src="assets/icons/icon-angle-white.svg" class="ml-3" alt="Angle" />
+                <img
+                  loading="auto"
+                  src="assets/icons/icon-angle-white.svg"
+                  class="ml-3"
+                  alt="Angle"
+                />
               </a>
             </div>
           </div>
@@ -30,12 +48,19 @@
       </div>
     </ng-container>
   </div>
-
-  <a *ngIf="items?.length > 1" class="carousel-control-prev pointer" (click)="prev()">
+  <a
+    *ngIf="items?.length > 1"
+    class="carousel-control-prev pointer"
+    (click)="prev()"
+  >
     <span class="carousel-control-prev-icon pointer"></span>
     <span class="sr-only pointer">Previous</span>
   </a>
-  <a *ngIf="items?.length > 1" class="carousel-control-next pointer" (click)="next()">
+  <a
+    *ngIf="items?.length > 1"
+    class="carousel-control-next pointer"
+    (click)="next()"
+  >
     <span class="carousel-control-next-icon pointer"></span>
     <span class="sr-only pointer">Next</span>
   </a>

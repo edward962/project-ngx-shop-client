@@ -5,9 +5,6 @@ export interface IBrandsState {
   items: string[];
   loading: Boolean;
 }
-export interface IBrand {
-  brand: String;
-}
 
 const brandsReducer = createReducer(
   {
@@ -16,7 +13,7 @@ const brandsReducer = createReducer(
   },
 
   // tslint:disable-next-line: typedef
-  on(getBrandsPending, (state: IBrandsState, {  }) => ({
+  on(getBrandsPending, (state: IBrandsState, {}) => ({
     ...state,
     loading: false,
   })),
@@ -28,6 +25,9 @@ const brandsReducer = createReducer(
   }))
 );
 
-export function reducerBrands(state: IBrandsState | undefined, action: Action): IBrandsState {
+export function reducerBrands(
+  state: IBrandsState,
+  action: Action
+): IBrandsState {
   return brandsReducer(state, action);
 }

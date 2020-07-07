@@ -12,7 +12,6 @@ import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
-
 @Component({
   selector: 'ngx-shop-cart',
   templateUrl: './cart.component.html',
