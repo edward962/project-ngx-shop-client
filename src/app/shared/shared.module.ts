@@ -22,6 +22,7 @@ import { IStore } from '../store/reducers';
 import { BrandsService } from './services/brands.service';
 import { IProduct } from './interfaces/product.inteface';
 import { Meta } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,11 @@ import { Meta } from '@angular/platform-browser';
     LoaderComponent,
   ],
   imports: [
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
