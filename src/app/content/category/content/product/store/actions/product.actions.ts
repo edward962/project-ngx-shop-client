@@ -12,9 +12,17 @@ export const getProductSuccess = createAction(
   '[Product] Get product success',
   props<{ product: IProduct }>()
 );
+export const getProductError = createAction(
+  '[Product] Get product error',
+  props<{ err: Error }>()
+);
 export const createFeedbackPending = createAction(
   '[Feedback] Create feedback pending',
   props<{ feedback: IFeedback }>()
+);
+export const createFeedbackError = createAction(
+  '[Feedback] Create feedback error',
+  props<{ err: Error }>()
 );
 export const createFeedbackSuccess = createAction(
   '[Feedback] Create feedback success',

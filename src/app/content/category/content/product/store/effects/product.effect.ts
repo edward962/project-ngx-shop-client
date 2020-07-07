@@ -1,7 +1,7 @@
 import { UnSubscriber } from './../../../../../../shared/utils/unsubscriber';
 import { IStore } from 'src/app/store/reducers';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import {
   switchMap,
@@ -9,6 +9,7 @@ import {
   map,
   withLatestFrom,
   takeUntil,
+  catchError,
 } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
 import { ProductsService } from '../../../../../../shared/services/products.service';
@@ -17,6 +18,8 @@ import {
   getProductSuccess,
   createFeedbackPending,
   createFeedbackSuccess,
+  getProductError,
+  createFeedbackError,
 } from '../actions/product.actions';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
@@ -40,7 +43,10 @@ export class ProductEffects extends UnSubscriber {
           // tslint:disable-next-line:typedef
           map((product: IProduct) => {
             return getProductSuccess({ product });
-          })
+          }),
+          catchError(
+            (err: Error): Observable<Action> => of(getProductError({ err }))
+          )
         )
       ),
       takeUntil(this.unsubscribe$$)
@@ -60,7 +66,10 @@ export class ProductEffects extends UnSubscriber {
               feedback: { ...feedback, product },
               rating,
             }),
-          ])
+          ]),
+          catchError(
+            (err: Error): Observable<Action> => of(createFeedbackError({ err }))
+          )
         )
       ),
       takeUntil(this.unsubscribe$$)

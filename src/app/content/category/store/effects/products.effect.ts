@@ -1,11 +1,12 @@
 import {
   getProductsSuccess,
   getProductsPending,
+  getProductsError,
 } from './../actions/products.actions';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { switchMap, map, takeUntil } from 'rxjs/operators';
+import { switchMap, map, takeUntil, catchError } from 'rxjs/operators';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { Action } from '@ngrx/store';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
@@ -28,7 +29,10 @@ export class ProductsEffects extends UnSubscriber {
           // tslint:disable-next-line:typedef
           map(({ items: products }) => {
             return getProductsSuccess({ products });
-          })
+          }),
+          catchError(
+            (err: Error): Observable<Action> => of(getProductsError({ err }))
+          )
         );
       }),
       takeUntil(this.unsubscribe$$)

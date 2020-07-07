@@ -1,10 +1,14 @@
 import { Action } from '@ngrx/store';
 import { BrandsService } from '../../../../shared/services/brands.service';
-import { getBrandsPending, getBrandsSuccess } from '../actions/brands.actions';
-import { switchMap, map, takeUntil } from 'rxjs/operators';
+import {
+  getBrandsPending,
+  getBrandsSuccess,
+  getBrandsError,
+} from '../actions/brands.actions';
+import { switchMap, map, takeUntil, catchError } from 'rxjs/operators';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 
 @Injectable()
@@ -24,7 +28,15 @@ export class BrandsEffects extends UnSubscriber {
           this._brandsService
             .getBrands(query)
             // tslint:disable-next-line:typedef
-            .pipe(map((data) => getBrandsSuccess({ brands: data as string[] })))
+            .pipe(
+              map(
+                (data) => getBrandsSuccess({ brands: data as string[] }),
+                catchError(
+                  (err: Error): Observable<Action> =>
+                    of(getBrandsError({ err }))
+                )
+              )
+            )
         );
       }),
       takeUntil(this.unsubscribe$$)

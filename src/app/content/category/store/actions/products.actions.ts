@@ -15,3 +15,7 @@ export const getProductsSuccess = createAction(
   '[Products] Get products success',
   props<{ products: IProduct[] }>()
 );
+export const getProductsError = createAction(
+  '[Products] Get products error',
+  props<{ err: Error }>()
+);

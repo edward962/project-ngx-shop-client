@@ -1,11 +1,12 @@
 import {
   getSuggestedProductsPending,
   getSuggestedProductsSuccess,
+  getSuggestedProductsError,
 } from '../actions/suggested-products.actions';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { Action } from '@ngrx/store';
 
@@ -25,7 +26,11 @@ export class SuggestedProductsEffects {
           // tslint:disable-next-line:typedef
           map(({ items: products }) => {
             return getSuggestedProductsSuccess({ products });
-          })
+          }),
+          catchError(
+            (err: Error): Observable<Action> =>
+              of(getSuggestedProductsError({ err }))
+          )
         );
       })
     )
