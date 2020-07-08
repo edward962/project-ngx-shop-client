@@ -34,6 +34,7 @@
   <div class="default-col inner-col flex-col justify-content-center">
     <div class="counter">
       <button
+        *ngIf="!disabled"
         type="button"
         class="pointer"
         tooltip="Уменьшить количество товара"
@@ -45,8 +46,10 @@
           alt="minus"
         />
       </button>
+
       <span class="counter__value">{{ product.count }}</span>
       <button
+        *ngIf="!disabled"
         type="button"
         class="pointer"
         tooltip="Увеличить количество товара"

@@ -30,3 +30,4 @@ export const addAllProductsToCart = createAction(
 );
 
 export const cartSuccess = createAction('[Product] Cart success');
+export const clearCart = createAction('[Product] Clear cart');

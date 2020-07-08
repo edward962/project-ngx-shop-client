@@ -48,7 +48,7 @@ export class CartEffects {
     this.actions.pipe(
       ofType(
         removeProductFromCart,
-        // addProductToCart,
+        addProductToCart,
         incrementProductInCart,
         decrementProductInCart
       ),

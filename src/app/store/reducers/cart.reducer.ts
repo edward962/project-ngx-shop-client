@@ -5,6 +5,7 @@ import {
   incrementProductInCart,
   decrementProductInCart,
   addAllProductsToCart,
+  clearCart,
 } from '../actions/cart.actions';
 import {
   createReducer,
@@ -62,9 +63,12 @@ const cartReducer = createReducer(
       },
       state
     );
+  }),
+  // tslint:disable-next-line:typedef
+  on(clearCart, (state: EntityState<IProduct>) => {
+    return cartAdapter.removeAll(state);
   })
 );
-
 export function reducerCart(
   state: EntityState<IProduct> | undefined,
   action: Action

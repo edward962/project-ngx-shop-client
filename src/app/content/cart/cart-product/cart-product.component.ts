@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { go } from 'src/app/store/actions/router.actions';
@@ -13,6 +19,8 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 export class CartProductComponent {
   @Input()
   public product!: IProduct;
+  @Input()
+  public disabled?: boolean;
   @Output()
   public decrement: EventEmitter<IProduct> = new EventEmitter<IProduct>();
 
