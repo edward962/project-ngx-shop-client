@@ -24,6 +24,7 @@ import { IProduct } from './interfaces/product.inteface';
 import { Meta } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [
     StarRatingComponent,

@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { Observable } from 'rxjs';
-import { getProductPending, clearProduct } from './store/actions/product.actions';
+import {
+  getProductPending,
+  clearProduct,
+} from './store/actions/product.actions';
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProductState } from './store/reducers/product.reducer';
@@ -11,9 +14,9 @@ import { IProductState } from './store/reducers/product.reducer';
 @Component({
   selector: 'ngx-shop-product',
   templateUrl: './product.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductComponent extends UnSubscriber implements OnInit, OnDestroy {
+export class ProductComponent extends UnSubscriber
+  implements OnInit, OnDestroy {
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _store: Store<IStore>
