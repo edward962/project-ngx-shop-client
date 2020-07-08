@@ -21,12 +21,12 @@ export interface ISubCategory {
   category: string;
 }
 
-const inititalState = {
+const initialState = {
   items: [],
   loading: false,
 };
 const categoriesReducer = createReducer(
-  inititalState,
+  initialState,
   // tslint:disable-next-line:typedef
   on(getCategoriesPending, (state: ICategoryState) => ({
     ...state,

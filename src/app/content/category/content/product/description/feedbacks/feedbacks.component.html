@@ -1,7 +1,10 @@
 <div class="reviews">
-  <div class='add-review-container'>
-
-    <button type="submit" class="btn btn-outline-primary px-3" (click)="addFeedback()">
+  <div class="add-review-container">
+    <button
+      type="submit"
+      class="btn btn-outline-primary px-3"
+      (click)="addFeedback()"
+    >
       Добавить отзыв
     </button>
   </div>
@@ -12,5 +15,5 @@
       {{ feedBack.advantages }}
     </p>
   </div>
-  <div class='no-reviews' *ngIf="feedbacks?.length === 0">Нет отзывов</div>
+  <div class="no-reviews" *ngIf="feedbacks?.length === 0">Нет отзывов</div>
 </div>
