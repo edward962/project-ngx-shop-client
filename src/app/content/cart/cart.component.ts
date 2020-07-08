@@ -12,7 +12,7 @@ import {
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { go } from 'src/app/store/actions/router.actions';
 
 @Component({
