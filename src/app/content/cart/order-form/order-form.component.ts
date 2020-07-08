@@ -1,3 +1,4 @@
+import { ValidatorsService } from './../../../shared/services/validators.service';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -16,14 +17,22 @@ export class OrderFormComponent {
   @Output()
   public confirm: EventEmitter<FormData> = new EventEmitter<FormData>();
 
-  public form: FormGroup = this._fb.group({
-    name: ['', [Validators.required]],
-    telephone: ['', [Validators.required]],
-    email: ['', [Validators.email, Validators.required]],
-    address: ['', [Validators.required]],
-  });
+  public form: FormGroup = this._fb.group(
+    {
+      name: ['', [Validators.required]],
+      telephone: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      address: ['', [Validators.required]],
+    },
+    {
+      validator: this.validatorsService.telephoneValidator,
+    }
+  );
 
-  constructor(private readonly _fb: FormBuilder) {}
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly validatorsService: ValidatorsService
+  ) {}
   public submit(): void {
     this.confirm.emit();
     this.form.reset();
