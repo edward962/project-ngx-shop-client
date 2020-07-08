@@ -23,7 +23,7 @@ import { BrandsService } from './services/brands.service';
 import { IProduct } from './interfaces/product.inteface';
 import { Meta } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
-import { ValidatorsService } from './services/validators.service';
+
 
 @NgModule({
   declarations: [
@@ -62,7 +62,6 @@ import { ValidatorsService } from './services/validators.service';
     CategoriesService,
     ProductsService,
     BrandsService,
-    ValidatorsService,
     {
       provide: BASE_URL_TOKEN,
       useValue: environment.baseUrl,

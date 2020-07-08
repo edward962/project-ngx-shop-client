@@ -36,9 +36,6 @@ export class AddFeedbackComponent {
     this.feedbackForm.reset();
     this.save(feedback);
   }
-  ngOnInit() {
-    console.log(this.feedbackForm.touched);
-  }
 }
 @NgModule({
   declarations: [AddFeedbackComponent, RatingComponent],

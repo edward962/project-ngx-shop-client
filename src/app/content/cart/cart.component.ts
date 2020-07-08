@@ -61,6 +61,8 @@ export class CartComponent extends UnSubscriber implements OnDestroy {
     );
   }
   public ngOnDestroy(): void {
-    this._store.dispatch(clearCart());
+    if (this.disabled === true) {
+      this._store.dispatch(clearCart());
+    }
   }
 }
