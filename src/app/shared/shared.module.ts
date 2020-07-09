@@ -102,7 +102,6 @@ export class SharedModule {
               content:
                 'Angular, TypeScript, Course, JavaScript, Redux, NgRx, RxJs, Pipes, Directives',
             });
-            console.log(products);
             if (products.length > 0) {
               store.dispatch(addAllProductsToCart({ products }));
             }

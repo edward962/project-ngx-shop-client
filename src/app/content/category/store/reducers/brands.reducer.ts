@@ -1,5 +1,9 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { getBrandsSuccess, getBrandsPending } from '../actions/brands.actions';
+import {
+  getBrandsSuccess,
+  getBrandsPending,
+  getBrandsError,
+} from '../actions/brands.actions';
 
 export interface IBrandsState {
   items: string[];
@@ -11,7 +15,6 @@ const brandsReducer = createReducer(
     items: [],
     loading: false,
   },
-
   // tslint:disable-next-line: typedef
   on(getBrandsPending, (state: IBrandsState, {}) => ({
     ...state,
@@ -22,7 +25,13 @@ const brandsReducer = createReducer(
     ...state,
     items: brands ?? [''],
     loading: false,
+  })),
+  // tslint:disable-next-line: typedef
+  on(getBrandsError, (state: IBrandsState, {}) => ({
+    ...state,
+    loading: false,
   }))
+  // tslint:disable-next-line:typedef
 );
 
 export function reducerBrands(

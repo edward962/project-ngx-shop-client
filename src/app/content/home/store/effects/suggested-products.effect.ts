@@ -17,22 +17,24 @@ export class SuggestedProductsEffects {
     private readonly _productsService: ProductsService
   ) {}
   // tslint:disable-next-line:typedef
-  public getSuggestedProducts$: Observable<Action> = createEffect(() =>
-    this._actions.pipe(
-      ofType(getSuggestedProductsPending),
-      // tslint:disable-next-line:typedef
-      switchMap(() => {
-        return this._productsService.getSuggestedProducts().pipe(
-          // tslint:disable-next-line:typedef
-          map(({ items: products }) => {
-            return getSuggestedProductsSuccess({ products });
-          }),
-          catchError(
-            (err: Error): Observable<Action> =>
-              of(getSuggestedProductsError({ err }))
-          )
-        );
-      })
-    )
+  public getSuggestedProducts$: Observable<Action> = createEffect(
+    () =>
+      this._actions.pipe(
+        ofType(getSuggestedProductsPending),
+        // tslint:disable-next-line:typedef
+        switchMap(() => {
+          return this._productsService.getSuggestedProducts().pipe(
+            // tslint:disable-next-line:typedef
+            map(({ items: products }) => {
+              return getSuggestedProductsSuccess({ products });
+            }),
+            catchError(
+              (err: Error): Observable<Action> =>
+                of(getSuggestedProductsError({ err }))
+            )
+          );
+        })
+      ),
+    { useEffectsErrorHandler: true }
   );
 }

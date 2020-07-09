@@ -3,6 +3,7 @@ import {
   getSuggestedProductsPending,
   getSuggestedProductsSuccess,
   clearSuggestedProducts,
+  getSuggestedProductsError,
 } from '../actions/suggested-products.actions';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
@@ -23,6 +24,11 @@ const suggestedProductsReducer = createReducer(
   on(getSuggestedProductsSuccess, (state: IProductsState, { products }) => ({
     ...state,
     items: products,
+    loading: false,
+  })),
+  // tslint:disable-next-line:typedef
+  on(getSuggestedProductsError, (state: IProductsState) => ({
+    ...state,
     loading: false,
   })),
   // tslint:disable-next-line:typedef

@@ -31,11 +31,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         strictActionImmutability: true,
       },
     }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreDevtoolsModule.instrument(),
     StoreRouterConnectingModule.forRoot({
       serializer: CustomRouterSerializer,
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   bootstrap: [AppComponent],
 })

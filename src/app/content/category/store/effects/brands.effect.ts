@@ -29,6 +29,7 @@ export class BrandsEffects extends UnSubscriber {
             .getBrands(query)
             // tslint:disable-next-line:typedef
             .pipe(
+              // tslint:disable-next-line:typedef
               map((data) => getBrandsSuccess({ brands: data as string[] })),
               catchError(
                 (err: Error): Observable<Action> => of(getBrandsError({ err }))

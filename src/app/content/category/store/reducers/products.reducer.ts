@@ -2,6 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import {
   getProductsPending,
   getProductsSuccess,
+  getProductsError,
 } from '../actions/products.actions';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
 
@@ -29,6 +30,11 @@ const productsReducer = createReducer(
   on(getProductsSuccess, (state: IProductsState, { products }) => ({
     ...state,
     items: products,
+    loading: false,
+  })),
+  // tslint:disable-next-line:typedef
+  on(getProductsError, (state: IProductsState) => ({
+    ...state,
     loading: false,
   }))
 );

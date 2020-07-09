@@ -2,6 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import {
   getCategoriesPending,
   getCategoriesSuccess,
+  getCategoriesError,
 } from '../actions/category.actions';
 
 export interface ICategoryState {
@@ -36,6 +37,10 @@ const categoriesReducer = createReducer(
   on(getCategoriesSuccess, (state: ICategoryState, { categories }) => ({
     ...state,
     items: categories,
+    loading: false,
+  })),
+  on(getCategoriesError, (state: ICategoryState) => ({
+    ...state,
     loading: false,
   }))
 );
