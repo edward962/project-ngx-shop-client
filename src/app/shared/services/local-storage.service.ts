@@ -23,4 +23,7 @@ export class LocalStorageService {
       return [];
     }
   }
+  public removeAllFromLocalStorage<T>(): void {
+    const jsonStr = localStorage.removeItem('cart');
+  }
 }

@@ -8,7 +8,6 @@ import {
   decrementProductInCart,
   removeProductFromCart,
   incrementProductInCart,
-  clearCart,
   removeProductsFromCartPending,
 } from '../../store/actions/cart.actions';
 import { IProduct } from 'src/app/shared/interfaces/product.inteface';
@@ -60,10 +59,5 @@ export class CartComponent extends UnSubscriber implements OnDestroy {
         path: [''],
       })
     );
-  }
-  public ngOnDestroy(): void {
-    if (this.disabled === true) {
-      this._store.dispatch(clearCart());
-    }
   }
 }
