@@ -5,9 +5,17 @@ import {
   decrementProductInCart,
   cartSuccess,
   removeProductFromCartError,
+  clearCart,
 } from './../actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
-import { map, filter, tap, catchError, withLatestFrom } from 'rxjs/operators';
+import {
+  map,
+  filter,
+  tap,
+  catchError,
+  withLatestFrom,
+  mergeMap,
+} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { removeProductFromCart } from '../actions/cart.actions';
@@ -70,6 +78,16 @@ export class CartEffects {
           this.toastr.info('Вы добавили этот товар в корзину');
           return cartSuccess();
         })
+      ),
+    { dispatch: false }
+  );
+  public removeAllFromStorage$: Observable<Action> = createEffect(
+    // tslint:disable-next-line:typedef
+    () =>
+      this.actions.pipe(
+        ofType(clearCart),
+        // tslint:disable-next-line:typedef
+        tap(() => this.localStorageService.removeAllFromLocalStorage())
       ),
     { dispatch: false }
   );
