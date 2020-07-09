@@ -14,6 +14,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { ModalModule } from './modal/modal.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -34,6 +35,7 @@ import { ModalModule } from './modal/modal.module';
     StoreRouterConnectingModule.forRoot({
       serializer: CustomRouterSerializer,
     }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   bootstrap: [AppComponent],
 })

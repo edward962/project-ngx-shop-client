@@ -1,16 +1,22 @@
 import { IStore } from 'src/app/store/reducers';
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 import { switchMap, take, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { selectProducts } from 'src/app/store/reducers/cart.reducer';
 import { IProduct } from '../interfaces/product.inteface';
+import { go } from 'src/app/store/actions/router.actions';
+import { Route } from '@angular/compiler/src/core';
 
 @Injectable()
 export class CartGuard implements CanActivate {
-  constructor(private readonly store: Store<IStore>) {}
+  constructor(
+    private readonly store: Store<IStore>,
+    private readonly _route: ActivatedRoute,
+    private readonly _router: Router
+  ) {}
 
   public canActivate(): Observable<boolean> {
     return this.store.select(selectProducts).pipe(
@@ -19,6 +25,9 @@ export class CartGuard implements CanActivate {
       switchMap((products: IProduct[]) => {
         if (products?.length > 0) {
           return of(true);
+        }
+        if (!this._router.navigated) {
+          this.store.dispatch(go({ path: [''] }));
         }
         return of(false);
       })

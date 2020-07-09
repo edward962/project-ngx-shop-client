@@ -10,6 +10,7 @@ import {
   Validators,
   ValidationErrors,
   FormControl,
+  AbstractControl,
 } from '@angular/forms';
 
 @Component({
@@ -23,21 +24,32 @@ export class OrderFormComponent {
   public confirm: EventEmitter<FormData> = new EventEmitter<FormData>();
 
   public form: FormGroup = this._fb.group({
-    name: ['', [Validators.required]],
-    telephone: ['', [Validators.required, this.phoneValidator]],
-    email: ['', [Validators.email, Validators.required]],
-    address: ['', [Validators.required]],
+    name: ['Джон Сина', [Validators.required]],
+    telephone: ['+44 7911 123456', [Validators.required, this.phoneValidator]],
+    email: ['john@gmail.com', [Validators.email, Validators.required]],
+    address: ['Рымарская 25', [Validators.required]],
   });
 
   constructor(private readonly _fb: FormBuilder) {}
   public submit(): void {
-    this.confirm.emit();
-    this.form.reset();
+    if (this.form.valid) {
+      this.confirm.emit();
+      this.form.reset();
+    } else {
+      this.form.setErrors({
+        email: this.form.get('email')?.errors,
+        telephone: this.form.get('telephone')?.errors,
+        name: this.form.get('name')?.errors,
+      });
+    }
   }
   public phoneValidator(control: FormControl): ValidationErrors | null {
     const phone = control.value;
     return phone && phone.substring(0, 1) === '+' && phone.length >= 13
       ? null
-      : { isNotMatch: true };
+      : {
+          isNotMatch: true,
+          error: 'Телефон должен быть в формате +44 7911 123456',
+        };
   }
 }

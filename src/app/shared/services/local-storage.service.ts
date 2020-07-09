@@ -7,7 +7,11 @@ export class LocalStorageService {
       localStorage.setItem(key, JSON.stringify(data));
     } catch (err) {}
   }
-
+  public removeFromLocalStorage(key: string): void {
+    try {
+      localStorage.removeItem(key);
+    } catch (err) {}
+  }
   public getFromLocalStorage<T>(key: string): T[] {
     try {
       const jsonStr = localStorage.getItem(key);

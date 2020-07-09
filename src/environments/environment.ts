@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  author: 'jsdaddy.io',
   baseUrl: 'https://ngx-shop-api.herokuapp.com',
 };
 

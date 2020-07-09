@@ -24,7 +24,6 @@ import { IProduct } from './interfaces/product.inteface';
 import { Meta } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 
-
 @NgModule({
   declarations: [
     StarRatingComponent,
@@ -103,7 +102,10 @@ export class SharedModule {
               content:
                 'Angular, TypeScript, Course, JavaScript, Redux, NgRx, RxJs, Pipes, Directives',
             });
-            store.dispatch(addAllProductsToCart({ products }));
+            console.log(products);
+            if (products.length > 0) {
+              store.dispatch(addAllProductsToCart({ products }));
+            }
           },
           multi: true,
           deps: [Store, LocalStorageService, Meta],

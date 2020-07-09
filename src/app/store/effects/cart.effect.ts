@@ -5,6 +5,8 @@ import {
   decrementProductInCart,
   cartSuccess,
   removeProductFromCartError,
+  removeProductsFromCartPending,
+  removeProductsFromCartSuccess,
 } from './../actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
 import { map, filter, tap, catchError, withLatestFrom } from 'rxjs/operators';
@@ -42,7 +44,18 @@ export class CartEffects {
       )
     )
   );
-
+  public removeProducts$: Observable<Action> = createEffect(
+    // tslint:disable-next-line:typedef
+    () =>
+      this.actions.pipe(
+        ofType(removeProductsFromCartPending),
+        // tslint:disable-next-line:typedef
+        tap(() => {
+          this.localStorageService.removeFromLocalStorage('cart');
+        }),
+        map(() => removeProductsFromCartSuccess())
+      )
+  );
   // tslint:disable-next-line:typedef
   public toLocalStorage$: Observable<Action> = createEffect(() =>
     this.actions.pipe(

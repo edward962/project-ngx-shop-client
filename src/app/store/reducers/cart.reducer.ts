@@ -1,3 +1,4 @@
+import { removeProductsFromCartSuccess } from './../actions/cart.actions';
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import {
   addProductToCart,
@@ -43,6 +44,10 @@ const cartReducer = createReducer(
   // tslint:disable-next-line:typedef
   on(removeProductFromCart, (state: EntityState<IProduct>, { product }) => {
     return cartAdapter.removeOne(product._id, state);
+  }),
+  // tslint:disable-next-line:typedef
+  on(removeProductsFromCartSuccess, () => {
+    return initialState;
   }),
   // tslint:disable-next-line:typedef
   on(incrementProductInCart, (state: EntityState<IProduct>, { product }) => {
