@@ -36,17 +36,17 @@ export class HomeComponent extends UnSubscriber implements OnInit, OnDestroy {
   );
   public bunerItems: IBanner[] = [
     {
-      subCategoryId: '5ef4c36bf63cdf28bc1ac60f',
+      subCategoryId: '5f086b291dd3bb4cca87de94',
       title: 'Компьютеры, ноутбуки и ПО',
       image: '/assets/images/carousel-laptop.png',
     },
     {
-      subCategoryId: '5ef4c36bf63cdf28bc1ac58d',
+      subCategoryId: '5f086b291dd3bb4cca87de12',
       title: 'Смартфоны и гаджеты',
       image: '/assets/images/carousel-phone.png',
     },
     {
-      subCategoryId: '5ef4c36bf63cdf28bc1ac5e0',
+      subCategoryId: '5f086b291dd3bb4cca87de65',
       title: ' Игры и хобби',
       image: '/assets/images/carousel-console.png',
     },
