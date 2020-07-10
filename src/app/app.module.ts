@@ -31,7 +31,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         strictActionImmutability: true,
       },
     }),
-    StoreDevtoolsModule.instrument(),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({
       serializer: CustomRouterSerializer,
     }),
