@@ -19,6 +19,7 @@ export interface ICategory {
 export interface ISubCategory {
   _id: string;
   name: string;
+  subCategory: string;
   category: string;
 }
 

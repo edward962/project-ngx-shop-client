@@ -43,14 +43,11 @@ export class CartProductComponent {
   public incrementProductInCart(product: IProduct): void {
     this.increment.emit(product);
   }
-
-  public redirectTo(productId: string): void {
+  // ngOnInit()
+  public redirectTo(): void {
     this._store.dispatch(
       go({
-        path: ['/category/product'],
-        query: {
-          id: productId,
-        },
+        path: ['/category', this.product.subCategory, this.product._id],
       })
     );
   }

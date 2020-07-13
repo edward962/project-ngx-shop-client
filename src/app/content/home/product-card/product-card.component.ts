@@ -16,10 +16,7 @@ export class ProductCardComponent {
   public redirectTo(productId: string): void {
     this._store.dispatch(
       go({
-        path: ['/category/product'],
-        query: {
-          id: productId,
-        },
+        path: ['/category', this.product.subCategory, this.product._id],
       })
     );
   }

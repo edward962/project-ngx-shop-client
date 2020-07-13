@@ -11,6 +11,7 @@ export interface IProduct {
   rating: number;
   brand?: string;
   count?: number;
+  subCategory: string;
 }
 
 export interface IFeedback {

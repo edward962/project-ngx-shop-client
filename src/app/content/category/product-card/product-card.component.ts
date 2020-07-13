@@ -11,21 +11,21 @@ import { IProduct } from 'src/app/shared/interfaces/product.inteface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryProductComponent {
-  @Input() public product!: IProduct;
+  @Input()
+  public product!: IProduct;
+  @Input()
+  public subCategory!: string;
 
   constructor(private readonly _store: Store<IStore>) {}
 
   public async addToBusket(product: IProduct): Promise<void> {
     this._store.dispatch(addProductToCart({ product }));
   }
-  public redirectTo(productId: string): void {
+  public redirectTo(): void {
     window.scroll(0, 0);
     this._store.dispatch(
       go({
-        path: ['/category/product'],
-        query: {
-          id: productId,
-        },
+        path: ['/category', this.product.subCategory, this.product._id],
       })
     );
   }

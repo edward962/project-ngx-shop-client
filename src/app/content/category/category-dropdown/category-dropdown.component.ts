@@ -19,7 +19,7 @@ import {
 })
 export class CategoryDropdownComponent implements ControlValueAccessor {
   @Input()
-  public categories: ICategory[] = [];
+  public categories!: ICategory[];
   public currentIndex: number | null = null;
   public onChange!: Function;
   public currentCategory?: string;

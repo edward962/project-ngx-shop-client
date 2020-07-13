@@ -20,6 +20,7 @@ const initialState: IProductState = {
     name: '',
     price: 0,
     images: [],
+    subCategory: '',
     feedbacks: [],
     status: false,
     rating: 0,
