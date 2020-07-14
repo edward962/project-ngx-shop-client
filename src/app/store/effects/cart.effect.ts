@@ -9,14 +9,7 @@ import {
   removeProductsFromCartSuccess,
 } from './../actions/cart.actions';
 import { IStore } from 'src/app/store/reducers';
-import {
-  map,
-  filter,
-  tap,
-  catchError,
-  withLatestFrom,
-  mergeMap,
-} from 'rxjs/operators';
+import { map, filter, tap, catchError, withLatestFrom } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { removeProductFromCart } from '../actions/cart.actions';
@@ -83,6 +76,7 @@ export class CartEffects {
     )
   );
   public addProductToStorage$: Observable<Action> = createEffect(
+    // tslint:disable-next-line:typedef
     () =>
       this.actions.pipe(
         ofType(addProductToCart),

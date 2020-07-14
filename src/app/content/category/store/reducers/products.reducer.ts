@@ -4,7 +4,7 @@ import {
   getProductsSuccess,
   getProductsError,
 } from '../actions/products.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 export interface IProductsState {
   items: IProduct[];

@@ -6,7 +6,7 @@ import {
   getSuggestedProductsError,
 } from '../actions/suggested-products.actions';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 const initialState: IProductsState = {
   items: [],

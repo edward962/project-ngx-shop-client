@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProductApi } from 'src/app/content/category/store/reducers/products.reducer';
 import { Params } from '@angular/router';
-import { IFeedback, IProduct } from '../interfaces/product.inteface';
+import { IFeedback, IProduct } from '../interfaces/product.interface';
 
 @Injectable()
 export class ProductsService {

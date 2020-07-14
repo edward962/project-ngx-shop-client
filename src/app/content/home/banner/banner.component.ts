@@ -40,10 +40,7 @@ export class BannerSliderComponent extends Slider<IBanner> {
   public redirectTo(subCatId: string): void {
     this._store.dispatch(
       go({
-        path: ['/category'],
-        query: {
-          subCatId: subCatId,
-        },
+        path: ['/category', subCatId],
       })
     );
   }

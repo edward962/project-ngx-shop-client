@@ -1,4 +1,4 @@
-import { IProductImage } from 'src/app/shared/interfaces/product.inteface';
+import { IProductImage } from 'src/app/shared/interfaces/product.interface';
 import {
   Component,
   Input,

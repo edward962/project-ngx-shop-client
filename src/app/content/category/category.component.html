@@ -1,5 +1,4 @@
-<!-- *ngIf="!categoriesLoading$; else loader" -->
-<main role="main">
+<main role="main" *ngIf="!(categoriesLoading$ | async); else loader">
   <div class="container">
     <form [formGroup]="form">
       <div class="row">
@@ -9,12 +8,12 @@
             <ngx-shop-category-dropdown
               *ngIf="categories$ | async as categories"
               [categories]="categories"
-              formControlName="currentSubCategory"
+              [selectedSubCatId]="selectedSubCatId"
             >
             </ngx-shop-category-dropdown>
           </div>
           <h3 class="h5 mt-5 mb-4">Фильтры по товарам</h3>
-          <h6 class="mb-2 pb-1">Название</h6>
+          <h6 class="mb-2 pb-1">Названию</h6>
           <input
             #searchBox
             type="text"

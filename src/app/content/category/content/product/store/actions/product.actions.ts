@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import {
   IProduct,
   IFeedback,
-} from 'src/app/shared/interfaces/product.inteface';
+} from 'src/app/shared/interfaces/product.interface';
 
 export const getProductPending = createAction(
   '[Product] Get product pending',

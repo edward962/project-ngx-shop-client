@@ -8,7 +8,7 @@ import {
 import { IStore } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { go } from 'src/app/store/actions/router.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 @Component({
   selector: 'ngx-shop-cart-product',
@@ -43,7 +43,6 @@ export class CartProductComponent {
   public incrementProductInCart(product: IProduct): void {
     this.increment.emit(product);
   }
-  // ngOnInit()
   public redirectTo(): void {
     this._store.dispatch(
       go({

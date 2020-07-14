@@ -1,14 +1,11 @@
-import {
-  ICategory,
-  ISubCategory,
-} from 'src/app/store/reducers/categories.reducer';
+import { ICategory } from 'src/app/store/reducers/categories.reducer';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { UnSubscriber } from './../../shared/utils/unsubscriber';
 import { getCategoriesPending } from 'src/app/store/actions/category.actions';
 import { IStore } from 'src/app/store/reducers';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, combineLatest, forkJoin, EMPTY } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { getProductsPending } from './store/actions/products.actions';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -17,14 +14,11 @@ import {
   debounceTime,
   takeUntil,
   switchMap,
-  map,
-  mergeMap,
   filter,
-  tap,
   take,
   pluck,
-  withLatestFrom,
   distinctUntilChanged,
+  withLatestFrom,
 } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
 import { IBrandsState } from './store/reducers/brands.reducer';
@@ -57,6 +51,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     filter<string>(Boolean),
     distinctUntilChanged()
   );
+  public selectedSubCatId?: string;
 
   public priceRange?: number[];
   public selectedBrands: string[] = [];
@@ -64,7 +59,6 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public form: FormGroup = this._fb.group({
     brands: [[]],
     prices: [[]],
-    currentSubCategory: [''],
     searchByName: [''],
   });
 
@@ -90,13 +84,14 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         )
       )
       .subscribe(([{ subCategory }, query]: [Params, Params]): void => {
-        this.selectedPrices = query.price ? query.prices.split(',') : [];
+        this.selectedPrices = query.prices ? query.prices.split(',') : [];
         this.selectedBrands = query.brands ? query.brands.split(',') : [];
+        console.log(this.selectedBrands);
+        this.selectedSubCatId = subCategory;
         this.form.setValue(
           {
             searchByName: query.searchByName ?? '',
             brands: this.selectedBrands,
-            currentSubCategory: subCategory,
             prices: this.selectedPrices,
           },
           { emitEvent: false }
@@ -106,7 +101,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
             selectedBrands: query.brands,
             currentCategory: subCategory,
             searchByName: query.searchByName,
-            priceRange: this.selectedPrices,
+            priceRange: this.selectedPrices || '',
           })
         );
         this._store.dispatch(
@@ -116,102 +111,58 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
           })
         );
       });
-
-    this.form.valueChanges
-      .pipe(debounceTime(300), takeUntil(this.unsubscribe$$))
-      .subscribe((form) => {
-        this._store.dispatch(
-          go({
-            path: ['/category', form.currentSubCategory],
-            query: {
-              prices: form.prices[0]
-                ? `${form.prices[0]},${form.prices[1]}`
-                : undefined,
-              brands: (form.brands as string[]).join(',') || undefined,
-              searchByName: form.searchByName || undefined,
-            },
-            extras: { replaceUrl: true },
-          })
-        );
-      });
-
-    // this.brands$
-    //   .pipe(withLatestFrom(category$))
-    //   .subscribe(([brands, subCategory]: [IBrandsState, string]): void => {
-    //     if (brands.items.length > 0) {
-    //       this.selectedBrands = this.selectedBrands
-    //         // tslint:disable-next-line: no-any
-    //         .map((selectedBrand: string): any =>
-    //           brands.items.find(
-    //             (brand: string): boolean => brand === selectedBrand
-    //           )
+    // this.form.valueChanges
+    //   .pipe(
+    //     withLatestFrom(this._store.select('brands')),
+    //     withLatestFrom(this.category$)
+    //   )
+    //   .subscribe(([[form, brandState], subCategory]) => {
+    //     this.selectedBrands = this.selectedBrands
+    //       // tslint:disable-next-line: no-any
+    //       .map((selectedBrand: string): any =>
+    //         brandState.items.find(
+    //           (brand: string): boolean => brand === selectedBrand
     //         )
-    //         .filter((item: string): string => item);
-    //     }
-    //     console.log('ne huta', brands, subCategory);
+    //       )
+    //       .filter((item: string): string => item);
     //     this._store.dispatch(
     //       go({
     //         path: ['/category', subCategory],
     //         query: {
+    //           prices: form.prices[0]
+    //             ? `${form.prices[0]},${form.prices[1]}`
+    //             : undefined,
     //           brands: (this.selectedBrands as string[]).join(',') || undefined,
+    //           searchByName: form.searchByName || undefined,
     //         },
-    //         extras: { queryParamsHandling: 'merge' },
     //       })
     //     );
     //   });
-
-    // this.getForm$('currentSubCategory').subscribe(
-    //   // tslint:disable-next-line:no-any
-    //   (currentSubCategory: any): void => {
-    //     this.selectedBrands = [];
-    //     this._store.dispatch(
-    //       go({
-    //         path: ['/category', currentSubCategory],
-    //         extras: { replaceUrl: true },
-    //       })
-    //     );
-    //   }
-    // );
-    // this.getForm$('brands')
-    //   .pipe(withLatestFrom(category$))
-    //   .subscribe(([brands, subCategory]): void => {
-    //     if (brands) {
-    //       console.log('pizda');
-    //       this._store.dispatch(
-    //         go({
-    //           path: ['/category', subCategory],
-    //           query: {
-    //             brands: (brands as string[]).join(',') || undefined,
-    //           },
-    //           extras: { queryParamsHandling: 'merge' },
-    //         })
-    //       );
-    //     }
-    //   });
-    // this.getForm$('prices')
-    //   .pipe(withLatestFrom(this.category$))
-    //   .subscribe(([prices, subCategory]: [any, string]): void => {
-    //     console.log('zalupa');
-    //     this._store.dispatch(
-    //       go({
-    //         path: ['/category', subCategory],
-    //         query: { prices: `${prices[0]},${prices[1]}` },
-    //         extras: { queryParamsHandling: 'merge' },
-    //       })
-    //     );
-    //   });
-    // this.getForm$('searchByName')
-    //   .pipe(withLatestFrom(category$))
-    //   .subscribe(([searchByName, subCategory]): void => {
-    //     console.log('hueta');
-    //     this._store.dispatch(
-    //       go({
-    //         path: ['/category', subCategory],
-    //         query: { searchByName },
-    //         extras: { queryParamsHandling: 'merge' },
-    //       })
-    //     );
-    //   });
+    combineLatest([this.brands$, this.form.valueChanges])
+      .pipe(withLatestFrom(this.category$), takeUntil(this.unsubscribe$$))
+      // tslint:disable-next-line:typedef
+      .subscribe(([[brandState, form], subCategory]) => {
+        this.selectedBrands = this.selectedBrands
+          // tslint:disable-next-line: no-any
+          .map((selectedBrand: string): any =>
+            brandState.items.find(
+              (brand: string): boolean => brand === selectedBrand
+            )
+          )
+          .filter((item: string): string => item);
+        this._store.dispatch(
+          go({
+            path: ['/category', subCategory],
+            query: {
+              prices: form.prices[0]
+                ? `${form.prices[0]},${form.prices[1]}`
+                : undefined,
+              brands: (this.selectedBrands as string[]).join(',') || undefined,
+              searchByName: form.searchByName || undefined,
+            },
+          })
+        );
+      });
   }
   public getForm$(
     controlName: string

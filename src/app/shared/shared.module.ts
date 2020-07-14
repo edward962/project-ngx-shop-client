@@ -1,3 +1,4 @@
+import { TooltipDirective } from './directives/directive';
 import { ReviewPipe } from './pipes/ review.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ModuleWithProviders, NgModule, APP_INITIALIZER } from '@angular/core';
@@ -17,10 +18,9 @@ import { Store } from '@ngrx/store';
 import { LocalStorageService } from './services/local-storage.service';
 import { addAllProductsToCart } from '../store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
-import { TooltipDirective } from './directives/tooltip.derective';
 import { IStore } from '../store/reducers';
 import { BrandsService } from './services/brands.service';
-import { IProduct } from './interfaces/product.inteface';
+import { IProduct } from './interfaces/product.interface';
 import { Meta } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 

@@ -1,4 +1,4 @@
-import { loadingSugestedProductAndCategories } from './../../store/selectors/category.selectors';
+import { loadingSuggestedProductAndCategories } from './../../store/selectors/category.selectors';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { ICategoryState } from './../../store/reducers/categories.reducer';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -14,7 +14,7 @@ import {
 import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IBanner } from './baner/banner.component';
+import { IBanner } from './banner/banner.component';
 
 @Component({
   selector: 'ngx-shop-products',
@@ -32,21 +32,21 @@ export class HomeComponent extends UnSubscriber implements OnInit, OnDestroy {
     currentSubCategory: [''],
   });
   public loading$: Observable<boolean> = this._store.select(
-    loadingSugestedProductAndCategories
+    loadingSuggestedProductAndCategories
   );
-  public bunerItems: IBanner[] = [
+  public bannerItems: IBanner[] = [
     {
-      subCategoryId: '5f086b291dd3bb4cca87de94',
+      subCategoryId: 'kompyutery-noutbuki-i-po',
       title: 'Компьютеры, ноутбуки и ПО',
       image: '/assets/images/carousel-laptop.png',
     },
     {
-      subCategoryId: '5f086b291dd3bb4cca87de12',
+      subCategoryId: 'smartfony-i-gadzhety',
       title: 'Смартфоны и гаджеты',
       image: '/assets/images/carousel-phone.png',
     },
     {
-      subCategoryId: '5f086b291dd3bb4cca87de65',
+      subCategoryId: 'igry-i-xobbi',
       title: ' Игры и хобби',
       image: '/assets/images/carousel-console.png',
     },

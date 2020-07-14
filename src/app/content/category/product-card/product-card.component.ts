@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/store/reducers';
 import { addProductToCart } from 'src/app/store/actions/cart.actions';
 import { go } from 'src/app/store/actions/router.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 @Component({
   selector: 'ngx-shop-content-product',
@@ -18,7 +18,7 @@ export class CategoryProductComponent {
 
   constructor(private readonly _store: Store<IStore>) {}
 
-  public async addToBusket(product: IProduct): Promise<void> {
+  public async addToBasket(product: IProduct): Promise<void> {
     this._store.dispatch(addProductToCart({ product }));
   }
   public redirectTo(): void {

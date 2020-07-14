@@ -22,7 +22,7 @@ import {
   getProductError,
   createFeedbackError,
 } from '../actions/product.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()

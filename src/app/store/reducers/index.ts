@@ -11,7 +11,7 @@ import { EntityState } from '@ngrx/entity/src';
 import { ICategoryState, reducerCategories } from './categories.reducer';
 import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
 import { IProductState } from 'src/app/content/category/content/product/store/reducers/product.reducer';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 export interface IStore {
   product: IProductState;
@@ -31,7 +31,7 @@ interface IReducers {
 export const reducers: ActionReducerMap<IReducers> = {
   cart: reducerCart,
   categories: reducerCategories,
-  //TODO router ?
+  // TODO router ?
 };
 
 export interface IRouterStateUrl {
