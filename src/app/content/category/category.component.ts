@@ -19,6 +19,7 @@ import {
   pluck,
   distinctUntilChanged,
   withLatestFrom,
+  distinctUntilKeyChanged,
 } from 'rxjs/operators';
 import { go } from 'src/app/store/actions/router.actions';
 import { IBrandsState } from './store/reducers/brands.reducer';
@@ -26,7 +27,6 @@ import { IBrandsState } from './store/reducers/brands.reducer';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryComponent extends UnSubscriber implements OnInit {
   public categories$: Observable<ICategory[]> = this._store
@@ -52,8 +52,6 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     distinctUntilChanged()
   );
   public selectedSubCatId?: string;
-
-  public priceRange?: number[];
   public selectedBrands: string[] = [];
   public selectedPrices: number[] = [];
   public form: FormGroup = this._fb.group({
@@ -61,6 +59,8 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     prices: [[]],
     searchByName: [''],
   });
+  public min = 0;
+  public max = 0;
 
   constructor(
     private readonly _fb: FormBuilder,
@@ -72,6 +72,22 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
 
   public ngOnInit(): void {
     this._store.dispatch(getCategoriesPending());
+
+    this.products$
+      .pipe(pluck('prices'), distinctUntilKeyChanged('max'))
+      .subscribe((prices) => {
+        console.log(prices);
+        this.min = prices.min;
+        this.max = prices.max;
+        this.form.patchValue(
+          {
+            // searchByName: query.searchByName ?? '',
+            brands: this.selectedBrands,
+            prices: this.selectedPrices,
+          },
+          { emitEvent: false }
+        );
+      });
     this.categories$
       .pipe(
         switchMap(
@@ -86,16 +102,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
       .subscribe(([{ subCategory }, query]: [Params, Params]): void => {
         this.selectedPrices = query.prices ? query.prices.split(',') : [];
         this.selectedBrands = query.brands ? query.brands.split(',') : [];
-        console.log(this.selectedBrands);
         this.selectedSubCatId = subCategory;
-        this.form.setValue(
-          {
-            searchByName: query.searchByName ?? '',
-            brands: this.selectedBrands,
-            prices: this.selectedPrices,
-          },
-          { emitEvent: false }
-        );
         this._store.dispatch(
           getProductsPending({
             selectedBrands: query.brands,
@@ -111,45 +118,10 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
           })
         );
       });
-    // this.form.valueChanges
-    //   .pipe(
-    //     withLatestFrom(this._store.select('brands')),
-    //     withLatestFrom(this.category$)
-    //   )
-    //   .subscribe(([[form, brandState], subCategory]) => {
-    //     this.selectedBrands = this.selectedBrands
-    //       // tslint:disable-next-line: no-any
-    //       .map((selectedBrand: string): any =>
-    //         brandState.items.find(
-    //           (brand: string): boolean => brand === selectedBrand
-    //         )
-    //       )
-    //       .filter((item: string): string => item);
-    //     this._store.dispatch(
-    //       go({
-    //         path: ['/category', subCategory],
-    //         query: {
-    //           prices: form.prices[0]
-    //             ? `${form.prices[0]},${form.prices[1]}`
-    //             : undefined,
-    //           brands: (this.selectedBrands as string[]).join(',') || undefined,
-    //           searchByName: form.searchByName || undefined,
-    //         },
-    //       })
-    //     );
-    //   });
-    combineLatest([this.brands$, this.form.valueChanges])
+    this.form.valueChanges
       .pipe(withLatestFrom(this.category$), takeUntil(this.unsubscribe$$))
       // tslint:disable-next-line:typedef
-      .subscribe(([[brandState, form], subCategory]) => {
-        this.selectedBrands = this.selectedBrands
-          // tslint:disable-next-line: no-any
-          .map((selectedBrand: string): any =>
-            brandState.items.find(
-              (brand: string): boolean => brand === selectedBrand
-            )
-          )
-          .filter((item: string): string => item);
+      .subscribe(([form, subCategory]) => {
         this._store.dispatch(
           go({
             path: ['/category', subCategory],

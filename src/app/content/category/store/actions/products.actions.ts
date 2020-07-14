@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IProduct } from 'src/app/shared/interfaces/product.interface';
+import { IMinMaxPrice } from '../reducers/products.reducer';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',
@@ -13,7 +14,7 @@ export const getProductsPending = createAction(
 
 export const getProductsSuccess = createAction(
   '[Products] Get products success',
-  props<{ products: IProduct[] }>()
+  props<{ products: IProduct[]; prices: IMinMaxPrice }>()
 );
 export const getProductsError = createAction(
   '[Products] Get products error',

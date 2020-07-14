@@ -11,6 +11,10 @@ import { IProduct } from 'src/app/shared/interfaces/product.interface';
 const initialState: IProductsState = {
   items: [],
   loading: false,
+  prices: {
+    min: 0,
+    max: 0,
+  },
 };
 
 const suggestedProductsReducer = createReducer(

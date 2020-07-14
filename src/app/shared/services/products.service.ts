@@ -22,19 +22,18 @@ export class ProductsService {
     searchByName,
     selectedBrands,
   }: Params): Observable<IProductApi> {
+    let query = `?subCat=${currentCategory}`;
     if (priceRange.length > 0) {
-      return this.http.get<IProductApi>(
-        `/products/?subCat=${currentCategory ?? ''}&brands=${
-          selectedBrands ?? ''
-        }&prices=${priceRange[0]},${priceRange[1]}&text=${searchByName ?? ''}`
-      );
-    } else {
-      return this.http.get<IProductApi>(
-        `/products/?subCat=${currentCategory}&brands=${
-          selectedBrands ?? ''
-        }&text=${searchByName ?? ''}`
-      );
+      query += `&prices=${priceRange}`;
     }
+    if (searchByName) {
+      query += `&text=${searchByName}`;
+    }
+    if (selectedBrands) {
+      query += `&brands=${selectedBrands}`;
+    }
+
+    return this.http.get<IProductApi>(`/products/${query}`);
   }
 
   public getSuggestedProducts(): Observable<IProductApi> {

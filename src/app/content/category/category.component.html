@@ -28,7 +28,9 @@
           >
           </ngx-shop-brands>
           <ngx-shop-price-slider
-            [pricesValue]="selectedPrices"
+            *ngIf="!(products$ | async).loading"
+            [max]="max"
+            [min]="min"
             formControlName="prices"
           >
           </ngx-shop-price-slider>
