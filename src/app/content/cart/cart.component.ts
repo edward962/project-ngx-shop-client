@@ -10,7 +10,7 @@ import {
   incrementProductInCart,
   removeProductsFromCartPending,
 } from '../../store/actions/cart.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { go } from 'src/app/store/actions/router.actions';
 import { takeWhile, takeUntil } from 'rxjs/operators';
 

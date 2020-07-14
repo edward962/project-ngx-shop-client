@@ -4,11 +4,11 @@ import { CategoryComponent } from './category.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':subCategory',
     component: CategoryComponent,
   },
   {
-    path: 'product',
+    path: ':subCategory/:product',
     // tslint:disable-next-line:typedef
     loadChildren: () =>
       import('./content/product/product.module')

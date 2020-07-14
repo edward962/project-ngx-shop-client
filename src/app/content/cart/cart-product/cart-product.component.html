@@ -2,7 +2,7 @@
   <div class="inner-col description-col">
     <!-- <i class="fa fa-times-circle-o" aria-hidden="true" tooltip="Убрать товар из корзины"
     (click)="removeProductFromCart(product)"></i> -->
-    <div class="product-img pointer" (click)="redirectTo(product._id)">
+    <div class="product-img pointer" (click)="redirectTo()">
       <img
         loading="auto"
         [src]="product.images | imgUrl"
@@ -11,7 +11,7 @@
       />
     </div>
     <div class="product-desc">
-      <h4 class="col-title mb-2 pointer" (click)="redirectTo(product._id)">
+      <h4 class="col-title mb-2 pointer" (click)="redirectTo()">
         {{ product.name }}
       </h4>
       <div class="rate">

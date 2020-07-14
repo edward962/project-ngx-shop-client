@@ -4,22 +4,28 @@ import {
   getProductsSuccess,
   getProductsError,
 } from '../actions/products.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 export interface IProductsState {
   items: IProduct[];
   loading: boolean;
+  prices: IMinMaxPrice;
 }
 
 export interface IProductApi {
   items: IProduct[];
-  quantity: number;
+  prices: IMinMaxPrice;
+}
+export interface IMinMaxPrice {
+  min: number;
+  max: number;
 }
 
 const productsReducer = createReducer(
   {
     items: [],
     loading: false,
+    prices: { min: 0, max: 0 },
   },
   // tslint:disable-next-line:typedef
   on(getProductsPending, (state: IProductsState) => ({
@@ -27,9 +33,10 @@ const productsReducer = createReducer(
     loading: true,
   })),
   // tslint:disable-next-line:typedef
-  on(getProductsSuccess, (state: IProductsState, { products }) => ({
+  on(getProductsSuccess, (state: IProductsState, { products, prices }) => ({
     ...state,
     items: products,
+    prices,
     loading: false,
   })),
   // tslint:disable-next-line:typedef

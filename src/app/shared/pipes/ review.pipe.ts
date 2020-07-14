@@ -4,18 +4,18 @@ import { PipeTransform, Pipe } from '@angular/core';
   name: 'review',
 })
 export class ReviewPipe implements PipeTransform {
-  public transform(cauntOfReviews: number | undefined): string {
-    if (!cauntOfReviews || cauntOfReviews === 0) {
+  public transform(countOfReviews: number | undefined): string {
+    if (!countOfReviews || countOfReviews === 0) {
       return 'Нет отзывов';
     }
-    if (cauntOfReviews && cauntOfReviews === 1) {
-      return `${cauntOfReviews} отзыв`;
+    if (countOfReviews && countOfReviews === 1) {
+      return `${countOfReviews} отзыв`;
     }
-    if (cauntOfReviews && cauntOfReviews > 1 && cauntOfReviews < 5) {
-      return `${cauntOfReviews} отзывa`;
+    if (countOfReviews && countOfReviews > 1 && countOfReviews < 5) {
+      return `${countOfReviews} отзывa`;
     }
-    if (cauntOfReviews && cauntOfReviews >= 5) {
-      return `${cauntOfReviews} отзывов`;
+    if (countOfReviews && countOfReviews >= 5) {
+      return `${countOfReviews} отзывов`;
     }
     return `Нет отзывов`;
   }

@@ -2,12 +2,12 @@
   <ol class="carousel-indicators">
     <li
       [ngClass]="{ active: j === currentIndex }"
-      *ngFor="let baner of items; let j = index"
+      *ngFor="let banner of items; let j = index"
       (click)="show(j)"
     ></li>
   </ol>
   <div class="carousel-inner" @initSliderAnimation>
-    <ng-container *ngFor="let baner of items; let i = index">
+    <ng-container *ngFor="let banner of items; let i = index">
       <div
         [@slideAnimation]="{
           value: '',
@@ -24,14 +24,18 @@
           src="assets/images/default-slide-img.jpg"
           alt="Third slide"
         />
-        <img class="background-image" [src]="baner.image" [alt]="baner.title" />
+        <img
+          class="background-image"
+          [src]="banner.image"
+          [alt]="banner.title"
+        />
         <div class="container">
           <div class="carousel-caption">
-            <h3 class="h1">{{ baner.title }}</h3>
+            <h3 class="h1">{{ banner.title }}</h3>
             <div>
               <a
                 class="btn pointer"
-                (click)="redirectTo(baner.subCategoryId)"
+                (click)="redirectTo(banner.subCategoryId)"
                 role="button"
               >
                 Посмотреть предложения

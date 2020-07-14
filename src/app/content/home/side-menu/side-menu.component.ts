@@ -21,13 +21,10 @@ export class SideMenuComponent {
   public mouseLeave(): void {
     this.currentName = null;
   }
-  public redirectTo(subCatId: string): void {
+  public redirectTo(subCategory: string): void {
     this._store.dispatch(
       go({
-        path: ['/category'],
-        query: {
-          subCatId: subCatId,
-        },
+        path: ['/category', subCategory],
       })
     );
   }

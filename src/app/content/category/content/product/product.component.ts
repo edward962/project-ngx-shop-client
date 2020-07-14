@@ -30,8 +30,8 @@ export class ProductComponent extends UnSubscriber
 
   public ngOnInit(): void {
     // TODO need resolver !!!!
-    const { id } = this._activatedRoute.snapshot.queryParams;
-    this._store.dispatch(getProductPending({ id }));
+    const { product } = this._activatedRoute.snapshot.params;
+    this._store.dispatch(getProductPending({ id: product }));
   }
   public ngOnDestroy(): void {
     this._store.dispatch(clearProduct());

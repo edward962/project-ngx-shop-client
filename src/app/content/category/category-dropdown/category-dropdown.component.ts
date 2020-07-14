@@ -1,9 +1,17 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  OnInit,
+} from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   ICategory,
   ISubCategory,
 } from 'src/app/store/reducers/categories.reducer';
+import { IStore } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
+import { go } from 'src/app/store/actions/router.actions';
 
 @Component({
   selector: 'ngx-shop-category-dropdown',
@@ -17,34 +25,37 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryDropdownComponent implements ControlValueAccessor {
+export class CategoryDropdownComponent implements OnInit {
   @Input()
-  public categories: ICategory[] = [];
+  public categories!: ICategory[];
+  @Input()
+  public selectedSubCatId!: string;
+
   public currentIndex: number | null = null;
   public onChange!: Function;
   public currentCategory?: string;
-  public writeValue(current: string): void {
+
+  constructor(private readonly _store: Store<IStore>) {}
+  public ngOnInit(): void {
     this.currentIndex = this.categories.findIndex((category: ICategory):
       | ISubCategory
       | undefined => {
       return category.subCategories?.find((subCat: ISubCategory): boolean => {
-        return subCat._id === current;
+        return subCat._id === this.selectedSubCatId;
       });
     });
-    this.currentCategory = current;
+    this.currentCategory = this.selectedSubCatId;
   }
-  public registerOnChange(fn: Function): void {
-    this.onChange = fn;
-  }
-  public registerOnTouched(): void {}
   public hover(index: number): void {
     this.currentIndex = index;
   }
   public categorySelect(subCategoryId: string): void {
     this.currentCategory = subCategoryId;
-    this.onChange(this.currentCategory);
-  }
-  public current(subCategoryId: string): boolean {
-    return this.currentCategory === subCategoryId;
+    this._store.dispatch(
+      go({
+        path: ['/category', subCategoryId],
+        extras: { replaceUrl: true },
+      })
+    );
   }
 }

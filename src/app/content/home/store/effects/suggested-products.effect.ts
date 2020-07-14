@@ -18,6 +18,7 @@ export class SuggestedProductsEffects {
   ) {}
   // tslint:disable-next-line:typedef
   public getSuggestedProducts$: Observable<Action> = createEffect(
+    // tslint:disable-next-line:typedef
     () =>
       this._actions.pipe(
         ofType(getSuggestedProductsPending),

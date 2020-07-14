@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProductApi } from 'src/app/content/category/store/reducers/products.reducer';
 import { Params } from '@angular/router';
-import { IFeedback, IProduct } from '../interfaces/product.inteface';
+import { IFeedback, IProduct } from '../interfaces/product.interface';
 
 @Injectable()
 export class ProductsService {
@@ -22,19 +22,18 @@ export class ProductsService {
     searchByName,
     selectedBrands,
   }: Params): Observable<IProductApi> {
-    if (priceRange.length > 0) {
-      return this.http.get<IProductApi>(
-        `/products/?subCat=${currentCategory ?? ''}&brands=${
-          selectedBrands ?? ''
-        }&prices=${priceRange[0]},${priceRange[1]}&text=${searchByName ?? ''}`
-      );
-    } else {
-      return this.http.get<IProductApi>(
-        `/products/?subCat=${currentCategory}&brands=${
-          selectedBrands ?? ''
-        }&text=${searchByName ?? ''}`
-      );
+    let query = `?subCat=${currentCategory}`;
+    // if (priceRange.length > 0) {
+    //   query += `&prices=${priceRange}`;
+    // }
+    if (searchByName) {
+      query += `&text=${searchByName}`;
     }
+    if (selectedBrands) {
+      query += `&brands=${selectedBrands}`;
+    }
+
+    return this.http.get<IProductApi>(`/products/${query}`);
   }
 
   public getSuggestedProducts(): Observable<IProductApi> {

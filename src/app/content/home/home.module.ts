@@ -1,4 +1,4 @@
-import { BannerSliderComponent } from './baner/banner.component';
+import { BannerSliderComponent } from './banner/banner.component';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCardComponent } from './product-card/product-card.component';

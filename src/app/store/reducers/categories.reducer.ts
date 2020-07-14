@@ -19,6 +19,7 @@ export interface ICategory {
 export interface ISubCategory {
   _id: string;
   name: string;
+  subCategory: string;
   category: string;
 }
 
@@ -39,6 +40,7 @@ const categoriesReducer = createReducer(
     items: categories,
     loading: false,
   })),
+  // tslint:disable-next-line:typedef
   on(getCategoriesError, (state: ICategoryState) => ({
     ...state,
     loading: false,

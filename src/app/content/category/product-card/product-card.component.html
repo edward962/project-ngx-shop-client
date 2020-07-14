@@ -1,5 +1,5 @@
 <div class="product-list-box">
-  <div (click)="redirectTo(product._id)" class="inner-col description-col">
+  <div (click)="redirectTo()" class="inner-col description-col">
     <div class="product-img pointer">
       <img
         loading="auto"
@@ -35,7 +35,7 @@
     </h4>
     <div class="button-wrap">
       <button
-        (click)="addToBusket(product)"
+        (click)="addToBasket(product)"
         type="button"
         class="btn btn-outline-primary"
       >

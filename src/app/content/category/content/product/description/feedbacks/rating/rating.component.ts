@@ -18,7 +18,7 @@ export class RatingComponent implements ControlValueAccessor {
   public currentRating = 0;
   public coloredStar = '';
   public onChange!: Function;
-  public highlightRaiting: number | null = null;
+  public highlightRating: number | null = null;
 
   public writeValue(rating: number): void {
     this.currentRating = rating;
@@ -36,17 +36,17 @@ export class RatingComponent implements ControlValueAccessor {
   }
 
   public starMouseEnter(index: number): void {
-    this.highlightRaiting = index;
+    this.highlightRating = index;
   }
 
   public starMouseLeave(): void {
-    this.highlightRaiting = null;
+    this.highlightRating = null;
   }
 
   public highlight(index: number): boolean {
-    if (!this.highlightRaiting || this.highlightRaiting < this.currentRating) {
+    if (!this.highlightRating || this.highlightRating < this.currentRating) {
       return index < this.currentRating;
     }
-    return index < this.highlightRaiting;
+    return index < this.highlightRating;
   }
 }

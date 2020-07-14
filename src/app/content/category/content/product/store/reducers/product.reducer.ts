@@ -5,7 +5,7 @@ import {
   clearProduct,
   createFeedbackSuccess,
 } from '../actions/product.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.inteface';
+import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 export interface IProductState {
   item: IProduct;
@@ -20,6 +20,7 @@ const initialState: IProductState = {
     name: '',
     price: 0,
     images: [],
+    subCategory: '',
     feedbacks: [],
     status: false,
     rating: 0,

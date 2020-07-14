@@ -19,6 +19,7 @@ export class BrandsEffects extends UnSubscriber {
   ) {
     super();
   }
+  // tslint:disable-next-line: typedef
   public getBrands$: Observable<Action> = createEffect(() =>
     this._actions.pipe(
       ofType(getBrandsPending),
