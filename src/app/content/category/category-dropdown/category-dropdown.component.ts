@@ -54,7 +54,6 @@ export class CategoryDropdownComponent implements OnInit {
     this._store.dispatch(
       go({
         path: ['/category', subCategoryId],
-        extras: { replaceUrl: true },
       })
     );
   }

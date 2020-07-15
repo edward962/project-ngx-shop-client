@@ -23,9 +23,9 @@ export class ProductsService {
     selectedBrands,
   }: Params): Observable<IProductApi> {
     let query = `?subCat=${currentCategory}`;
-    // if (priceRange.length > 0) {
-    //   query += `&prices=${priceRange}`;
-    // }
+    if (priceRange && priceRange.length > 0) {
+      query += `&prices=${priceRange}`;
+    }
     if (searchByName) {
       query += `&text=${searchByName}`;
     }

@@ -1,10 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   FormBuilder,
-  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -19,52 +18,30 @@ import {
   ],
 })
 export class PriceSliderComponent implements ControlValueAccessor, OnInit {
-  constructor(private readonly _fb: FormBuilder) {}
+  constructor(
+    private readonly _fb: FormBuilder,
+    private readonly cdr: ChangeDetectorRef
+  ) {}
   public onChange!: Function;
-  @Input()
-  public set min(value: number) {
-    if (value === undefined) {
-      return;
-    }
-    console.log(value);
-    this.options = { ...this.options, floor: value };
-  }
-  @Input()
-  public set max(value: number) {
-    if (value === undefined) {
-      return;
-    }
-    console.log(value);
-    this.options = { ...this.options, ceil: value };
-  }
-  public low = 0;
-  public high = 0;
   public options: Options = {
     animate: false,
+    floor: 0,
     hideLimitLabels: true,
     hidePointerLabels: true,
+    ceil: 2000,
   };
-  public priceForm = this._fb.group({
-    low: [this.min, Validators.min(this.min)],
-    high: [this.max, Validators.max(this.max)],
-  });
+  public pricesControl = this._fb.control([20, 80]);
   public ngOnInit(): void {
-    // this.low = this.min;
-    // this.high = this.max;
-    // this.priceForm.valueChanges.subscribe(({ low, high }): void => {
-    //   this.low = low;
-    //   this.high = high;
-    // });
+    // tslint:disable-next-line:typedef
+    this.pricesControl.valueChanges.subscribe((price: number[]) => {
+      this.pricesControl.setValue(price, { emitEvent: false });
+      this.cdr.markForCheck();
+    });
   }
   public writeValue(prices: number[]): void {
-    console.log('HUY');
-    this.low = prices[0] || (this.options.floor as number);
-    this.high = prices[1] || (this.options.ceil as number);
-    this.priceForm.setValue({
-      low: this.low,
-      high: this.high,
-    });
-    // this.pricesValue = prices;
+    const low = Number(prices[0] ?? this.options.floor);
+    const high = Number(prices[1] ?? this.options.ceil);
+    this.pricesControl.setValue([low, high], { emitEvent: false });
   }
 
   public registerOnChange(fn: Function): void {
@@ -73,12 +50,7 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
 
   public registerOnTouched(): void {}
 
-  public userChangeEnd(): void {
-    this.priceForm.setValue({ low: this.low, high: this.high });
-    this.onChange([this.low, this.high]);
-    // this.pricesValue = [this.low, this.high];
-  }
-  public userChange(): void {
-    this.priceForm.setValue({ low: this.low, high: this.high });
+  public applyFilter(): void {
+    this.onChange(this.pricesControl.value);
   }
 }

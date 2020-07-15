@@ -1,3 +1,4 @@
+import { PriceInputsComponent } from './price-slider/price-inputs/price-inputs.component';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PriceSliderComponent } from './price-slider/price-slider.component';
@@ -18,6 +19,7 @@ import { BrandsEffects } from './store/effects/brands.effect';
   declarations: [
     CategoryComponent,
     PriceSliderComponent,
+    PriceInputsComponent,
     BrandsComponent,
     CategoryProductComponent,
     CategoryDropdownComponent,
