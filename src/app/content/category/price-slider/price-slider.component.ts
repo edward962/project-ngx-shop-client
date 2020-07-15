@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 import {
   ControlValueAccessor,
@@ -32,7 +32,8 @@ export class PriceSliderComponent implements ControlValueAccessor, OnInit {
   };
   public pricesControl = this._fb.control([20, 80]);
   public ngOnInit(): void {
-    this.pricesControl.valueChanges.subscribe((price) => {
+    // tslint:disable-next-line:typedef
+    this.pricesControl.valueChanges.subscribe((price: number[]) => {
       this.pricesControl.setValue(price, { emitEvent: false });
       this.cdr.markForCheck();
     });

@@ -13,7 +13,6 @@ import { getBrandsPending } from './store/actions/brands.actions';
 import {
   takeUntil,
   filter,
-  take,
   pluck,
   distinctUntilChanged,
   withLatestFrom,
@@ -54,6 +53,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   ]).pipe(
     tap(this._getProducts.bind(this)),
     pluck(1),
+    // tslint:disable-next-line:typedef
     map((query: Params) => ({
       ...query,
       brands: query.brands ? query.brands.split(',') : [],
@@ -88,7 +88,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     this._store.dispatch(
       getBrandsPending({
         id: subCategory,
-        prices: [0, 2000], //TODO  do i need this for brands
+        prices: [0, 2000],
       })
     );
   }
@@ -117,8 +117,11 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   }
 
   private _navigateToProductsByFilter([form, subCategory]: [
-    // tslint:disable-next-line:no-any
-    any,
+    {
+      brands: string[];
+      searchByName: string[];
+      prices: number[];
+    },
     string
   ]): void {
     this._store.dispatch(
@@ -128,7 +131,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
           brands: (form?.brands as string[]).join(',') || undefined,
           searchByName: form.searchByName || undefined,
           prices:
-            (form.prices && (form.prices as string[]).join(',')) || undefined,
+            (form.prices && (form.prices as number[]).join(',')) || undefined,
         },
       })
     );
