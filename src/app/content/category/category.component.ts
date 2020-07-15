@@ -29,13 +29,10 @@ import { IBrandsState } from './store/reducers/brands.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryComponent extends UnSubscriber implements OnInit {
-  public categories$: Observable<ICategoryState> = this._store
-    .select('categories')
-    .pipe(
-      filter(({ items }): boolean => items.length > 0),
-      take(1)
-    );
-
+  public selectedPrices: number[] = [];
+  public categories$: Observable<ICategoryState> = this._store.select(
+    'categories'
+  );
   public products$: Observable<IProductsState> = this._store
     .select('products')
     .pipe(takeUntil(this.unsubscribe$$));
@@ -60,6 +57,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     map((query: Params) => ({
       ...query,
       brands: query.brands ? query.brands.split(',') : [],
+      prices: query.prices ? query.prices.split(',') : '',
     })),
     tap(this._setFilters.bind(this)),
     pluck('brands'),
@@ -69,7 +67,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public form: FormGroup = this._fb.group({
     brands: [[]],
     searchByName: [''],
-    prices: [[]],
+    prices: [[0, 2000]],
   });
 
   constructor(
@@ -90,12 +88,13 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     this._store.dispatch(
       getBrandsPending({
         id: subCategory,
-        prices: [0, 20000], //TODO  do i need this for brands
+        prices: [0, 2000], //TODO  do i need this for brands
       })
     );
   }
 
   private _getProducts([subCategory, query]: [string, Params]): void {
+    this.selectedPrices = query.prices ? query.prices.split(',') : '';
     this._store.dispatch(
       getProductsPending({
         selectedBrands: query.brands,
@@ -110,14 +109,15 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     this.form.setValue(
       {
         searchByName: query.searchByName ?? '',
-        brands: query.brands,
-        prices: query.prices ? query.prices : '',
+        brands: query.brands ?? '',
+        prices: query.prices ?? undefined,
       },
       { emitEvent: false }
     );
   }
 
   private _navigateToProductsByFilter([form, subCategory]: [
+    // tslint:disable-next-line:no-any
     any,
     string
   ]): void {
@@ -127,7 +127,8 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         query: {
           brands: (form?.brands as string[]).join(',') || undefined,
           searchByName: form.searchByName || undefined,
-          prices: (form.prices as string[]) || undefined,
+          prices:
+            (form.prices && (form.prices as string[]).join(',')) || undefined,
         },
       })
     );
