@@ -22,6 +22,7 @@ export class SideMenuComponent {
     this.currentName = null;
   }
   public redirectTo(subCategory: string): void {
+    console.log('subCategory', subCategory);
     this._store.dispatch(
       go({
         path: ['/category', subCategory],

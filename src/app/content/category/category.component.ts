@@ -69,6 +69,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   public form: FormGroup = this._fb.group({
     brands: [[]],
     searchByName: [''],
+    prices: [[]],
   });
 
   constructor(
@@ -85,12 +86,11 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
       .pipe(withLatestFrom(this.subCategory$), takeUntil(this.unsubscribe$$))
       .subscribe(this._navigateToProductsByFilter.bind(this));
   }
-
   private _getBrands(subCategory: string): void {
     this._store.dispatch(
       getBrandsPending({
         id: subCategory,
-        prices: [0, 10000], //TODO  do i need this for brands
+        prices: [0, 20000], //TODO  do i need this for brands
       })
     );
   }
@@ -101,6 +101,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         selectedBrands: query.brands,
         currentCategory: subCategory,
         searchByName: query.searchByName,
+        priceRange: query.prices,
       })
     );
   }
@@ -110,6 +111,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
       {
         searchByName: query.searchByName ?? '',
         brands: query.brands,
+        prices: query.prices ? query.prices : '',
       },
       { emitEvent: false }
     );
@@ -123,8 +125,9 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
       go({
         path: ['/category', subCategory],
         query: {
-          brands: (form.brands as string[]).join(',') || undefined,
+          brands: (form?.brands as string[]).join(',') || undefined,
           searchByName: form.searchByName || undefined,
+          prices: (form.prices as string[]) || undefined,
         },
       })
     );

@@ -1,5 +1,5 @@
 <ng-container *ngIf="categories$ | async as categories">
-  <main role="main" *ngIf="!categories.loader; else loader">
+  <main role="main" *ngIf="!categories.loading; else loader">
     <div class="container">
       <form [formGroup]="form">
         <div class="row">
@@ -27,13 +27,11 @@
               formControlName="brands"
             >
             </ngx-shop-brands>
-            <!-- <ngx-shop-price-slider
-              *ngIf="!(products$ | async).loading"
-              [max]="max"
-              [min]="min"
+            <ngx-shop-price-slider
+              *ngIf="(products$ | async).items.length > 0"
               formControlName="prices"
-            > -->
-            <!-- </ngx-shop-price-slider> -->
+            >
+            </ngx-shop-price-slider>
           </div>
 
           <div
