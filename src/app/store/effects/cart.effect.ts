@@ -82,7 +82,7 @@ export class CartEffects {
         ofType(addProductToCart),
         // tslint:disable-next-line:typedef
         tap(() => {
-          this.toastr.info('Вы добавили этот товар в корзину');
+          this.toastr.info('Товар добавлен.');
           return cartSuccess();
         })
       ),
