@@ -40,7 +40,7 @@
           >
           </ngx-shop-content-product>
           <div class="noProducts" *ngIf="(products$ | async).items.length < 1">
-            <!-- No products -->
+            <h5>К сожалению нет товаров удовлетворяющих условиям</h5>
           </div>
         </div>
         <ng-template #second>
