@@ -36,7 +36,7 @@ export class RatingComponent implements ControlValueAccessor {
   }
 
   public starMouseEnter(index: number): void {
-    this.highlightRating = index;
+    this.highlightRating = index + 1;
   }
 
   public starMouseLeave(): void {
