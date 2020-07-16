@@ -26,9 +26,7 @@
             formControlName="brands"
           >
           </ngx-shop-brands>
-          <ngx-shop-price-slider
-            formControlName="prices"
-          >
+          <ngx-shop-price-slider formControlName="prices">
           </ngx-shop-price-slider>
         </div>
 
@@ -41,6 +39,9 @@
             [product]="product"
           >
           </ngx-shop-content-product>
+          <div class="noProducts" *ngIf="(products$ | async).items.length < 1">
+            <!-- No products -->
+          </div>
         </div>
         <ng-template #second>
           <ngx-shop-loader class="col-lg-8 loaderLeft"></ngx-shop-loader>
