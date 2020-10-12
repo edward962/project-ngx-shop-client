@@ -5,6 +5,7 @@ import {
   clearProduct,
   createFeedbackSuccess,
 } from '../actions/product.actions';
+
 export interface IProduct {
   _id: string;
   feedbacksCount: number;
@@ -88,7 +89,7 @@ const productReducer = createReducer(
     loading: false,
   })),
   // tslint:disable-next-line:typedef
-  on(clearProduct, (state: IProductState) => initialState)
+  on(clearProduct, () => initialState)
 );
 
 export function reducerProduct(

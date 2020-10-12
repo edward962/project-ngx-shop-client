@@ -17,74 +17,72 @@ import { Store, Action } from '@ngrx/store';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { go } from '@root-store/actions/router.actions';
-
+import { IProduct } from '@product-store/reducers/product.reducer';
 import { selectProducts } from '@root-store/reducers/cart.reducer';
 @Injectable()
 export class CartEffects {
   constructor(
-    private actions: Actions,
-    private store: Store<IStore>,
-    private localStorageService: LocalStorageService,
-    private toastr: ToastrService
+    private readonly actions: Actions,
+    private readonly store: Store<IStore>,
+    private readonly localStorageService: LocalStorageService,
+    private readonly _toastr: ToastrService
   ) {}
-  // tslint:disable-next-line:typedef
-  public removeProduct$: Observable<Action> = createEffect(() =>
-    this.actions.pipe(
-      ofType(removeProductFromCart),
-      withLatestFrom(this.store.select(selectProducts)),
-      // tslint:disable-next-line:typedef
-      filter(([, products]) => products.length < 1),
-      // tslint:disable-next-line:typedef
-      map(() => {
-        return go({ path: ['/'] });
-      }),
-      catchError(
-        (err: Error): Observable<Action> =>
-          of(removeProductFromCartError({ err }))
+
+  public removeProduct$: Observable<Action> = createEffect(
+    (): Observable<Action> =>
+      this.actions.pipe(
+        ofType(removeProductFromCart),
+        withLatestFrom(this.store.select(selectProducts)),
+        filter(
+          ([, products]: [{}, IProduct[]]): boolean => products.length < 1
+        ),
+        map(
+          (): Action => {
+            return go({ path: ['/'] });
+          }
+        ),
+        catchError(
+          (err: Error): Observable<Action> =>
+            of(removeProductFromCartError({ err }))
+        )
       )
-    )
   );
   public removeProducts$: Observable<Action> = createEffect(
-    // tslint:disable-next-line:typedef
-    () =>
+    (): Observable<Action> =>
       this.actions.pipe(
         ofType(removeProductsFromCartPending),
-        // tslint:disable-next-line:typedef
-        tap(() => {
+        tap((): void => {
           this.localStorageService.removeFromLocalStorage('cart');
         }),
-        // tslint:disable-next-line:typedef
-        map(() => removeProductsFromCartSuccess())
+        map((): Action => removeProductsFromCartSuccess())
       )
   );
-  // tslint:disable-next-line:typedef
-  public toLocalStorage$: Observable<Action> = createEffect(() =>
-    this.actions.pipe(
-      ofType(
-        removeProductFromCart,
-        addProductToCart,
-        incrementProductInCart,
-        decrementProductInCart
-      ),
-      withLatestFrom(this.store.select(selectProducts)),
-      // tslint:disable-next-line:typedef
-      tap(([, products]) => {
-        this.localStorageService.addToLocalStorage('cart', products);
-      }),
-      // tslint:disable-next-line:typedef
-      map(() => cartSuccess())
-    )
+  public toLocalStorage$: Observable<Action> = createEffect(
+    (): Observable<Action> =>
+      this.actions.pipe(
+        ofType(
+          removeProductFromCart,
+          addProductToCart,
+          incrementProductInCart,
+          decrementProductInCart
+        ),
+        withLatestFrom(this.store.select(selectProducts)),
+        tap(([, products]: [{}, IProduct[]]): void => {
+          this.localStorageService.addToLocalStorage('cart', products);
+        }),
+        map((): Action => cartSuccess())
+      )
   );
   public addProductToStorage$: Observable<Action> = createEffect(
-    // tslint:disable-next-line:typedef
-    () =>
+    (): Observable<Action> =>
       this.actions.pipe(
         ofType(addProductToCart),
-        // tslint:disable-next-line:typedef
-        tap(() => {
-          this.toastr.info('Товар добавлен.');
-          return cartSuccess();
-        })
+        tap(
+          (): Action => {
+            this._toastr.info('Товар добавлен.');
+            return cartSuccess();
+          }
+        )
       ),
     { dispatch: false }
   );

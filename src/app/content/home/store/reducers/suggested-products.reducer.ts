@@ -36,7 +36,7 @@ const suggestedProductsReducer = createReducer(
     loading: false,
   })),
   // tslint:disable-next-line:typedef
-  on(clearSuggestedProducts, (state: IProductsState) => initialState)
+  on(clearSuggestedProducts, () => initialState)
 );
 
 export function reducerSuggestedProducts(

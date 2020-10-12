@@ -16,11 +16,11 @@ import {
   animations: [slideAnimation, initSliderAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-// @ts-ignore
 export class ProductSliderComponent extends Slider<IProductImage> {
   @Input()
   public items: IProductImage[] = [];
-  constructor(private readonly _cdr: ChangeDetectorRef) {
+
+  constructor(_cdr: ChangeDetectorRef) {
     super(_cdr);
   }
 }

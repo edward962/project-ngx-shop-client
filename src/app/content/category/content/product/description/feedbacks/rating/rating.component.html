@@ -1,7 +1,12 @@
 <div class="rate rate-sm mb-3">
   <div *ngFor="let star of stars; let i = index" class="rate-star">
-    <span class="fa fa-star" [ngClass]="{ selected: highlight(i) }" (click)="starSelect(i + 1)"
-      (mouseenter)="starMouseEnter(i)" (mouseleave)="starMouseLeave()">
+    <span
+      class="fa fa-star"
+      [ngClass]="{ selected: highlight(i) }"
+      (click)="starSelect(i + 1)"
+      (mouseenter)="starMouseEnter(i)"
+      (mouseleave)="starMouseLeave()"
+    >
     </span>
   </div>
 </div>

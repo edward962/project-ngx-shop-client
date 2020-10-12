@@ -1,4 +1,4 @@
-<div class="card" (click)="redirectTo(product._id)">
+<div class="card" (click)="redirectTo()">
   <div class="card-img-wrap pointer">
     <img
       loading="auto"
@@ -18,9 +18,9 @@
     />
   </div>
   <div class="card-body">
-    <h5 class="card-title pointer">
+    <p class="card-title pointer">
       {{ product.name }}
-    </h5>
+    </p>
     <div>
       <div class="rate">
         <ngx-shop-star-rating

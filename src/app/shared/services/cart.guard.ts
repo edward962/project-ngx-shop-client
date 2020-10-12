@@ -1,6 +1,6 @@
 import { IStore } from '@root-store/reducers';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRoute, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,6 @@ import { IProduct } from '@product-store/reducers/product.reducer';
 export class CartGuard implements CanActivate {
   constructor(
     private readonly store: Store<IStore>,
-    private readonly _route: ActivatedRoute,
     private readonly _router: Router
   ) {}
 

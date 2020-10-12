@@ -3,13 +3,13 @@
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <a
         class="nav-item nav-link pointer"
-        [ngClass]="{ active: isShowDescription }"
+        [ngClass]="!isShowDescription | swClass: '':'active'"
         (click)="toggleTab()"
         >Описание</a
       >
       <a
         class="nav-item nav-link pointer"
-        [ngClass]="{ active: !isShowDescription }"
+        [ngClass]="isShowDescription | swClass: '':'active'"
         (click)="toggleTab()"
         >Отзывы {{ product?.feedbacksCount || 0 }}</a
       >

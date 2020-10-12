@@ -1,3 +1,4 @@
+import { ICategory } from '@root-store/reducers/categories.reducer';
 import { Action } from '@ngrx/store';
 import { CategoriesService } from '@shared/services/category.service';
 import { Observable, of } from 'rxjs';
@@ -16,22 +17,26 @@ export class CategoryEffects {
     private actions: Actions,
     public categoriesService: CategoriesService
   ) {}
-  // tslint:disable-next-line:typedef
-  public getCategories$: Observable<Action> = createEffect(() =>
-    this.actions.pipe(
-      ofType(getCategoriesPending),
-      // tslint:disable-next-line:typedef
-      switchMap(() => {
-        return this.categoriesService.getCategories().pipe(
-          // tslint:disable-next-line:typedef
-          map((categories) => {
-            return getCategoriesSuccess({ categories });
-          }),
-          catchError(
-            (err: Error): Observable<Action> => of(getCategoriesError({ err }))
-          )
-        );
-      })
-    )
+
+  public getCategories$: Observable<Action> = createEffect(
+    (): Observable<Action> =>
+      this.actions.pipe(
+        ofType(getCategoriesPending),
+        switchMap(
+          (): Observable<Action> => {
+            return this.categoriesService.getCategories().pipe(
+              map(
+                (categories: ICategory[]): Action => {
+                  return getCategoriesSuccess({ categories });
+                }
+              ),
+              catchError(
+                (err: Error): Observable<Action> =>
+                  of(getCategoriesError({ err }))
+              )
+            );
+          }
+        )
+      )
   );
 }

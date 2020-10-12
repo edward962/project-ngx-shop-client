@@ -1,7 +1,7 @@
 <div id="productCarousel" class="main-carousel carousel slide">
   <ol class="carousel-indicators">
     <li
-      [ngClass]="{ active: j === currentIndex }"
+      [ngClass]="j === currentIndex | swClass: '':'active'"
       *ngFor="let banner of items; let j = index"
       (click)="show(j)"
     ></li>

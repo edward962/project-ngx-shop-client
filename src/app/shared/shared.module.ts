@@ -23,6 +23,7 @@ import { Meta } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from '@env/environment';
 import { IProduct } from '@product-store/reducers/product.reducer';
+import { SwClassPipe } from './pipes/swclass.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { IProduct } from '@product-store/reducers/product.reducer';
     ReviewPipe,
     TooltipDirective,
     LoaderComponent,
+    SwClassPipe,
   ],
   imports: [
     ToastrModule.forRoot({
@@ -56,6 +58,7 @@ import { IProduct } from '@product-store/reducers/product.reducer';
     TooltipDirective,
     LoaderComponent,
     ReviewPipe,
+    SwClassPipe,
   ],
   providers: [
     CategoriesService,

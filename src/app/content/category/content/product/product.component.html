@@ -1,5 +1,5 @@
 <ng-container *ngIf="product$ | async as product">
-  <main *ngIf="!product.loading; else loader" role=" main">
+  <main *ngIf="!product?.loading; else loader" role=" main">
     <div class="container">
       <div class="row">
         <ngx-shop-product-slider

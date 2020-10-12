@@ -25,15 +25,10 @@ export interface IBanner {
   animations: [slideAnimation, initSliderAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-// @ts-ignore
 export class BannerSliderComponent extends Slider<IBanner> {
   @Input()
-  // @ts-ignore
   public items: IBanner[] = [];
-  constructor(
-    private readonly _cdr: ChangeDetectorRef,
-    private readonly _store: Store<IStore>
-  ) {
+  constructor(_cdr: ChangeDetectorRef, private readonly _store: Store<IStore>) {
     super(_cdr);
   }
 

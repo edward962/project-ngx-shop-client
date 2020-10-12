@@ -6,7 +6,6 @@ import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./card-confirm-modal.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-// @ts-ignore
 export class CardConfirmModalComponent {
   public close!: () => void;
   public save!: () => void;
@@ -15,5 +14,4 @@ export class CardConfirmModalComponent {
 @NgModule({
   declarations: [CardConfirmModalComponent],
 })
-// @ts-ignore
 export class CardConfirmModalModule {}
