@@ -1,6 +1,6 @@
 import { ProductSliderComponent } from './product-slider/product-slider.component';
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { FeedbacksComponent } from './description/feedbacks/feedbacks.component';

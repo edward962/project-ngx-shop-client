@@ -1,12 +1,12 @@
+import { IProductsState } from '@category-store/reducers/products.reducer';
 import { createReducer, on, Action } from '@ngrx/store';
+import { IProduct } from '@product-store/reducers/product.reducer';
 import {
   getSuggestedProductsPending,
   getSuggestedProductsSuccess,
   clearSuggestedProducts,
   getSuggestedProductsError,
 } from '../actions/suggested-products.actions';
-import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
 
 const initialState: IProductsState = {
   items: [],

@@ -8,17 +8,17 @@ import {
   removeProductsFromCartPending,
   removeProductsFromCartSuccess,
 } from './../actions/cart.actions';
-import { IStore } from 'src/app/store/reducers';
+import { IStore } from '@root-store/reducers';
 import { map, filter, tap, catchError, withLatestFrom } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { removeProductFromCart } from '../actions/cart.actions';
 import { Store, Action } from '@ngrx/store';
-import { selectProducts } from '../reducers/cart.reducer';
-import { go } from '../actions/router.actions';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { LocalStorageService } from '@shared/services/local-storage.service';
 import { ToastrService } from 'ngx-toastr';
+import { go } from '@root-store/actions/router.actions';
 
+import { selectProducts } from '@root-store/reducers/cart.reducer';
 @Injectable()
 export class CartEffects {
   constructor(

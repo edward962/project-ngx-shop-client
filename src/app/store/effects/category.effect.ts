@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { CategoriesService } from './../../shared/services/category.service';
+import { CategoriesService } from '@shared/services/category.service';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';

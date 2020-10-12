@@ -1,9 +1,9 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import {
+  getCategoriesError,
   getCategoriesPending,
   getCategoriesSuccess,
-  getCategoriesError,
-} from '../actions/category.actions';
+} from '@root-store/actions/category.actions';
 
 export interface ICategoryState {
   items: ICategory[];

@@ -1,9 +1,8 @@
 import { EntityState } from '@ngrx/entity';
-import { ICategoryState } from './../reducers/categories.reducer';
 import { createSelector } from '@ngrx/store';
-import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
-
+import { IProductsState } from '@category-store/reducers/products.reducer';
+import { IProduct } from '@product-store/reducers/product.reducer';
+import { ICategoryState } from '@root-store/reducers/categories.reducer';
 interface ISelectStore {
   categories: ICategoryState;
   cart: EntityState<IProduct>;

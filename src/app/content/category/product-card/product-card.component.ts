@@ -1,9 +1,9 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IStore } from 'src/app/store/reducers';
-import { addProductToCart } from 'src/app/store/actions/cart.actions';
-import { go } from 'src/app/store/actions/router.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
+import { IStore } from '@root-store/reducers';
+import { addProductToCart } from '@root-store/actions/cart.actions';
+import { go } from '@root-store/actions/router.actions';
+import { IProduct } from '@product-store/reducers/product.reducer';
 
 @Component({
   selector: 'ngx-shop-content-product',

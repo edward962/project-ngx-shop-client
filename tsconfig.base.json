@@ -15,5 +15,12 @@
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
+    "paths": {
+      "@shared/*": ["src/app/shared/*"],
+      "@env/*": ["src/environments/*"],
+      "@root-store/*": ["src/app/store/*"],
+      "@category-store/*": ["src/app/content/category/store/*"],
+      "@product-store/*": ["src/app/content/category/content/product/store/*"]
+    }
   }
 }

@@ -7,7 +7,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { BASE_URL_TOKEN } from '../config';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { environment } from '../../environments/environment';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from './services/category.service';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
@@ -16,13 +15,14 @@ import { RatePipe } from './pipes/rate.pipe';
 import { ImgUrlPipe } from './pipes/img-url.pipe';
 import { Store } from '@ngrx/store';
 import { LocalStorageService } from './services/local-storage.service';
-import { addAllProductsToCart } from '../store/actions/cart.actions';
+import { addAllProductsToCart } from '@root-store/actions/cart.actions';
 import { CartGuard } from './services/cart.guard';
-import { IStore } from '../store/reducers';
+import { IStore } from '@root-store/reducers';
 import { BrandsService } from './services/brands.service';
-import { IProduct } from './interfaces/product.interface';
 import { Meta } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
+import { environment } from '@env/environment';
+import { IProduct } from '@product-store/reducers/product.reducer';
 
 @NgModule({
   declarations: [

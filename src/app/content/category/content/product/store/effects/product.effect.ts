@@ -1,5 +1,5 @@
-import { UnSubscriber } from './../../../../../../shared/utils/unsubscriber';
-import { IStore } from 'src/app/store/reducers';
+import { UnSubscriber } from '@shared/utils/unsubscriber';
+import { IStore } from '@root-store/reducers';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
@@ -13,7 +13,7 @@ import {
   tap,
 } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
-import { ProductsService } from '../../../../../../shared/services/products.service';
+import { ProductsService } from '@shared/services/products.service';
 import {
   getProductPending,
   getProductSuccess,
@@ -22,8 +22,8 @@ import {
   getProductError,
   createFeedbackError,
 } from '../actions/product.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { ToastrService } from 'ngx-toastr';
+import { IProduct } from '@product-store/reducers/product.reducer';
 
 @Injectable()
 export class ProductEffects extends UnSubscriber {

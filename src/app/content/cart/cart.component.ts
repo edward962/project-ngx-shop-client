@@ -1,24 +1,24 @@
-import { UnSubscriber } from './../../shared/utils/unsubscriber';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { selectProducts } from 'src/app/store/reducers/cart.reducer';
+import { selectProducts } from '@root-store/reducers/cart.reducer';
 import { Store } from '@ngrx/store';
-import { IStore } from 'src/app/store/reducers';
+import { IStore } from '@root-store/reducers';
 import {
   decrementProductInCart,
   removeProductFromCart,
   incrementProductInCart,
   removeProductsFromCartPending,
-} from '../../store/actions/cart.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
-import { go } from 'src/app/store/actions/router.actions';
+} from '@root-store/actions/cart.actions';
+import { go } from '@root-store/actions/router.actions';
 import { takeWhile, takeUntil } from 'rxjs/operators';
 
+import { UnSubscriber } from '@shared/utils/unsubscriber';
+import { IProduct } from '@product-store/reducers/product.reducer';
 @Component({
   selector: 'ngx-shop-cart',
   templateUrl: './cart.component.html',
 })
-export class CartComponent extends UnSubscriber implements OnDestroy {
+export class CartComponent extends UnSubscriber {
   public cart$: Observable<IProduct[]> = this._store
     .select(selectProducts)
     .pipe(

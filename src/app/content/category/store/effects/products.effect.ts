@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { switchMap, map, takeUntil, catchError } from 'rxjs/operators';
-import { ProductsService } from 'src/app/shared/services/products.service';
+import { ProductsService } from '@shared/services/products.service';
 import { Action } from '@ngrx/store';
-import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
+import { UnSubscriber } from '@shared/utils/unsubscriber';
 
 @Injectable()
 export class ProductsEffects extends UnSubscriber {

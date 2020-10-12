@@ -8,10 +8,10 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   ICategory,
   ISubCategory,
-} from 'src/app/store/reducers/categories.reducer';
-import { IStore } from 'src/app/store/reducers';
+} from '@root-store/reducers/categories.reducer';
+import { IStore } from '@root-store/reducers';
 import { Store } from '@ngrx/store';
-import { go } from 'src/app/store/actions/router.actions';
+import { go } from '@root-store/actions/router.actions';
 
 @Component({
   selector: 'ngx-shop-category-dropdown',

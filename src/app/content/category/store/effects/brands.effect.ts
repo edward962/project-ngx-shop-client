@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { BrandsService } from '../../../../shared/services/brands.service';
+import { BrandsService } from '@shared/services/brands.service';
 import {
   getBrandsPending,
   getBrandsSuccess,
@@ -9,7 +9,7 @@ import { switchMap, map, takeUntil, catchError } from 'rxjs/operators';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
+import { UnSubscriber } from '@shared/utils/unsubscriber';
 
 @Injectable()
 export class BrandsEffects extends UnSubscriber {

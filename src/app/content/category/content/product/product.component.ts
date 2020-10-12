@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { IStore } from 'src/app/store/reducers';
+import { IStore } from '@root-store/reducers';
 import { Observable } from 'rxjs';
 import {
   getProductPending,
   clearProduct,
 } from './store/actions/product.actions';
-import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
+import { UnSubscriber } from '@shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { IProductState } from './store/reducers/product.reducer';
 
@@ -15,7 +15,8 @@ import { IProductState } from './store/reducers/product.reducer';
   selector: 'ngx-shop-product',
   templateUrl: './product.component.html',
 })
-export class ProductComponent extends UnSubscriber
+export class ProductComponent
+  extends UnSubscriber
   implements OnInit, OnDestroy {
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
@@ -29,7 +30,6 @@ export class ProductComponent extends UnSubscriber
     .pipe(takeUntil(this.unsubscribe$$));
 
   public ngOnInit(): void {
-    // TODO need resolver !!!!
     const { product } = this._activatedRoute.snapshot.params;
     this._store.dispatch(getProductPending({ id: product }));
   }

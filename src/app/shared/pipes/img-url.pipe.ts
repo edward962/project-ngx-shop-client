@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IProductImage } from '../interfaces/product.interface';
-
+import { IProductImage } from '@product-store/reducers/product.reducer';
 @Pipe({
   name: 'imgUrl',
 })

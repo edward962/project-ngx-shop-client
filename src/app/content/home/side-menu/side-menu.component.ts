@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ICategory } from 'src/app/store/reducers/categories.reducer';
-import { go } from 'src/app/store/actions/router.actions';
+import { ICategory } from '@root-store/reducers/categories.reducer';
+import { go } from '@root-store/actions/router.actions';
 import { Store } from '@ngrx/store';
-import { IStore } from 'src/app/store/reducers';
+import { IStore } from '@root-store/reducers';
 
 @Component({
   selector: 'ngx-shop-side-menu',

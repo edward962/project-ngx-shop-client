@@ -1,6 +1,6 @@
 import { BannerSliderComponent } from './banner/banner.component';
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { HomeComponent } from './home.component';

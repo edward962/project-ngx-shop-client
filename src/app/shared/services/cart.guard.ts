@@ -1,13 +1,12 @@
-import { IStore } from 'src/app/store/reducers';
+import { IStore } from '@root-store/reducers';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-
 import { switchMap, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { selectProducts } from 'src/app/store/reducers/cart.reducer';
-import { IProduct } from '../interfaces/product.interface';
-import { go } from 'src/app/store/actions/router.actions';
+import { selectProducts } from '@root-store/reducers/cart.reducer';
+import { go } from '@root-store/actions/router.actions';
+import { IProduct } from '@product-store/reducers/product.reducer';
 
 @Injectable()
 export class CartGuard implements CanActivate {

@@ -1,7 +1,6 @@
 import { OnDestroy, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-// TODO: Add Angular decorator.
 @Injectable()
 export class UnSubscriber implements OnDestroy {
   protected unsubscribe$$ = new Subject();

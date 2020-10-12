@@ -1,4 +1,3 @@
-import { IBrandsState } from './../../content/category/store/reducers/brands.reducer';
 import { routerReducer, RouterStateSerializer } from '@ngrx/router-store';
 import {
   ActivatedRouteSnapshot,
@@ -9,9 +8,12 @@ import { reducerCart } from './cart.reducer';
 import { ActionReducerMap } from '@ngrx/store';
 import { EntityState } from '@ngrx/entity/src';
 import { ICategoryState, reducerCategories } from './categories.reducer';
-import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
-import { IProductState } from 'src/app/content/category/content/product/store/reducers/product.reducer';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
+import { IProductsState } from '@category-store/reducers/products.reducer';
+import {
+  IProductState,
+  IProduct,
+} from '@product-store/reducers/product.reducer';
+import { IBrandsState } from '@category-store/reducers/brands.reducer';
 
 export interface IStore {
   product: IProductState;
@@ -20,7 +22,7 @@ export interface IStore {
   cart: EntityState<IProduct>;
   categories: ICategoryState;
   brands: IBrandsState;
-  routerReducer: typeof routerReducer;
+  router: typeof routerReducer;
 }
 
 interface IReducers {
@@ -31,7 +33,6 @@ interface IReducers {
 export const reducers: ActionReducerMap<IReducers> = {
   cart: reducerCart,
   categories: reducerCategories,
-  // TODO router ?
 };
 
 export interface IRouterStateUrl {

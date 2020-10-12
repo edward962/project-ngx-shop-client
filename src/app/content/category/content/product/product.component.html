@@ -1,21 +1,23 @@
-<main *ngIf="!(product$ | async).loading; else loader" role=" main">
-  <div class="container">
-    <div class="row">
-      <ngx-shop-product-slider
-        [items]="(product$ | async).item.images"
-        class="col-lg-5"
-      ></ngx-shop-product-slider>
-      <div class="col-lg-7 product-info-block">
-        <ngx-shop-information
-          [product]="(product$ | async).item"
-        ></ngx-shop-information>
-        <ngx-shop-product-description
-          [product]="(product$ | async).item"
-        ></ngx-shop-product-description>
+<ng-container *ngIf="product$ | async as product">
+  <main *ngIf="!product.loading; else loader" role=" main">
+    <div class="container">
+      <div class="row">
+        <ngx-shop-product-slider
+          [items]="product?.item?.images"
+          class="col-lg-5"
+        ></ngx-shop-product-slider>
+        <div class="col-lg-7 product-info-block">
+          <ngx-shop-information
+            [product]="product?.item"
+          ></ngx-shop-information>
+          <ngx-shop-product-description
+            [product]="product?.item"
+          ></ngx-shop-product-description>
+        </div>
       </div>
     </div>
-  </div>
-</main>
-<ng-template #loader>
-  <ngx-shop-loader class="col-lg-12 loaderCenter"></ngx-shop-loader>
-</ng-template>
+  </main>
+  <ng-template #loader>
+    <ngx-shop-loader class="col-lg-12 loaderCenter"></ngx-shop-loader>
+  </ng-template>
+</ng-container>
