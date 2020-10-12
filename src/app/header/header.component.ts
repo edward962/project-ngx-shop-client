@@ -1,11 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IStore } from '../store/reducers';
-import { trueProductsCount } from '../store/reducers/cart.reducer';
+import { IStore } from '@root-store/reducers';
+import { trueProductsCount } from '@root-store/reducers/cart.reducer';
 import { takeUntil } from 'rxjs/operators';
-import { UnSubscriber } from '../shared/utils/unsubscriber';
-import { ICategory } from '../store/reducers/categories.reducer';
+import { UnSubscriber } from '@shared/utils/unsubscriber';
+import { ICategory } from '@root-store/reducers/categories.reducer';
 import { getCategoriesPending } from '../store/actions/category.actions';
 
 @Component({

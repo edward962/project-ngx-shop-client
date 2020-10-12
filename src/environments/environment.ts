@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   author: 'jsdaddy.io',
-  baseUrl: 'https://ngx-shop-api.herokuapp.com',
+  // baseUrl: 'https://ngx-shop-api.herokuapp.com/api',
+  baseUrl: 'http://localhost:8090',
 };
 
 /*

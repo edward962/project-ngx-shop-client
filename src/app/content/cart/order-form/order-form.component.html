@@ -7,8 +7,7 @@
         <input
           [ngClass]="
             form.errors?.name
-              ? 'form-control form-control-error'
-              : 'form-control'
+              | swClass: 'form-control form-control-error':'form-control'
           "
           formControlName="name"
           type="text"
@@ -26,8 +25,7 @@
           type="email"
           [ngClass]="
             form.errors?.email
-              ? 'form-control form-control-error'
-              : 'form-control'
+              | swClass: 'form-control form-control-error':'form-control'
           "
           id="email"
           placeholder="email@gmail.com"
@@ -43,8 +41,7 @@
         <input
           [ngClass]="
             form.errors?.telephone
-              ? 'form-control form-control-error'
-              : 'form-control'
+              | swClass: 'form-control form-control-error':'form-control'
           "
           formControlName="telephone"
           type="text"

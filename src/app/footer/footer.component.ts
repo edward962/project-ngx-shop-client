@@ -1,6 +1,5 @@
-import { environment } from 'src/environments/environment';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-
+import { environment } from '@env/environment';
 @Component({
   selector: 'ngx-shop-footer',
   templateUrl: './footer.component.html',

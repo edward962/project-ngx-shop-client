@@ -1,12 +1,13 @@
-<div class="backdrop" [ngClass]="{ show: currentName }"></div>
+<div class="backdrop" [ngClass]="!currentName | swClass: '':'show'"></div>
 <ul class="list-group sidebar">
   <li
     *ngFor="let category of categories; let i = index"
     class="list-group-item dropdown pointer"
-    [ngClass]="{ show: category.name === currentName }"
+    [ngClass]="category.name !== currentName | swClass: '':'show'"
   >
     <a
       class="nav-link dropdown-toggle pointer"
+      style="color: black"
       (mouseenter)="hover(category.name)"
       (mouseleave)="mouseLeave()"
     >
@@ -16,7 +17,7 @@
       class="dropdown-menu"
       (mouseenter)="hover(category.name)"
       (mouseleave)="mouseLeave()"
-      [ngClass]="{ show: category.name === currentName }"
+      [ngClass]="category.name !== currentName | swClass: '':'show'"
     >
       <li
         class="dropdown-item pointer"

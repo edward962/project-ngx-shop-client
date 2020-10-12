@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
+import { IProduct } from '@product-store/reducers/product.reducer';
 @Component({
   selector: 'ngx-shop-product-description',
   templateUrl: './description.component.html',

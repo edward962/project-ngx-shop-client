@@ -1,6 +1,5 @@
 import { PriceInputsComponent } from './price-slider/price-inputs/price-inputs.component';
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { PriceSliderComponent } from './price-slider/price-slider.component';
 import { BrandsComponent } from './brands/brands.component';
 import { Ng5SliderModule } from 'ng5-slider';
@@ -14,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { ProductsEffects } from './store/effects/products.effect';
 import { reducerBrands } from './store/reducers/brands.reducer';
 import { BrandsEffects } from './store/effects/brands.effect';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [

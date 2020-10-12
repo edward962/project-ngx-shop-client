@@ -14,6 +14,7 @@ const routes: Routes = [
       import('./content/product/product.module')
         // tslint:disable-next-line:typedef
         .then((mod) => mod.ProductModule),
+
     data: {
       state: 'product',
     },

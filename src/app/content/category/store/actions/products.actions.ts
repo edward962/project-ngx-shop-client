@@ -1,14 +1,14 @@
+import { IMinMaxPrice } from '@category-store/reducers/products.reducer';
 import { createAction, props } from '@ngrx/store';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
-import { IMinMaxPrice } from '../reducers/products.reducer';
+import { IProduct } from '@product-store/reducers/product.reducer';
 
 export const getProductsPending = createAction(
   '[Products] Get products pending',
   props<{
     currentCategory?: string;
     priceRange?: number[];
-    searchByName?: string;
-    selectedBrands?: string;
+    text?: string;
+    brands?: string;
   }>()
 );
 

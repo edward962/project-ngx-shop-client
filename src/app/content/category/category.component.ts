@@ -1,8 +1,7 @@
-import { ICategoryState } from 'src/app/store/reducers/categories.reducer';
-import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
-import { UnSubscriber } from './../../shared/utils/unsubscriber';
-import { getCategoriesPending } from 'src/app/store/actions/category.actions';
-import { IStore } from 'src/app/store/reducers';
+import { ICategoryState } from '@root-store/reducers/categories.reducer';
+import { UnSubscriber } from '@shared/utils/unsubscriber';
+import { getCategoriesPending } from '@root-store/actions/category.actions';
+import { IStore } from '@root-store/reducers';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, combineLatest } from 'rxjs';
@@ -19,8 +18,9 @@ import {
   tap,
   map,
 } from 'rxjs/operators';
-import { go } from 'src/app/store/actions/router.actions';
+import { go } from '@root-store/actions/router.actions';
 import { IBrandsState } from './store/reducers/brands.reducer';
+import { IProductsState } from './store/reducers/products.reducer';
 
 @Component({
   selector: 'app-category',
@@ -66,7 +66,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
 
   public form: FormGroup = this._fb.group({
     brands: [[]],
-    searchByName: [''],
+    text: [''],
     prices: [[0, 2000]],
   });
 
@@ -97,9 +97,9 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
     this.selectedPrices = query.prices ? query.prices.split(',') : '';
     this._store.dispatch(
       getProductsPending({
-        selectedBrands: query.brands,
+        brands: query.brands,
         currentCategory: subCategory,
-        searchByName: query.searchByName,
+        text: query.text,
         priceRange: query.prices,
       })
     );
@@ -108,7 +108,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   private _setFilters(query: Params): void {
     this.form.setValue(
       {
-        searchByName: query.searchByName ?? '',
+        text: query.text ?? '',
         brands: query.brands ?? '',
         prices: query.prices ?? undefined,
       },
@@ -119,7 +119,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
   private _navigateToProductsByFilter([form, subCategory]: [
     {
       brands: string[];
-      searchByName: string[];
+      text: string[];
       prices: number[];
     },
     string
@@ -129,7 +129,7 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
         path: ['/category', subCategory],
         query: {
           brands: (form?.brands as string[]).join(',') || undefined,
-          searchByName: form.searchByName || undefined,
+          text: form.text || undefined,
           prices:
             (form.prices && (form.prices as number[]).join(',')) || undefined,
         },

@@ -15,8 +15,7 @@ import {
   createFeatureSelector,
   Action,
 } from '@ngrx/store';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
-
+import { IProduct } from '@product-store/reducers/product.reducer';
 export const cartAdapter: EntityAdapter<IProduct> = createEntityAdapter({
   selectId: (product: IProduct): string => product._id,
 });

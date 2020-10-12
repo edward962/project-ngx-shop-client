@@ -4,16 +4,17 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 import { forward, go } from '../actions/router.actions';
 import { Router } from '@angular/router';
+import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class RouterEffects {
   public go = createEffect(
-    // tslint:disable-next-line:typedef
-    () =>
+    (): Observable<Action> =>
       this.actions$.pipe(
         ofType(go),
-        // tslint:disable-next-line:typedef
-        tap(({ path, query: queryParams, extras }) => {
+
+        tap(({ path, query: queryParams, extras }): void => {
           this.router.navigate(path, {
             queryParams,
             ...extras,
@@ -23,26 +24,26 @@ export class RouterEffects {
     { dispatch: false }
   );
 
-  // tslint:disable-next-line:typedef
-  public forward = createEffect(() =>
-    this.actions$.pipe(
-      ofType(forward),
-      // tslint:disable-next-line:typedef
-      tap(() => {
-        this.location.forward();
-      })
-    )
+  public forward = createEffect(
+    (): Observable<Action> =>
+      this.actions$.pipe(
+        ofType(forward),
+
+        tap((): void => {
+          this.location.forward();
+        })
+      )
   );
 
-  // tslint:disable-next-line:typedef
-  public back = createEffect(() =>
-    this.actions$.pipe(
-      ofType(forward),
-      // tslint:disable-next-line:typedef
-      tap(() => {
-        this.location.back();
-      })
-    )
+  public back = createEffect(
+    (): Observable<Action> =>
+      this.actions$.pipe(
+        ofType(forward),
+
+        tap((): void => {
+          this.location.back();
+        })
+      )
   );
 
   constructor(

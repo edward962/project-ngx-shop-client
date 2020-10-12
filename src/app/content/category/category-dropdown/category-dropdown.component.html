@@ -10,7 +10,7 @@
   <ul
     class="collapse pointer"
     data-parent="#accordion"
-    [ngClass]="{ show: i === currentIndex }"
+    [ngClass]="i !== currentIndex | swClass: '':'show'"
   >
     <li
       *ngFor="let subCategory of category.subCategories"

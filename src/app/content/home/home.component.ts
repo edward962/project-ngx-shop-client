@@ -1,20 +1,20 @@
-import { loadingSuggestedProductAndCategories } from './../../store/selectors/category.selectors';
-import { IProductsState } from 'src/app/content/category/store/reducers/products.reducer';
-import { ICategoryState } from './../../store/reducers/categories.reducer';
+import { loadingSuggestedProductAndCategories } from '@root-store/selectors/category.selectors';
+import { ICategoryState } from '@root-store/reducers/categories.reducer';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { getCategoriesPending } from 'src/app/store/actions/category.actions';
-import { ICategory } from 'src/app/store/reducers/categories.reducer';
-import { IStore } from 'src/app/store/reducers';
+import { getCategoriesPending } from '@root-store/actions/category.actions';
+import { ICategory } from '@root-store/reducers/categories.reducer';
+import { IStore } from '@root-store/reducers';
 import { Store } from '@ngrx/store';
 import {
   getSuggestedProductsPending,
   clearSuggestedProducts,
 } from './store/actions/suggested-products.actions';
-import { UnSubscriber } from 'src/app/shared/utils/unsubscriber';
+import { UnSubscriber } from '@shared/utils/unsubscriber';
 import { takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IBanner } from './banner/banner.component';
+import { IProductsState } from '@category-store/reducers/products.reducer';
 
 @Component({
   selector: 'ngx-shop-products',

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProductApi } from 'src/app/content/category/store/reducers/products.reducer';
 import { Params } from '@angular/router';
-import { IFeedback, IProduct } from '../interfaces/product.interface';
+import { IFeedback, IProduct } from '@product-store/reducers/product.reducer';
+import { IProductApi } from '@category-store/reducers/products.reducer';
 
 @Injectable()
 export class ProductsService {
@@ -19,18 +19,18 @@ export class ProductsService {
   public getProductsBySubCategory({
     currentCategory,
     priceRange,
-    searchByName,
-    selectedBrands,
+    text,
+    brands,
   }: Params): Observable<IProductApi> {
     let query = `?subCat=${currentCategory}`;
     if (priceRange && priceRange.length > 0) {
       query += `&prices=${priceRange}`;
     }
-    if (searchByName) {
-      query += `&text=${searchByName}`;
+    if (text) {
+      query += `&text=${text}`;
     }
-    if (selectedBrands) {
-      query += `&brands=${selectedBrands}`;
+    if (brands) {
+      query += `&brands=${brands}`;
     }
 
     return this.http.get<IProductApi>(`/products/${query}`);

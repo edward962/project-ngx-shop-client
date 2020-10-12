@@ -1,7 +1,7 @@
 <div id="productCarousel" class="product-carousel carousel slide">
   <ol class="carousel-indicators pointer">
     <li
-      [ngClass]="{ active: j === currentIndex }"
+      [ngClass]="j === currentIndex | swClass: '':'active'"
       class="pointer"
       *ngFor="let image of items; let j = index"
       (click)="show(j)"

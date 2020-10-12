@@ -5,10 +5,10 @@ import {
   Output,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { IStore } from 'src/app/store/reducers';
+import { IStore } from '@root-store/reducers';
 import { Store } from '@ngrx/store';
-import { go } from 'src/app/store/actions/router.actions';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
+import { go } from '@root-store/actions/router.actions';
+import { IProduct } from '@product-store/reducers/product.reducer';
 
 @Component({
   selector: 'ngx-shop-cart-product',
