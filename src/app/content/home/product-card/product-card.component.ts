@@ -5,19 +5,20 @@ import { go } from '@root-store/actions/router.actions';
 import { IProduct } from '@product-store/reducers/product.reducer';
 
 @Component({
-  selector: 'ngx-shop-product-card',
-  templateUrl: './product-card.component.html',
+	selector: 'ngx-shop-product-card',
+	templateUrl: './product-card.component.html',
 })
 export class ProductCardComponent {
-  @Input()
-  public product!: IProduct;
-  constructor(private readonly _store: Store<IStore>) {}
+	@Input()
+	public product!: IProduct;
 
-  public redirectTo(): void {
-    this._store.dispatch(
-      go({
-        path: ['/category', this.product.subCategory, this.product._id],
-      })
-    );
-  }
+	public constructor(private readonly _store: Store<IStore>) {}
+
+	public redirectTo(): void {
+		this._store.dispatch(
+			go({
+				path: ['/category', this.product.subCategory, this.product._id],
+			}),
+		);
+	}
 }

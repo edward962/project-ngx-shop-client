@@ -5,27 +5,30 @@ import { Store } from '@ngrx/store';
 import { IStore } from '@root-store/reducers';
 
 @Component({
-  selector: 'ngx-shop-side-menu',
-  templateUrl: './side-menu.component.html',
+	selector: 'ngx-shop-side-menu',
+	templateUrl: './side-menu.component.html',
 })
 export class SideMenuComponent {
-  @Input()
-  public categories: ICategory[] = [];
-  public currentName: string | null = null;
+	@Input()
+	public categories: ICategory[] = [];
 
-  constructor(private _store: Store<IStore>) {}
+	public currentName: string | null = null;
 
-  public hover(name: string): void {
-    this.currentName = name;
-  }
-  public mouseLeave(): void {
-    this.currentName = null;
-  }
-  public redirectTo(subCategory: string): void {
-    this._store.dispatch(
-      go({
-        path: ['/category', subCategory],
-      })
-    );
-  }
+	public constructor(private _store: Store<IStore>) {}
+
+	public hover(name: string): void {
+		this.currentName = name;
+	}
+
+	public mouseLeave(): void {
+		this.currentName = null;
+	}
+
+	public redirectTo(subCategory: string): void {
+		this._store.dispatch(
+			go({
+				path: ['/category', subCategory],
+			}),
+		);
+	}
 }

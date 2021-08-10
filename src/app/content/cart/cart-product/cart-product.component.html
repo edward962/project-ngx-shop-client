@@ -16,7 +16,7 @@
       </h4>
       <div class="rate">
         <ngx-shop-star-rating
-          tooltip="Рейтинг товара"
+          ngxShopTooltip="Рейтинг товара"
           [feedbackRate]="product.rating | rate"
         ></ngx-shop-star-rating>
         <span class="rate-amount ml-2 d-inline-block d-md-none">{{
@@ -37,7 +37,7 @@
         *ngIf="!disabled"
         type="button"
         class="pointer"
-        tooltip="Уменьшить количество товара"
+        ngxShopTooltip="Уменьшить количество товара"
         (click)="decrementProductInCart(product)"
       >
         <img
@@ -52,7 +52,7 @@
         *ngIf="!disabled"
         type="button"
         class="pointer"
-        tooltip="Увеличить количество товара"
+        ngxShopTooltip="Увеличить количество товара"
         (click)="incrementProductInCart(product)"
       >
         <img

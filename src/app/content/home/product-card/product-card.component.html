@@ -24,7 +24,7 @@
     <div>
       <div class="rate">
         <ngx-shop-star-rating
-          tooltip="Рейтинг товара"
+          ngxShopTooltip="Рейтинг товара"
           [feedbackRate]="product.rating | rate"
         ></ngx-shop-star-rating>
         <p class="rate-amount ml-2">{{ product.feedbacksCount | review }}</p>

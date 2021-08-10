@@ -7,39 +7,37 @@ import { IProductApi } from '@category-store/reducers/products.reducer';
 
 @Injectable()
 export class ProductsService {
-  constructor(private http: HttpClient) {}
+	public constructor(private http: HttpClient) {}
 
-  public createFeedback(
-    feedback: IFeedback,
-    product: string
-  ): Observable<IProduct> {
-    return this.http.post<IProduct>(`/feedbacks`, { ...feedback, product });
-  }
+	public createFeedback(feedback: IFeedback, product: string): Observable<IProduct> {
+		return this.http.post<IProduct>(`/feedbacks`, { ...feedback, product });
+	}
 
-  public getProductsBySubCategory({
-    currentCategory,
-    priceRange,
-    text,
-    brands,
-  }: Params): Observable<IProductApi> {
-    let query = `?subCat=${currentCategory}`;
-    if (priceRange && priceRange.length > 0) {
-      query += `&prices=${priceRange}`;
-    }
-    if (text) {
-      query += `&text=${text}`;
-    }
-    if (brands) {
-      query += `&brands=${brands}`;
-    }
+	public getProductsBySubCategory({
+		currentCategory,
+		priceRange,
+		text,
+		brands,
+	}: Params): Observable<IProductApi> {
+		let query = `?subCat=${currentCategory}`;
+		if (priceRange && priceRange.length > 0) {
+			query += `&prices=${priceRange}`;
+		}
+		if (text) {
+			query += `&text=${text}`;
+		}
+		if (brands) {
+			query += `&brands=${brands}`;
+		}
 
-    return this.http.get<IProductApi>(`/products/${query}`);
-  }
+		return this.http.get<IProductApi>(`/products/${query}`);
+	}
 
-  public getSuggestedProducts(): Observable<IProductApi> {
-    return this.http.get<IProductApi>('/products/suggestion');
-  }
-  public getProductById(id: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`/products/${id}`);
-  }
+	public getSuggestedProducts(): Observable<IProductApi> {
+		return this.http.get<IProductApi>('/products/suggestion');
+	}
+
+	public getProductById(id: string): Observable<IProduct> {
+		return this.http.get<IProduct>(`/products/${id}`);
+	}
 }

@@ -3,10 +3,10 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class UnSubscriber implements OnDestroy {
-  protected unsubscribe$$ = new Subject();
+	protected unsubscribe$$ = new Subject();
 
-  public ngOnDestroy(): void {
-    this.unsubscribe$$.next(true);
-    this.unsubscribe$$.complete();
-  }
+	public ngOnDestroy(): void {
+		this.unsubscribe$$.next(true);
+		this.unsubscribe$$.complete();
+	}
 }

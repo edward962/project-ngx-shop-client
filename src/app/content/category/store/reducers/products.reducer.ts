@@ -1,57 +1,57 @@
 import { IProduct } from '@product-store/reducers/product.reducer';
 import { createReducer, on, Action } from '@ngrx/store';
 import {
-  getProductsPending,
-  getProductsSuccess,
-  getProductsError,
+	getProductsPending,
+	getProductsSuccess,
+	getProductsError,
 } from '../actions/products.actions';
 
 export interface IProductsState {
-  items: IProduct[];
-  loading: boolean;
-  prices: IMinMaxPrice;
+	items: IProduct[];
+	loading: boolean;
+	prices: IMinMaxPrice;
 }
 
 export interface IProductApi {
-  items: IProduct[];
-  prices: IMinMaxPrice;
+	items: IProduct[];
+	prices: IMinMaxPrice;
 }
 export interface IMinMaxPrice {
-  min: number;
-  max: number;
+	min: number;
+	max: number;
 }
 
 const productsReducer = createReducer(
-  {
-    items: [],
-    loading: false,
-    prices: { min: 0, max: 0 },
-  },
-  // tslint:disable-next-line:typedef
+	{
+		items: [],
+		loading: false,
+		prices: { min: 0, max: 0 },
+	},
+	// eslint-disable-next-line
   on(getProductsPending, (state: IProductsState) => ({
-    ...state,
-    loading: true,
-  })),
-  // tslint:disable-next-line:typedef
+		...state,
+		loading: true,
+	})),
+	// eslint-disable-next-line
   on(getProductsSuccess, (state: IProductsState, { products, prices }) => ({
-    ...state,
-    items: products,
-    prices,
-    loading: false,
-  })),
-  // tslint:disable-next-line:typedef
+		...state,
+		items: products,
+		prices,
+		loading: false,
+	})),
+	// eslint-disable-next-line
   on(getProductsError, (state: IProductsState) => ({
-    ...state,
-    loading: false,
-  }))
+		...state,
+		loading: false,
+	})),
 );
 
 export function reducerProducts(
-  state: IProductsState | undefined,
-  action: Action
+	state: IProductsState | undefined,
+	action: Action,
 ): {
-  items: IProduct[];
-  loading: boolean;
+	items: IProduct[];
+	loading: boolean;
 } {
-  return productsReducer(state, action);
+	return productsReducer(state, action);
 }

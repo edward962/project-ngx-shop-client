@@ -1,7 +1,7 @@
 <div class="product-info">
   <h3 class="h5">{{ product?.name }}</h3>
   <ngx-shop-star-rating
-    tooltip="Рейтинг товара"
+    ngxShopTooltip="Рейтинг товара"
     position="left"
     [feedbackRate]="product?.rating | rate"
   >
@@ -56,7 +56,7 @@
         {{ product?.price | currency: 'EUR' }}
       </h4>
       <button
-        *ngIf="product != null"
+        *ngIf="product !== null"
         type="submit"
         class="btn btn-primary btn-lg px-3"
         (click)="addToBasket(product)"

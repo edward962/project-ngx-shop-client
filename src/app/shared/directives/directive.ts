@@ -1,123 +1,110 @@
-import {
-  Directive,
-  Input,
-  ElementRef,
-  HostListener,
-  Renderer2,
-  OnDestroy,
-} from '@angular/core';
+import { Directive, Input, ElementRef, HostListener, Renderer2, OnDestroy } from '@angular/core';
 
 export enum TooltipPosition {
-  TOP = 'top',
-  RIGHT = 'right',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
+	TOP = 'top',
+	RIGHT = 'right',
+	BOTTOM = 'bottom',
+	LEFT = 'left',
 }
 
 @Directive({
-  selector: '[tooltip]',
+	selector: '[ngxShopTooltip]',
 })
 export class TooltipDirective implements OnDestroy {
-  @Input('tooltip')
-  public tooltipTitle: string | undefined;
-  @Input()
-  public position: TooltipPosition = TooltipPosition.TOP;
+	@Input('ngxShopTooltip')
+	public tooltipTitle: string | undefined;
 
-  public tooltip: HTMLElement | undefined | null;
-  public offset = 10;
+	@Input()
+	public position: TooltipPosition = TooltipPosition.TOP;
 
-  constructor(
-    private readonly _el: ElementRef,
-    private readonly renderer: Renderer2
-  ) {}
+	public tooltip: HTMLElement | undefined | null;
 
-  @HostListener('mouseenter')
-  public onMouseEnter(): void {
-    if (this.tooltip) {
-      return;
-    }
-    this.show();
-  }
+	public offset = 10;
 
-  @HostListener('mouseleave')
-  public onMouseLeave(): void {
-    if (!this.tooltip) {
-      return;
-    }
-    this.hide();
-  }
+	public constructor(private readonly _el: ElementRef, private readonly renderer: Renderer2) {}
 
-  public show(): void {
-    this.create();
-    this.setPosition();
-    this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
-  }
+	@HostListener('mouseenter')
+	public onMouseEnter(): void {
+		if (this.tooltip) {
+			return;
+		}
+		this.show();
+	}
 
-  public hide(): void {
-    if (!this.tooltip) {
-      return;
-    }
-    this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
-    this.renderer.removeChild(document.body, this.tooltip);
-    this.tooltip = null;
-  }
+	@HostListener('mouseleave')
+	public onMouseLeave(): void {
+		if (!this.tooltip) {
+			return;
+		}
+		this.hide();
+	}
 
-  public create(): void {
-    this.tooltip = this.renderer.createElement('span');
-    if (this.tooltipTitle) {
-      this.renderer.appendChild(
-        this.tooltip,
-        this.renderer.createText(this.tooltipTitle)
-      );
-    }
+	public show(): void {
+		this.create();
+		this.setPosition();
+		this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
+	}
 
-    this.renderer.appendChild(document.body, this.tooltip);
-    this.renderer.addClass(this.tooltip, 'ng-tooltip');
-    this.renderer.addClass(this.tooltip, `ng-tooltip-${this.position}`);
-  }
+	public hide(): void {
+		if (!this.tooltip) {
+			return;
+		}
+		this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
+		this.renderer.removeChild(document.body, this.tooltip);
+		this.tooltip = null;
+	}
 
-  public setPosition(): void {
-    if (!this.tooltip) {
-      return;
-    }
-    const hostPos = this._el.nativeElement.getBoundingClientRect();
+	public create(): void {
+		this.tooltip = this.renderer.createElement('span');
+		if (this.tooltipTitle) {
+			this.renderer.appendChild(this.tooltip, this.renderer.createText(this.tooltipTitle));
+		}
 
-    const tooltipPos = this.tooltip.getBoundingClientRect();
+		this.renderer.appendChild(document.body, this.tooltip);
+		this.renderer.addClass(this.tooltip, 'ng-tooltip');
+		this.renderer.addClass(this.tooltip, `ng-tooltip-${this.position}`);
+	}
 
-    const scrollPos =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
+	public setPosition(): void {
+		if (!this.tooltip) {
+			return;
+		}
+		const hostPos = this._el.nativeElement.getBoundingClientRect();
 
-    let top, left;
+		const tooltipPos = this.tooltip.getBoundingClientRect();
 
-    if (this.position === TooltipPosition.TOP) {
-      top = hostPos.top - tooltipPos.height - this.offset;
-      left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
-    }
+		const scrollPos =
+			window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-    if (this.position === TooltipPosition.BOTTOM) {
-      top = hostPos.bottom + this.offset;
-      left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
-    }
+		let top;
+		let left;
 
-    if (this.position === TooltipPosition.LEFT) {
-      top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
-      left = hostPos.left - tooltipPos.width - this.offset;
-    }
+		if (this.position === TooltipPosition.TOP) {
+			top = hostPos.top - tooltipPos.height - this.offset;
+			left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
+		}
 
-    if (this.position === TooltipPosition.RIGHT) {
-      top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
-      left = hostPos.right + this.offset;
-    }
-    this.renderer.setStyle(this.tooltip, 'top', `${top + scrollPos}px`);
-    this.renderer.setStyle(this.tooltip, 'left', `${left}px`);
-  }
+		if (this.position === TooltipPosition.BOTTOM) {
+			top = hostPos.bottom + this.offset;
+			left = hostPos.left + (hostPos.width - tooltipPos.width) / 2;
+		}
 
-  public ngOnDestroy(): void {
-    if (this.tooltip) {
-      this.hide();
-    }
-  }
+		if (this.position === TooltipPosition.LEFT) {
+			top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
+			left = hostPos.left - tooltipPos.width - this.offset;
+		}
+
+		if (this.position === TooltipPosition.RIGHT) {
+			top = hostPos.top + (hostPos.height - tooltipPos.height) / 2;
+			left = hostPos.right + this.offset;
+		}
+		this.renderer.setStyle(this.tooltip, 'top', `${top + scrollPos}px`);
+		this.renderer.setStyle(this.tooltip, 'left', `${left}px`);
+	}
+
+	public ngOnDestroy(): void {
+		if (this.tooltip) {
+			this.hide();
+		}
+	}
 }

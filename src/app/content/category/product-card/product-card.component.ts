@@ -6,27 +6,29 @@ import { go } from '@root-store/actions/router.actions';
 import { IProduct } from '@product-store/reducers/product.reducer';
 
 @Component({
-  selector: 'ngx-shop-content-product',
-  templateUrl: './product-card.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+	selector: 'ngx-shop-content-product',
+	templateUrl: './product-card.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryProductComponent {
-  @Input()
-  public product!: IProduct;
-  @Input()
-  public subCategory!: string;
+	@Input()
+	public product!: IProduct;
 
-  constructor(private readonly _store: Store<IStore>) {}
+	@Input()
+	public subCategory!: string;
 
-  public async addToBasket(product: IProduct): Promise<void> {
-    this._store.dispatch(addProductToCart({ product }));
-  }
-  public redirectTo(): void {
-    window.scroll(0, 0);
-    this._store.dispatch(
-      go({
-        path: ['/category', this.product.subCategory, this.product._id],
-      })
-    );
-  }
+	public constructor(private readonly _store: Store<IStore>) {}
+
+	public async addToBasket(product: IProduct): Promise<void> {
+		this._store.dispatch(addProductToCart({ product }));
+	}
+
+	public redirectTo(): void {
+		window.scroll(0, 0);
+		this._store.dispatch(
+			go({
+				path: ['/category', this.product.subCategory, this.product._id],
+			}),
+		);
+	}
 }
