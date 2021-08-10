@@ -29,7 +29,7 @@ export class ProductComponent extends UnSubscriber implements OnInit, OnDestroy 
 		this._store.dispatch(getProductPending({ id: product }));
 	}
 
-	public ngOnDestroy(): void {
+	public override ngOnDestroy(): void {
 		this._store.dispatch(clearProduct());
 	}
 }

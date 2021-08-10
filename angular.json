@@ -17,6 +17,11 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "rxjs/Subject",
+              "rxjs/Subscription",
+              "rxjs/operators"
+            ],
             "customWebpackConfig": {
               "path": "./extra-webpack.config.js",
               "mergeStrategies": {

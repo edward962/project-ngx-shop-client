@@ -1,14 +1,16 @@
 // eslint-disable-next-line max-classes-per-file
-import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import {
+	AbstractControl,
 	FormBuilder,
 	FormGroup,
-	Validators,
 	ReactiveFormsModule,
-	AbstractControl,
+	Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IFeedback } from '@product-store/reducers/product.reducer';
+import { TooltipPosition } from '@shared/directives/directive';
+import { SharedModule } from '@shared/shared.module';
 import { RatingComponent } from '../rating/rating.component';
 
 @Component({
@@ -22,6 +24,8 @@ export class AddFeedbackComponent {
 		advantages: ['', [Validators.required, Validators.minLength(10)]],
 		rate: ['', [Validators.required]],
 	});
+
+	public position: TooltipPosition = TooltipPosition.LEFT;
 
 	public constructor(private readonly _fb: FormBuilder) {}
 
@@ -42,8 +46,9 @@ export class AddFeedbackComponent {
 		this.save(feedback);
 	}
 }
+
 @NgModule({
 	declarations: [AddFeedbackComponent, RatingComponent],
-	imports: [CommonModule, ReactiveFormsModule],
+	imports: [CommonModule, ReactiveFormsModule, SharedModule],
 })
 export class AddFeedbackModule {}

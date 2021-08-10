@@ -26,7 +26,7 @@ const productsReducer = createReducer(
 		items: [],
 		loading: false,
 		prices: { min: 0, max: 0 },
-	},
+	} as IProductsState,
 	// eslint-disable-next-line
   on(getProductsPending, (state: IProductsState) => ({
 		...state,

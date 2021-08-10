@@ -10,13 +10,13 @@
           <ngx-shop-rating
             formControlName="rate"
             ngxShopTooltip="Оцените товар"
-            position="left"
+            [position]="position"
           ></ngx-shop-rating>
         </div>
         <label
           class="feedback-inputs-label"
           ngxShopTooltip="Оставьте ваш отзыв о товаре"
-          position="left"
+          [position]="position"
         >
           Добавить коментарий
         </label>
@@ -27,9 +27,11 @@
           ></textarea>
         </div>
         <div class="form-valid">
-          <p *ngIf="getField('advantages')?.errors?.minlength">
-            Отзыв должен состоять минимум из 10 символов
-          </p>
+          <ng-container *ngIf="getField('advantages')?.errors as errors">
+            <p *ngIf="errors && errors['minlength']">
+              Отзыв должен состоять минимум из 10 символов
+            </p>
+          </ng-container>
         </div>
         <div class="button-conrainer">
           <button

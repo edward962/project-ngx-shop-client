@@ -1,17 +1,62 @@
-## Installation
+# Angular Course Project
 
-```bash
-$ npm install
+[Angular CLI](https://github.com/angular/angular-cli) version 12.2.0
+
+## Getting Started
+
+After your git clone this repository run:
+
+`npm ci --legacy-peer-deps`
+
+This will install all of the node_modules and not mess with the package-lock.json file.
+
+**DO NOT EVER RUN `npm install` ON THIS PROJECT**
+
+## Local Development
+Run:
+
+`npm start`
+
+To start the app and begin development work. The app will launch at http://localhost:4200
+
+## Linting project
+
+Run:
+
+`npm run lint`
+
+If you have errors please fix. You could try autofix with `npm run lint:fix`
+
+## Test production build locally
+
+Run:
+
+`npm run build:package` and run some staic server
+
+To start the app and begin test work. The app will launch at  server port
+
+## This project use git hooks
+
+Husky improves your commits and more 🐶 woof!
+
+More information you find on - https://typicode.github.io/husky
+
+## Commitlint
+
+Commitlint is used to have a common way of writing commit messages. `Conventional Commits` extension could help with that.
+
+Basic structure of commit message: `type(scope): title`
+
+`type` can be: [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test].
+
+`scope` is a task number from jira - like AL-9999.
+
+If you use Mac OS please check that you have right access to excute hooks. If need please change
+
+```
+chmod a+x .husky/pre-commit
 ```
 
-## Running the app
-```bash
-# development
-$ npm  start
 ```
-
-## Build
-For build check src/environment.prod.ts and then
-```bash
-$ npm run build
+chmod a+x .husky/commit-msg
 ```

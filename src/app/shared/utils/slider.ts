@@ -24,7 +24,7 @@ export const slideAnimation = [
 export const initSliderAnimation = trigger('initSliderAnimation', [transition(':enter', [])]);
 
 export abstract class Slider<T> {
-	public abstract items: T[] = [];
+	public abstract items: T[] | undefined = [];
 
 	public currentIndex = 0;
 
@@ -50,7 +50,7 @@ export abstract class Slider<T> {
 		}
 		this.isSlidedRight = true;
 		this._cdr.detectChanges();
-		if (this.currentIndex === this.items.length - 1) {
+		if (this.currentIndex === this.items!.length - 1) {
 			this.currentIndex = 0;
 			this._cdr.markForCheck();
 			return;
@@ -66,7 +66,7 @@ export abstract class Slider<T> {
 		this.isSlidedRight = false;
 		this._cdr.detectChanges();
 		if (this.currentIndex === 0) {
-			this.currentIndex = this.items.length - 1;
+			this.currentIndex = this.items!.length - 1;
 			this._cdr.markForCheck();
 			return;
 		}

@@ -15,8 +15,8 @@
       </h4>
       <ngx-shop-star-rating
         ngxShopTooltip="Рейтинг товара"
-        position="top"
-        [feedbackRate]="product.rating | rate"
+        [position]="position"
+        [feedbackRate]="product?.rating | rate"
       >
       </ngx-shop-star-rating>
       <p class="rate-amount d-none d-md-block mt-1">

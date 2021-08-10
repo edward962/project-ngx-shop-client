@@ -22,7 +22,7 @@
               formControlName="text"
             />
             <ngx-shop-brands
-              [brands]="(brands$ | async).items"
+              [brands]="(brands$ | async)?.items"
               [selectedBrands]="selectedBrands$ | async"
               formControlName="brands"
             >

@@ -7,7 +7,7 @@ import { IProduct } from '@product-store/reducers/product.reducer';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DescriptionComponent {
-	@Input() public product!: IProduct;
+	@Input() public product!: IProduct | undefined;
 
 	public isShowDescription = true;
 

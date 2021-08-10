@@ -10,7 +10,7 @@ import { Slider, slideAnimation, initSliderAnimation } from '@shared/utils/slide
 })
 export class ProductSliderComponent extends Slider<IProductImage> {
 	@Input()
-	public items: IProductImage[] = [];
+	public items: IProductImage[] | undefined = [];
 
 	public constructor(_cdr: ChangeDetectorRef) {
 		super(_cdr);

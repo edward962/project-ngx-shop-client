@@ -63,7 +63,7 @@ export class HomeComponent extends UnSubscriber implements OnInit, OnDestroy {
 		this._store.dispatch(getSuggestedProductsPending());
 	}
 
-	public ngOnDestroy(): void {
+	public override ngOnDestroy(): void {
 		this._store.dispatch(clearSuggestedProducts());
 	}
 }

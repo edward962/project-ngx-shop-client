@@ -12,7 +12,7 @@ import { ModalService } from 'src/app/modal/modal.service';
 })
 export class FeedbacksComponent {
 	@Input()
-	public feedbacks!: IFeedback[];
+	public feedbacks: IFeedback[] | undefined = [];
 
 	public constructor(
 		private readonly _store: Store<IStore>,

@@ -2,7 +2,7 @@
   <h3 class="h5">{{ product?.name }}</h3>
   <ngx-shop-star-rating
     ngxShopTooltip="Рейтинг товара"
-    position="left"
+    [position]="position"
     [feedbackRate]="product?.rating | rate"
   >
   </ngx-shop-star-rating>

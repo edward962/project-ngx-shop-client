@@ -56,8 +56,8 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
 		// eslint-disable-next-line
     map((query: Params) => ({
 			...query,
-			brands: query.brands ? query.brands.split(',') : [],
-			prices: query.prices ? query.prices.split(',') : '',
+			brands: query['brands'] ? query['brands'].split(',') : [],
+			prices: query['prices'] ? query['prices'].split(',') : '',
 		})),
 		tap(this._setFilters.bind(this)),
 		pluck('brands'),
@@ -95,13 +95,13 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
 	}
 
 	private _getProducts([subCategory, query]: [string, Params]): void {
-		this.selectedPrices = query.prices ? query.prices.split(',') : '';
+		this.selectedPrices = query['prices'] ? query['prices'].split(',') : '';
 		this._store.dispatch(
 			getProductsPending({
-				brands: query.brands,
+				brands: query['brands'],
 				currentCategory: subCategory,
-				text: query.text,
-				priceRange: query.prices,
+				text: query['text'],
+				priceRange: query['prices'],
 			}),
 		);
 	}
@@ -109,9 +109,9 @@ export class CategoryComponent extends UnSubscriber implements OnInit {
 	private _setFilters(query: Params): void {
 		this.form.setValue(
 			{
-				text: query.text ?? '',
-				brands: query.brands ?? '',
-				prices: query.prices ?? undefined,
+				text: query['text'] ?? '',
+				brands: query['brands'] ?? '',
+				prices: query['prices'] ?? undefined,
 			},
 			{ emitEvent: false },
 		);

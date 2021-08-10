@@ -3,6 +3,7 @@ import { addProductToCart } from '@root-store/actions/cart.actions';
 import { Store } from '@ngrx/store';
 import { IStore } from '@root-store/reducers';
 import { IProduct } from '@product-store/reducers/product.reducer';
+import { TooltipPosition } from '@shared/directives/directive';
 
 @Component({
 	selector: 'ngx-shop-information',
@@ -11,13 +12,18 @@ import { IProduct } from '@product-store/reducers/product.reducer';
 })
 export class InformationComponent {
 	@Input()
-	public product?: IProduct;
+	public product?: IProduct | undefined;
 
 	public isShow = false;
 
+	public position: TooltipPosition = TooltipPosition.LEFT;
+
 	public constructor(private readonly _store: Store<IStore>) {}
 
-	public async addToBasket(product: IProduct): Promise<void> {
+	public async addToBasket(product: IProduct | undefined): Promise<void> {
+		if (!product) {
+			return;
+		}
 		this._store.dispatch(addProductToCart({ product }));
 	}
 

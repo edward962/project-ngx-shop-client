@@ -10,7 +10,7 @@ import { IStore } from '@root-store/reducers';
 })
 export class SideMenuComponent {
 	@Input()
-	public categories: ICategory[] = [];
+	public categories: ICategory[] | undefined = [];
 
 	public currentName: string | null = null;
 

@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { TooltipPosition } from '@shared/directives/directive';
 
 @Component({
 	selector: 'ngx-shop-star-rating',
@@ -9,6 +10,8 @@ export class StarRatingComponent {
 	@Input()
 	//  @ts-ignore
 	public feedbackRate = 0;
+
+	public position: TooltipPosition = TooltipPosition.TOP;
 
 	public stars = [0, 1, 2, 3, 4];
 

@@ -6,7 +6,7 @@
         <label for="name">Имя:</label>
         <input
           [ngClass]="
-            form.errors?.name
+            form.errors && form.errors['name']
               | swClass: 'form-control form-control-error':'form-control'
           "
           formControlName="name"
@@ -15,7 +15,7 @@
           placeholder="Ваше имя"
         />
         <p class="form-control-error-text">
-          {{ form.errors?.name && 'Поле должно быть заполнено' }}
+          {{ form.errors && form.errors['name'] && 'Поле должно быть заполнено' }}
         </p>
       </div>
       <div class="form-group mb-4">
@@ -24,14 +24,14 @@
           formControlName="email"
           type="email"
           [ngClass]="
-            form.errors?.email
+            form.errors && form.errors['email']
               | swClass: 'form-control form-control-error':'form-control'
           "
           id="email"
           placeholder="email@gmail.com"
         />
         <p class="form-control-error-text">
-          {{ form.errors?.email && 'Некорректный E-mail' }}
+          {{ form.errors && form.errors['email'] && 'Некорректный E-mail' }}
         </p>
       </div>
     </div>
@@ -40,7 +40,7 @@
         <label for="phone">Телефон:</label>
         <input
           [ngClass]="
-            form.errors?.telephone
+            form.errors && form.errors['telephone']
               | swClass: 'form-control form-control-error':'form-control'
           "
           formControlName="telephone"
@@ -49,7 +49,7 @@
           placeholder="+44 7911 123456"
         />
         <p class="form-control-error-text">
-          {{ form.errors?.telephone.error }}
+          {{ form.errors && form.errors['telephone']?.error }}
         </p>
       </div>
       <div class="form-group mb-4">

@@ -17,7 +17,7 @@
       <div class="rate">
         <ngx-shop-star-rating
           ngxShopTooltip="Рейтинг товара"
-          [feedbackRate]="product.rating | rate"
+          [feedbackRate]="product?.rating | rate"
         ></ngx-shop-star-rating>
         <span class="rate-amount ml-2 d-inline-block d-md-none">{{
           product.feedbacksCount | review
@@ -65,7 +65,7 @@
   </div>
   <div class="default-col inner-col flex-col justify-content-center">
     <h4 class="mb-0">
-      {{ product?.price * product?.count | currency: 'EUR' }}
+      {{ (product?.price || 0) * (product?.count || 0) | currency: 'EUR' }}
     </h4>
   </div>
 </div>

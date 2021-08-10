@@ -53,7 +53,7 @@
     </ng-container>
   </div>
   <a
-    *ngIf="items?.length > 1"
+    *ngIf="(items?.length || 0)  > 1"
     class="carousel-control-prev pointer"
     (click)="prev()"
   >
@@ -61,7 +61,7 @@
     <span class="sr-only pointer">Previous</span>
   </a>
   <a
-    *ngIf="items?.length > 1"
+    *ngIf="(items?.length || 0) > 1"
     class="carousel-control-next pointer"
     (click)="next()"
   >

@@ -22,10 +22,10 @@ export interface ISubCategory {
 	subCategory: string;
 }
 
-const initialState = {
+const initialState: ICategoryState = {
 	items: [],
 	loading: false,
-};
+} as ICategoryState;
 const categoriesReducer = createReducer(
 	initialState,
 	// eslint-disable-next-line

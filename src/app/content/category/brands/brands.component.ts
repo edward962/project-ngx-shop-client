@@ -16,10 +16,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class BrandsComponent implements ControlValueAccessor {
 	@Input()
-	public brands: string[] = [];
+	public brands: string[] | undefined = [];
 
 	@Input()
-	public selectedBrands: string[] = [];
+	public selectedBrands: string[] | null = [];
 
 	public isShow = false;
 
@@ -38,11 +38,11 @@ export class BrandsComponent implements ControlValueAccessor {
 	public registerOnTouched(): void {}
 
 	public check(brandName: string): void {
-		const index = this.selectedBrands.findIndex((brand): boolean => brand === brandName);
+		const index = this.selectedBrands!.findIndex((brand): boolean => brand === brandName);
 		if (index < 0) {
-			this.selectedBrands.push(brandName);
+			this.selectedBrands!.push(brandName);
 		} else {
-			this.selectedBrands.splice(index, 1);
+			this.selectedBrands!.splice(index, 1);
 		}
 		this.onChange(this.selectedBrands);
 	}

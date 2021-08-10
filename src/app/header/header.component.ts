@@ -6,6 +6,7 @@ import { trueProductsCount } from '@root-store/reducers/cart.reducer';
 import { takeUntil } from 'rxjs/operators';
 import { UnSubscriber } from '@shared/utils/unsubscriber';
 import { ICategory } from '@root-store/reducers/categories.reducer';
+import { TooltipPosition } from '@shared/directives/directive';
 import { getCategoriesPending } from '../store/actions/category.actions';
 
 @Component({
@@ -21,6 +22,8 @@ export class HeaderComponent extends UnSubscriber {
 	public categories$: Observable<ICategory[]> = this._store
 		.select('categories', 'items')
 		.pipe(takeUntil(this.unsubscribe$$));
+
+	public position: TooltipPosition = TooltipPosition.LEFT;
 
 	public constructor(private readonly _store: Store<IStore>) {
 		super();

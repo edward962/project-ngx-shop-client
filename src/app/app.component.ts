@@ -10,7 +10,7 @@ import { fadeAnimation } from './router.animation';
 })
 export class AppComponent {
 	public getRouterState(outlet: RouterOutlet): Data {
-		return outlet && outlet.activatedRouteData && outlet.activatedRouteData.state;
+		return outlet && outlet.activatedRouteData && outlet.activatedRouteData['state'];
 	}
 
 	public animationStart(): void {}

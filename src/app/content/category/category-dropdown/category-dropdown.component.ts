@@ -19,21 +19,21 @@ import { go } from '@root-store/actions/router.actions';
 })
 export class CategoryDropdownComponent implements OnInit {
 	@Input()
-	public categories!: ICategory[];
+	public categories: ICategory[] | undefined = [];
 
 	@Input()
-	public selectedSubCatId!: string;
+	public selectedSubCatId!: string | null;
 
 	public currentIndex: number | null = null;
 
 	public onChange!: Function;
 
-	public currentCategory?: string;
+	public currentCategory!: string | null;
 
 	public constructor(private readonly _store: Store<IStore>) {}
 
 	public ngOnInit(): void {
-		this.currentIndex = this.categories.findIndex(
+		this.currentIndex = this.categories!.findIndex(
 			(category: ICategory): ISubCategory | undefined => {
 				return category.subCategories?.find((subCat: ISubCategory): boolean => {
 					return subCat._id === this.selectedSubCatId;

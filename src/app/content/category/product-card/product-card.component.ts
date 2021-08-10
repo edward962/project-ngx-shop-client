@@ -4,6 +4,7 @@ import { IStore } from '@root-store/reducers';
 import { addProductToCart } from '@root-store/actions/cart.actions';
 import { go } from '@root-store/actions/router.actions';
 import { IProduct } from '@product-store/reducers/product.reducer';
+import { TooltipPosition } from '@shared/directives/directive';
 
 @Component({
 	selector: 'ngx-shop-content-product',
@@ -17,9 +18,14 @@ export class CategoryProductComponent {
 	@Input()
 	public subCategory!: string;
 
+	public position: TooltipPosition = TooltipPosition.LEFT;
+
 	public constructor(private readonly _store: Store<IStore>) {}
 
-	public async addToBasket(product: IProduct): Promise<void> {
+	public async addToBasket(product: IProduct | undefined): Promise<void> {
+		if (!product) {
+			return;
+		}
 		this._store.dispatch(addProductToCart({ product }));
 	}
 

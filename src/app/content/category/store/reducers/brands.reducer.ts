@@ -10,7 +10,7 @@ const brandsReducer = createReducer(
 	{
 		items: [],
 		loading: false,
-	},
+	} as IBrandsState,
 	// eslint-disable-next-line
   on(getBrandsPending, (state: IBrandsState, {}) => ({
 		...state,
